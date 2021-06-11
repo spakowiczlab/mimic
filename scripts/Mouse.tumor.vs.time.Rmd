@@ -1,0 +1,103 @@
+---
+title: "Mimic.tumor.vs.time"
+author: "Yangyang Liu"
+date: "6/10/2021"
+output: html_document
+---
+
+```{r import data}
+raw.tumor <- read_excel("~/Box/mimic/data/AOT00041318/AOT00041318_size-measurements.xlsx")
+#calculate tumor volume and save in a new column : tumor.size
+raw.tumor$tumor.volume <- (raw.tumor$`tumor.length.(mm)`*raw.tumor$`tumor.width.(mm)`*raw.tumor$`tumor.width.(mm)`)/2
+#Merge rows for mouse with more than 1 tumors : addition
+merge.tumor <- aggregate(tumor.volume ~ date + tail.number + microbiome.sample + treatment, FUN = sum, data=raw.tumor)
+merge.tumor <- merge.tumor[order(as.Date(merge.tumor$date, format="%d/%m/%Y")),]
+#calculate mean and standard error per group per date (V3-IgG, V3-anti-PD1, V4-IgG, V4-anti-PD-1) -yet to be done
+
+#set up four separate groups in one column and remove the previous columns
+merge.tumor$Groups <- paste(merge.tumor$microbiome.sample, merge.tumor$treatment)
+merge.tumor = subset(merge.tumor, select = -c(microbiome.sample, treatment) )
+
+
+```
+
+```{r ggplot per mouse samples}
+apply(merge.tumor[ ,1:4],3,sd)
+
+merge.tumor%>%
+  ggplot( aes(x=date, y=tumor.volume, color=Groups)) +
+  geom_errorbar(aes(ymin = sd, ymax = sd), width = 0.2)+      
+    geom_line()+
+    geom_point()
+```
+    
+    
+```{r Dan ggplot suggestion}
+merge.tumor%>%
+  ggplot(aes(x=date, y=tumor.volume)) +
+    geom_boxplot(aes(color = Groups))
+```
+```{r line plot Dan suggestion}
+merge.tumor%>%
+  ggplot(aes(x=date, y=tumor.volume)) +
+    geom_line(aes(group = tail.number, color = Groups))+
+    geom_point(aes(color = Groups)) +
+    geom_boxplot(aes(color = Groups))
+
+```
+
+
+```{r graveyard misc}
+tumor.volume <- read.csv("~/Box/mimic/data/AOT00041318/AOT00041318.tumor.size.calculated.csv")
+
+mean.and.sd <- data_summary(merge.tumor, all_of(tumor.volume="mean", Groups=c("Groups","tail.number")))
+head(mean.and.sd)
+
+mean.and.sd <- data_summary(merge.tumor, Groups, tumor.volume="mean")
+head(mean.and.sd)
+
+#+++++++++++++++++++++++++
+# Function to calculate the mean and the standard deviation
+  # for each group
+#+++++++++++++++++++++++++
+# data : a data frame
+# varname : the name of a column containing the variable
+  #to be summariezed
+# groupnames : vector of column names to be used as
+  # grouping variables
+data_summary <- function(merge.tumor, tumor.volume, Groups){
+  require(plyr)
+  summary_func <- function(x, tumor.volume){
+    c(mean = mean(x[[tumor.volume]], na.rm=TRUE),
+      sd = sd(x[[tumor.volume]], na.rm=TRUE))
+  }
+  data_sum<-ddply(merge.tumor, Groups, .fun=summary_func,
+                  tumor.volume)
+  data_sum <- rename(data_sum, c("mean" = tumor.volume))
+ return(data_sum)
+}
+
+mean.and.sd <- data_summary(merge.tumor, Groups=c("Groups"), tumor.volume="mean")
+head(mean.and.sd)
+
+#graph
+ggplot(merge.tumor, aes(x=date, y=tumor.volume, group=tail.number, color=Groups)) + 
+  geom_errorbar(aes(ymin=tumor.volume-sd, ymax=tumor.volume+sd), width=.1, 
+    position=position_dodge(0.05)) +
+    geom_line()+
+    geom_point()
+```
+
+```{r graveyard mean and sd calculations}
+mean.and.sd <- aggregate(merge.tumor$tumor.volume, list(merge.tumor$Groups), mean)
+sd <- aggregate(merge.tumor$tumor.volume, list(merge.tumor$Groups), sd)
+mean.and.sd$sd <- sd
+#Rename mean and sd columns
+mean.and.sd <- mean.and.sd %>% 
+  rename(
+    mean = x, 
+    )
+#remove not needed columns
+mean.and.sd <- mean.and.sd[-1]
+```
+
