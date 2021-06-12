@@ -37,3 +37,7 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Lab file path convention
+scripts/00-paths.R
+mimic.json
