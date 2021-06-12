@@ -5,14 +5,79 @@ date: "6/10/2021"
 output: html_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load required packages
+library(readxl)
+library(tidyverse)
+
+# Load file paths
+source("00-paths.R")
+```
+
+# 1. Read in data 
+
+```{r import data}
+raw.tumor <- read_xlsx(file.path(paths$box, "data", "AOT00041318",
+                                 "AOT00041318_size-measurements.xlsx"))
+
+head(raw.tumor)
+```
+
 ```{r import data}
 raw.tumor <- read_excel("~/Box/mimic/data/AOT00041318/AOT00041318_size-measurements.xlsx")
-#calculate tumor volume and save in a new column : tumor.size
+
+
+```
+
+# 2. Clean, format and create variables
+
+```{r formatting}
+# Calculate tumor volume and create other variables needed for plotting
+meas <- 
+  raw.tumor %>%
+  mutate(tumor.volume = (`tumor.length.(mm)` * (`tumor.width.(mm)`^2)) / 2) %>%
+  # NA tumor volume means it was too small to be measured -- set to 0
+  mutate(tumor.volume = dplyr::if_else(is.na(tumor.volume),
+                                       true = 0,
+                                       false = tumor.volume)) %>%
+  # Adjust the microbiome sample name to generalize
+  mutate(condition = dplyr::if_else(grepl("v3", microbiome.sample),
+                                    true = "pre-DI",
+                                    false = "post-DI")) %>%
+  # Create a unique mouse ID
+  mutate(mouse = paste(tail.number, treatment, condition, sep = ".")) %>%
+  # Create 4 treatemnt groups
+  mutate(treatment.group = paste(condition, treatment, sep = ".")) %>%
+  mutate(treatment.group = fct_relevel(treatment.group,
+                                       c("pre-DI.IgG",
+                                         "pre-DI.Anti-PD-1",
+                                         "post-DI.IgG",
+                                         "post-DI.Anti-PD-1"))) %>%
+  group_by(mouse, date) %>%
+  mutate(total.tumor.volume = sum(tumor.volume)) %>%
+  distinct(date, mouse, treatment.group, total.tumor.volume) %>%
+  # Create a factor time variable for making boxplots
+  group_by(mouse) %>%
+  mutate(time.point = row_number(date)) %>%
+  mutate(time.point = as.factor(time.point)) %>%
+  dplyr::select(date, mouse, treatment.group, time.point, total.tumor.volume) %>%
+  rename("tumor.volume" = "total.tumor.volume")
+
+head(meas)
+```
+
+```{r}
+
+# Calculate tumor volume and save in a new column : tumor.size
 raw.tumor$tumor.volume <- (raw.tumor$`tumor.length.(mm)`*raw.tumor$`tumor.width.(mm)`*raw.tumor$`tumor.width.(mm)`)/2
-#Merge rows for mouse with more than 1 tumors : addition
+
+# Merge rows for mouse with more than 1 tumors : addition
 merge.tumor <- aggregate(tumor.volume ~ date + tail.number + microbiome.sample + treatment, FUN = sum, data=raw.tumor)
 merge.tumor <- merge.tumor[order(as.Date(merge.tumor$date, format="%d/%m/%Y")),]
-#calculate mean and standard error per group per date (V3-IgG, V3-anti-PD1, V4-IgG, V4-anti-PD-1) -yet to be done
+
+#Calculate mean and standard error per group per date (V3-IgG, V3-anti-PD1, V4-IgG, V4-anti-PD-1) -yet to be done
 
 #set up four separate groups in one column and remove the previous columns
 merge.tumor$Groups <- paste(merge.tumor$microbiome.sample, merge.tumor$treatment)
@@ -33,10 +98,11 @@ merge.tumor%>%
     
     
 ```{r Dan ggplot suggestion}
-merge.tumor%>%
+merge.tumor %>%
   ggplot(aes(x=date, y=tumor.volume)) +
     geom_boxplot(aes(color = Groups))
 ```
+
 ```{r line plot Dan suggestion}
 merge.tumor%>%
   ggplot(aes(x=date, y=tumor.volume)) +
@@ -45,6 +111,39 @@ merge.tumor%>%
     geom_boxplot(aes(color = Groups))
 
 ```
+
+# 3. Visualize
+
+```{r linefit}
+meas %>%
+  ggplot(aes(x = date, y = tumor.volume)) +
+  geom_line(aes(color = treatment.group, group = mouse), alpha = 0.1) +
+  stat_smooth(aes(color = treatment.group), method = "lm")
+  # geom_point(aes(color = treatment.group))
+```
+
+```{r boxplots}
+meas %>%
+  ggplot(aes(time.point, tumor.volume)) +
+  geom_boxplot(aes(color = treatment.group)) +
+  geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2) +
+  theme_bw() +
+  ggsave("../figures/AOT00041318_boxplot.png",
+         height = 6, width = 8)
+```
+
+```{r summarize}
+summ.meas <- 
+  meas %>%
+  group_by(treatment.group, date) %>%
+  summarize(mean = mean(tumor.volume),
+            sd = sd(tumor.volume)) %>%
+  mutate(lwr = mean - sd,
+         upr = mean + sd) %>%
+  # A negative error bar doesn't make sense in this context, set to 0
+  mutate(lwr = if_else(lwr < 0, 0, lwr))
+```
+
 
 
 ```{r graveyard misc}
