@@ -48,7 +48,7 @@ meas <-
                                     false = "post-DI")) %>%
   # Create a unique mouse ID
   mutate(mouse = paste(tail.number, treatment, condition, sep = ".")) %>%
-  # Create 4 treatemnt groups
+  # Create 4 treatment groups
   mutate(treatment.group = paste(condition, treatment, sep = ".")) %>%
   mutate(treatment.group = fct_relevel(treatment.group,
                                        c("pre-DI.IgG",
@@ -87,7 +87,6 @@ merge.tumor = subset(merge.tumor, select = -c(microbiome.sample, treatment) )
 ```
 
 ```{r ggplot per mouse samples}
-apply(merge.tumor[ ,1:4],3,sd)
 
 merge.tumor%>%
   ggplot( aes(x=date, y=tumor.volume, color=Groups)) +
@@ -137,14 +136,32 @@ summ.meas <-
   meas %>%
   group_by(treatment.group, date) %>%
   summarize(mean = mean(tumor.volume),
-            sd = sd(tumor.volume)) %>%
+            sd = sd(tumor.volume), .groups= 'drop') %>%
   mutate(lwr = mean - sd,
          upr = mean + sd) %>%
   # A negative error bar doesn't make sense in this context, set to 0
   mutate(lwr = if_else(lwr < 0, 0, lwr))
 ```
 
-
+```{r line plot with points and error bars}
+#no error bar version
+meas %>%
+  ggplot(aes(time.point, tumor.volume)) +
+  geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2)+
+  geom_point(aes(color=treatment.group))
+#error bar version
+meas %>%
+  ggplot(aes(time.point, tumor.volume)) +
+  geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2)+
+  geom_point(aes(color=treatment.group))+
+  geom_errorbar(aes(ymin = tumor.volume - summ.meas$lwr, ymax = tumor.volume - summ.meas$upr, color = treatment.group), width = 0.1)  
+# Keep only upper error bars, not so relavant here but will keep as for future reference
+meas %>%
+  ggplot(aes(time.point, tumor.volume)) +
+  geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2)+
+  geom_point(aes(color=treatment.group))+
+  geom_errorbar(aes(ymin = tumor.volume, ymax = tumor.volume - summ.meas$upr, color = treatment.group), width = 0.1)  
+```
 
 ```{r graveyard misc}
 tumor.volume <- read.csv("~/Box/mimic/data/AOT00041318/AOT00041318.tumor.size.calculated.csv")
@@ -185,9 +202,12 @@ ggplot(merge.tumor, aes(x=date, y=tumor.volume, group=tail.number, color=Groups)
     position=position_dodge(0.05)) +
     geom_line()+
     geom_point()
-```
 
-```{r graveyard mean and sd calculations}
+
+library(mosaic)
+favstats(tumor.volume~treatment.group,data=meas)
+
+#mean and sd
 mean.and.sd <- aggregate(merge.tumor$tumor.volume, list(merge.tumor$Groups), mean)
 sd <- aggregate(merge.tumor$tumor.volume, list(merge.tumor$Groups), sd)
 mean.and.sd$sd <- sd
@@ -198,5 +218,11 @@ mean.and.sd <- mean.and.sd %>%
     )
 #remove not needed columns
 mean.and.sd <- mean.and.sd[-1]
+
+#merge summ.meas with meas, set up a new table name, then assign it for the line plot=cannot work, different length
+finaldoc <- merge(summ.meas, meas)
+#position dosge for ggplot errorbar
+position=position_dodge(0.5) 
+
 ```
 
