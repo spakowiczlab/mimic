@@ -25,12 +25,6 @@ raw.tumor <- read_xlsx(file.path(paths$box, "data", "AOT00041318",
 head(raw.tumor)
 ```
 
-```{r import data}
-raw.tumor <- read_excel("~/Box/mimic/data/AOT00041318/AOT00041318_size-measurements.xlsx")
-
-
-```
-
 # 2. Clean, format and create variables
 
 ```{r formatting}
