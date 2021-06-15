@@ -86,30 +86,6 @@ merge.tumor = subset(merge.tumor, select = -c(microbiome.sample, treatment) )
 
 ```
 
-```{r ggplot per mouse samples}
-
-merge.tumor%>%
-  ggplot( aes(x=date, y=tumor.volume, color=Groups)) +
-  geom_errorbar(aes(ymin = sd, ymax = sd), width = 0.2)+      
-    geom_line()+
-    geom_point()
-```
-    
-    
-```{r Dan ggplot suggestion}
-merge.tumor %>%
-  ggplot(aes(x=date, y=tumor.volume)) +
-    geom_boxplot(aes(color = Groups))
-```
-
-```{r line plot Dan suggestion}
-merge.tumor%>%
-  ggplot(aes(x=date, y=tumor.volume)) +
-    geom_line(aes(group = tail.number, color = Groups))+
-    geom_point(aes(color = Groups)) +
-    geom_boxplot(aes(color = Groups))
-
-```
 
 # 3. Visualize
 
@@ -150,11 +126,11 @@ meas %>%
   geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2)+
   geom_point(aes(color=treatment.group))
 #error bar version
-meas %>%
-  ggplot(aes(time.point, tumor.volume)) +
-  geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2)+
-  geom_point(aes(color=treatment.group))+
-  geom_errorbar(aes(ymin = tumor.volume - summ.meas$lwr, ymax = tumor.volume - summ.meas$upr, color = treatment.group), width = 0.1)  
+summ.meas %>%
+  ggplot(aes(x = date, y = mean, color = treatment.group)) +
+  geom_line()+
+  geom_point()+
+  geom_errorbar(aes(ymin = lwr, ymax = upr)) 
 # Keep only upper error bars, not so relavant here but will keep as for future reference
 meas %>%
   ggplot(aes(time.point, tumor.volume)) +
@@ -163,7 +139,7 @@ meas %>%
   geom_errorbar(aes(ymin = tumor.volume, ymax = tumor.volume - summ.meas$upr, color = treatment.group), width = 0.1)  
 ```
 
-```{r graveyard misc}
+```{r graveyard misc, eval=F}
 tumor.volume <- read.csv("~/Box/mimic/data/AOT00041318/AOT00041318.tumor.size.calculated.csv")
 
 mean.and.sd <- data_summary(merge.tumor, all_of(tumor.volume="mean", Groups=c("Groups","tail.number")))
@@ -224,5 +200,15 @@ finaldoc <- merge(summ.meas, meas)
 #position dosge for ggplot errorbar
 position=position_dodge(0.5) 
 
+
+```{r ggplot per mouse samples}
+
+merge.tumor%>%
+  ggplot( aes(x=date, y=tumor.volume, color=Groups)) +
+  geom_errorbar(aes(ymin = sd, ymax = sd), width = 0.2)+      
+    geom_line()+
+    geom_point()
+```
+    
 ```
 
