@@ -130,7 +130,8 @@ summ.meas %>%
   ggplot(aes(x = date, y = mean, color = treatment.group)) +
   geom_line()+
   geom_point()+
-  geom_errorbar(aes(ymin = lwr, ymax = upr)) 
+  geom_errorbar(aes(ymin = lwr, ymax = upr))+
+  ggsave("../figures/volume.over.time.png")
 # Keep only upper error bars, not so relavant here but will keep as for future reference
 meas %>%
   ggplot(aes(time.point, tumor.volume)) +
