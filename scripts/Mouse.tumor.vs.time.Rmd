@@ -90,13 +90,16 @@ meas %>%
 ```
 
 ```{r boxplots}
-meas %>%
+box.meas <- 
+  meas %>%
   ggplot(aes(time.point, tumor.volume)) +
   geom_boxplot(aes(color = treatment.group)) +
   geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2) +
-  theme_bw() +
-  ggsave("../figures/AOT00041318_boxplot.png",
-         height = 6, width = 8)
+  theme_bw()
+
+ggsave(plot = box.meas, 
+       file = "../figures/AOT00041318_boxplot.png",
+       device = "png", height = 6, width = 8)
 ```
 
 ```{r summarize}
@@ -113,12 +116,15 @@ summ.meas <-
 
 ```{r line plot with points and error bars}
 #error bar version
-summ.meas %>%
+err.meas <- 
+  summ.meas %>%
   ggplot(aes(x = date, y = mean, color = treatment.group)) +
   geom_line()+
   geom_point()+
-  geom_errorbar(aes(ymin = lwr, ymax = upr))+
-  ggsave("../figures/volume.over.time.png")
+  geom_errorbar(aes(ymin = lwr, ymax = upr))
+
+ggsave(plot = err.meas,
+       file = "../figures/volume.over.time.png")
 ```
 
 #Tumor free mice percent visualize barplot
@@ -144,18 +150,21 @@ vec <- c("Pre.igG", "Post.igG", "Pre.PD1", "Post.PD1")
 percentzero <- cbind(percentzero, new_col = vec)
 colnames(percentzero)[2] <- "Treatment.groups"
 #Visualize
-ggplot(data = percentzero, aes(x=Treatment.groups, y=Percent.of.tumor.free.mice, fill = Treatment.groups)) + 
+
+perc.tf <- 
+  ggplot(data = percentzero, aes(x = Treatment.groups, 
+                                 y = Percent.of.tumor.free.mice, 
+                                 fill = Treatment.groups)) + 
     geom_bar(stat = "identity")+
-    ggtitle("Tumor Free Mice % at the Last Time Point per Treatment Groups")+
-    ggsave("../figures/percenttumorfree.png")
+    ggtitle("Tumor Free Mice % at the Last Time Point per Treatment Groups")
 
-
-
-
-  
-
+ggsave(plot = perc.tf,
+       file = "../figures/percenttumorfree.png")
 
 ```
+
+
+
 
 ```{r graveyard}
 #Count % of 0
