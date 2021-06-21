@@ -25,12 +25,6 @@ raw.tumor <- read_xlsx(file.path(paths$box, "data", "AOT00041318",
 head(raw.tumor)
 ```
 
-```{r import data}
-raw.tumor <- read_excel("~/Box/mimic/data/AOT00041318/AOT00041318_size-measurements.xlsx")
-
-
-```
-
 # 2. Clean, format and create variables
 
 ```{r formatting}
@@ -68,7 +62,7 @@ meas <-
 head(meas)
 ```
 
-```{r}
+```{r calculate tumor volume and set up groups-alternative eval=F}
 
 # Calculate tumor volume and save in a new column : tumor.size
 raw.tumor$tumor.volume <- (raw.tumor$`tumor.length.(mm)`*raw.tumor$`tumor.width.(mm)`*raw.tumor$`tumor.width.(mm)`)/2
@@ -76,8 +70,6 @@ raw.tumor$tumor.volume <- (raw.tumor$`tumor.length.(mm)`*raw.tumor$`tumor.width.
 # Merge rows for mouse with more than 1 tumors : addition
 merge.tumor <- aggregate(tumor.volume ~ date + tail.number + microbiome.sample + treatment, FUN = sum, data=raw.tumor)
 merge.tumor <- merge.tumor[order(as.Date(merge.tumor$date, format="%d/%m/%Y")),]
-
-#Calculate mean and standard error per group per date (V3-IgG, V3-anti-PD1, V4-IgG, V4-anti-PD-1) -yet to be done
 
 #set up four separate groups in one column and remove the previous columns
 merge.tumor$Groups <- paste(merge.tumor$microbiome.sample, merge.tumor$treatment)
@@ -120,11 +112,6 @@ summ.meas <-
 ```
 
 ```{r line plot with points and error bars}
-#no error bar version
-meas %>%
-  ggplot(aes(time.point, tumor.volume)) +
-  geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2)+
-  geom_point(aes(color=treatment.group))
 #error bar version
 summ.meas %>%
   ggplot(aes(x = date, y = mean, color = treatment.group)) +
@@ -132,84 +119,46 @@ summ.meas %>%
   geom_point()+
   geom_errorbar(aes(ymin = lwr, ymax = upr))+
   ggsave("../figures/volume.over.time.png")
-# Keep only upper error bars, not so relavant here but will keep as for future reference
-meas %>%
-  ggplot(aes(time.point, tumor.volume)) +
-  geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2)+
-  geom_point(aes(color=treatment.group))+
-  geom_errorbar(aes(ymin = tumor.volume, ymax = tumor.volume - summ.meas$upr, color = treatment.group), width = 0.1)  
 ```
 
-```{r graveyard misc, eval=F}
-tumor.volume <- read.csv("~/Box/mimic/data/AOT00041318/AOT00041318.tumor.size.calculated.csv")
+#Tumor free mice percent visualize barplot
 
-mean.and.sd <- data_summary(merge.tumor, all_of(tumor.volume="mean", Groups=c("Groups","tail.number")))
-head(mean.and.sd)
+```{r Percent of tumor free mice}
+#x = group (4)
+#y = %
+#[[[ last time point only ]]]
 
-mean.and.sd <- data_summary(merge.tumor, Groups, tumor.volume="mean")
-head(mean.and.sd)
-
-#+++++++++++++++++++++++++
-# Function to calculate the mean and the standard deviation
-  # for each group
-#+++++++++++++++++++++++++
-# data : a data frame
-# varname : the name of a column containing the variable
-  #to be summariezed
-# groupnames : vector of column names to be used as
-  # grouping variables
-data_summary <- function(merge.tumor, tumor.volume, Groups){
-  require(plyr)
-  summary_func <- function(x, tumor.volume){
-    c(mean = mean(x[[tumor.volume]], na.rm=TRUE),
-      sd = sd(x[[tumor.volume]], na.rm=TRUE))
-  }
-  data_sum<-ddply(merge.tumor, Groups, .fun=summary_func,
-                  tumor.volume)
-  data_sum <- rename(data_sum, c("mean" = tumor.volume))
- return(data_sum)
-}
-
-mean.and.sd <- data_summary(merge.tumor, Groups=c("Groups"), tumor.volume="mean")
-head(mean.and.sd)
-
-#graph
-ggplot(merge.tumor, aes(x=date, y=tumor.volume, group=tail.number, color=Groups)) + 
-  geom_errorbar(aes(ymin=tumor.volume-sd, ymax=tumor.volume+sd), width=.1, 
-    position=position_dodge(0.05)) +
-    geom_line()+
-    geom_point()
+#Keep last time point tumor volume only
+lasttimepoint <- meas[-c(1:30), ]
+#Set up 4 dataframe for the four groups
+preigg <- lasttimepoint[-c(3:10),]
+postigg <- lasttimepoint[-c(1:2, 5:10),]
+prepd1 <- lasttimepoint[-c(1:4, 8:10),]
+postpd1 <- lasttimepoint[-c(1:7),]
+#Calculate % 0 per group
+percentzero <- data.frame(pre.igg = sum(preigg$tumor.volume %in% 0)  / nrow(preigg), post.igg = sum(postigg$tumor.volume %in% 0)  / nrow(postigg), pre.pd1 = sum(prepd1$tumor.volume %in% 0)  / nrow(prepd1), post.pd1 = sum(postpd1$tumor.volume %in% 0)  / nrow(postpd1))
+#transpose row and column, rename column, add new column for treatment groups names
+percentzero <- t(percentzero)
+colnames(percentzero)[1] <- "Percent.of.tumor.free.mice"
+vec <- c("Pre.igG", "Post.igG", "Pre.PD1", "Post.PD1")
+percentzero <- cbind(percentzero, new_col = vec)
+colnames(percentzero)[2] <- "Treatment.groups"
+#Visualize
+ggplot(data = percentzero, aes(x=new_col, y=Percent.of.tumor.free.mice)) + 
+    geom_bar(stat = "identity")
 
 
-library(mosaic)
-favstats(tumor.volume~treatment.group,data=meas)
-
-#mean and sd
-mean.and.sd <- aggregate(merge.tumor$tumor.volume, list(merge.tumor$Groups), mean)
-sd <- aggregate(merge.tumor$tumor.volume, list(merge.tumor$Groups), sd)
-mean.and.sd$sd <- sd
-#Rename mean and sd columns
-mean.and.sd <- mean.and.sd %>% 
-  rename(
-    mean = x, 
-    )
-#remove not needed columns
-mean.and.sd <- mean.and.sd[-1]
-
-#merge summ.meas with meas, set up a new table name, then assign it for the line plot=cannot work, different length
-finaldoc <- merge(summ.meas, meas)
-#position dosge for ggplot errorbar
-position=position_dodge(0.5) 
 
 
-```{r ggplot per mouse samples}
+  
 
-merge.tumor%>%
-  ggplot( aes(x=date, y=tumor.volume, color=Groups)) +
-  geom_errorbar(aes(ymin = sd, ymax = sd), width = 0.2)+      
-    geom_line()+
-    geom_point()
+
 ```
-    
+
+```{r graveyard}
+#Count % of 0
+  sum(lasttimepoint$tumor.volume %in% 0)  / nrow(lasttimepoint)
 ```
+
+
 
