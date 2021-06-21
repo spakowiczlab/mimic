@@ -144,8 +144,10 @@ vec <- c("Pre.igG", "Post.igG", "Pre.PD1", "Post.PD1")
 percentzero <- cbind(percentzero, new_col = vec)
 colnames(percentzero)[2] <- "Treatment.groups"
 #Visualize
-ggplot(data = percentzero, aes(x=new_col, y=Percent.of.tumor.free.mice)) + 
-    geom_bar(stat = "identity")
+ggplot(data = percentzero, aes(x=Treatment.groups, y=Percent.of.tumor.free.mice, fill = Treatment.groups)) + 
+    geom_bar(stat = "identity")+
+    ggtitle("Tumor Free Mice % at the Last Time Point per Treatment Groups")+
+    ggsave("../figures/percenttumorfree.png")
 
 
 
