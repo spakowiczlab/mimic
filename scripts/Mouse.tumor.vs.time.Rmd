@@ -150,8 +150,6 @@ vec <- c("Pre.igG", "Post.igG", "Pre.PD1", "Post.PD1")
 percentzero <- cbind(percentzero, new_col = vec)
 colnames(percentzero)[2] <- "Treatment.groups"
 #Visualize
-<<<<<<< Updated upstream
-
 perc.tf <- 
   ggplot(data = percentzero, aes(x = Treatment.groups, 
                                  y = Percent.of.tumor.free.mice, 
@@ -164,14 +162,7 @@ ggsave(plot = perc.tf,
 
 ```
 
-
-
-=======
-ggplot(data = percentzero, aes(x=Treatment.groups, y=Percent.of.tumor.free.mice, fill = Treatment.groups)) + 
-    geom_bar(stat = "identity")+
-    ggtitle("Tumor Free Mice % at the Last Time Point per Treatment Groups")+
-    ggsave("../figures/percenttumorfree.png")
-```
+#IgG vs PD1 per group per timepoint barplot
 
 ```{r igg vs PD1 per group visualization}
 #2 groups (pre vs post DI)
@@ -215,6 +206,11 @@ ggplot(data = iggvspd1, aes(x=Treatment.groups, y=tumor.volume.differences, fill
 ```{r graveyard}
 #Count % of 0
   sum(lasttimepoint$tumor.volume %in% 0)  / nrow(lasttimepoint)
+#tumor free visualization
+ggplot(data = percentzero, aes(x=Treatment.groups, y=Percent.of.tumor.free.mice, fill = Treatment.groups)) + 
+    geom_bar(stat = "identity")+
+    ggtitle("Tumor Free Mice % at the Last Time Point per Treatment Groups")+
+    ggsave("../figures/percenttumorfree.png")
 ```
 
 
