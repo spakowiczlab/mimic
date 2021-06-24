@@ -135,7 +135,7 @@ ggsave(plot = err.meas,
 #[[[ last time point only ]]]
 
 #Keep last time point tumor volume only
-lasttimepoint <- meas[-c(1:30), ]
+lasttimepoint <- meas[-c(1:50), ]
 #Set up 4 dataframe for the four groups
 preigg <- lasttimepoint[-c(3:10),]
 postigg <- lasttimepoint[-c(1:2, 5:10),]
@@ -159,7 +159,6 @@ perc.tf <-
 
 ggsave(plot = perc.tf,
        file = "../figures/percenttumorfree.png")
-
 ```
 
 #IgG vs PD1 per group per timepoint barplot
@@ -171,10 +170,10 @@ ggsave(plot = perc.tf,
 #x = intervention staus (2, preDI [V3], postDI [V4]
 
 #Set up pre and post groups, remove unnecessary columns
-pre.igg <- summ.meas[-c(5:16),]
-pre.pd1 <- summ.meas[-c(1:4, 9:16),]
-post.igg <- summ.meas[-c(1:8, 13:16),]
-post.pd1 <- summ.meas[-c(1:12),]
+pre.igg <- summ.meas[-c(7:24),]
+pre.pd1 <- summ.meas[-c(1:6, 13:24),]
+post.igg <- summ.meas[-c(1:12, 19:24),]
+post.pd1 <- summ.meas[-c(1:18),]
 
 pre.igg = subset(pre.igg, select = -c(date, sd, lwr, upr, treatment.group) )
 post.igg = subset(post.igg, select = -c(date, sd, lwr, upr, treatment.group) )
@@ -182,28 +181,36 @@ pre.pd1 = subset(pre.pd1, select = -c(date, sd, lwr, upr, treatment.group) )
 post.pd1 = subset(post.pd1, select = -c(date, sd, lwr, upr, treatment.group) )
 
 # Calculate tumor volume differences between igg and pd1 and save in a new column : tumor.volume.differences, add back treatment.group
-pre.iggvspd1 <- data.frame(tumor.volume.differences = (pre.igg$mean - pre.pd1$mean))
-post.iggvspd1 <- data.frame(tumor.volume.differences = (post.igg$mean - post.pd1$mean))
+pre.iggvspd1 <- data.frame(tumor.volume.differences = (pre.pd1$mean - pre.igg$mean))
+post.iggvspd1 <- data.frame(tumor.volume.differences = (post.pd1$mean - post.igg$mean))
 
 #Merge mean tumor volume dif dataset as one, add 2 treatment.groups - pre and post-DI
-treatments <- data.frame("treatment.groups" = c("Pre-DI.timepoint.1", "Pre-DI.timepoint.2", "Pre-DI.timepoint.3", "Pre-DI.timepoint.4", "Post-DI.timepoint.1", "Post-DI.timepoint.2", "Post-DI.timepoint.3", "Post-DI.timepoint.4"))
+treatments <- data.frame("treatment.groups" = c("Pre-DI.timepoint.1", "Pre-DI.timepoint.2", "Pre-DI.timepoint.3", "Pre-DI.timepoint.4", "Pre-DI.timepoint.5", "Pre-DI.timepoint.6", "Post-DI.timepoint.1", "Post-DI.timepoint.2", "Post-DI.timepoint.3", "Post-DI.timepoint.4", "Post-DI.timepoint.5", "Post-DI.timepoint.6"))
 iggvspd1 <- cbind(t(pre.iggvspd1), t(post.iggvspd1))
 iggvspd1 <- t(iggvspd1)
 iggvspd1 <- cbind(iggvspd1, Treatment.groups = treatments$treatment.groups)
+
+#Transform mean tumor differences to numeric value
+iggvspd1 <- transform(iggvspd1, tumor.volume.differences = as.numeric(tumor.volume.differences))
+# Create a factor time variable for making lineplot and barplot visualization
+iggvspd1$timepoint <- c("1", "2", "3", "4", "5", "6","1", "2", "3", "4", "5", "6")
+iggvspd1$treatment.group <- c("Pre-DI","Pre-DI","Pre-DI","Pre-DI","Pre-DI","Pre-DI", "Post-DI", "Post-DI","Post-DI","Post-DI","Post-DI","Post-DI")
+
 ```
 
 ```{r Visualization}
-ggplot(data = iggvspd1, aes(x=Treatment.groups, y=tumor.volume.differences, fill = Treatment.groups)) + 
-    geom_bar(stat = "identity")+
+#Line graph
+ggplot(data = iggvspd1, aes(x=timepoint, y=tumor.volume.differences, group = treatment.group, color = treatment.group)) + 
+    geom_line()+
+    geom_point()+
     ggtitle("Difference in mean tumor volume between IgG and anti-PD1 pre/post DI treatment")+
-    theme(plot.title = element_text(size=9))+
-    theme(axis.text.x=element_text(angle=45, hjust = 1))+
+    theme(plot.title = element_text(size=12))+
     ggsave("../figures/iggvspd1fig.png")
+
 ```
->>>>>>> Stashed changes
 
 
-```{r graveyard}
+```{r graveyard eval=F}
 #Count % of 0
   sum(lasttimepoint$tumor.volume %in% 0)  / nrow(lasttimepoint)
 #tumor free visualization
@@ -211,6 +218,13 @@ ggplot(data = percentzero, aes(x=Treatment.groups, y=Percent.of.tumor.free.mice,
     geom_bar(stat = "identity")+
     ggtitle("Tumor Free Mice % at the Last Time Point per Treatment Groups")+
     ggsave("../figures/percenttumorfree.png")
+#Bargraph for igg vs pd1 mean tumor diff
+ggplot(data = iggvspd1, aes(x=timepoint, y=tumor.volume.differences, fill = treatment.group)) + 
+    geom_bar(stat = "identity")+
+    ggtitle("Difference in mean tumor volume between IgG and anti-PD1 pre/post DI treatment")+
+    theme(plot.title = element_text(size=9))+
+    theme(axis.text.x=element_text(angle=45, hjust = 1))+
+    ggsave("../figures/iggvspd1fig.png")
 ```
 
 
