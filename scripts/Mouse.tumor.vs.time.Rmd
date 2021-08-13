@@ -22,6 +22,11 @@ source("00-paths.R")
 raw.tumor <- read_xlsx(file.path(paths$box, "data", "AOT00041318",
                                  "AOT00041318_size-measurements.xlsx"))
 
+raw.tumor <- read_xlsx("C:\\Users\\anand.18\\Downloads\\AOT00041318_size-measurements.xlsx")
+raw.tumor <- read_xlsx("C:\\Users\\anand.18\\Downloads\\AOT00042281_size_measurements.xlsx", na = "N/A")
+
+raw.tumor <- bind_rows(rawtumor1, rawtumor2)
+
 head(raw.tumor)
 ```
 
@@ -39,16 +44,19 @@ meas <-
   # Adjust the microbiome sample name to generalize
   mutate(condition = dplyr::if_else(grepl("v3", microbiome.sample),
                                     true = "pre-DI",
-                                    false = "post-DI")) %>%
+                                    false = microbiome.sample))%>%
+  mutate(condition = dplyr::if_else(grepl("v4", microbiome.sample),
+                                    true = "post-DI",
+                                    false = microbiome.sample))%>%
   # Create a unique mouse ID
   mutate(mouse = paste(tail.number, treatment, condition, sep = ".")) %>%
   # Create 4 treatment groups
   mutate(treatment.group = paste(condition, treatment, sep = ".")) %>%
-  mutate(treatment.group = fct_relevel(treatment.group,
-                                       c("pre-DI.IgG",
-                                         "pre-DI.Anti-PD-1",
-                                         "post-DI.IgG",
-                                         "post-DI.Anti-PD-1"))) %>%
+  #mutate(treatment.group = fct_relevel(treatment.group,
+                                       #c("pre-DI.IgG",
+                                         #"pre-DI.Anti-PD-1",
+                                         #"post-DI.IgG",
+                                         #"post-DI.Anti-PD-1"))) %>%
   group_by(mouse, date) %>%
   mutate(total.tumor.volume = sum(tumor.volume)) %>%
   distinct(date, mouse, treatment.group, total.tumor.volume) %>%
@@ -100,6 +108,8 @@ box.meas <-
 ggsave(plot = box.meas, 
        file = "../figures/AOT00041318_boxplot.png",
        device = "png", height = 6, width = 8)
+raw.tumor = data.frame(raw.tumor)
+ggplot(data = raw.tumor)
 ```
 
 ```{r summarize}
@@ -125,6 +135,11 @@ err.meas <-
 
 ggsave(plot = err.meas,
        file = "../figures/volume.over.time.png")
+raw.tumor = data.frame(raw.tumor)
+ggplot(data = raw.tumor)
+lane_summ.meas %>%
+  till_lane_errorbar
+
 ```
 
 #Tumor free mice percent visualize barplot
