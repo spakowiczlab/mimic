@@ -1,0 +1,17 @@
+---
+title: "Creating a MIMIC Experimental Calendar"
+author: "Dan Spakowicz"
+date: "6/18/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# devtools::install_github("ATFutures/ical")
+library(calendar)
+```
+
+```{r}
+ic_read("../data/mimic_gg37j187jf2nj0jpc0af1imhn8@group.calendar.google.com.ics")
+```
