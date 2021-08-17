@@ -219,9 +219,9 @@ ggplot(data = iggvspd1, aes(x=timepoint, y=tumor.volume.differences, group = tre
     geom_line()+
     geom_point()+
     ggtitle("Difference in mean tumor volume between IgG and anti-PD1 pre/post DI treatment")+
-    theme(plot.title = element_text(size=12))+
-    ggsave("../figures/iggvspd1fig.png")
+    theme(plot.title = element_text(size=12))
 
+ggsave("../figures/iggvspd1fig.png")
 ```
 
 
@@ -230,9 +230,13 @@ ggplot(data = iggvspd1, aes(x=timepoint, y=tumor.volume.differences, group = tre
   sum(lasttimepoint$tumor.volume %in% 0)  / nrow(lasttimepoint)
 #tumor free visualization
 ggplot(data = percentzero, aes(x=Treatment.groups, y=Percent.of.tumor.free.mice, fill = Treatment.groups)) + 
-    geom_bar(stat = "identity")+
-    ggtitle("Tumor Free Mice % at the Last Time Point per Treatment Groups")+
-    ggsave("../figures/percenttumorfree.png")
+    geom_bar(stat = "identity") +
+    ggtitle("Tumor Free Mice % at the Last Time Point per Treatment Groups") 
+
+ggsave("../figures/percenttumorfree.png")
+```    
+
+```{r}
 #Bargraph for igg vs pd1 mean tumor diff
 ggplot(data = iggvspd1, aes(x=timepoint, y=tumor.volume.differences, fill = treatment.group)) + 
     geom_bar(stat = "identity")+
