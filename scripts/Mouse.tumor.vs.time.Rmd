@@ -19,53 +19,75 @@ source("00-paths.R")
 # 1. Read in data 
 
 ```{r import data}
-raw.tumor <- read_xlsx(file.path(paths$box, "data", "AOT00041318",
-                                 "AOT00041318_size-measurements.xlsx"))
+raw.tumor.exp1 <- read_xlsx(file.path(paths$box, "data", "AOT00041318",
+                                 "AOT00041318_size-measurements.xlsx")) %>%
+  mutate(expid = 1) 
 
-raw.tumor <- read_xlsx("C:\\Users\\anand.18\\Downloads\\AOT00041318_size-measurements.xlsx")
-raw.tumor <- read_xlsx("C:\\Users\\anand.18\\Downloads\\AOT00042281_size_measurements.xlsx", na = "N/A")
+tumor.cols <- colnames(raw.tumor.exp1)[grep("tumor", colnames(raw.tumor.exp1))]
+raw.tumor.exp2 <- read_xlsx(file.path(paths$box, "data", "AOT00042281",
+                                 "AOT00042281_size_measurements.xlsx")) %>%
+  mutate(expid = 2) %>%
+  mutate_at(tumor.cols, as.numeric)
 
-raw.tumor <- bind_rows(rawtumor1, rawtumor2)
+raw.tumor.exp3 <- read_xlsx(file.path(paths$box, "data", "AOT00043109",
+                                 "AOT00043109_size-measurements.xlsx")) %>%
+  mutate(expid = 3)
+ 
+raw.tumor.exp1 <- raw.tumor.exp1  %>%
+  mutate_at(tumor.cols, as.numeric)
+```
+
+```{r}
+# I'm pretty sure this is the version that Alvin used? 
+raw.tumor <- bind_rows(raw.tumor.exp1, raw.tumor.exp2)
 
 head(raw.tumor)
 ```
 
 # 2. Clean, format and create variables
 
+```{r}
+format_rawtumor <- function(rawtumor){
+  # Calculate tumor volume and create other variables needed for plotting
+  meas <- 
+    rawtumor %>%
+    mutate(tumor.volume = (`tumor.length.(mm)` * (`tumor.width.(mm)`^2)) / 2) %>%
+    # NA tumor volume means it was too small to be measured -- set to 0
+    mutate(tumor.volume = dplyr::if_else(is.na(tumor.volume),
+                                         true = 0,
+                                         false = tumor.volume)) %>%
+    # Adjust the microbiome sample name to generalize
+    mutate(condition = dplyr::if_else(grepl("v3", microbiome.sample),
+                                      true = "pre-DI",
+                                      false = microbiome.sample))%>%
+    mutate(condition = dplyr::if_else(grepl("v4", microbiome.sample),
+                                      true = "post-DI",
+                                      false = microbiome.sample))%>%
+    # Create a unique mouse ID
+    mutate(mouse = paste(tail.number, treatment, condition, sep = ".")) %>%
+    # Create 4 treatment groups
+    mutate(treatment.group = paste(condition, treatment, sep = ".")) %>%
+    #mutate(treatment.group = fct_relevel(treatment.group,
+    #c("pre-DI.IgG",
+    #"pre-DI.Anti-PD-1",
+    #"post-DI.IgG",
+    #"post-DI.Anti-PD-1"))) %>%
+    group_by(mouse, date) %>%
+    mutate(total.tumor.volume = sum(tumor.volume)) %>%
+    distinct(date, mouse, treatment.group, total.tumor.volume) %>%
+    # Create a factor time variable for making boxplots
+    group_by(mouse) %>%
+    mutate(time.point = row_number(date)) %>%
+    mutate(time.point = as.factor(time.point)) %>%
+    dplyr::select(date, mouse, treatment.group, time.point, total.tumor.volume) %>%
+    rename("tumor.volume" = "total.tumor.volume")
+  
+  return(meas)
+}
+```
+
 ```{r formatting}
-# Calculate tumor volume and create other variables needed for plotting
-meas <- 
-  raw.tumor %>%
-  mutate(tumor.volume = (`tumor.length.(mm)` * (`tumor.width.(mm)`^2)) / 2) %>%
-  # NA tumor volume means it was too small to be measured -- set to 0
-  mutate(tumor.volume = dplyr::if_else(is.na(tumor.volume),
-                                       true = 0,
-                                       false = tumor.volume)) %>%
-  # Adjust the microbiome sample name to generalize
-  mutate(condition = dplyr::if_else(grepl("v3", microbiome.sample),
-                                    true = "pre-DI",
-                                    false = microbiome.sample))%>%
-  mutate(condition = dplyr::if_else(grepl("v4", microbiome.sample),
-                                    true = "post-DI",
-                                    false = microbiome.sample))%>%
-  # Create a unique mouse ID
-  mutate(mouse = paste(tail.number, treatment, condition, sep = ".")) %>%
-  # Create 4 treatment groups
-  mutate(treatment.group = paste(condition, treatment, sep = ".")) %>%
-  #mutate(treatment.group = fct_relevel(treatment.group,
-                                       #c("pre-DI.IgG",
-                                         #"pre-DI.Anti-PD-1",
-                                         #"post-DI.IgG",
-                                         #"post-DI.Anti-PD-1"))) %>%
-  group_by(mouse, date) %>%
-  mutate(total.tumor.volume = sum(tumor.volume)) %>%
-  distinct(date, mouse, treatment.group, total.tumor.volume) %>%
-  # Create a factor time variable for making boxplots
-  group_by(mouse) %>%
-  mutate(time.point = row_number(date)) %>%
-  mutate(time.point = as.factor(time.point)) %>%
-  dplyr::select(date, mouse, treatment.group, time.point, total.tumor.volume) %>%
-  rename("tumor.volume" = "total.tumor.volume")
+meas <- format_rawtumor(raw.tumor)
 
 head(meas)
 ```
@@ -247,4 +269,45 @@ ggplot(data = iggvspd1, aes(x=timepoint, y=tumor.volume.differences, fill = trea
 ```
 
 
+# Grant figure
 
+```{r}
+meas.exp1 <- format_rawtumor(raw.tumor.exp1)
+
+summ.meas.exp1 <- 
+  meas.exp1 %>%
+  group_by(treatment.group, date) %>%
+  summarize(mean = mean(tumor.volume),
+            sd = sd(tumor.volume), .groups= 'drop') %>%
+  mutate(lwr = mean - sd,
+         upr = mean + sd) %>%
+  # A negative error bar doesn't make sense in this context, set to 0
+  mutate(lwr = if_else(lwr < 0, 0, lwr)) %>%
+  group_by(treatment.group) %>%
+  arrange(date) %>%
+  mutate(timepoint = row_number()) %>%
+  ungroup() %>%
+  mutate(treatment.status = ifelse(grepl("post", treatment.group), "Post DI", "Pre DI"),
+         drug.intervention = ifelse(grepl("IgG", treatment.group), "igg", "antipd1"))
+
+iggvspd1.grant <- summ.meas.exp1 %>%
+  select(treatment.status, drug.intervention, timepoint, mean) %>%
+  spread(key = "drug.intervention", value = "mean") %>%
+  mutate(tumor.volume.difference = antipd1 - igg)
+```
+
+```{r}
+ggplot(data = iggvspd1.grant, aes(x=timepoint, y=tumor.volume.difference, group = fct_relevel(treatment.status, "Pre DI", "Post DI"), 
+                                  color = fct_relevel(treatment.status, "Pre DI", "Post DI"))) + 
+  geom_line()+
+  geom_point()+
+  labs(x = "Timepoint", y = "Difference in Tumor Volume from IgG Control") +
+  scale_color_manual(breaks = c("Pre DI", "Post DI"),
+                     values = c("black", "darkred"),
+                     labels = c("Pre-dietary intervention", "Post-dietary intervention"),
+                     name = "Gavaged with Human\n     Stool Sample") +
+  theme_bw() 
+  # theme(plot.title = element_text(size=12))
+
+ggsave("../figures/iggvspd1fig_grant.pdf", width = 6, height = 4)
+```
