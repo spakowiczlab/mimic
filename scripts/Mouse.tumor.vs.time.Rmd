@@ -311,3 +311,122 @@ ggplot(data = iggvspd1.grant, aes(x=timepoint, y=tumor.volume.difference, group 
 
 ggsave("../figures/iggvspd1fig_grant.pdf", width = 6, height = 4)
 ```
+
+
+
+# Remaking tumor volume vs time plot for mimic02
+
+```{r mimic-02 data prep}
+
+raw.tumor.exp2.filter <- 
+  raw.tumor.exp2 %>%
+  drop_na(microbiome.sample) %>%
+  rename("treatment" = "cage (treatment)")
+
+meas.exp2 <- format_rawtumor(raw.tumor.exp2.filter)
+
+summ.meas.exp2 <-
+  meas.exp2 %>%
+  group_by(treatment.group, date) %>%
+  summarize(mean = mean(tumor.volume),
+            sd = sd(tumor.volume), .groups= 'drop') %>%
+  mutate(lwr = mean - sd,
+         upr = mean + sd) %>%
+  # A negative error bar doesn't make sense in this context, set to 0
+  mutate(lwr = if_else(lwr < 0, 0, lwr)) %>%
+  group_by(treatment.group) %>%
+  arrange(date) %>% 
+  mutate(Timepoint = row_number()) %>%
+  ungroup() %>%
+   mutate(treatment.status = ifelse(grepl("Fitness", treatment.group), "Fitness", "Saline"),
+         drug.intervention = ifelse(grepl("IgG", treatment.group), "igg", "antipd1")) %>%
+  drop_na(sd)
+
+summ.meas.exp2$Timepoint <- as.factor(summ.meas.exp2$Timepoint)
+```
+
+```{r mimic-02 line plot}
+
+summ.meas.exp2 %>%
+  ggplot(aes(x = Timepoint, y = mean, group = treatment.group, color = treatment.group)) +
+  geom_line(position = position_dodge(width = .5))+
+  geom_point(position = position_dodge(width = .5))+
+  ylab("Mean Tumor Volume") +
+  ggtitle("Tumor Volume vs. Time for Mimic-02") +
+  theme_bw() +
+  scale_color_brewer(palette = "Dark2") +
+  geom_errorbar(aes(ymin = lwr, ymax = upr),
+                width = 1,
+                position = position_dodge(width = .5))
+
+ggsave("../figures/tumorvolume-mimic02.png", width = 9, height = 5)
+
+```
+
+```{r mimic-01 plot}
+
+summ.meas.exp1.group %>%
+  ggplot(aes(x = Timepoint, y = mean, group = treatment.group, color = treatment.group)) +
+  geom_line(position = position_dodge(width = .5))+
+  geom_point(position = position_dodge(width = .5))+
+  ylab("Mean Tumor Volume") +
+  ggtitle("Tumor Volume vs. Time for Mimic-01") +
+  theme_bw() +
+  scale_color_brewer(palette = "Dark2") +
+  geom_errorbar(aes(ymin = lwr, ymax = upr),
+                width = 1,
+                position = position_dodge(width = .5))
+
+ggsave("../figures/tumorvolume-mimic01.png", width = 9, height = 5)
+
+
+
+```
+
+
+
+
+
+```{r Combined mimic plot data prep}
+
+summ.meas.exp1.group <- unique(summ.meas.exp1$treatment.group) %>%
+  str_replace("HONC-60-55.v3","pre-DI") %>%
+  as.data.frame() %>% 
+  rename("group" = ".") %>%
+  mutate(treatment.group = unique(summ.meas.exp1$treatment.group)) %>%
+  left_join(summ.meas.exp1) %>%
+  arrange(date) %>%
+  select(-treatment.group) %>%
+  rename("treatment.group" = "group") %>% 
+  rename("Timepoint" = "timepoint") 
+
+summ.meas.exp1.group$Timepoint <- as.factor(summ.meas.exp1.group$Timepoint)
+
+summ.meas.exp12 <- 
+  summ.meas.exp1.group %>%
+  bind_rows(summ.meas.exp2) %>%
+  rename("Treatment Group" = "treatment.group")
+
+
+```
+
+
+```{r Combined mimic plot}
+summ.meas.exp12 %>%
+  ggplot(aes(x = Timepoint, y = mean, group = `Treatment Group`, color = `Treatment Group`)) +
+  geom_line(position = position_dodge(width = .6))+
+  geom_point(position = position_dodge(width = .6))+
+  ylab("Mean Tumor Volume") +
+  ggtitle("Tumor Volume vs. Time for Mimic-01 and 02") +
+  theme_bw() + 
+  scale_color_brewer(palette = "Dark2") +
+  geom_errorbar(aes(ymin = lwr, ymax = upr),
+                width = 1,
+                position = position_dodge(width = .6)) 
+
+
+ggsave("../figures/tumorvolume-mimic01and02.png", width = 9, height = 5)
+
+```
+
+
