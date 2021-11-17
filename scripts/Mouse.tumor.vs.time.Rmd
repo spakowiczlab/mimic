@@ -19,17 +19,17 @@ source("00-paths.R")
 # 1. Read in data 
 
 ```{r import data}
-raw.tumor.exp1 <- read_xlsx(file.path(paths$box, "data", "AOT00041318",
+raw.tumor.exp1 <- read_xlsx(file.path(paths$box, "data", "AOT00041318-mimic01",
                                  "AOT00041318_size-measurements.xlsx")) %>%
   mutate(expid = 1) 
 
 tumor.cols <- colnames(raw.tumor.exp1)[grep("tumor", colnames(raw.tumor.exp1))]
-raw.tumor.exp2 <- read_xlsx(file.path(paths$box, "data", "AOT00042281",
+raw.tumor.exp2 <- read_xlsx(file.path(paths$box, "data", "AOT00042281-mimic02",
                                  "AOT00042281_size_measurements.xlsx")) %>%
   mutate(expid = 2) %>%
   mutate_at(tumor.cols, as.numeric)
 
-raw.tumor.exp3 <- read_xlsx(file.path(paths$box, "data", "AOT00043109",
+raw.tumor.exp3 <- read_xlsx(file.path(paths$box, "data", "AOT00043109-mimic03",
                                  "AOT00043109_size-measurements.xlsx")) %>%
   mutate(expid = 3)
  
