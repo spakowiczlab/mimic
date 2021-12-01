@@ -35,13 +35,6 @@ raw.tumor.exp3 <- read_xlsx(file.path(paths$box, "data", "AOT00043109-mimic03",
  
 raw.tumor.exp1 <- raw.tumor.exp1  %>%
   mutate_at(tumor.cols, as.numeric)
-
-files <- list.files("../data/tumor-size/", 
-                    full.names = TRUE)
-all.sizes <- lapply(files, readxl::read_xlsx)
-
-# Files must be harmonized first
-df <- bind_rows(all.sizes)
 ```
 
 ```{r}
@@ -436,4 +429,40 @@ ggsave("../figures/tumorvolume-mimic01and02.png", width = 9, height = 5)
 
 ```
 
+# Version 2 with a few more generalizations
+
+```{r}
+# Read in all tumor size spreadsheets from the repo
+files <- list.files("../data/tumor-size/", 
+                    full.names = TRUE)
+all.sizes <- lapply(files, readxl::read_xlsx)
+
+# Rename the columns of all files (careful here)
+changeAllNamesAndReformat <- function(df) {
+    colnames(df) <- c("date", "tail.number", "treatment", "microbiome.sample",
+                 "weight.g", "tumor.size.mm", "tumor.length.mm", 
+                 "tumor.width.mm")
+    df %>%
+    mutate_at(vars(-("date")), as.character)
+}
+
+all.sizes.named <- lapply(all.sizes, changeAllNamesAndReformat)
+
+# Extra hack to clean up a date col
+all.sizes.named[[4]] <- 
+  all.sizes.named[[4]] %>%
+  mutate(date = as.POSIXct(strptime(date, "%m/%d/%y")))
+
+# Files must be harmonized first
+df <- bind_rows(all.sizes.named)
+
+head(df)
+```
+
+```{r}
+df %>%
+  select(-tumor.size.mm) %>%
+  mutate(cage = NA)
+
+```
 
