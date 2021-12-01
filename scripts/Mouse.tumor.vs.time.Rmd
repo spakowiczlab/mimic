@@ -35,6 +35,13 @@ raw.tumor.exp3 <- read_xlsx(file.path(paths$box, "data", "AOT00043109-mimic03",
  
 raw.tumor.exp1 <- raw.tumor.exp1  %>%
   mutate_at(tumor.cols, as.numeric)
+
+files <- list.files("../data/tumor-size/", 
+                    full.names = TRUE)
+all.sizes <- lapply(files, readxl::read_xlsx)
+
+# Files must be harmonized first
+df <- bind_rows(all.sizes)
 ```
 
 ```{r}
