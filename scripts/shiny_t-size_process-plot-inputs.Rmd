@@ -1,0 +1,106 @@
+---
+title: "Mimic.tumor.vs.time"
+author: "Yangyang Liu"
+date: "6/10/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load required packages
+library(readxl)
+library(tidyverse)
+
+```
+
+# Load data 
+
+```{r}
+tsize.files <- list.files("../data/tumor-size/")
+
+tsize.raw <- lapply(tsize.files, function(x) read_excel(paste0("../data/tumor-size/", x)))
+```
+
+
+
+# Clean, format and create variables
+
+```{r functions}
+calcTumorVol <- function(tmp){
+  tmp %>%
+    mutate(tumor.volume = (`tumor.length.(mm)` * (`tumor.width.(mm)`^2)) / 2,
+           tumor.volume = dplyr::if_else(is.na(tumor.volume),
+                                         true = 0,
+                                         false = tumor.volume)) %>%
+    group_by(tail.number, treatment.group, date) %>%
+    summarise(tumor.volume = sum(tumor.volume)) %>%
+    ungroup() %>%
+    mutate(time.point = as.numeric(as.factor((date)))) 
+}
+```
+
+```{r}
+mim1 <- tsize.raw[[1]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+  mutate(condition = dplyr::if_else(grepl("v3", microbiome.sample),
+                                   true = "mimic1.pre-DI",
+                                   false = "mimic1.post-DI"),
+         treatment.group = paste(treatment, condition, sep = " x ")) %>%
+  calcTumorVol()
+
+mim2 <- tsize.raw[[2]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+  filter(`tumor.length.(mm)` != "N/A") %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         treatment.group = paste(gsub(".-(.*)", "\\1", `cage (treatment)`),
+                                 microbiome.sample, sep = " x ")) %>%
+  calcTumorVol()
+
+# Problem: need to split mouse ids by cage
+mim3 <- tsize.raw[[3]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+  filter(`tumor.length.(mm)` != "n/a" & `tumor.length.(mm)` != "not present") %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         condition = ifelse(is.na(microbiome.sample), "mimic3.Control", "Fitness:DL017"),
+         treatment = ifelse(grepl("1$", `cage (treatment)`), "IgG",
+                            ifelse(grepl("2$", `cage (treatment)`), "IgG", "PD1")),
+         treatment.group = paste(treatment, condition, sep = " x ")) %>%
+  mutate(tail.number = paste0(tail.number, `cage (treatment)`)) %>%
+  calcTumorVol()
+
+mim4 <- tsize.raw[[4]] %>%
+  drop_na(`tumor.length.(mm)`) 
+  filter(`tumor.length.(mm)` != "N/A") %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         treatment.group = paste(gsub("(.*)-.", "\\1", `cage (treatment)`),
+                                 microbiome.sample, sep = " x "))
+
+```
+
+
+# tumor v time - save to make shiny function
+
+```{r mimic-02 line plot}
+
+summ.meas.exp2 %>%
+  ggplot(aes(x = Timepoint, y = mean, group = treatment.group, color = treatment.group)) +
+  geom_line(position = position_dodge(width = .5))+
+  geom_point(position = position_dodge(width = .5))+
+  ylab("Mean Tumor Volume") +
+  ggtitle("Tumor Volume vs. Time for Mimic-02") +
+  theme_bw() +
+  scale_color_brewer(palette = "Dark2") +
+  geom_errorbar(aes(ymin = lwr, ymax = upr),
+                width = 1,
+                position = position_dodge(width = .5))
+
+
+```
+
+
+
+
