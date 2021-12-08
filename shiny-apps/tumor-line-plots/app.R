@@ -5,6 +5,7 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 library(tidyr)
+library(RColorBrewer)
 source("shiny-functions.R")
 
 
@@ -12,7 +13,7 @@ source("shiny-functions.R")
 ui <- fluidPage(
   
   # App title ----
-  titlePanel("Dietary Carotenoid Assessment Tool (DCAT)"),
+  titlePanel("Display tumor means for selected groups"),
   
   # Sidebar layout with input and output definitions
   sidebarLayout(
@@ -21,16 +22,19 @@ ui <- fluidPage(
     sidebarPanel(
       
       # Input: Upload file of redcap output, choose nutrients to display pie
-      fileInput(inputId = "redcapoutput", 
-                label = "Upload REDCap output", 
-                accept = c("text/csv", "text/comma-separated-values,text/plain", ".csv")
-      ),
-      downloadButton("carotab", "Download carotenoid table")),
+      checkboxGroupInput(inputId = "mgroups", 
+                label = "Mimic groups", 
+                choices = c("84v3/anti-pd1", "84v4/igG", "Anti-PD-1 x mimic1.post-DI",
+                            "Anti-PD-1 x mimic1.pre-DI", "Anti-PD1 x Fitness (DL081)", 
+                            "Anti-PD1 x Saline", "IgG x Fitness (DL081)", "IgG x Fitness:DL017",
+                            "IgG x mimic1.post-DI", "IgG x mimic1.pre-DI",
+                            "IgG x Saline", "PD1 x Fitness:DL017")
+      )),
+      # actionButton("go", "Update")),
     
     mainPanel(
       
-      tableOutput("table"),
-      plotOutput("piesource")
+      plotOutput("lineplot")
     )
     
     
@@ -44,24 +48,16 @@ ui <- fluidPage(
 # Define server 
 server <- function(input, output) {
   
-  redouttab <- reactive({
-    req(input$redcapoutput)
-    read.csv(input$redcapoutput$datapath)
-  })
+  # redouttab <- reactive({
+  #   req(input$redcapoutput)
+  #   read.csv(input$redcapoutput$datapath)
+  # })
 
-  output$table <- renderTable({
-    calcCaroteneSub(redouttab())
-  })
   
-  output$piesource <- renderPlot(displayCaroSource(redouttab()))
-  output$carotab <- downloadHandler(
-    filename = function(){
-      "FFQ-results.csv"
-    },
-    content <- function(file){
-      write.csv(calcCaroteneSub(redouttab()), file)
-    }
-  )
+  # observeEvent(input$go, {
+    output$lineplot <- renderPlot(plotDesiredGroups(input$mgroups))
+    # })
+
 }
 
 # Run the app

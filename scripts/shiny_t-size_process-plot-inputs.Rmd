@@ -29,6 +29,7 @@ tsize.raw <- lapply(tsize.files, function(x) read_excel(paste0("../data/tumor-si
 ```{r functions}
 calcTumorVol <- function(tmp){
   tmp %>%
+    mutate(tail.number = as.character(tail.number)) %>%
     mutate(tumor.volume = (`tumor.length.(mm)` * (`tumor.width.(mm)`^2)) / 2,
            tumor.volume = dplyr::if_else(is.na(tumor.volume),
                                          true = 0,
@@ -36,7 +37,8 @@ calcTumorVol <- function(tmp){
     group_by(tail.number, treatment.group, date) %>%
     summarise(tumor.volume = sum(tumor.volume)) %>%
     ungroup() %>%
-    mutate(time.point = as.numeric(as.factor((date)))) 
+    mutate(time.point = as.numeric(as.factor((date))))  %>%
+    select(-date)
 }
 ```
 
@@ -76,15 +78,27 @@ mim3 <- tsize.raw[[3]] %>%
   mutate(tail.number = paste0(tail.number, `cage (treatment)`)) %>%
   calcTumorVol()
 
-mim4 <- tsize.raw[[4]] 
+mim4 <- tsize.raw[[4]] %>%
   drop_na(`tumor.length.(mm)`) %>%
-  mutate(`tumor.length.(mm)` =ifelse(`tumor.length.(mm)` %in% zero.vals, 0, `tumor.length(mm)`),
-         `tumor.width(mm)` = ifelse(`tumor.width(mm)` %in% zero.vals, 0, `tumor.width(mm)`)) %>%
+  mutate(`tumor.length.(mm)` =ifelse(`tumor.length.(mm)` %in% zero.vals, 0, `tumor.length.(mm)`),
+         `tumor.width.(mm)` = ifelse(`tumor.width.(mm)` %in% zero.vals, 0, `tumor.width.(mm)`)) %>%
   mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
          `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
-         treatment.group = paste(gsub("(.*)-.", "\\1", `cage (treatment)`),
-                                 microbiome.sample, sep = " x "))
+         treatment.group = ifelse(grepl("^1|2",`cage (treatment)`), "84v3/anti-pd1", "84v4/igG"),
+         tail.number = paste(tail.number, `cage (treatment)`)) %>%
+  calcTumorVol()
 
+```
+
+```{r}
+mean.vals <- bind_rows(mim1, mim2, mim3, mim4) %>%
+  group_by(treatment.group, time.point) %>%
+  summarise(mean.volume = mean(tumor.volume),
+            sd.volume = sd(tumor.volume)) %>%
+  ungroup() %>%
+  mutate(lwr = mean.volume - sd.volume,
+         upr = mean.volume + sd.volume) %>%
+  mutate(lwr = if_else(lwr < 0, 0, lwr))
 ```
 
 
@@ -92,19 +106,19 @@ mim4 <- tsize.raw[[4]]
 
 ```{r mimic-02 line plot}
 
-summ.meas.exp2 %>%
-  ggplot(aes(x = Timepoint, y = mean, group = treatment.group, color = treatment.group)) +
-  geom_line(position = position_dodge(width = .5))+
-  geom_point(position = position_dodge(width = .5))+
-  ylab("Mean Tumor Volume") +
-  ggtitle("Tumor Volume vs. Time for Mimic-02") +
+
+mean.vals %>%
+  ggplot(aes(x = time.point, y = mean.volume, group = treatment.group, color = treatment.group)) +
+  geom_line()+
+  geom_point()+
+  labs(title = "Tumor Volume vs. Time for Mimic", x = "Time point", y = "Mean tumor volume") +
   theme_bw() +
-  scale_color_brewer(palette = "Dark2") +
+  # scale_color_brewer(palette = "Dark2") 
   geom_errorbar(aes(ymin = lwr, ymax = upr),
-                width = 1,
-                position = position_dodge(width = .5))
+                width = 1)
 
 
+write.csv(mean.vals, "../shiny-apps/tumor-line-plots/mean-tumor-volumes.csv", row.names = F)
 ```
 
 
