@@ -46,7 +46,8 @@ calcTumorVol <- function(tmp){
 zero.vals <- c("n/a", "N/A")
 
 mim1 <- tsize.raw[[1]] %>%
-  drop_na(`tumor.length.(mm)`) %>%
+  mutate(`tumor.length.(mm)` = ifelse(is.na(`tumor.length.(mm)`), 0, `tumor.length.(mm)`),
+          `tumor.width.(mm)` = ifelse(is.na(`tumor.width.(mm)`), 0, `tumor.width.(mm)`)) %>%
   mutate(condition = dplyr::if_else(grepl("v3", microbiome.sample),
                                    true = "mimic1.pre-DI",
                                    false = "mimic1.post-DI"),
@@ -84,8 +85,8 @@ mim4 <- tsize.raw[[4]] %>%
          `tumor.width.(mm)` = ifelse(`tumor.width.(mm)` %in% zero.vals, 0, `tumor.width.(mm)`)) %>%
   mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
          `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
-         treatment.group = ifelse(grepl("^1|2",`cage (treatment)`), "84v3/anti-pd1", "84v4/igG"),
-         tail.number = paste(tail.number, `cage (treatment)`)) %>%
+         treatment.group = paste(microbiome.sample, Treatment, sep = "/"),
+         tail.number = paste(tail.number, cage)) %>%
   calcTumorVol()
 
 ```

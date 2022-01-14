@@ -74,6 +74,7 @@ change.df <-
   select(ab, gavage, mean.volume, sd.volume) %>%
   gather(-gavage, -ab, key = "measurement", 
          value = "mm3") %>%
+  filter(gavage != "Saline") %>%
   mutate(measurement.ab = paste(ab, measurement, sep = "_")) %>%
   select(-measurement, -ab) %>%
   spread(key = measurement.ab, value = mm3)
@@ -118,10 +119,10 @@ t.test2 <- function(m1,m2,s1,s2,n1,n2,m0=0,equal.variance=FALSE)
 
 ```{r}
 # BEWELL.55
-t.test2(m1 = 167.129,
-        m2 = 1390.43,
-        s1 = 200,
-        s2 = 124.9294,
+t.test2(m1 = 461.0597,
+        m2 = 1425.5830,
+        s1 = 508.8756,
+        s2 = 125.3236,
         n1 = 2,
         n2 = 3)
 ```
