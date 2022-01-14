@@ -1,0 +1,141 @@
+---
+title: "tumor-size-pvalues"
+author: "Dan Spakowicz"
+date: "1/13/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load required packages
+library(readxl)
+library(tidyverse)
+
+# Load file paths
+source("00-paths.R")
+```
+
+# 1. Read in data 
+
+```{r import data}
+x <- read_csv(file = "../shiny-apps/tumor-line-plots/mean-tumor-volumes.csv")
+
+x %>%
+  head
+```
+
+```{r}
+last <- 
+  x %>%
+  group_by(treatment.group) %>%
+  filter(time.point == max(time.point))
+
+last %>%
+  head
+```
+
+```{r}
+re.label <- 
+  last %>%
+  mutate(ab = if_else(grepl("igg", 
+                            treatment.group, 
+                            ignore.case = TRUE),
+                      true = "IgG",
+                      false = "PD1")) %>%
+  mutate(gavage = if_else(grepl("DL081", treatment.group),
+                          true = "FITNESS.DL081",
+                          false = 
+                  if_else(grepl("DL017", treatment.group),
+                                true = "FITNESS.DL017",
+                                false = 
+                  if_else(grepl("84v3", treatment.group),
+                          true = "BEWELL.84.rDI",
+                          false = 
+                  if_else(grepl("84v4", treatment.group),
+                          true = "BEWELL.84.tDI",
+                          false = 
+                  if_else(grepl("mimic1.pre", treatment.group),
+                          true = "BEWELL.55.rDI",
+                          false = ,
+                  if_else(grepl("mimic1.post", treatment.group),
+                          true = "BEWELL.55.tDI",
+                          false = "Saline"
+                          )))))))
+
+re.label %>%
+  select(treatment.group, ab, gavage)
+```
+
+```{r}
+change.df <- 
+  re.label %>%
+  ungroup() %>%
+  select(ab, gavage, mean.volume, sd.volume) %>%
+  gather(-gavage, -ab, key = "measurement", 
+         value = "mm3") %>%
+  mutate(measurement.ab = paste(ab, measurement, sep = "_")) %>%
+  select(-measurement, -ab) %>%
+  spread(key = measurement.ab, value = mm3)
+
+change.df
+```
+
+```{r}
+change.df %>%
+  mutate(diff.mean.vol = IgG_mean.volume - PD1_mean.volume,
+         diff.pooled.sd = sqrt(IgG_sd.volume^2 + PD1_sd.volume^2)
+  ) %>%
+  select(gavage, diff.mean.vol, diff.pooled.sd)
+```
+
+```{r}
+#https://stats.stackexchange.com/questions/30394/how-to-perform-two-sample-t-tests-in-r-by-inputting-sample-statistics-rather-tha
+# m1, m2: the sample means
+# s1, s2: the sample standard deviations
+# n1, n2: the same sizes
+# m0: the null value for the difference in means to be tested for. Default is 0. 
+# equal.variance: whether or not to assume equal variance. Default is FALSE. 
+t.test2 <- function(m1,m2,s1,s2,n1,n2,m0=0,equal.variance=FALSE)
+{
+    if( equal.variance==FALSE ) 
+    {
+        se <- sqrt( (s1^2/n1) + (s2^2/n2) )
+        # welch-satterthwaite df
+        df <- ( (s1^2/n1 + s2^2/n2)^2 )/( (s1^2/n1)^2/(n1-1) + (s2^2/n2)^2/(n2-1) )
+    } else
+    {
+        # pooled standard deviation, scaled by the sample sizes
+        se <- sqrt( (1/n1 + 1/n2) * ((n1-1)*s1^2 + (n2-1)*s2^2)/(n1+n2-2) ) 
+        df <- n1+n2-2
+    }      
+    t <- (m1-m2-m0)/se 
+    dat <- c(m1-m2, se, t, 2*pt(-abs(t),df))    
+    names(dat) <- c("Difference of means", "Std Error", "t", "p-value")
+    return(dat) 
+}
+```
+
+```{r}
+# BEWELL.55
+t.test2(m1 = 167.129,
+        m2 = 1390.43,
+        s1 = 200,
+        s2 = 124.9294,
+        n1 = 2,
+        n2 = 3)
+```
+
+```{r}
+# FITNESS responder vs non-responder
+fit.2 <- t.test2(m1 = 251.5572,
+        m2 = 881.2160,
+        s1 = 286.7074,
+        s2 = 769.2608,
+        n1 = 3,
+        n2 = 3)[4]
+fit.2
+
+# one-sided
+fit.2 / 2
+```

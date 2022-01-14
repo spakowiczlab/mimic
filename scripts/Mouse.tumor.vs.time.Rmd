@@ -127,11 +127,13 @@ box.meas <-
   geom_line(aes(group = mouse, color = treatment.group), alpha = 0.2) +
   theme_bw()
 
+box.meas
+
 ggsave(plot = box.meas, 
        file = "../figures/AOT00041318_boxplot.png",
        device = "png", height = 6, width = 8)
-raw.tumor = data.frame(raw.tumor)
-ggplot(data = raw.tumor)
+# raw.tumor = data.frame(raw.tumor)
+# ggplot(data = raw.tumor)
 ```
 
 ```{r summarize}
@@ -155,13 +157,10 @@ err.meas <-
   geom_point()+
   geom_errorbar(aes(ymin = lwr, ymax = upr))
 
+err.meas
+
 ggsave(plot = err.meas,
        file = "../figures/volume.over.time.png")
-raw.tumor = data.frame(raw.tumor)
-ggplot(data = raw.tumor)
-lane_summ.meas %>%
-  till_lane_errorbar
-
 ```
 
 #Tumor free mice percent visualize barplot
@@ -171,14 +170,15 @@ lane_summ.meas %>%
 #y = %
 #[[[ last time point only ]]]
 
-#Keep last time point tumor volume only
+# Keep last time point tumor volume only
 lasttimepoint <- meas[-c(1:50), ]
-#Set up 4 dataframe for the four groups
+# Set up 4 dataframe for the four groups
 preigg <- lasttimepoint[-c(3:10),]
 postigg <- lasttimepoint[-c(1:2, 5:10),]
 prepd1 <- lasttimepoint[-c(1:4, 8:10),]
 postpd1 <- lasttimepoint[-c(1:7),]
-#Calculate % 0 per group
+
+# Calculate % 0 per group
 percentzero <- data.frame(pre.igg = sum(preigg$tumor.volume %in% 0)  / nrow(preigg), post.igg = sum(postigg$tumor.volume %in% 0)  / nrow(postigg), pre.pd1 = sum(prepd1$tumor.volume %in% 0)  / nrow(prepd1), post.pd1 = sum(postpd1$tumor.volume %in% 0)  / nrow(postpd1))
 #transpose row and column, rename column, add new column for treatment groups names
 percentzero <- t(percentzero)
@@ -186,6 +186,7 @@ colnames(percentzero)[1] <- "Percent.of.tumor.free.mice"
 vec <- c("Pre.igG", "Post.igG", "Pre.PD1", "Post.PD1")
 percentzero <- cbind(percentzero, new_col = vec)
 colnames(percentzero)[2] <- "Treatment.groups"
+
 #Visualize
 perc.tf <- 
   ggplot(data = percentzero, aes(x = Treatment.groups, 
@@ -290,10 +291,24 @@ summ.meas.exp1 <-
   mutate(treatment.status = ifelse(grepl("post", treatment.group), "Post DI", "Pre DI"),
          drug.intervention = ifelse(grepl("IgG", treatment.group), "igg", "antipd1"))
 
+summ.meas.exp1
+```
+
+```{r}
+summ.meas.exp1 %>%
+  filter(timepoint == 6) %>%
+  mutate(dif.means = )
+```
+
+
+
+```{r}
 iggvspd1.grant <- summ.meas.exp1 %>%
   select(treatment.status, drug.intervention, timepoint, mean) %>%
   spread(key = "drug.intervention", value = "mean") %>%
   mutate(tumor.volume.difference = antipd1 - igg)
+
+iggvspd1.grant
 ```
 
 ```{r}
