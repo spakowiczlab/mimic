@@ -1,0 +1,135 @@
+---
+title: "processing_R-formatted-data"
+author: "Rebecca Hoyd"
+date: "1/24/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(tidyverse)
+```
+
+
+# Load data 
+
+```{r}
+tsize.files <- list.files(file.path(paths$box, 'data'), pattern = "AOT", full.names = T)[1:5]
+
+tsize.file.2 <- unlist(lapply(tsize.files, function(x) list.files(x, pattern = "_size")))
+
+tsize.raw <- lapply(1:5, function(x) read_excel(file.path(tsize.files[x], tsize.file.2[x])))
+```
+
+# Functions
+
+```{r}
+calcTumorVol <- function(tmp){
+  tmp %>%
+    mutate(tail.number = as.character(tail.number)) %>%
+    mutate(tumor.volume = (`tumor.length.(mm)` * (`tumor.width.(mm)`^2)) / 2,
+           tumor.volume = dplyr::if_else(is.na(tumor.volume),
+                                         true = 0,
+                                         false = tumor.volume)) %>%
+    group_by(tail.number, treatment.group, date) %>%
+    summarise(tumor.volume = sum(tumor.volume)) %>%
+    ungroup() %>%
+    mutate(time.point = as.numeric(as.factor((date))))  %>%
+    select(-date)
+}
+```
+
+# Experiment specific formatting
+
+```{r}
+zero.vals <- c("n/a", "N/A")
+
+mim1 <- tsize.raw[[1]] %>%
+  mutate(`tumor.length.(mm)` = ifelse(is.na(`tumor.length.(mm)`), 0, `tumor.length.(mm)`),
+          `tumor.width.(mm)` = ifelse(is.na(`tumor.width.(mm)`), 0, `tumor.width.(mm)`)) %>%
+  mutate(
+    # condition = dplyr::if_else(grepl("v3", microbiome.sample),
+    #                                true = "mimic1.pre-DI",
+    #                                false = "mimic1.post-DI"),
+         treatment.group = paste(treatment, microbiome.sample, sep = " x ")) %>%
+  calcTumorVol() %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic1")
+
+mim2 <- tsize.raw[[2]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         treatment.group = paste(gsub(".-(.*)", "\\1", `cage (treatment)`),
+                                 microbiome.sample, sep = " x ")) %>%
+  calcTumorVol() %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic2")
+
+# Problem: need to split mouse ids by cage
+mim3 <- tsize.raw[[3]] %>%
+  filter(`on treatment?` == "Yes" & `tumor.length.(mm)` != "n/a") %>% 
+  mutate(`tumor.length.(mm)` =ifelse(`tumor.length.(mm)` %in% zero.vals, 0, `tumor.length.(mm)`),
+         `tumor.width.(mm)` = ifelse(`tumor.width.(mm)` %in% zero.vals, 0, `tumor.width.(mm)`)) %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         condition =  "Fitness:DL017",
+         treatment = ifelse(cage %in% c(1,2), "IgG", "PD1"),
+         treatment.group = paste(treatment, condition, sep = " x ")) %>%
+  mutate(tail.number = paste(tail.number, cage, sep = " x ")) %>%
+  calcTumorVol() %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic3") %>%
+  separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+
+mim4 <- tsize.raw[[4]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+    filter(`tumor.length.(mm)` != "n/a") %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         treatment = ifelse(cage %in% c(3,4), "IgG", "PD1"),
+         microbiome.sample = ifelse(cage %in% c(1,2), "84v3", "84v4"),
+         treatment.group = paste(treatment,microbiome.sample, sep = " x "),
+         tail.number = paste(tail.number, cage, sep = " x ")) %>%
+  calcTumorVol() %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic4") %>%
+  separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+
+
+mim5 <- tsize.raw[[5]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+    filter(`tumor.length.(mm)` != "n/a") %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         treatment = ifelse(cage %in% c(1,4), "IgG", "PD1"),
+         microbiome.sample = ifelse(cage %in% c(1,2), "10v3", "10v4"),
+         treatment.group = paste(treatment,microbiome.sample, sep = " x "),
+         tail.number = paste(tail.number, cage, sep = " x ")) %>%
+  calcTumorVol() %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic4") %>%
+  separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+```
+# Combine results
+
+```{r}
+mimic.cleaned <- mim1 %>%
+  bind_rows(mim2) %>%
+  bind_rows(mim3) %>%
+  bind_rows(mim4) %>%
+  bind_rows(mim5)
+```
+
+# Save
+
+```{r}
+write.csv(mimic.cleaned, "../data/2022-01-24_tumor-size_R-formatted.csv", row.names = F)
+```
