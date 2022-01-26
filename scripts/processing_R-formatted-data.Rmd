@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(readxl)
 library(tidyverse)
+
+source("00-paths.R")
 ```
 
 
@@ -115,7 +117,7 @@ mim5 <- tsize.raw[[5]] %>%
   calcTumorVol() %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
-         experiment = "mimic4") %>%
+         experiment = "mimic5") %>%
   separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
 ```
 # Combine results
@@ -131,5 +133,5 @@ mimic.cleaned <- mim1 %>%
 # Save
 
 ```{r}
-write.csv(mimic.cleaned, "../data/2022-01-24_tumor-size_R-formatted.csv", row.names = F)
+write.csv(mimic.cleaned, "../data/2022-01-26_tumor-size_R-formatted.csv", row.names = F)
 ```
