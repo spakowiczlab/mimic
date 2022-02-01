@@ -133,5 +133,5 @@ mimic.cleaned <- mim1 %>%
 # Save
 
 ```{r}
-write.csv(mimic.cleaned, "../data/2022-01-26_tumor-size_R-formatted.csv", row.names = F)
+write.csv(mimic.cleaned, "../data/2022-02-01_tumor-size_R-formatted.csv", row.names = F)
 ```
