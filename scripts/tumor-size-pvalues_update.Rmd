@@ -33,25 +33,25 @@ y <- x %>%
                             ignore.case = TRUE),
                       true = "IgG",
                       false = "PD1")) %>%
-  group_by(ab, m.samp, time.point) %>%
+  group_by(ab, m.samp, time.point, experiment) %>%
   summarise(mean.volume = mean(tumor.volume),
             sd.volume = sqrt(var(tumor.volume))) %>%
   ungroup()
 ```
 
 ```{r import data}
-x <- read_csv(file = "../shiny-apps/tumor-line-plots/mean-tumor-volumes.csv")
-
-x %>%
-  head
+# x <- read_csv(file = "../shiny-apps/tumor-line-plots/mean-tumor-volumes.csv")
+# 
+# x %>%
+#   head
 ```
 
 ```{r}
 last <- 
   y %>%
-  group_by(ab, m.samp) %>%
-  # filter(time.point == max(time.point))
-  filter(time.point == 6)
+  group_by(ab, m.samp, experiment) %>%
+  filter(time.point == max(time.point))
+  # filter(time.point == 6)
 
 last %>%
   head
@@ -80,15 +80,15 @@ re.label <- last %>%
                           )))))))
 
 re.label %>%
-  select(m.samp, ab, gavage)
+  select(m.samp, ab, gavage, experiment)
 ```
 
 ```{r}
 change.df <- 
   re.label %>%
   ungroup() %>%
-  select(ab, gavage, mean.volume, sd.volume) %>%
-  gather(-gavage, -ab, key = "measurement", 
+  select(ab, gavage, mean.volume, sd.volume, experiment) %>%
+  gather(-gavage, -ab, -experiment, key = "measurement", 
          value = "mm3") %>%
   filter(gavage != "Saline") %>%
   mutate(measurement.ab = paste(ab, measurement, sep = "_")) %>%
@@ -99,11 +99,26 @@ change.df
 ```
 
 ```{r}
-change.df %>%
+split.change.df <- change.df%>%
   mutate(diff.mean.vol = IgG_mean.volume - PD1_mean.volume,
          diff.pooled.sd = sqrt(IgG_sd.volume^2 + PD1_sd.volume^2)
   ) %>%
-  select(gavage, diff.mean.vol, diff.pooled.sd)
+  select(experiment, gavage, diff.mean.vol, diff.pooled.sd) %>%
+  filter(grepl("55", gavage)) %>%
+  mutate(groupn = case_when(experiment == "mimic1" & grepl("rDI", gavage)~2,
+                            experiment == "mimic1" & grepl("tDI", gavage)~3,
+                            experiment == "mimic6" & grepl("rDI", gavage)~2,
+                            experiment == "mimic6" & grepl("tDI", gavage)~2))
+
+pooled.change.df <- split.change.df %>%
+  mutate(tx = diff.mean.vol*groupn,
+         tsd = (diff.pooled.sd^2)*(groupn-1) + (tx^2)/groupn) %>%
+  group_by(gavage) %>%
+  summarise(tn = sum(groupn),
+            tx = sum(tx),
+            txx = sum(tsd)) %>%
+  mutate(comb.mean = tx/tn,
+         comb.sd = sqrt((txx-((tx^2)/tn))/(tn-1)))
 ```
 
 ```{r}
@@ -134,11 +149,15 @@ t.test2 <- function(m1,m2,s1,s2,n1,n2,m0=0,equal.variance=FALSE)
 ```
 
 ```{r}
+pooled.change.df
+```
+
+```{r}
 # BEWELL.55
-t.test2(m1 = 339.0747,
-        m2 = 764.8738	,
-        s1 = 368.2501,
-        s2 = 547.5217	,
+t.test2(m1 = 478.3746,
+        m2 = 990.2632,
+        s1 = 298.2834,
+        s2 = 529.2055,
         n1 = 4,
         n2 = 5)
 ```
