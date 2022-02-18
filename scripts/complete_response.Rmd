@@ -1,0 +1,81 @@
+---
+title: "mimic complete response"
+author: "Caroline Wheeler"
+date: "2/17/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+read in data
+```{r}
+mimic <- read.csv("../data/2022-02-15_tumor-size_R-formatted.csv")
+```
+
+combine ‘Anti-PD-1’ and ‘Anti-PD1’ and the V3's and V4's
+```{r}
+mimic <- mimic %>%
+  mutate(treatment = ifelse(treatment == "Anti-PD-1", "PD1", 
+                            ifelse(treatment == "Anti-PD1", "PD1", treatment)),
+         microbiome.sample = ifelse((microbiome.sample == "HONC60-55 v3" | microbiome.sample == "HONC-60-55.v3"), "v3", 
+                                    ifelse((microbiome.sample == "HONC60-55 v4" | microbiome.sample == "HONC-60-55.v4"), "v4", microbiome.sample)),
+  )
+```
+
+filter to only V3 and V4
+```{r}
+mimic <- mimic %>%
+  filter(microbiome.sample == "v3" | microbiome.sample == "v4") %>%
+  mutate(label = paste0(treatment, "-", microbiome.sample)) 
+```
+
+## Find complete response %
+```{r}
+mimic$total <- 1
+
+temp <- mimic %>%
+  filter(time.point == 1) %>%
+  group_by(label) %>%
+  summarise(sum(total))
+
+CR <- merge(temp, mimic, all = TRUE)
+```
+
+```{r}
+CR$sum0 <- 1
+
+temp <- CR %>%
+  filter(time.point == 7,
+         tumor.volume == 0) %>%
+  group_by(label) %>%
+  summarise(sum(sum0))
+
+CR <- merge(temp, CR, all = TRUE)
+```
+
+```{r}
+CR <- CR %>%
+  select(label, `sum(sum0)`, `sum(total)`) %>%
+  distinct() 
+  
+CR$`sum(sum0)`[is.na(CR$`sum(sum0)`)] <- 0
+```
+
+```{r}
+CR$percentCR <- CR$`sum(sum0)`/CR$`sum(total)`*100
+```
+
+
+```{r}
+g <- ggplot(CR, aes(x= label, y= percentCR)) + geom_bar(stat = "identity", position = "dodge")
+
+g
+```
+```{r}
+ggsave(plot = g, filename = "../figures/percentCR-barchart.png")
+```
+
