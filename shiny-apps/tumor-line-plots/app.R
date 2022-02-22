@@ -24,11 +24,13 @@ ui <- fluidPage(
       # Input: Upload file of redcap output, choose nutrients to display pie
       checkboxGroupInput(inputId = "mgroups", 
                 label = "Mimic groups", 
-                choices = c("84v3/anti-pd1", "84v4/igG", "Anti-PD-1 x mimic1.post-DI",
-                            "Anti-PD-1 x mimic1.pre-DI", "Anti-PD1 x Fitness (DL081)", 
-                            "Anti-PD1 x Saline", "IgG x Fitness (DL081)", "IgG x Fitness:DL017",
-                            "IgG x mimic1.post-DI", "IgG x mimic1.pre-DI",
-                            "IgG x Saline", "PD1 x Fitness:DL017")
+                choices = c("Anti-PD-1 x HONC-60-55.v3", "Anti-PD-1 x HONC-60-55.v4", 
+                            "Anti-PD1 x Fitness (DL081)", "Anti-PD1 x HONC60-55 v3",
+                            "Anti-PD1 x HONC60-55 v4", "Anti-PD1 x Saline", "IgG x 10v3",
+                            "IgG x 10v4", "IgG x 84v4", "IgG x Fitness (DL081)", "IgG x Fitness:DL017",
+                            "IgG x HONC-60-55.v3", "IgG x HONC-60-55.v4", "IgG x HONC60-55 v3",
+                            "IgG x HONC60-55 v4", "IgG x Saline", "PD1 x 10v3", "PD1 x 10v4", 
+                            "PD1 x 84v3", "PD1 x Fitness:DL017")
       )),
       # actionButton("go", "Update")),
     
