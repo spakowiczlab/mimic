@@ -24,13 +24,17 @@ ui <- fluidPage(
       # Input: Upload file of redcap output, choose nutrients to display pie
       checkboxGroupInput(inputId = "mgroups", 
                 label = "Mimic groups", 
-                choices = c("Anti-PD-1 x HONC-60-55.v3", "Anti-PD-1 x HONC-60-55.v4", 
-                            "Anti-PD1 x Fitness (DL081)", "Anti-PD1 x HONC60-55 v3",
-                            "Anti-PD1 x HONC60-55 v4", "Anti-PD1 x Saline", "IgG x 10v3",
-                            "IgG x 10v4", "IgG x 84v4", "IgG x Fitness (DL081)", "IgG x Fitness:DL017",
-                            "IgG x HONC-60-55.v3", "IgG x HONC-60-55.v4", "IgG x HONC60-55 v3",
-                            "IgG x HONC60-55 v4", "IgG x Saline", "PD1 x 10v3", "PD1 x 10v4", 
-                            "PD1 x 84v3", "PD1 x Fitness:DL017")
+                choices = c("mimic1 x Anti-PD-1 x HONC-60-55.v3", "mimic1 x Anti-PD-1 x HONC-60-55.v4",
+                            "mimic1 x IgG x HONC-60-55.v3", "mimic1 x IgG x HONC-60-55.v4",
+                            "mimic2 x Anti-PD1 x Fitness (DL081)", "mimic2 x Anti-PD1 x Saline",
+                            "mimic2 x IgG x Fitness (DL081)", "mimic2 x IgG x Saline", 
+                            "mimic3 x IgG x Fitness:DL017", "mimic3 x PD1 x Fitness:DL017", 
+                            "mimic4 x IgG x 84v4", "mimic4 x PD1 x 84v3", "mimic5 x IgG x 10v3", 
+                            "mimic5 x IgG x 10v4", "mimic5 x PD1 x 10v3", "mimic5 x PD1 x 10v4",
+                            "mimic6 x Anti-PD1 x HONC60-55 v3", "mimic6 x Anti-PD1 x HONC60-55 v4",
+                            "mimic6 x IgG x HONC60-55 v3", "mimic6 x IgG x HONC60-55 v4", 
+                            "mimic7 x Anti-PD1 x HONC60-55 v3", "mimic7 x Anti-PD1 x HONC60-55 v4",
+                            "mimic7 x IgG x HONC60-55 v3", "mimic7 x IgG x HONC60-55 v4")
       )),
       # actionButton("go", "Update")),
     

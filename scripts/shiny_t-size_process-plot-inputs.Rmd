@@ -17,7 +17,7 @@ library(tidyverse)
 # Load data 
 
 ```{r}
-tsizes <- read.csv("../data/2022-02-22_tumor-size_R-formatted.csv", stringsAsFactors = F)
+tsizes <- read.csv("../data/2022-03-03_tumor-size_R-formatted.csv", stringsAsFactors = F)
 ```
 
 
@@ -91,7 +91,7 @@ tsizes <- read.csv("../data/2022-02-22_tumor-size_R-formatted.csv", stringsAsFac
 
 ```{r}
 mean.vals <- tsizes %>%
-  mutate(treatment.group = paste(treatment, microbiome.sample, sep = " x ")) %>%
+  mutate(treatment.group = paste(experiment, treatment, microbiome.sample, sep = " x ")) %>%
   group_by(treatment.group, time.point) %>%
   summarise(mean.volume = mean(tumor.volume),
             sd.volume = sd(tumor.volume)) %>%
@@ -118,7 +118,7 @@ mean.vals %>%
                 width = 1)
 
 
-write.csv(mean.vals, "../shiny-apps/tumor-line-plots/2022-02-22_mean-tumor-volumes.csv", row.names = F)
+write.csv(mean.vals, "../shiny-apps/tumor-line-plots/2022-03-03_mean-tumor-volumes.csv", row.names = F)
 ```
 
 

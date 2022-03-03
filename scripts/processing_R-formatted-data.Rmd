@@ -18,11 +18,11 @@ source("00-paths.R")
 # Load data 
 
 ```{r}
-tsize.files <- list.files(file.path(paths$box, 'data'), pattern = "AOT", full.names = T)[1:6]
+tsize.files <- list.files(file.path(paths$box, 'data'), pattern = "AOT", full.names = T)[1:7]
 
 tsize.file.2 <- unlist(lapply(tsize.files, function(x) list.files(x, pattern = "_size")))
 
-tsize.raw <- lapply(1:6, function(x) read_excel(file.path(tsize.files[x], tsize.file.2[x])))
+tsize.raw <- lapply(1:7, function(x) read_excel(file.path(tsize.files[x], tsize.file.2[x])))
 ```
 
 # Functions
@@ -133,6 +133,20 @@ mim6 <- tsize.raw[[6]] %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
          experiment = "mimic6") %>%
   separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+
+mim7 <- tsize.raw[[7]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+    filter(`tumor.length.(mm)` != "n/a") %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         Treatment = ifelse(cage %in% c(1,2), "Anti-PD1", "IgG"),
+         treatment.group = paste(Treatment,microbiome.sample, sep = " x "),
+         tail.number = paste(tail.number, cage, sep = " x ")) %>%
+  calcTumorVol() %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic7") %>%
+  separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
 ```
 # Combine results
 
@@ -142,11 +156,12 @@ mimic.cleaned <- mim1 %>%
   bind_rows(mim3) %>%
   bind_rows(mim4) %>%
   bind_rows(mim5) %>%
-  bind_rows(mim6)
+  bind_rows(mim6) %>%
+  bind_rows(mim7)
 ```
 
 # Save
 
 ```{r}
-write.csv(mimic.cleaned, "../data/2022-02-22_tumor-size_R-formatted.csv", row.names = F)
+write.csv(mimic.cleaned, "../data/2022-03-03_tumor-size_R-formatted.csv", row.names = F)
 ```
