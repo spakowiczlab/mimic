@@ -18,17 +18,19 @@ source("00-paths.R")
 # Load data 
 
 ```{r}
-tsize.files <- list.files(file.path(paths$box, 'data'), pattern = "AOT", full.names = T)[1:7]
+tsize.files <- list.files(file.path(paths$box, 'data'), pattern = "AOT", full.names = T)[1:8]
 
 tsize.file.2 <- unlist(lapply(tsize.files, function(x) list.files(x, pattern = "_size")))
 
-tsize.raw <- lapply(1:7, function(x) read_excel(file.path(tsize.files[x], tsize.file.2[x])))
+tsize.raw <- lapply(1:8, function(x) read_excel(file.path(tsize.files[x], tsize.file.2[x])))
+
+inject.dates <- read_excel(file.path(paths$box, "data", "mimic_injection_dates.xlsx"))
 ```
 
 # Functions
 
 ```{r}
-calcTumorVol <- function(tmp){
+calcTumorVol <- function(tmp, idate){
   tmp %>%
     mutate(tail.number = as.character(tail.number)) %>%
     mutate(tumor.volume = (`tumor.length.(mm)` * (`tumor.width.(mm)`^2)) / 2,
@@ -38,7 +40,7 @@ calcTumorVol <- function(tmp){
     group_by(tail.number, treatment.group, date) %>%
     summarise(tumor.volume = sum(tumor.volume)) %>%
     ungroup() %>%
-    mutate(time.point = as.numeric(as.factor((date))))  %>%
+    mutate(days.from.injection = as.numeric(as.Date(date) - as.Date(idate)))  %>%
     select(-date)
 }
 ```
@@ -56,7 +58,7 @@ mim1 <- tsize.raw[[1]] %>%
     #                                true = "mimic1.pre-DI",
     #                                false = "mimic1.post-DI"),
          treatment.group = paste(treatment, microbiome.sample, sep = " x ")) %>%
-  calcTumorVol() %>%
+  calcTumorVol(., inject.dates$`Date of Injection`[1]) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
          experiment = "mimic1")
@@ -67,7 +69,7 @@ mim2 <- tsize.raw[[2]] %>%
          `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
          treatment.group = paste(gsub(".-(.*)", "\\1", `cage (treatment)`),
                                  microbiome.sample, sep = " x ")) %>%
-  calcTumorVol() %>%
+  calcTumorVol(., inject.dates$`Date of Injection`[2]) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
          experiment = "mimic2")
@@ -83,26 +85,12 @@ mim3 <- tsize.raw[[3]] %>%
          treatment = ifelse(cage %in% c(1,2), "IgG", "PD1"),
          treatment.group = paste(treatment, condition, sep = " x ")) %>%
   mutate(tail.number = paste(tail.number, cage, sep = " x ")) %>%
-  calcTumorVol() %>%
+  calcTumorVol(., inject.dates$`Date of Injection`[3]) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
          experiment = "mimic3") %>%
   separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
 
-mim4 <- tsize.raw[[4]] %>%
-  drop_na(`tumor.length.(mm)`) %>%
-    filter(`tumor.length.(mm)` != "n/a") %>%
-  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
-         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
-         treatment = ifelse(cage %in% c(3,4), "IgG", "PD1"),
-         microbiome.sample = ifelse(cage %in% c(1,2), "84v3", "84v4"),
-         treatment.group = paste(treatment,microbiome.sample, sep = " x "),
-         tail.number = paste(tail.number, cage, sep = " x ")) %>%
-  calcTumorVol() %>%
-  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
-  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
-         experiment = "mimic4") %>%
-  separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
 
 
 mim5 <- tsize.raw[[5]] %>%
@@ -114,7 +102,7 @@ mim5 <- tsize.raw[[5]] %>%
          microbiome.sample = ifelse(cage %in% c(1,2), "10v3", "10v4"),
          treatment.group = paste(treatment,microbiome.sample, sep = " x "),
          tail.number = paste(tail.number, cage, sep = " x ")) %>%
-  calcTumorVol() %>%
+  calcTumorVol(., inject.dates$`Date of Injection`[5]) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
          experiment = "mimic5") %>%
@@ -128,7 +116,7 @@ mim6 <- tsize.raw[[6]] %>%
          treatment.group = paste(Treatment,microbiome.sample, sep = " x "),
          tail.number = paste(tail.number, cage, sep = " x "),
          date = as.POSIXct(str_replace(as.character(date), "2021", "2022"))) %>%
-  calcTumorVol() %>%
+  calcTumorVol(., inject.dates$`Date of Injection`[6]) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
          experiment = "mimic6") %>%
@@ -142,11 +130,56 @@ mim7 <- tsize.raw[[7]] %>%
          Treatment = ifelse(cage %in% c(1,2), "Anti-PD1", "IgG"),
          treatment.group = paste(Treatment,microbiome.sample, sep = " x "),
          tail.number = paste(tail.number, cage, sep = " x ")) %>%
-  calcTumorVol() %>%
+  calcTumorVol(.,inject.dates$`Date of Injection`[7]) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
          experiment = "mimic7") %>%
   separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+
+mim8 <- tsize.raw[[8]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+    filter(`tumor.length.(mm)` != "n/a") %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         Treatment = ifelse(cage %in% c(1,2), "Anti-PD1", "IgG"),
+         microbiome.sample = "DL017",
+         treatment.group = paste(Treatment,microbiome.sample, sep = " x "),
+         tail.number = paste(tail.number, cage, sep = " x ")) %>%
+  calcTumorVol(.,inject.dates$`Date of Injection`[8]) %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic8") %>%
+  separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+```
+
+```{r mimic 4, saved separately because it got complicated}
+mim4.baddate <- tsize.raw[[4]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+    filter(`tumor.length.(mm)` != "n/a") %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         treatment = ifelse(cage %in% c(3,4), "IgG", "PD1"),
+         microbiome.sample = ifelse(cage %in% c(1,2), "84v3", "84v4"),
+         treatment.group = paste(treatment,microbiome.sample, sep = " x "),
+         tail.number = paste(tail.number, cage, sep = " x ")
+         )
+
+mim4.good <- mim4.baddate %>%
+  filter(grepl("/", date)) %>%
+  mutate(date = paste0("2021-10-", gsub(".*/(.*)/.*", "\\1", date)))
+mim4.fixdate <- mim4.baddate %>%
+  filter(!grepl("/", date)) %>%
+  mutate(date = as.numeric(date)) %>%
+  mutate(date = as.character(as.Date(date, origin = "1899-12-30"))) %>%
+  bind_rows(mim4.good)
+  
+mim4 <- mim4.fixdate %>% 
+  calcTumorVol(., inject.dates$`Date of Injection`[4]) %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic4") %>%
+  separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+
 ```
 # Combine results
 
@@ -157,11 +190,12 @@ mimic.cleaned <- mim1 %>%
   bind_rows(mim4) %>%
   bind_rows(mim5) %>%
   bind_rows(mim6) %>%
-  bind_rows(mim7)
+  bind_rows(mim7) %>%
+  bind_rows(mim8)
 ```
 
 # Save
 
 ```{r}
-write.csv(mimic.cleaned, "../data/2022-03-03_tumor-size_R-formatted.csv", row.names = F)
+write.csv(mimic.cleaned, "../data/2022-03-22_tumor-size_R-formatted.csv", row.names = F)
 ```
