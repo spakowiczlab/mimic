@@ -325,6 +325,7 @@ ggplot(data = iggvspd1.grant, aes(x=timepoint, y=tumor.volume.difference, group 
   # theme(plot.title = element_text(size=12))
 
 ggsave("../figures/iggvspd1fig_grant.pdf", width = 6, height = 4)
+ggsave("../figures/iggvspd1fig_aacr.png", width = 10, height = 4)
 ```
 
 
