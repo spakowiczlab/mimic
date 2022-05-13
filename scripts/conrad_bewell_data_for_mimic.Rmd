@@ -10,7 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(ggplot2)
-
+library(coin)
+library(rstatix)
 
 ```
 
@@ -30,6 +31,7 @@ run_wilcox <- function(level, str1, str2){
   microbes <- colnames(level)
   tableOfResults<-data.frame(var=microbes)
   tableOfResults$p_wilcox <- NA
+  tableOfResults$effect_size <- NA
   rownames(tableOfResults) <- microbes
 
   tempR <- filter(level, grepl(str1, rownames(level)))
@@ -38,11 +40,22 @@ run_wilcox <- function(level, str1, str2){
   for(mic in colnames(level)){
     x <- tempR[, mic]
     y <- tempT[, mic]
+    x.df <- as.data.frame(x) %>%
+    rename("rB" = x)
+  y.df <- as.data.frame(y) %>%
+    rename("tB" = y)
+  temp <- cbind(x.df, y.df)
+  temp$id <- rownames(temp)
+  temp <- temp %>%
+    gather(key = "group", value = "relAbun", rB, tB)
     thiscommand <- paste("thiswilcox <- wilcox.test(x, y, paired = TRUE)")
     eval(parse(text = thiscommand))
     tableOfResults[mic, "p_wilcox"] <- thiswilcox$p.value
+    thiscommand <- paste("thiswilcox <- temp %>% wilcox_effsize(relAbun ~ group, paired = TRUE)")
+    eval(parse(text = thiscommand))
+    tableOfResults[mic, "effect_size"] <- thiswilcox$effsize
 }
-  tableOfResults <- tableOfResults %>% select(p_wilcox)
+  tableOfResults <- tableOfResults %>% select(p_wilcox, effect_size)
   return(tableOfResults)
 }
 ```
@@ -66,4 +79,32 @@ BRBresults %>% ggplot(aes(x = rownames(BRBresults), y = p_wilcox)) +
   geom_bar(stat = "identity") +
   coord_flip()
 ```
+
+
+```{r}
+BRBresults %>% wilcox_effsize (relAbun ~ 1-rB)
+```
+
+
+```{r Effect Sizes Plot Creation}
+# Filtering brb.total to only significant taxa
+brb.sig <-
+  brb.total %>%
+  filter(padj < .05) 
+  
+
+brb.sig %>%
+  ggplot(aes(x=log2FoldChange,
+             y=reorder(Classification,log2FoldChange),
+             fill=Tax)) + 
+  geom_bar(stat = "identity") + 
+  theme_bw() + 
+  ggtitle("Effect Size BRB vs. NMBA - Significant Taxa") +
+  ylab("Microbe Classification") +
+  scale_fill_brewer(palette = "Set1") 
+ 
+
+ggsave("../figures/effectsizebrb.png", width = 6, height = 4)
+```
+
 
