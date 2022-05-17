@@ -12,10 +12,14 @@ library(tidyverse)
 library(ggplot2)
 library(coin)
 library(rstatix)
+library(glmm)
+library(broom)
+library(rlist)
 
 ```
 
 ```{r}
+#row.names = 1 : row names are in column 1 in data set
 king <- read.csv("/Users/baileyconrad/Desktop/bewell/data/derived/RelAbun/RelAbun_king.csv", row.names = 1)
 phyl <- read.csv("/Users/baileyconrad/Desktop/bewell/data/derived/RelAbun/RelAbun_phyl.csv",row.names = 1)
 class <- read.csv("/Users/baileyconrad/Desktop/bewell/data/derived/RelAbun/RelAbun_class.csv",row.names = 1)
@@ -25,10 +29,57 @@ gen <- read.csv("/Users/baileyconrad/Desktop/bewell/data/derived/RelAbun/RelAbun
 spec <- read.csv("/Users/baileyconrad/Desktop/bewell/data/derived/RelAbun/RelAbun_spec.csv", row.names = 1)
 ```
 
+```{r}
+capture.models.univ <- function(outcome, lfun, mics, modin){
+  mods.list <- lapply(mics, function(x) try({glm(as.formula(paste0(outcome, " ~ ", x)), family = lfun, data = modin) %>%
+                        tidy()})
+                      )
+                      
+  mods.list.clean <- list.clean(mods.list, function(x) is.null(x))
+  mods.df <- bind_rows(mods.list.clean)
+  return(mods.df)
+}
+format_and_model <- function(tmp){
+ tmp.mics <- colnames(tmp)
+tmp.form <- tmp %>%
+  rownames_to_column(var = "sample") %>%
+  mutate(berry.group = ifelse(grepl("tB",sample), 1, 0))
+res <- capture.models.univ("berry.group", "binomial", tmp.mics, tmp.form) %>%
+  filter(term !="(Intercept)")
+return(res)
+}
+```
+
+```{r}
+all_tax_levs <- list(king, phyl, class, ord, fam, gen, spec)
+all_mod_res <- lapply(all_tax_levs, format_and_model) %>%
+  bind_rows() %>%
+  arrange(p.value)
+```
+
+```{r}
+all_mod_res %>%
+  filter(p.value<0.1) %>%
+  separate(term, into = c("TaxaLevel", "term"), sep = "__") %>%
+  mutate(term = gsub("_", " ", term), 
+         term = fct_reorder(term, estimate)) %>%
+  ggplot(aes(x = estimate, y = term, fill = TaxaLevel)) +
+  geom_col() +
+  labs(x = "Effect Size", y = "Microbe") +
+  scale_fill_manual(breaks = c("g", "s"), values = c("firebrick", "grey70"), name = "Taxa level", labels = 
+                      c("Genus", "Species")) +
+  theme_bw() 
+ggsave("../figures/effect-size_logistical-regression.png")
+```
+
+
 function to run wilcox test on pre/post BRB and return table of p-values
 ```{r}
 run_wilcox <- function(level, str1, str2){
+  #level, str1: string 1; str2: string 2 
+  #arguments: the parameters needed for the function to perform operations
   microbes <- colnames(level)
+  #colnames: microbes
   tableOfResults<-data.frame(var=microbes)
   tableOfResults$p_wilcox <- NA
   tableOfResults$effect_size <- NA
@@ -36,29 +87,106 @@ run_wilcox <- function(level, str1, str2){
 
   tempR <- filter(level, grepl(str1, rownames(level)))
   tempT <- filter(level, grepl(str2, rownames(level)))
+  #grepl: searches for matches to argument pattern 
+  #level: x
 
   for(mic in colnames(level)){
+  #mic: maximal information coefficient
     x <- tempR[, mic]
     y <- tempT[, mic]
     x.df <- as.data.frame(x) %>%
+  #as.data.frame is used to coerce other object to a data frame, not create a new one
     rename("rB" = x)
+  #x = "rB" (pre-berry)
   y.df <- as.data.frame(y) %>%
     rename("tB" = y)
+  #y = "tB" (post-berry)
   temp <- cbind(x.df, y.df)
+  # cbind ("column-bind"): combines data frames by columns 
   temp$id <- rownames(temp)
+  #$ (extraction operator): view a single vairable in data frame--only the id
   temp <- temp %>%
     gather(key = "group", value = "relAbun", rB, tB)
+  #gather: to gather a key-value pair across multiple columns
+  #key = name of the key column to create ("group")
+  #value = name of the value column to create ("relAbun")
     thiscommand <- paste("thiswilcox <- wilcox.test(x, y, paired = TRUE)")
     eval(parse(text = thiscommand))
-    tableOfResults[mic, "p_wilcox"] <- thiswilcox$p.value
+    tableOfResults[mic, "p_wilcox"] <- thiswilcox$p.value#p value graph
+  #paste: multiple elements from the multiple vectors into one element
+  #running the wilcox test--looking at y(post berry) - x(pre berry) 
+  #parse: to return the parsed but unevaluated expression (text (this command) to be parsed)
     thiscommand <- paste("thiswilcox <- temp %>% wilcox_effsize(relAbun ~ group, paired = TRUE)")
     eval(parse(text = thiscommand))
     tableOfResults[mic, "effect_size"] <- thiswilcox$effsize
+  #effect size calculation
 }
   tableOfResults <- tableOfResults %>% select(p_wilcox, effect_size)
+  #only selecting the p value function and effect size
   return(tableOfResults)
 }
 ```
+
+```{r}
+level <- spec
+str1 <- "rB"
+str2 <- "tB"
+
+
+
+run_wilcox <- function(level, str1, str2){
+  #level, str1: string 1; str2: string 2 
+  #arguments: the parameters needed for the function to perform operations
+  microbes <- colnames(level)
+  #colnames: microbes
+  tableOfResults<-data.frame(var=microbes)
+  tableOfResults$p_wilcox <- NA
+  tableOfResults$effect_size <- NA
+  rownames(tableOfResults) <- microbes
+
+  tempR <- filter(level, grepl(str1, rownames(level)))
+  tempT <- filter(level, grepl(str2, rownames(level)))
+  #grepl: searches for matches to argument pattern 
+  #level: x
+
+  for(mic in colnames(level)){
+  #mic: maximal information coefficient
+    x <- tempR[, mic]
+    y <- tempT[, mic]
+    x.df <- as.data.frame(x) %>%
+  #as.data.frame is used to coerce other object to a data frame, not create a new one
+    rename("rB" = x)
+  #x = "rB" (pre-berry)
+  y.df <- as.data.frame(y) %>%
+    rename("tB" = y)
+  #y = "tB" (post-berry)
+  temp <- cbind(x.df, y.df)
+  # cbind ("column-bind"): combines data frames by columns 
+  temp$id <- rownames(temp)
+  #$ (extraction operator): view a single vairable in data frame--only the id
+  temp <- temp %>%
+    gather(key = "group", value = "relAbun", rB, tB)
+  #gather: to gather a key-value pair across multiple columns
+  #key = name of the key column to create ("group")
+  #value = name of the value column to create ("relAbun")
+    thiscommand <- paste("thiswilcox <- wilcox.test(x, y, paired = TRUE)")
+    eval(parse(text = thiscommand))
+    tableOfResults[mic, "p_wilcox"] <- thiswilcox$p.value#p value graph
+  #paste: multiple elements from the multiple vectors into one element
+  #running the wilcox test--looking at y(post berry) - x(pre berry) 
+  #parse: to return the parsed but unevaluated expression (text (this command) to be parsed)
+    thiscommand <- paste("thiswilcox <- temp %>% wilcox_effsize(relAbun ~ group, paired = TRUE)")
+    try(eval(parse(text = thiscommand)))
+    tableOfResults[mic, "effect_size"] <- thiswilcox$effsize
+  #effect size calculation
+}
+  tableOfResults <- tableOfResults %>% select(p_wilcox, effect_size)
+  #only selecting the p value function and effect size
+  return(tableOfResults)
+}
+```
+
+
 
 BRB all levels
 ```{r warning=FALSE}
@@ -71,14 +199,22 @@ phyl_dif <- run_wilcox(phyl, "rB", "tB")
 king_dif <- run_wilcox(king, "rB", "tB")
 
 #combine and filter to p-value < 0.05
-BRBresults <- rbind(king_dif, phyl_dif, class_dif, ord_dif, fam_dif, gen_dif, spec_dif) %>% filter(p_wilcox < 0.05)
+BRBresults <- rbind(class_dif, phyl_dif, king_dif, spec_dif, gen_dif, fam_dif, ord_dif) %>% filter(p_wilcox < 0.05)
+#rbind: combining the different levels (rows)
 ```
 
 ```{r}
 BRBresults %>% ggplot(aes(x = rownames(BRBresults), y = p_wilcox)) +
   geom_bar(stat = "identity") +
   coord_flip()
+# p value plot
 ```
+
+```{r}
+BRBresults %>% ggplot(aes(x = rownames(BRBresults), y = effect_size)) +
+  geom_bar(stat = "identity") 
+```
+
 
 
 ```{r}
@@ -107,4 +243,7 @@ brb.sig %>%
 ggsave("../figures/effectsizebrb.png", width = 6, height = 4)
 ```
 
+
+```{r}
+```
 
