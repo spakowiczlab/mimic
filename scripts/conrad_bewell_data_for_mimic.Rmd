@@ -17,6 +17,7 @@ library(broom)
 library(rlist)
 library(ggtext)
 library(glue)
+library(ggrepel)
 
 ?ggtext
 ```
@@ -75,9 +76,27 @@ ggplot(aes(x = estimate, y = term, fill = TaxaLevel)) +
   geom_col() +
   labs(x = "Effect Size", y = "Microbe") +
   scale_fill_manual(breaks = c("g", "s"), values = c("firebrick", "grey70"), name = "Taxa level", labels = c("Genus", "Species")) +
-  theme_bw() +
-  theme(axis.text.y = element_markdown())
+  theme_bw() 
 ggsave("../figures/effect-size_logistical-regression.png")
+```
+
+```{r warning=FALSE}
+all_mod_res %>%
+  separate(term, into = c("TaxaLevel", "term"), sep = "__") %>%
+  mutate(pointlabs = ifelse(p.value < 0.1, term, NA)) %>%
+  mutate(pointlabs = gsub("_", " ", pointlabs)) %>%
+ggplot(aes(x = estimate, y = -log(p.value), label = pointlabs, color = TaxaLevel)) +
+  xlim(-500,500) +
+  ylim(0, 5) +
+  geom_point() +
+  theme_bw() +
+  labs(x = "Estimate", y = "-log(p-value)") +
+  geom_hline(yintercept = 2.0)+
+  scale_x_log10() +
+  geom_label_repel(show.legend = F)
+
+
+ggsave("../figures/effect-size_volcano-plot.png")
 ```
 
 
