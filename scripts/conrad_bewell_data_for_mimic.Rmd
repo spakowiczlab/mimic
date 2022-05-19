@@ -10,15 +10,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(ggplot2)
-library(coin)
-library(rstatix)
+# library(coin)
+# library(rstatix)
 library(glmm)
 library(broom)
 library(rlist)
+library(ggrepel)
 library(ggtext)
-library(glue)
-
-?ggtext
+# packageVersion("ggtext")
+# remotes::install_github("wilkelab/ggtext")
 ```
 
 ```{r}
@@ -68,19 +68,48 @@ all_mod_res <- lapply(all_tax_levs, format_and_model) %>%
 all_mod_res %>%
   filter(p.value<0.1) %>%
   separate(term, into = c("TaxaLevel", "term"), sep = "__") %>%
-  mutate(term = gsub("_", " ", term), # gsub: replacing the " " with the "_" in the term axis # mutate creates new variables
-         term = fct_reorder(term, estimate)
+  mutate(term = gsub("_", " ", term), 
+          term = paste0("*", term, "*"),
+         term = gsub("\\*Lachnospiraceae unclassified\\*", "Unclassified Lachnospiraceae", term),
+         term = fct_reorder(term, estimate),
          ) %>%
 ggplot(aes(x = estimate, y = term, fill = TaxaLevel)) +
   geom_col() +
   labs(x = "Effect Size", y = "Microbe") +
-  scale_fill_manual(breaks = c("g", "s"), values = c("firebrick", "grey70"), name = "Taxa level", labels = c("Genus", "Species")) +
-  theme_bw() +
+  scale_fill_manual(breaks = c("g", "s"), values = c("firebrick", "grey70"), name = "Taxonomic level", labels = c("Genus", "Species")) +
+  theme_bw()  +
   theme(axis.text.y = element_markdown())
 ggsave("../figures/effect-size_logistical-regression.png")
 ```
 
+```{r warning=FALSE}
+all_mod_res %>%
+  separate(term, into = c("TaxaLevel", "term"), sep = "__") %>%
+  mutate(pointlabs = ifelse(p.value < 0.105, term, NA)) %>%
+  mutate(pointlabs = gsub("_", " ", pointlabs)) %>%
+ggplot(aes(x = estimate, y = -log(p.value), label = pointlabs, fontface = "italic", color = TaxaLevel)) +
+  # xlim(-50, 50) +
+  ylim(0, 5) +
+  geom_point() +
+  theme_bw() +
+  labs(x = "Estimate", y = "-log(p-value)") +
+  geom_hline(yintercept = 2.0)+
+  scale_x_log10() +
+  geom_label_repel(show.legend = F) +
+  scale_color_discrete(name = "Taxonomic Level", breaks = c("k", "p", "c", "o", "f", "g", "s"), labels = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"))
+  # scale_fill_discrete(name = "Taxa Level", breaks = c("c", "f", "g", "k", "o", "p", "s"), labels = c("Class", "Family", "Genus", "Kingdom", "Order", "Phylum", "Species"))
 
+ggsave("../figures/effect-size_volcano-plot.png")
+
+```
+
+
+
+
+
+
+
+SCRATCH WORK BELOW
 function to run wilcox test on pre/post BRB and return table of p-values
 ```{r}
 run_wilcox <- function(level, str1, str2){
