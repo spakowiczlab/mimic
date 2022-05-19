@@ -15,7 +15,10 @@ library(rstatix)
 library(glmm)
 library(broom)
 library(rlist)
+library(ggtext)
+library(glue)
 
+?ggtext
 ```
 
 ```{r}
@@ -31,44 +34,49 @@ spec <- read.csv("/Users/baileyconrad/Desktop/bewell/data/derived/RelAbun/RelAbu
 
 ```{r}
 capture.models.univ <- function(outcome, lfun, mics, modin){
-  mods.list <- lapply(mics, function(x) try({glm(as.formula(paste0(outcome, " ~ ", x)), family = lfun, data = modin) %>%
-                        tidy()})
-                      )
+  mods.list <- lapply(mics, function(x)  try({glm(as.formula(paste0(outcome, " ~ ", x)), family = lfun, data = modin) %>% tidy()}))
+  #glm: generalized linear model
                       
   mods.list.clean <- list.clean(mods.list, function(x) is.null(x))
   mods.df <- bind_rows(mods.list.clean)
   return(mods.df)
 }
+#list.clean: removes all elements that are TRUE
+#is.null function: to remove missing values
+
 format_and_model <- function(tmp){
  tmp.mics <- colnames(tmp)
 tmp.form <- tmp %>%
   rownames_to_column(var = "sample") %>%
-  mutate(berry.group = ifelse(grepl("tB",sample), 1, 0))
+  mutate(berry.group = ifelse(grepl("tB",sample), 1, 0)) #ifelse: TRUE if 1, FLASE if 0
+#grepl: check somethign by comparing it across a pattern (pattern, vaeiable)
 res <- capture.models.univ("berry.group", "binomial", tmp.mics, tmp.form) %>%
   filter(term !="(Intercept)")
 return(res)
 }
 ```
 
-```{r}
+```{r warning=FALSE}
 all_tax_levs <- list(king, phyl, class, ord, fam, gen, spec)
 all_mod_res <- lapply(all_tax_levs, format_and_model) %>%
   bind_rows() %>%
   arrange(p.value)
+#arrange(asc) vs. desc
 ```
 
 ```{r}
 all_mod_res %>%
   filter(p.value<0.1) %>%
   separate(term, into = c("TaxaLevel", "term"), sep = "__") %>%
-  mutate(term = gsub("_", " ", term), 
-         term = fct_reorder(term, estimate)) %>%
-  ggplot(aes(x = estimate, y = term, fill = TaxaLevel)) +
+  mutate(term = gsub("_", " ", term), # gsub: replacing the " " with the "_" in the term axis # mutate creates new variables
+         term = fct_reorder(term, estimate)
+         ) %>%
+ggplot(aes(x = estimate, y = term, fill = TaxaLevel)) +
   geom_col() +
   labs(x = "Effect Size", y = "Microbe") +
-  scale_fill_manual(breaks = c("g", "s"), values = c("firebrick", "grey70"), name = "Taxa level", labels = 
-                      c("Genus", "Species")) +
-  theme_bw() 
+  scale_fill_manual(breaks = c("g", "s"), values = c("firebrick", "grey70"), name = "Taxa level", labels = c("Genus", "Species")) +
+  theme_bw() +
+  theme(axis.text.y = element_markdown())
 ggsave("../figures/effect-size_logistical-regression.png")
 ```
 
@@ -217,33 +225,5 @@ BRBresults %>% ggplot(aes(x = rownames(BRBresults), y = effect_size)) +
 
 
 
-```{r}
-BRBresults %>% wilcox_effsize (relAbun ~ 1-rB)
-```
 
-
-```{r Effect Sizes Plot Creation}
-# Filtering brb.total to only significant taxa
-brb.sig <-
-  brb.total %>%
-  filter(padj < .05) 
-  
-
-brb.sig %>%
-  ggplot(aes(x=log2FoldChange,
-             y=reorder(Classification,log2FoldChange),
-             fill=Tax)) + 
-  geom_bar(stat = "identity") + 
-  theme_bw() + 
-  ggtitle("Effect Size BRB vs. NMBA - Significant Taxa") +
-  ylab("Microbe Classification") +
-  scale_fill_brewer(palette = "Set1") 
- 
-
-ggsave("../figures/effectsizebrb.png", width = 6, height = 4)
-```
-
-
-```{r}
-```
 
