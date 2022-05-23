@@ -17,8 +17,6 @@ library(broom)
 library(rlist)
 library(ggrepel)
 library(ggtext)
-# packageVersion("ggtext")
-# remotes::install_github("wilkelab/ggtext")
 ```
 
 ```{r}
@@ -79,6 +77,7 @@ ggplot(aes(x = estimate, y = term, fill = TaxaLevel)) +
   scale_fill_manual(breaks = c("g", "s"), values = c("firebrick", "grey70"), name = "Taxonomic level", labels = c("Genus", "Species")) +
   theme_bw()  +
   theme(axis.text.y = element_markdown())
+
 ggsave("../figures/effect-size_logistical-regression.png")
 ```
 
@@ -87,8 +86,7 @@ all_mod_res %>%
   separate(term, into = c("TaxaLevel", "term"), sep = "__") %>%
   mutate(pointlabs = ifelse(p.value < 0.105, term, NA)) %>%
   mutate(pointlabs = gsub("_", " ", pointlabs)) %>%
-ggplot(aes(x = estimate, y = -log(p.value), label = pointlabs, fontface = "italic", color = TaxaLevel)) +
-  # xlim(-50, 50) +
+ggplot(aes(x = estimate, y = -log(p.value), label = pointlabs, color = TaxaLevel)) +
   ylim(0, 5) +
   geom_point() +
   theme_bw() +
@@ -97,7 +95,6 @@ ggplot(aes(x = estimate, y = -log(p.value), label = pointlabs, fontface = "itali
   scale_x_log10() +
   geom_label_repel(show.legend = F) +
   scale_color_discrete(name = "Taxonomic Level", breaks = c("k", "p", "c", "o", "f", "g", "s"), labels = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"))
-  # scale_fill_discrete(name = "Taxa Level", breaks = c("c", "f", "g", "k", "o", "p", "s"), labels = c("Class", "Family", "Genus", "Kingdom", "Order", "Phylum", "Species"))
 
 ggsave("../figures/effect-size_volcano-plot.png")
 
@@ -108,6 +105,14 @@ ggsave("../figures/effect-size_volcano-plot.png")
 
 
 
+=======
+  geom_label_repel(show.legend = F)
+
+
+ggsave("../figures/effect-size_volcano-plot.png")
+```
+
+>>>>>>> 574b286f27fdc935dec5f45962a7446a3d83723e
 
 SCRATCH WORK BELOW
 function to run wilcox test on pre/post BRB and return table of p-values
