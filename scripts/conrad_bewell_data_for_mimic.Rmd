@@ -34,7 +34,7 @@ spec <- read.csv("/Users/baileyconrad/Desktop/bewell/data/derived/RelAbun/RelAbu
 capture.models.univ <- function(outcome, lfun, mics, modin){
   mods.list <- lapply(mics, function(x)  try({glm(as.formula(paste0(outcome, " ~ ", x)), family = lfun, data = modin) %>% tidy()}))
   #glm: generalized linear model
-                      
+  #modin: model input                    
   mods.list.clean <- list.clean(mods.list, function(x) is.null(x))
   mods.df <- bind_rows(mods.list.clean)
   return(mods.df)
@@ -53,6 +53,7 @@ res <- capture.models.univ("berry.group", "binomial", tmp.mics, tmp.form) %>%
 return(res)
 }
 ```
+
 
 ```{r warning=FALSE}
 all_tax_levs <- list(king, phyl, class, ord, fam, gen, spec)
