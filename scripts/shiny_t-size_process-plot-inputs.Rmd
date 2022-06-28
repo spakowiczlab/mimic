@@ -17,7 +17,7 @@ library(tidyverse)
 # Load data 
 
 ```{r}
-tsizes <- read.csv("../data/2022-05-09_tumor-size_R-formatted.csv", stringsAsFactors = F)
+tsizes <- read.csv("../data/2022-06-28_tumor-size_R-formatted.csv", stringsAsFactors = F)
 ```
 
 
@@ -119,7 +119,7 @@ mean.vals %>%
                 width = 1)
 
 
-write.csv(mean.vals, "../shiny-apps/tumor-line-plots/2022-05-09_mean-tumor-volumes.csv", row.names = F)
+write.csv(mean.vals, "../shiny-apps/tumor-line-plots/2022-06-28_mean-tumor-volumes.csv", row.names = F)
 ```
 
 
