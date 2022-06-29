@@ -1,0 +1,73 @@
+---
+title: "Mimic 10 Tumor Volume vs. Time"
+author: "Aadi Pallerla"
+date: '2022-06-09'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+source("00-paths.R")
+```
+
+```{r Data Entry and Cleanup}
+
+processed.data <- read.csv(file.path(paths$git, 'data', "2022-06-28_tumor-size_R-formatted.csv")) 
+
+mim10.processed <-
+  processed.data %>%
+  filter(experiment == "mimic10") %>%
+  mutate(treatment.group = paste(treatment, microbiome.sample, sep = " x "))
+
+```
+
+```{r Final Timepoint Boxplot}
+
+final.mimic10 <-
+  mim10.processed %>%
+  filter(days.from.injection == 21)
+
+final.mimic10 %>%
+  ggplot(aes(x = treatment.group, y = tumor.volume)) +
+  geom_boxplot() +
+  theme_bw() +
+  ggtitle("Tumor Volume for Final Day After Injection") +
+  xlab("Treatment Group (Treatment x Microbiome Sample)") + 
+  ylab("Tumor Volume")
+
+ggsave("../figures/tumorvolume-mimic10-boxplot.png", width = 9, height = 5)
+
+```
+
+
+```{r Tumor vs. Time Plot}
+
+mean.mimic10 <-
+  mim10.processed %>%
+  group_by(treatment.group, days.from.injection) %>%
+  summarize(mean = mean(tumor.volume),
+            sd = sd(tumor.volume)) %>%
+  ungroup() %>%
+  mutate(lwr = mean - sd,
+         upr = mean + sd) %>%
+  mutate(lwr = if_else(lwr < 0, 0, lwr)) 
+
+mean.mimic10 %>%
+  ggplot(aes(x = days.from.injection, y = mean,
+             group = treatment.group, color = treatment.group)) +
+  geom_line(position = position_dodge(width = .5))+
+  geom_point(position = position_dodge(width = .5))+
+  labs(title = "Tumor Volume vs. Time for Mimic 10", x = "Days from Injection", y = "Mean tumor volume") +
+  theme_bw() +
+  scale_color_brewer(palette = "Dark2") +
+  geom_errorbar(aes(ymin = lwr, ymax = upr),
+                width = 1,
+                position = position_dodge(width = .5))
+
+ggsave("../figures/tumorvolume-mimic10-lineplot.png", width = 10, height = 7)
+
+
+```
+
