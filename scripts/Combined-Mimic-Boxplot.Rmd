@@ -1,0 +1,131 @@
+---
+title: "Combined Mimic Boxplot"
+author: "Aadi Pallerla"
+date: '2022-06-30'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(tidyverse)
+source("00-paths.R")
+
+```
+
+```{r}
+processed.data <- read.csv(file.path(paths$git, 'data', "2022-06-28_tumor-size_R-formatted.csv")) %>%
+    mutate(treatment.group = paste(treatment, microbiome.sample, sep = " x "))
+
+```
+
+```{r Organizing final timepoint by experiment}
+
+mim1.final <-
+  processed.data %>%
+  filter(experiment == "mimic1") %>% 
+  filter(days.from.injection == 21) %>%
+  mutate(treatment = ifelse(treatment %in% c("Anti-PD-1"), "Anti-PD1", "IgG"),
+         microbiome.sample = ifelse(microbiome.sample %in% c("HONC-60-55.v3"), "HONC60-55 v3", "HONC60-55 v4"))
+
+mim2.final <- 
+  processed.data %>%
+  filter(experiment == "mimic2") %>%
+  filter(days.from.injection >= 20)
+ 
+mim3.final <- 
+  processed.data %>%
+  filter(experiment == "mimic3") %>%
+  filter(days.from.injection == 21)
+
+mim4.final <- 
+  processed.data %>%
+  filter(experiment == "mimic4") %>%
+  filter(days.from.injection >= 19)
+
+mim5.final <- 
+  processed.data %>%
+  filter(experiment == "mimic5") %>%
+  filter(days.from.injection == 22)
+
+mim6.final <- 
+  processed.data %>%
+  filter(experiment == "mimic6") %>%
+  filter(days.from.injection == 21)
+
+mim7.final <- 
+  processed.data %>%
+  filter(experiment == "mimic7") %>%
+  filter(days.from.injection == 21)
+
+mim8.final <- 
+  processed.data %>%
+  filter(experiment == "mimic8") %>% 
+  filter(days.from.injection == 21)
+
+mim9.final <- 
+  processed.data %>%
+  filter(experiment == "mimic9") %>%
+  filter(days.from.injection == 21)
+
+mim10.final <- 
+  processed.data %>%
+  filter(experiment == "mimic10") %>%
+  filter(days.from.injection == 21)
+
+```
+
+
+```{r full final processed}
+
+final.processed <-
+  bind_rows(mim1.final,
+            mim2.final,
+            mim3.final,
+            mim4.final,
+            mim5.final,
+            mim6.final,
+            mim7.final,
+            mim8.final,
+            mim9.final,
+            mim10.final) %>%
+  mutate(experiment = as.factor(experiment)) %>%
+  mutate(experiment = fct_relevel(experiment, "mimic10", after = 9))
+
+final.processed %>%
+  ggplot(aes(x = treatment.group, y = tumor.volume)) +
+  geom_boxplot(fill = '#872657') +
+  facet_wrap(. ~ experiment, nrow = 2, scales = "free") +
+  theme_bw() +
+  ggtitle("Mimic Tumor Measurements for Final Timepoint") + 
+  theme(axis.text.x = element_text(size = 5.5, angle = 45, hjust = .9)) +
+  xlab("Treatment Group") +
+  ylab("Tumor Volume")
+
+ggsave("../figures/mimic-combined-boxplot.png", width = 10, height = 7)
+
+
+```
+
+```{r filtered final output}
+
+HONC60.filter <-
+  final.processed %>%
+  filter(experiment %in% c("mimic1","mimic6","mimic7")) %>%
+  mutate(patient = "HONC60-55",
+         Intervention = ifelse(microbiome.sample %in% c("HONC60-55 v3"), "Pre-BRB", "Post-BRB"))
+
+HONC60.filter %>%
+  ggplot(aes(x = treatment, y = tumor.volume, fill = Intervention)) +
+  geom_boxplot() +
+  facet_wrap(. ~ patient, scales = "free_y") +
+  xlab("Treatment") +
+  ylab("Tumor Volume") +
+  ggtitle("Mimic Tumor Volume by Intervention")
+
+ggsave("../figures/HONC-filtered-boxplot.png", width = 7, height = 8)
+
+
+```
+
