@@ -91,7 +91,16 @@ final.processed <-
             mim9.final,
             mim10.final) %>%
   mutate(experiment = as.factor(experiment)) %>%
-  mutate(experiment = fct_relevel(experiment, "mimic10", after = 9))
+  mutate(experiment = fct_relevel(experiment, "mimic10", after = 9)) %>%
+  mutate(treatment = if_else(grepl("PD1", treatment),
+                             true = "Anti-PD1",
+                             false = treatment)) %>%
+  mutate(gavage = if_else(grepl("v1|v3", microbiome.sample),
+                          true = "Pre-BRB",
+                          false = if_else(grepl("v2|v4", microbiome.sample),
+                                          true = "Post-BRB",
+                                          false = "other"))) %>%
+  mutate(gavage = fct_relevel(gavage, "Pre-BRB"))
 
 final.processed %>%
   ggplot(aes(x = treatment.group, y = tumor.volume)) +
@@ -128,4 +137,66 @@ ggsave("../figures/HONC-filtered-boxplot.png", width = 7, height = 8)
 
 
 ```
+
+```{r}
+
+df <- 
+  final.processed %>%
+  mutate(patient = if_else(experiment %in% c("mimic1","mimic6","mimic7"),
+                           true = "55",
+                           false = if_else(experiment %in% c("mimic5"),
+                                           true = "10",
+                                           false = if_else(experiment %in% c("mimic10"),
+                                                           true = "68",
+                                                           false = "other")
+                                           )))
+
+df %>%
+  group_by(patient) %>%
+  tally
+```
+
+```{r}
+df %>%
+  filter(patient != "other") %>%
+  filter(treatment == "Anti-PD1") %>%
+  ggplot(aes(x = patient, y = tumor.volume)) +
+  geom_boxplot(aes(fill = gavage)) +
+  theme_bw(base_size = 18) +
+  scale_fill_brewer(palette = "Set1") +
+  labs(x = "Participant Sample",
+       y = "Tumor Volume (mm^3)",
+       fill = "Gavage")
+  # geom_jitter(aes(color = gavage), width = 0.9)
+
+ggsave("../figures/ACC22_bewell-samples_PD1-only_boxplot.png",
+       height = 5, width = 5)
+```
+
+```{r}
+test.68 <- 
+  df %>%
+  filter(patient == "68") %>%
+  pivot_wider(values_from = tumor.volume, names_from = gavage)
+
+
+t.test(test.68$`Pre-BRB`, test.68$`Post-BRB`)
+wilcox.test(test.68$`Pre-BRB`, test.68$`Post-BRB`)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

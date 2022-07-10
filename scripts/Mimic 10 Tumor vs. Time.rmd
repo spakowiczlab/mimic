@@ -71,3 +71,37 @@ ggsave("../figures/tumorvolume-mimic10-lineplot.png", width = 10, height = 7)
 
 ```
 
+
+```{r}
+mean.mimic10 %>%
+  mutate(Gavage = if_else(grepl("v1", treatment.group),
+                          true = "Pre-BRB",
+                          false = "Post-BRB"),
+         Treatment = if_else(grepl("Anti", treatment.group),
+                             true = "Anti-PD1",
+                             false = "IgG")) %>%
+  mutate(Gavage = fct_relevel(Gavage, c("Pre-BRB"))) %>%
+  ggplot(aes(x = days.from.injection, y = mean)) +
+  geom_line(aes(group = treatment.group,
+                color = Gavage,
+                linetype = Treatment), 
+            position = position_dodge(width = .5),
+            lwd = 1) + 
+  geom_point(aes(color = Gavage), 
+             position = position_dodge(width = .5))+
+  labs(x = "Days from Tumor Injection", 
+       y = "Mean tumor volume") +
+  theme_bw(base_size = 18) +
+  scale_color_brewer(palette = "Set1") +
+  geom_errorbar(aes(ymin = lwr, 
+                    ymax = upr,
+                    color = Gavage),
+                width = 1,
+                position = position_dodge(width = .5),
+                lwd = 1)
+
+ggsave("../figures/ACC22_tumorvolume_mimic10_lineplot.png", width = 7, height = 5)
+
+
+```
+
