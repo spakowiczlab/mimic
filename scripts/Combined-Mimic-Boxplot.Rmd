@@ -15,7 +15,7 @@ source("00-paths.R")
 ```
 
 ```{r}
-processed.data <- read.csv(file.path(paths$git, 'data', "2022-06-28_tumor-size_R-formatted.csv")) %>%
+processed.data <- read.csv("../data/2022-06-28_tumor-size_R-formatted.csv") %>%
     mutate(treatment.group = paste(treatment, microbiome.sample, sep = " x "))
 
 ```
