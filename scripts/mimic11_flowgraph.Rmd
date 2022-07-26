@@ -14,7 +14,7 @@ library(tidyverse)
 
 ```{r data}
 
-x <- read_csv("../data/flow-cytometry/30-Jun-2022 revised.wsp FlowJo table_man-edited.csv") %>%
+x <- read_csv("../data/flow-cytometry/Jul-18-22-mimic11_flow_manedited.csv") %>%
   rename("mouse.cage" = "...1") %>%
   filter(grepl("^M", mouse.cage)) %>%
   mutate(BRB = fct_relevel(BRB, "pre")) %>%
@@ -31,22 +31,57 @@ head(x)
 xl <- 
   x %>%
   gather(-mouse.cage, -Gavage, -Treatment, key = "Marker", value = "Percent") %>%
-  mutate(Gavage = fct_relevel(Gavage, c("Pre-BRB"))) %>%
+  mutate(Gavage = fct_relevel(Gavage, c("Post-Placebo"))) %>%
   mutate(Treatment = fct_relevel(Treatment, c("IgG")))
 
 head(xl)
 ```
+```{r separate by CD45 or CD3 marker}
+#Setting up CD45 based dataframe
+CD45<- subset(xl, Marker=="CD45",
+select=mouse.cage:Percent)
+CD45_CD4<-subset(xl, Marker=="CD45_CD4",
+select=mouse.cage:Percent) 
+CD45_CD8<-subset(xl, Marker=="CD45_CD8",
+select=mouse.cage:Percent) 
 
-```{r}
-xl %>%
+CD45base <- data.frame(rbind(CD45, CD45_CD4, CD45_CD8))
+CD45base$Percent = as.numeric(gsub("[\\%,]", "", CD45base$Percent))
+
+#Setting up CD3 based dataframe
+CD3<- subset(xl, Marker=="CD3",
+select=mouse.cage:Percent)
+CD3_CD4<-subset(xl, Marker=="CD3_CD4",
+select=mouse.cage:Percent) 
+CD3_CD8<-subset(xl, Marker=="CD3_CD8",
+select=mouse.cage:Percent) 
+
+CD3base <- data.frame(rbind(CD3, CD3_CD4, CD3_CD8))
+CD3base$Percent = as.numeric(gsub("[\\%,]", "", CD3base$Percent))
+
+```
+
+
+```{r Flwo cell percentages plot}
+CD45base %>%
   ggplot(aes(x = Treatment, y = Percent)) +
   geom_boxplot(aes(fill = Gavage)) +
   facet_wrap(~Marker) +
-  theme_bw(base_size = 18) +
+  theme_bw(base_size = 10) +
   theme(axis.text.x = element_text(angle = 45,
                                    hjust = 1)) +
-  scale_fill_brewer(palette = "Set1")
+  scale_fill_brewer(palette = "Set2")
+ggsave("../figures/mimic11_CD45based_flow_boxplot.png",
+       height = 5, width = 8)
 
-ggsave("../figures/ACC22_mimic10_flow_boxplot.png",
-       height = 5, width = 5)
+CD3base %>%
+  ggplot(aes(x = Treatment, y = Percent)) +
+  geom_boxplot(aes(fill = Gavage)) +
+  facet_wrap(~Marker) +
+  theme_bw(base_size = 10) +
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1)) +
+  scale_fill_brewer(palette = "Set2")
+ggsave("../figures/mimic11_CD3based_flow_boxplot.png",
+       height = 5, width = 8)
 ```
