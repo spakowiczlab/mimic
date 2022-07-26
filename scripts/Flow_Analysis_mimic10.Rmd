@@ -1,0 +1,70 @@
+---
+title: "flow_mimic10_yl"
+author: "Yangyang Liu"
+date: "6/19/2022"
+output: html_document
+---
+#FACS Analysis of flow_m1c2_yl
+
+```{r 1. Install Necessary Packages and Libraries}
+#Install Flowcore
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("flowCore")
+
+#Install ggcyto
+BiocManager::install("ggcyto")
+#Turn on necessary librarires
+library(flowCore)
+library(ggcyto)
+library(tidyverse)
+library(knitr)
+
+source("00-paths.R")
+```
+
+
+```{r 2. Read and Format .fcs Data}
+#The read.flowSet allows you to read many .fcs at once. The resultant flowSet object will store the data from all these .fcs files.
+
+mimic10fs <- read.flowSet(path = "../data/6-2-22-revised")
+
+sampleNames(mimic10fs)
+length(mimic10fs)
+colnames(mimic10fs)
+summary(mimic10fs)
+
+#To be able to add gates, the flowSet has to be transformed to a GatingSet object with the GatingSet function
+gs <- GatingSet(mimic10fs)
+```
+
+```{r 3. Set Singlet Gate - CD45 (APC)}
+#1.define the gate
+gs <- GatingSet(mimic10fs)
+gs_get_pop_paths(gs)
+
+singlet <- c("FSC-A", "FSC-H")
+g_single <- singletGate(mimic10fs[[4]], channels = singlet, wider_gate = TRUE)
+gs_pop_add(gs, g_single, parent = "root", name = "singlets")
+
+#2.check the gate in a plot (before adding it to the gating set)
+#showing the gating path
+gs_get_pop_paths(gs)
+
+#3.if the gate seems right, add / apply it to the gating set
+#4.recompute the gatingSet to have statistics available
+
+
+
+```
+
+
+
+
+
+
+```{r Acknowledgement}
+#Main Reference Source: https://jchellmuth.com/posts/FACS-with-R/
+```
+

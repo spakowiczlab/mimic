@@ -1,0 +1,52 @@
+---
+title: "mimic11_flowanalysis"
+author: "Yangyang Liu"
+date: "7/26/2022"
+output: html_document
+---
+#Adapted from Dan Spakowicz
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+```{r data}
+
+x <- read_csv("../data/flow-cytometry/30-Jun-2022 revised.wsp FlowJo table_man-edited.csv") %>%
+  rename("mouse.cage" = "...1") %>%
+  filter(grepl("^M", mouse.cage)) %>%
+  mutate(BRB = fct_relevel(BRB, "pre")) %>%
+  rename("Gavage" = "BRB") %>%
+  mutate(Gavage = if_else(grepl("pre", Gavage),
+                          true = "Post-Placebo",
+                          false = "Post-BRB"))
+  
+
+head(x)
+```
+
+```{r}
+xl <- 
+  x %>%
+  gather(-mouse.cage, -Gavage, -Treatment, key = "Marker", value = "Percent") %>%
+  mutate(Gavage = fct_relevel(Gavage, c("Pre-BRB"))) %>%
+  mutate(Treatment = fct_relevel(Treatment, c("IgG")))
+
+head(xl)
+```
+
+```{r}
+xl %>%
+  ggplot(aes(x = Treatment, y = Percent)) +
+  geom_boxplot(aes(fill = Gavage)) +
+  facet_wrap(~Marker) +
+  theme_bw(base_size = 18) +
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1)) +
+  scale_fill_brewer(palette = "Set1")
+
+ggsave("../figures/ACC22_mimic10_flow_boxplot.png",
+       height = 5, width = 5)
+```
