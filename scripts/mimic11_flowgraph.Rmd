@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-```{r data}
+```{r data loadin}
 
 x <- read_csv("../data/flow-cytometry/Jul-18-22-mimic11_flow_manedited.csv") %>%
   rename("mouse.cage" = "...1") %>%
@@ -27,7 +27,7 @@ x <- read_csv("../data/flow-cytometry/Jul-18-22-mimic11_flow_manedited.csv") %>%
 head(x)
 ```
 
-```{r}
+```{r Re-formatting data}
 xl <- 
   x %>%
   gather(-mouse.cage, -Gavage, -Treatment, key = "Marker", value = "Percent") %>%
@@ -62,7 +62,7 @@ CD3base$Percent = as.numeric(gsub("[\\%,]", "", CD3base$Percent))
 ```
 
 
-```{r Flwo cell percentages plot}
+```{r Flow cell percentages plot}
 CD45base %>%
   ggplot(aes(x = Treatment, y = Percent)) +
   geom_boxplot(aes(fill = Gavage)) +
