@@ -1,0 +1,102 @@
+---
+title: "WCLC 2022"
+author: "Rebecca Hoyd"
+date: '2022-07-28'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+# Load data
+
+```{r}
+all.experiments <- read.csv("../data/2022-06-28_tumor-size_R-formatted.csv") %>%
+  mutate(microbiome.sample = ifelse(grepl("DL017", microbiome.sample), "DL017", "DL081")) %>%
+  mutate(treatment.group = paste(treatment, microbiome.sample, sep = " x "))
+```
+
+# Format
+
+```{r}
+WCLC.data <- all.experiments %>%
+  filter(experiment %in% c("mimic2", "mimic3", "mimic8")) %>%
+  mutate(SPPB = ifelse(experiment == "mimic2", "Low", "High"),
+         treatment = ifelse(grepl("PD1", treatment), "Anti-PD1", "IgG")) %>%
+  filter(microbiome.sample != "Saline")
+
+
+linedat <- WCLC.data %>%
+  group_by(SPPB, treatment, days.from.injection) %>%
+  mutate(days.from.injection = ifelse(SPPB == "High" &
+                                        days.from.injection %in% c(14,15),
+                                      14.5,
+                                      days.from.injection)) %>%
+  summarise(mean.vol = mean(tumor.volume),
+            sd.vol = sqrt(var(tumor.volume))) %>%
+  mutate(confint.low = mean.vol - sd.vol,
+         confint.high = mean.vol + sd.vol,
+         # confint.low = ifelse(confint.low < 0, 0, confint.low)
+         trgrp = paste0(treatment, SPPB))
+
+boxdat <- WCLC.data %>%
+  group_by(SPPB, treatment) %>%
+  mutate(maxtime = max(days.from.injection)) %>%
+  ungroup()%>%
+  filter(days.from.injection == maxtime)
+
+
+tumorfree <- WCLC.data %>%
+  mutate(days.from.injection = ifelse(SPPB == "High" &
+                                        days.from.injection %in% c(14,15),
+                                      14.5,
+                                      days.from.injection)) %>%
+  group_by(days.from.injection, treatment, SPPB) %>%
+  mutate(notum = tumor.volume == 0) %>%
+  summarise(percent.free = mean(notum))
+```
+
+# Plots
+
+```{r longitudinal line plot}
+linedat %>%
+  ggplot(aes(x = days.from.injection, y = mean.vol, color = SPPB, group = trgrp,
+             linetype = treatment)) +
+  geom_point() +
+  geom_line() +
+  geom_errorbar(aes(ymin = confint.low, ymax = confint.high)) +
+  labs(x = "Days from tumor injection", y = "Mean tumor volume") +
+  scale_color_manual(breaks = c("High", "Low"), values = c("red", "dodgerblue"),
+                     name = "SPPB status") +
+  scale_linetype(name = "Treatment") +
+  theme_bw()
+  ggsave("../figures/WCLC22_longitudinal-tumor-volume.png")
+```
+
+```{r final timepoint boxplot}
+boxdat %>%
+  ggplot(aes(x = treatment, y = tumor.volume, fill = SPPB)) +
+  geom_boxplot() +
+  labs(x = "Treatment", y = "Tumor volume") +
+  scale_fill_manual(breaks = c("High", "Low"),
+                    values = c("red", "dodgerblue"),
+                    name = "SPPB status") +
+  theme_bw()
+ggsave("../figures/WCLC22_boxplot_final-timepoint.png")
+```
+
+```{r barplot percent tumor free}
+tumorfree %>%
+  ggplot(aes(x = days.from.injection, y = percent.free, fill = SPPB)) +
+  facet_wrap(vars(treatment)) +
+  geom_col(position = "dodge") +
+  labs(x = "Days from injection", y = "Percent tumor free") +
+  scale_fill_manual(breaks = c("High", "Low"),
+                    values = c("red", "dodgerblue"),
+                    name = "SPPB status") +
+  theme_bw()
+ggsave("../figures/WCLC22_percent-mice-tumorfree.png")
+```
