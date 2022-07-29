@@ -1,0 +1,94 @@
+---
+title: "Percent tumor free"
+output: html_document
+date: '2022-07-06'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+first,read in the data
+```{r}
+x <- read.csv("../data/2022-06-28_tumor-size_R-formatted.csv")%>%
+  mutate(treatment=if_else(grepl("PD", treatment), 
+                    true = "Anti-PD1", 
+                    false = "IgG"))
+```
+
+```{r}
+y<-x %>%
+group_by(unique.mouse.id) %>%
+filter(days.from.injection == max(days.from.injection)) %>%
+ungroup() %>%
+mutate(new.group = paste0(microbiome.sample, treatment)) %>%
+mutate(tumor.size.is.0 = if_else(tumor.volume > 0, true = 0, false = 1)) %>%
+group_by(new.group, experiment, microbiome.sample, treatment) %>%
+summarize(frac.0 = sum(tumor.size.is.0) /length(tumor.size.is.0)) %>%
+  mutate(brb = if_else(grepl("v1|v3", 
+                             microbiome.sample), 
+                       true = "preBRB",
+                       false = if_else(grepl("v2|v4",
+                                             microbiome.sample),
+                                       true = "postBRB",
+                                       false = microbiome.sample))) %>%
+  mutate(brb = fct_relevel(brb, "preBRB"))
+```
+
+```{r}
+y%>%
+  ggplot(aes(x=new.group, y=frac.0)) +
+  geom_bar(stat="identity") + 
+  labs(y="Fraction Tumor Free", x="Treatment Group") +
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+
+```
+
+
+```{r}
+y%>%
+  ggplot(aes(x=experiment, y=frac.0)) +
+  geom_bar(stat="identity") + 
+  labs(y="Fraction Tumor Free", x="Treatment Group") +
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+
+```
+```{r}
+y%>%
+  ggplot(aes(x=experiment, y=frac.0)) +
+  geom_bar(stat="identity", 
+           position="dodge", 
+           aes(fill=microbiome.sample)) + 
+  labs(y="Fraction Tumor Free", x="Treatment Group") +
+  theme(axis.text.x = element_text(angle = 45, hjust=1))
+
+```
+```{r}
+y%>%
+  filter(grepl("BRB", 
+               brb)) %>%
+  ggplot(aes(x=brb, y=frac.0)) +
+  geom_bar(stat="identity", 
+           position="dodge", 
+           aes(fill=treatment)) + 
+  labs(y="Fraction Tumor Free", x="Treatment Group") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)) +
+  facet_wrap(~experiment) + 
+  theme_bw(base_size = 18)
+ggsave("../figures/Fraction-Tumor-Free.png", height= 7, width= 7)
+```
+```{r}
+y%>%
+  filter(grepl("BRB", 
+               brb)) %>%
+  ggplot(aes(x=brb, y=frac.0)) +
+  geom_bar(stat="identity", 
+           position="dodge", 
+           aes(fill=treatment)) +
+            theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = -0.5)) +
+  labs(y="Fraction Tumor Free", x="Treatment Group") +
+  facet_wrap(~experiment) + 
+  theme_bw(base_size = 15)
+ggsave("../figures/Fraction-Tumor-Free.png", height= 7, width= 7)
+```
