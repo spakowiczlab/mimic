@@ -14,7 +14,7 @@ library(tidyverse)
 # Load data
 
 ```{r}
-all.experiments <- read.csv("../data/2022-06-28_tumor-size_R-formatted.csv") %>%
+all.experiments <- read.csv("../data/2022-07-25_tumor-size_R-formatted.csv") %>%
   mutate(microbiome.sample = ifelse(grepl("DL017", microbiome.sample), "DL017", "DL081")) %>%
   mutate(treatment.group = paste(treatment, microbiome.sample, sep = " x "))
 ```
@@ -43,11 +43,17 @@ linedat <- WCLC.data %>%
          trgrp = paste0(treatment, SPPB))
 
 boxdat <- WCLC.data %>%
-  group_by(SPPB, treatment) %>%
-  mutate(maxtime = max(days.from.injection)) %>%
-  ungroup()%>%
-  filter(days.from.injection == maxtime)
+  # group_by(SPPB, treatment) %>%
+  # mutate(maxtime = max(days.from.injection)) %>%
+  # ungroup()%>%
+  # filter(days.from.injection == maxtime)
+  filter(days.from.injection == 18)
 
+nmice <- WCLC.data %>%
+  select(SPPB, treatment, unique.mouse.id) %>%
+  distinct() %>%
+  group_by(SPPB, treatment) %>%
+  tally()
 
 tumorfree <- WCLC.data %>%
   mutate(days.from.injection = ifelse(SPPB == "High" &
@@ -56,7 +62,9 @@ tumorfree <- WCLC.data %>%
                                       days.from.injection)) %>%
   group_by(days.from.injection, treatment, SPPB) %>%
   mutate(notum = tumor.volume == 0) %>%
-  summarise(percent.free = mean(notum))
+  summarise(n.free = sum(notum)) %>%
+  left_join(nmice) %>%
+  mutate(percent.free = n.free/n)
 ```
 
 # Plots
