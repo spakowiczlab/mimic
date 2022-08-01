@@ -26,7 +26,10 @@ WCLC.data <- all.experiments %>%
   filter(experiment %in% c("mimic2", "mimic3", "mimic8")) %>%
   mutate(SPPB = ifelse(experiment == "mimic2", "Low", "High"),
          treatment = ifelse(grepl("PD1", treatment), "Anti-PD1", "IgG")) %>%
-  filter(microbiome.sample != "Saline")
+  filter(microbiome.sample != "Saline") %>%
+  mutate(SPPB = factor(SPPB)) %>%
+  mutate(SPPB = fct_relevel(SPPB, "Low")) %>%
+  mutate(treatment = fct_relevel(treatment, "IgG"))
 
 
 linedat <- WCLC.data %>%
@@ -74,14 +77,15 @@ linedat %>%
   ggplot(aes(x = days.from.injection, y = mean.vol, color = SPPB, group = trgrp,
              linetype = treatment)) +
   geom_point() +
-  geom_line() +
-  geom_errorbar(aes(ymin = confint.low, ymax = confint.high)) +
+  geom_line(lwd = 1) +
+  geom_errorbar(aes(ymin = confint.low, ymax = confint.high), lwd = 1) +
   labs(x = "Days from tumor injection", y = "Mean tumor volume") +
   scale_color_manual(breaks = c("High", "Low"), values = c("red", "dodgerblue"),
                      name = "SPPB status") +
   scale_linetype(name = "Treatment") +
-  theme_bw()
-  ggsave("../figures/WCLC22_longitudinal-tumor-volume.png")
+  theme_bw(base_size = 18)
+  ggsave("../figures/WCLC22_longitudinal-tumor-volume.png", 
+         height = 6, width = 8)
 ```
 
 ```{r final timepoint boxplot}
@@ -92,8 +96,9 @@ boxdat %>%
   scale_fill_manual(breaks = c("High", "Low"),
                     values = c("red", "dodgerblue"),
                     name = "SPPB status") +
-  theme_bw()
-ggsave("../figures/WCLC22_boxplot_final-timepoint.png")
+  theme_bw(base_size = 18)
+ggsave("../figures/WCLC22_boxplot_final-timepoint.png",
+       height = 6, width = 6)
 ```
 
 ```{r barplot percent tumor free}
@@ -108,3 +113,16 @@ tumorfree %>%
   theme_bw()
 ggsave("../figures/WCLC22_percent-mice-tumorfree.png")
 ```
+
+```{r}
+WCLC.data %>%
+  group_by(unique.mouse.id) %>%
+  filter(days.from.injection == max(days.from.injection)) %>%
+  mutate(tumor.free =  if_else(tumor.volume > 0, 
+                                   true = 0, 
+                                   false = 1)) %>%
+  group_by(treatment, SPPB) %>%
+  summarize(frac.cured = sum(tumor.free) /length(tumor.free))
+  
+```
+

@@ -18,14 +18,17 @@ x <- read.csv("../data/2022-06-28_tumor-size_R-formatted.csv")%>%
 ```
 
 ```{r}
-y<-x %>%
-group_by(unique.mouse.id) %>%
-filter(days.from.injection == max(days.from.injection)) %>%
-ungroup() %>%
-mutate(new.group = paste0(microbiome.sample, treatment)) %>%
-mutate(tumor.size.is.0 = if_else(tumor.volume > 0, true = 0, false = 1)) %>%
-group_by(new.group, experiment, microbiome.sample, treatment) %>%
-summarize(frac.0 = sum(tumor.size.is.0) /length(tumor.size.is.0)) %>%
+y <- 
+  x %>%
+  group_by(unique.mouse.id) %>%
+  filter(days.from.injection == max(days.from.injection)) %>%
+  ungroup() %>%
+  mutate(new.group = paste0(microbiome.sample, treatment)) %>%
+  mutate(tumor.size.is.0 = if_else(tumor.volume > 0, 
+                                   true = 0, 
+                                   false = 1)) %>%
+  group_by(new.group, experiment, microbiome.sample, treatment) %>%
+  summarize(frac.0 = sum(tumor.size.is.0) /length(tumor.size.is.0)) %>%
   mutate(brb = if_else(grepl("v1|v3", 
                              microbiome.sample), 
                        true = "preBRB",
