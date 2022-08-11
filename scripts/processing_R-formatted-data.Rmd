@@ -33,7 +33,7 @@ tsize.files <- list.files(file.path(paths$git, 'data','tumor-size'), pattern = "
 # tsize.files <- c(tsize.files[3:10], tsize.files[1])
 tsize.file.2 <- unlist(lapply(tsize.files, function(x) list.files(x, pattern = "_size")))
 
-tsize.raw <- lapply(1:12, function(x) read_excel(file.path(tsize.files[x], tsize.file.2[x])))
+tsize.raw <- lapply(1:13, function(x) read_excel(file.path(tsize.files[x], tsize.file.2[x])))
 
 inject.dates <- read_excel(file.path(paths$box, "data", "mimic_injection_dates.xlsx"))
 
@@ -73,7 +73,9 @@ mim1 <- tsize.raw[[1]] %>%
   calcTumorVol(., inject.dates$`Date of Injection`[1]) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
-         experiment = "mimic1")
+         experiment = "mimic1") %>% 
+  mutate(treatment = ifelse(treatment %in% c("Anti-PD-1"), "Anti-PD1", "IgG"),
+         microbiome.sample = ifelse(microbiome.sample %in% c("HONC-60-55.v3"), "HONC60-55 v3", "HONC60-55 v4"))
 
 mim2 <- tsize.raw[[2]] %>%
   drop_na(`tumor.length.(mm)`) %>%
@@ -254,6 +256,21 @@ mim12 <- tsize.raw[[12]] %>%
          experiment = "mimic12") %>%
   separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
 
+mim13 <- tsize.raw[[13]] %>%
+  drop_na(tumor.number) %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         `date` = as.character(`date`),
+         Treatment = ifelse(cage %in% c(1,4), "Anti-PD1","IgG"),
+         microbiome.sample = ifelse(cage %in% c(1,2), "HONC60-84 v3", "HONC60-84 v4"),
+         treatment.group = paste(Treatment, microbiome.sample, sep = " x "),
+         tail.number = paste(tail.number, cage, sep = " x ")) %>%
+  calcTumorVol(., as.POSIXct("2022-07-07")) %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic13") %>%
+  separate(tail.number, into = c("tail.number", "cage"), sep = " x ") %>%
+  mutate(treatment = ifelse(grepl("3 x 3", unique.mouse.id), "Anti-PD1", treatment))
 
 ```
 
@@ -273,11 +290,12 @@ mimic.cleaned <- mim1 %>%
   bind_rows(mim9) %>%
   bind_rows(mim10) %>%
   bind_rows(mim11) %>%
-  bind_rows(mim12) 
+  bind_rows(mim12) %>%
+  bind_rows(mim13)
 ```
 
 # Save
 
 ```{r}
-write.csv(mimic.cleaned, "../data/2022-07-25_tumor-size_R-formatted.csv", row.names = F)
+write.csv(mimic.cleaned, "../data/2022-08-11_tumor-size_R-formatted.csv", row.names = F)
 ```
