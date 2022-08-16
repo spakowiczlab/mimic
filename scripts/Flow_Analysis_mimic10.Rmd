@@ -7,41 +7,101 @@ output: html_document
 #FACS Analysis of flow_m1c2_yl
 
 ```{r 1. Install Necessary Packages and Libraries}
-#Install Flowcore
+#Install necessary packages
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("flowCore")
-
-#Install ggcyto
+BiocManager::install("openCyto")
+BiocManager::install("flowViz")
 BiocManager::install("ggcyto")
-#Turn on necessary librarires
+BiocManager::install('ncdfFlow')
+BiocManager::install('flowStats')
+BiocManager::install('flowAI')
+
+#Turn on necessary libraries
 library(flowCore)
 library(ggcyto)
 library(tidyverse)
 library(knitr)
+library(openCyto)
+library(ncdfFlow)
+library(flowStats)
+library(flowWorkspace)
+library(flowAI)
+library(gridExtra)
 
 source("00-paths.R")
 ```
 
+#Pre-Processing Section:
 
 ```{r 2. Read and Format .fcs Data}
 #The read.flowSet allows you to read many .fcs at once. The resultant flowSet object will store the data from all these .fcs files.
 
-mimic10fs <- read.flowSet(path = "../data/6-2-22-revised")
+mimic10fs <- read.flowSet(path = "../data/flow-cytometry/6-2-22-revised")
 
 sampleNames(mimic10fs)
 length(mimic10fs)
 colnames(mimic10fs)
 summary(mimic10fs)
-
-#To be able to add gates, the flowSet has to be transformed to a GatingSet object with the GatingSet function
-gs <- GatingSet(mimic10fs)
 ```
 
-```{r 3. Set Singlet Gate - CD45 (APC)}
+```{r 3. Data Transformation}
+# creating a vector of the fluorescent parameters from the sample, used to do the transformation of the fluorescent parameters
+p_names_list <- as.list(colnames(mimic10fs))
+
+# removing non-fluorescent parameters, leaving only the fluorescents used in your set of FACS run
+p_names_list <- p_names_list[-c(1:6, 8,10,11,13:25)] 
+p_names_list
+
+# returning it back to a vector of the names
+p_names <- unlist(p_names_list, use.names=FALSE)
+p_names
+
+# logical transformation of the fluorescent parameters (other transformations eg. log, biexponential, etc can also be used)
+lgcl <- logicleTransform(transformationId="defaultLogicleTransform", w = 0.5, t = 262144, m = 4.5, a = 0)
+lgcl_myTrans <-transformList(p_names, lgcl)
+fs_lgcl <- transform(mimic10fs, lgcl_myTrans)
+
+# checking the transformation
+#Keys: CD4-Pacific blue (Ex 405nm, Em 421 nm), CD45-APC (Ex 633 nm, Em 660 nm),CD8-FITC (Ex 488 nm, Em 519 nm)
+ggcyto(fs_lgcl[[5]], aes(x = "Pacific Blue-A", y = "FITC-A")) +
+  geom_hex(bins = 128)
+
+ggcyto(fs_lgcl[[5]], aes(x = "APC-A", y = "FITC-A")) +
+  geom_hex(bins = 128)
+
+ggcyto(fs_lgcl[[5]], aes(x = "APC-A", y = "Pacific Blue-A")) +
+  geom_hex(bins = 128)
+```
+
+```{r 4. Data Compensation}
+# Compensation
+# Exported the matrix from one sample done in DIVA and applied it to the group
+
+# 1. Exporting the compensation matrix
+x <- fs_lgcl[[5]]
+comp_list <-spillover(x)
+comp_list
+
+comp2 <- comp_list[[3]]
+comp2
+
+# 2. Apply the compensation to the logically transformed data
+fs_lgcl_comp <- compensate(fs_lgcl, comp2)
+spillover(fs_lgcl_comp[[5]])
+
+# 3. Cleaning
+fcs_lgcl_comp_clean <- flow_auto_qc(fs_lgcl_comp)
+```
+
+#Analysis Section:
+
+```{r 5. Set Singlet Gate - CD45 (APC)}
 #1.define the gate
-gs <- GatingSet(mimic10fs)
+gs <- GatingSet(mimic10fs)#To be able to add gates, the flowSet has to be transformed to a GatingSet object with the GatingSet function
+
 gs_get_pop_paths(gs)
 
 singlet <- c("FSC-A", "FSC-H")
@@ -59,12 +119,18 @@ gs_get_pop_paths(gs)
 
 ```
 
+```{r 5. Gathering Stat Data}
+
+```
 
 
 
 
 
 ```{r Acknowledgement}
-#Main Reference Source: https://jchellmuth.com/posts/FACS-with-R/
+#References: 
+#https://jchellmuth.com/posts/FACS-with-R/
+#https://onlinelibrary.wiley.com/doi/full/10.1002/cyto.a.20746 
+
 ```
 
