@@ -7,29 +7,25 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 library(readxl)
 library(tidyverse)
 source("00-paths.R")
-
 ```
 
 ```{r}
-processed.data <- read.csv("../data/2022-07-25_tumor-size_R-formatted.csv") %>%
+processed.data <- read.csv("../data/2022-08-11_tumor-size_R-formatted.csv") %>%
   mutate(treatment = fct_relevel(treatment, "IgG")) %>%
   mutate(treatment.group = paste(treatment, microbiome.sample, sep = " x ")) %>%
   mutate(treatment = as.character(treatment))
-
 ```
 
-```{r}
+```{r final processed output}
 
 max.final.processed <-
   processed.data %>%
   group_by(experiment) %>%
   summarise(max(days.from.injection)) %>%
   rename("days.from.injection" = "max(days.from.injection)")
-
 
 #mimic 2,4 have a couple different final days, need to add those in
 mim2.add <-
@@ -47,7 +43,7 @@ final.processed <-
             by = "days.from.injection") %>%
   bind_rows(mim2.add, mim4.add) %>%
   mutate(experiment = as.factor(experiment)) %>%
-  mutate(experiment = fct_relevel(experiment, "mimic10","mimic11","mimic12", after = 9)) %>%
+  mutate(experiment = fct_relevel(experiment, "mimic10","mimic11","mimic12", "mimic13", after = 9)) %>%
   mutate(treatment = if_else(grepl("PD1", treatment),
                              true = "Anti-PD1",
                              false = treatment)) %>%
@@ -57,7 +53,9 @@ final.processed <-
                                           true = "Post-BRB",
                                           false = "other"))) %>%
   mutate(gavage = fct_relevel(gavage, "Pre-BRB"))
+```
 
+```{r final boxplot}
 final.processed %>%
   ggplot(aes(x = treatment.group, y = tumor.volume)) +
   geom_boxplot(fill = '#872657') +
@@ -71,115 +69,62 @@ final.processed %>%
 ggsave("../figures/mimic-combined-boxplot.png", width = 10, height = 8)
 ```
 
-
-```{r mimic1,6,7 filtered final output}
+```{r mimic bewell filtered final output}
 
 H55.filter <-
   final.processed %>%
   filter(experiment %in% c("mimic1","mimic6","mimic7")) %>%
-  mutate(patient = "HONC-60 55")
-
-H55.filter %>%
-  ggplot(aes(x = treatment, y = tumor.volume, fill = gavage)) +
-  geom_boxplot() +
-  facet_wrap(. ~ patient, scales = "free_y") +
-  xlab("Treatment") +
-  ylab("Tumor Volume") +
-  ggtitle("Mimic Tumor Volume by Intervention") +
-  theme_bw()
-
-ggsave("../figures/HONC55-filtered-boxplot.png", width = 7, height = 8)
-
-
-```
-
-```{r mimic5 separate boxplot}
-
+  mutate(patient = "HONC60-55")
 H102.filter <-
   final.processed %>%
   filter(experiment == "mimic5") %>%
-  mutate(patient = "HONC-60 102")
-
-H102.filter %>%
-  ggplot(aes(x = treatment, y = tumor.volume, fill = gavage)) +
-  geom_boxplot() +
-  facet_wrap(. ~ patient, scales = "free_y") +
-  xlab("Treatment") +
-  ylab("Tumor Volume") +
-  ggtitle("Mimic5 Tumor Volume by Intervention") +
-  theme_bw()
-
-ggsave("../figures/HONC102-filtered-boxplot.png", width = 7, height = 8)
-
-```
-
-```{r mimic10 separate boxplot}
-
+  mutate(patient = "HONC60-102")
 H68.filter <-
   final.processed %>%
   filter(experiment == "mimic10") %>%
-  mutate(patient = "HONC-60 68")
-
-H68.filter %>%
-  ggplot(aes(x = treatment, y = tumor.volume, fill = gavage)) +
-  geom_boxplot() +
-  facet_wrap(. ~ patient, scales = "free_y") +
-  xlab("Treatment") +
-  ylab("Tumor Volume") +
-  ggtitle("Mimic10 Tumor Volume by Intervention") +
-  theme_bw()
-
-ggsave("../figures/HONC68-filtered-boxplot.png", width = 7, height = 8)
-
-```
-
-```{r mimic11 separate boxplot}
-
+  mutate(patient = "HONC60-68")
 H79.filter <-
   final.processed %>%
   filter(experiment == "mimic11") %>%
-  mutate(patient = "HONC-60 79",
+  mutate(patient = "HONC60-79",
          gavage = if_else(grepl("v2", microbiome.sample),
                           true = "Post-Placebo",
                           false = "Post-BRB"))
-
-H79.filter %>%
-  ggplot(aes(x = treatment, y = tumor.volume, fill = gavage)) +
-  geom_boxplot() +
-  facet_wrap(. ~ patient, scales = "free_y") +
-  xlab("Treatment") +
-  ylab("Tumor Volume") +
-  ggtitle("Mimic11 Tumor Volume by Intervention") +
-  theme_bw()
-
-ggsave("../figures/HONC79-filtered-boxplot.png", width = 7, height = 8)
-
-```
-
-```{r mim12 individual boxplot}
 H85.filter <-
   final.processed %>%
   filter(experiment == "mimic12") %>%
-  mutate(patient = "HONC-60 85") %>%
-  mutate(treatment = fct_relevel(treatment, "IgG"))
+  mutate(patient = "HONC60-85") 
+H84.filter <-
+  final.processed %>%
+  filter(experiment == "mimic13") %>%
+  mutate(patient = "HONC60-84") 
 
-H85.filter %>%
+bewell.filter <-
+  bind_rows(H55.filter,
+            H102.filter,
+            H68.filter,
+            H79.filter,
+            H85.filter,
+            H84.filter) %>%
+  mutate(treatment = fct_relevel(treatment, "IgG")) %>%
+   mutate(gavage = fct_relevel(gavage, "Pre-BRB", "Post-Placebo"))
+
+```
+
+```{r bewell separate boxplot}
+
+bewell.filter %>%
   ggplot(aes(x = treatment, y = tumor.volume, fill = gavage)) +
   geom_boxplot() +
   facet_wrap(. ~ patient, scales = "free_y") +
   xlab("Treatment") +
   ylab("Tumor Volume") +
-  ggtitle("Mimic12 Tumor Volume by Intervention") +
+  ggtitle("Mimic Bewell Samples Final Tumor Volume") +
   theme_bw()
 
-ggsave("../figures/HONC85-filtered-boxplot.png", width = 7, height = 8)
-
+ggsave("../figures/BEWELL-filtered-boxplot.png", width = 10, height = 8)
 
 ```
-
-
-
-
 
 
 ```{r}
