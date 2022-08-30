@@ -1,0 +1,121 @@
+---
+title: "mimic12+13_flowgraph"
+author: "Yangyang Liu"
+date: "8/16/2022"
+output: html_document
+---
+#Adapted from Dan Spakowicz
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+
+#Mimic12
+```{r data loadin}
+
+x <- read_csv("../data/mimic12_Flowjo_manedited.csv") %>%
+  rename("mouse.cage" = "...1") %>%
+  filter(grepl("^M", mouse.cage)) %>%
+  mutate(BRB = fct_relevel(BRB, "pre")) %>%
+  rename("Gavage" = "BRB") %>%
+  mutate(Gavage = if_else(grepl("pre", Gavage),
+                          true = "Post-Placebo",
+                          false = "Post-BRB"))
+  
+
+head(x)
+```
+
+```{r Re-formatting data}
+xl <- 
+  x %>%
+  gather(-mouse.cage, -Gavage, -Treatment, key = "Marker", value = "Percent") %>%
+  mutate(Gavage = fct_relevel(Gavage, c("Post-Placebo"))) %>%
+  mutate(Treatment = fct_relevel(Treatment, c("IgG")))
+
+head(xl)
+```
+
+```{r Set up CD45 based dataframe}
+#Setting up CD45 based dataframe
+CD45<- subset(xl, Marker=="CD45",
+select=mouse.cage:Percent)
+CD45_CD4<-subset(xl, Marker=="CD45_CD4",
+select=mouse.cage:Percent) 
+CD45_CD8<-subset(xl, Marker=="CD45_CD8",
+select=mouse.cage:Percent) 
+
+CD45base <- data.frame(rbind(CD45, CD45_CD4, CD45_CD8))
+CD45base$Percent = as.numeric(gsub("[\\%,]", "", CD45base$Percent))
+
+```
+
+```{r Flow cell percentages plot}
+CD45base %>%
+  ggplot(aes(x = Treatment, y = Percent)) +
+  geom_boxplot(aes(fill = Gavage)) +
+  facet_wrap(~Marker) +
+  theme_bw(base_size = 10) +
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1)) +
+  scale_fill_brewer(palette = "Set2")
+ggsave("../figures/mimic11_CD45based_flow_boxplot.png",
+       height = 5, width = 8)
+```
+
+
+#Mimic13
+```{r data loadin}
+
+x <- read_csv("mimic12_Flowjo_manedited.csv") %>%
+  rename("mouse.cage" = "...1") %>%
+  filter(grepl("^M", mouse.cage)) %>%
+  mutate(BRB = fct_relevel(BRB, "pre")) %>%
+  rename("Gavage" = "BRB") %>%
+  mutate(Gavage = if_else(grepl("pre", Gavage),
+                          true = "Post-Placebo",
+                          false = "Post-BRB"))
+  
+
+head(x)
+```
+
+```{r Re-formatting data}
+xl <- 
+  x %>%
+  gather(-mouse.cage, -Gavage, -Treatment, key = "Marker", value = "Percent") %>%
+  mutate(Gavage = fct_relevel(Gavage, c("Post-Placebo"))) %>%
+  mutate(Treatment = fct_relevel(Treatment, c("IgG")))
+
+head(xl)
+```
+
+```{r Set up CD45 based dataframe}
+#Setting up CD45 based dataframe
+CD45<- subset(xl, Marker=="CD45",
+select=mouse.cage:Percent)
+CD45_CD4<-subset(xl, Marker=="CD45_CD4",
+select=mouse.cage:Percent) 
+CD45_CD8<-subset(xl, Marker=="CD45_CD8",
+select=mouse.cage:Percent) 
+
+CD45base <- data.frame(rbind(CD45, CD45_CD4, CD45_CD8))
+CD45base$Percent = as.numeric(gsub("[\\%,]", "", CD45base$Percent))
+
+```
+
+```{r Flow cell percentages plot}
+CD45base %>%
+  ggplot(aes(x = Treatment, y = Percent)) +
+  geom_boxplot(aes(fill = Gavage)) +
+  facet_wrap(~Marker) +
+  theme_bw(base_size = 10) +
+  theme(axis.text.x = element_text(angle = 45,
+                                   hjust = 1)) +
+  scale_fill_brewer(palette = "Set2")
+ggsave("../figures/mimic11_CD45based_flow_boxplot.png",
+       height = 5, width = 8)
+```
