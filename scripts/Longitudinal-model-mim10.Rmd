@@ -1,0 +1,142 @@
+---
+title: "Longitudinal mimic model"
+author: "Aadi Pallerla"
+date: "2022-08-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lme4)
+library(nlme)
+library(lmerTest)
+library(lmtest)
+library(nortest)
+library(readxl)
+source("00-paths.R")
+```
+
+```{r}
+processed.data <- read.csv(file.path(paths$git, 'data', "2022-08-11_tumor-size_R-formatted.csv")) %>%
+  mutate(gavage = if_else(grepl("v1|v3", microbiome.sample),
+                          true = "Pre-BRB",
+                          false = if_else(grepl("v2|v4", microbiome.sample),
+                                          true = "Post-BRB",
+                                          false = "other"))) %>%
+  mutate(gavage = fct_relevel(gavage, "Pre-BRB")) 
+```
+
+```{r Filtering to Mimic-10}
+mim10.filter <-
+  processed.data %>%
+  filter(experiment == "mimic10") %>%
+  mutate(treatment = fct_relevel(treatment, "IgG")) %>%
+  mutate(days2 = days.from.injection^2,
+         tumor_n0 = if_else(tumor.volume == 0,
+                            true = 1,
+                            false = tumor.volume),
+         tumor.log = log(tumor_n0))
+
+```
+
+```{r Checking Untransformed Data}
+
+mim10.filter %>%
+  ggplot(aes(x = tumor.volume)) +
+  geom_histogram(aes(fill = gavage))
+
+```
+
+```{r Testing Normalizing Mods}
+
+mim10v2 <- 
+  mim10.filter %>%
+  mutate(tumor.099 = if_else(tumor.volume == 1,
+                             true = 0.9999999999999999,
+                             false = tumor.volume),
+         tumor_n0 = if_else(tumor.volume == 0,
+                            true = 1,
+                            false = tumor.volume),
+         tumor_log = log10(tumor_n0),
+         tumor_neglogRec = -log10(1 - tumor.099),
+         tumor_logneglogRec = log10(tumor_neglogRec),
+         tumor_sqrt = sqrt(tumor.volume),
+         tumor_logit = log(tumor.099 / (1-tumor.099)),
+         tumor_asin = asin(sqrt(tumor.volume))
+         )
+
+mim10v2 %>%
+  ggplot(aes(x = tumor_log)) +
+  geom_histogram(aes(fill = treatment))
+
+#tumor_log appears most normal
+```
+
+## Untransformed data modeling
+
+```{r untransformed data modeling by treatment}
+m0 <- lm(tumor.volume ~ days.from.injection + days2 + treatment,
+         data = mim10.filter)
+
+summary(m0)
+plot(m0)
+print(m0)
+```
+
+```{r Best Model}
+m1 <- lm(tumor.volume ~ days.from.injection + days2 + treatment * gavage,
+         data = mim10.filter)
+
+summary(m1)
+print(m1)
+plot(m1)
+
+AIC(m1)
+```
+
+```{r without days.from.injection}
+m1.1 <- lm(tumor.volume ~ days2 + treatment * gavage,
+         data = mim10.filter)
+
+AIC(m1.1)
+
+```
+
+
+
+```{r}
+# Model focused on exponential tumor growth
+
+m2 <- lm(tumor.log ~ days.from.injection + treatment * gavage,
+         data = mim10.filter)
+
+summary(m2)
+print(m2)
+plot(m2)
+AIC(m2)
+```
+
+```{r}
+#Mixed effects model with random effects
+
+m3 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage + (1|unique.mouse.id),
+           data = mim10.filter)
+
+summary(m3)
+AIC(m3)
+```
+
+```{r}
+m4 <- lme(tumor.volume ~ days.from.injection + days2 + treatment * gavage, random = ~1|unique.mouse.id,  
+          data = mim10.filter)
+
+summary(m4)
+
+
+
+```
+
+
+
+
