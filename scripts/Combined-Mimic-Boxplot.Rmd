@@ -74,7 +74,7 @@ ggsave("../figures/mimic-combined-boxplot.png", width = 10, height = 8)
 H55.filter <-
   final.processed %>%
   filter(experiment %in% c("mimic1","mimic6","mimic7")) %>%
-  mutate(patient = "HONC60-55")
+  mutate(patient = "HONC60-55: Random Sample")
 H102.filter <-
   final.processed %>%
   filter(experiment == "mimic5") %>%
@@ -82,22 +82,22 @@ H102.filter <-
 H68.filter <-
   final.processed %>%
   filter(experiment == "mimic10") %>%
-  mutate(patient = "HONC60-68")
+  mutate(patient = "HONC60-68: Roseburia + Blautia")
 H79.filter <-
   final.processed %>%
   filter(experiment == "mimic11") %>%
-  mutate(patient = "HONC60-79",
+  mutate(patient = "HONC60-79: Lachnospira",
          gavage = if_else(grepl("v2", microbiome.sample),
                           true = "Post-Placebo",
                           false = "Post-BRB"))
 H85.filter <-
   final.processed %>%
   filter(experiment == "mimic12") %>%
-  mutate(patient = "HONC60-85") 
+  mutate(patient = "HONC60-85: Blautia") 
 H84.filter <-
   final.processed %>%
   filter(experiment == "mimic13") %>%
-  mutate(patient = "HONC60-84") 
+  mutate(patient = "HONC60-84: Blautia") 
 
 bewell.filter <-
   bind_rows(H55.filter,

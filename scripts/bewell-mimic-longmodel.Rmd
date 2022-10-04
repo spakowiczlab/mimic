@@ -1,0 +1,103 @@
+---
+title: "BEWELL Samples Longitudinal Modeling"
+author: "Aadi Pallerla"
+date: "2022-09-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lme4)
+library(nlme)
+library(lmerTest)
+library(lmtest)
+library(nortest)
+library(readxl)
+source("00-paths.R")
+```
+
+## Data Processing
+```{r}
+processed.data <- read.csv(file.path(paths$git, 'data', "2022-08-11_tumor-size_R-formatted.csv")) %>%
+  mutate(gavage = if_else(grepl("v1|v3", microbiome.sample),
+                          true = "Pre-BRB",
+                          false = if_else(grepl("v2|v4", microbiome.sample),
+                                          true = "Post-BRB",
+                                          false = "other"))) %>%
+  mutate(gavage = fct_relevel(gavage, "Pre-BRB")) %>%
+  mutate(treatment = fct_relevel(treatment, "IgG")) %>%
+  mutate(days2 = days.from.injection^2)
+```
+
+## BEWELL Samples Modeling
+
+#### HONC60-55 (mimic1,6,7)
+```{r HONC60-55 mim1,6,7}
+H55.data <- processed.data %>%
+  filter(grepl("C60-55", microbiome.sample))
+
+m.55 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage + (1|unique.mouse.id),
+             data = H55.data)
+
+summary(m.55)
+plot(m.55)
+AIC(m.55)
+```
+
+#### HONC60-79 (mimic11)
+```{r HONC60-79 mim11}
+
+H79.data <- processed.data %>%
+  filter(grepl("C60-79", microbiome.sample)) %>%
+  mutate( gavage = if_else(grepl("v2", microbiome.sample),
+                          true = "Post-Placebo",
+                          false = "Post-BRB"))
+
+m.79 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage + (1|unique.mouse.id),
+             data = H79.data)
+
+summary(m.79)
+plot(m.79)
+AIC(m.79)
+```
+
+#### HONC60-85 (mimic12)
+```{r HONC60-85 mim12}
+H85.data <- processed.data %>%
+  filter(grepl("C60-85", microbiome.sample)) 
+
+m.85 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage+ (1|unique.mouse.id),
+             data = H85.data)
+
+summary(m.85)
+plot(m.85)
+AIC(m.85)
+```
+
+#### HONC60-84 (mimic13)
+```{r HONC60-84 mim13}
+H84.data <- processed.data %>%
+  filter(grepl("C60-84", microbiome.sample))
+
+m.84 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage + (1|unique.mouse.id),
+             data = H84.data)
+
+summary(m.84)
+plot(m.84)
+AIC(m.84)
+```
+
+#### HONC60-102 (mimic5)
+```{r HONC60-102 mim5}
+H102.data <- processed.data %>%
+  filter(grepl("mimic5", experiment))
+
+m.102 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage + (1|unique.mouse.id),
+              data = H102.data)
+
+summary(m.102)
+plot(m.102)
+AIC(m.102)
+```
+
