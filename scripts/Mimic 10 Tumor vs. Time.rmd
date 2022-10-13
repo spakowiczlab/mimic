@@ -9,12 +9,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
-source("00-paths.R")
 ```
 
 ```{r Data Entry and Cleanup}
 
-processed.data <- read.csv(file.path(paths$git, 'data', "2022-06-28_tumor-size_R-formatted.csv")) 
+processed.data <- read.csv("../data/2022-06-28_tumor-size_R-formatted.csv") 
 
 mim10.processed <-
   processed.data %>%
@@ -90,7 +89,7 @@ mean.mimic10 %>%
   geom_point(aes(color = Gavage), 
              position = position_dodge(width = .5))+
   labs(x = "Days from Tumor Injection", 
-       y = "Mean tumor volume") +
+       y = expression("Tumor volume ("~mm^3~")"))  +
   theme_bw(base_size = 18) +
   scale_color_brewer(palette = "Set1") +
   geom_errorbar(aes(ymin = lwr, 
@@ -100,7 +99,8 @@ mean.mimic10 %>%
                 position = position_dodge(width = .5),
                 lwd = 1)
 
-ggsave("../figures/ACC22_tumorvolume_mimic10_lineplot.png", width = 7, height = 5)
+ggsave("../figures/ACC22_tumorvolume_mimic10_lineplot.png", 
+       height = 4, width = 6)
 
 
 ```

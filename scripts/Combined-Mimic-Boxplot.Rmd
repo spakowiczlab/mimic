@@ -9,7 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(readxl)
 library(tidyverse)
-source("00-paths.R")
 ```
 
 ```{r}
@@ -154,12 +153,14 @@ df %>%
   theme_bw(base_size = 18) +
   scale_fill_brewer(palette = "Set1") +
   labs(x = "Participant Sample",
-       y = "Tumor Volume (mm^3)",
+       y = expression("Tumor volume ("~mm^3~")"),
        fill = "Gavage")
   # geom_jitter(aes(color = gavage), width = 0.9)
 
 ggsave("../figures/ACC22_bewell-samples_PD1-only_boxplot.png",
-       height = 5, width = 5)
+       height = 5, width = 7)
+ggsave("../figures/ASM22_bewell-samples_PD1-only_boxplot.png",
+       height = 4, width = 6)
 ```
 
 ```{r}

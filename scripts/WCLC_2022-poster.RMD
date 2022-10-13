@@ -79,7 +79,8 @@ linedat %>%
   geom_point() +
   geom_line(lwd = 1) +
   geom_errorbar(aes(ymin = confint.low, ymax = confint.high), lwd = 1) +
-  labs(x = "Days from tumor injection", y = "Mean tumor volume") +
+  labs(x = "Days from tumor injection", 
+       y = expression("Tumor volume ("~mm^3~")"))  +
   scale_color_manual(breaks = c("High", "Low"), values = c("red", "dodgerblue"),
                      name = "SPPB status") +
   scale_linetype(name = "Treatment") +
