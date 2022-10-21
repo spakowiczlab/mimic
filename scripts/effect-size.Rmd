@@ -1,5 +1,5 @@
 ---
-title: "effect-size"
+title: "Power calculation for the effect of abx and saline gavage on PD1 vs IgG on mc38 tumor volume"
 author: "Dan Spakowicz"
 date: '2022-10-21'
 output: html_document
@@ -13,8 +13,18 @@ library(effsize)
 library(pwr)
 ```
 
+# Summary
+
+This script reads in tumor volume data from a saline gavage experiment, selects a time point where all mice were alive (15 days after mc38 injection) and calculates the Cohen's d effect size for the difference between PD1 and IgG. It then uses the effect size to calculate the power of detecting a difference in tumor volume for different group sizes.
+
+# Analysis
+
+Read in tumor volume data from previous experiments
+
 ```{r, message=FALSE, warning=FALSE}
 x <- read_csv("../data/2022-08-11_tumor-size_R-formatted.csv")
+
+head(x)
 ```
 
 ```{r}
@@ -22,6 +32,8 @@ saline <-
   x %>%
   filter(grepl("Saline", microbiome.sample))
 ```
+
+Visualize the saline data
 
 ```{r}
 saline %>%

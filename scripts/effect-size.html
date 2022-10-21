@@ -13,7 +13,7 @@
 
 <meta name="date" content="2022-10-21" />
 
-<title>effect-size</title>
+<title>Power calculation for the effect of abx and saline gavage on PD1 vs IgG on mc38 tumor volume</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -359,17 +359,44 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">effect-size</h1>
+<h1 class="title toc-ignore">Power calculation for the effect of abx and
+saline gavage on PD1 vs IgG on mc38 tumor volume</h1>
 <h4 class="author">Dan Spakowicz</h4>
 <h4 class="date">2022-10-21</h4>
 
 </div>
 
 
-<pre class="r"><code>x &lt;- read_csv(&quot;../data/2022-08-11_tumor-size_R-formatted.csv&quot;)</code></pre>
+<div id="summary" class="section level1">
+<h1>Summary</h1>
+<p>This script reads in tumor volume data from a saline gavage
+experiment, selects a time point where all mice were alive (15 days
+after mc38 injection) and calculates the Cohen’s d effect size for the
+difference between PD1 and IgG. It then uses the effect size to
+calculate the power of detecting a difference in tumor volume for
+different group sizes.</p>
+</div>
+<div id="analysis" class="section level1">
+<h1>Analysis</h1>
+<p>Read in tumor volume data from previous experiments</p>
+<pre class="r"><code>x &lt;- read_csv(&quot;../data/2022-08-11_tumor-size_R-formatted.csv&quot;)
+
+head(x)</code></pre>
+<pre><code>## # A tibble: 6 x 8
+##   tail.number treatment microbiome.sample tumor.volume days.from.injection
+##         &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;                    &lt;dbl&gt;               &lt;dbl&gt;
+## 1           1 Anti-PD1  HONC60-55 v3              13.1                   6
+## 2           1 Anti-PD1  HONC60-55 v3              41.9                   8
+## 3           1 Anti-PD1  HONC60-55 v3             202.                   12
+## 4           1 Anti-PD1  HONC60-55 v3             248.                   15
+## 5           1 Anti-PD1  HONC60-55 v3             368.                   18
+## 6           1 Anti-PD1  HONC60-55 v3             441.                   21
+## # ... with 3 more variables: unique.mouse.id &lt;chr&gt;, experiment &lt;chr&gt;,
+## #   cage &lt;dbl&gt;</code></pre>
 <pre class="r"><code>saline &lt;- 
   x %&gt;%
   filter(grepl(&quot;Saline&quot;, microbiome.sample))</code></pre>
+<p>Visualize the saline data</p>
 <pre class="r"><code>saline %&gt;%
   ggplot(aes(x = days.from.injection, y = tumor.volume)) +
     geom_line(aes(group = unique.mouse.id, color = treatment)) + 
@@ -440,6 +467,7 @@ power &lt;- lapply(n.range, mousePower) %&gt;%
 Figure 1. The power to detect a difference between groups at a range of
 sample sizes.
 </p>
+</div>
 </div>
 
 
