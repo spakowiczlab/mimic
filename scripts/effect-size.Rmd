@@ -1,0 +1,86 @@
+---
+title: "effect-size"
+author: "Dan Spakowicz"
+date: '2022-10-21'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(effsize)
+library(pwr)
+```
+
+```{r, message=FALSE, warning=FALSE}
+x <- read_csv("../data/2022-08-11_tumor-size_R-formatted.csv")
+```
+
+```{r}
+saline <- 
+  x %>%
+  filter(grepl("Saline", microbiome.sample))
+```
+
+```{r}
+saline %>%
+  ggplot(aes(x = days.from.injection, y = tumor.volume)) +
+    geom_line(aes(group = unique.mouse.id, color = treatment)) + 
+  theme_bw() +
+  geom_smooth(aes(color = treatment))
+```
+
+```{r}
+day15 <- 
+  saline %>%
+  filter(days.from.injection == 15)
+
+day15 %>%
+  group_by(treatment) %>%
+  summarize(mean = mean(tumor.volume),
+            sd = sd(tumor.volume))
+```
+
+Calculate the effect size using Cohen's *d*
+
+```{r}
+cohen.d(day15$tumor.volume, day15$treatment)
+
+cohd <- cohen.d(day15$tumor.volume, day15$treatment)$estimate
+```
+
+Calculate the power with 6 mice per group
+
+```{r}
+pwr.t.test(n = 6, d = cohd, sig.level = 0.05, alternative = "less")
+```
+
+Check a range of sample sizes
+
+```{r}
+# Wrap into function
+mousePower <- function(n) {
+  pwr.t.test(n = n, d = cohd, sig.level = 0.05, alternative = "less")$power
+}
+
+# Calculate power over a range of sample sizes
+n.range <- seq(1, 24)
+power <- lapply(n.range, mousePower) %>%
+  unlist
+
+df <- 
+  data.frame(n = n.range,
+             power = power)
+
+```
+
+```{r, fig.cap="Figure 1. The power to detect a difference between groups at a range of sample sizes."}
+df %>%
+  ggplot(aes(n, power)) +
+  geom_line(lwd = 1, aes(color = power), show.legend = FALSE) +
+  theme_bw() +
+  labs(x = "Number of Mice per Group",
+       y = "Power") +
+  scale_color_viridis_c(direction = -1)
+```
