@@ -19,7 +19,7 @@ source("00-paths.R")
 
 ## Data Processing
 ```{r}
-processed.data <- read.csv(file.path(paths$git, 'data', "2022-08-11_tumor-size_R-formatted.csv")) %>%
+processed.data <- read.csv(file.path("..", 'data', "2022-08-11_tumor-size_R-formatted.csv")) %>%
   mutate(gavage = if_else(grepl("v1|v3", microbiome.sample),
                           true = "Pre-BRB",
                           false = if_else(grepl("v2|v4", microbiome.sample),
@@ -66,13 +66,17 @@ data.79 <- tidy(m.79) %>%
          plus.minus = ifelse(estimate > 0, "p", "n"),
          log.estimate = log10(abs.estimate)) %>%
   mutate(log.estimate = ifelse(plus.minus == "n", 
-                                  -1*log.estimate, 
-                                  log.estimate),
+                               -1*log.estimate, 
+                               log.estimate),
          log.std.error = log10(std.error),
          log.std.error = abs(log.std.error)) %>%
-    mutate(sig.flag = ifelse(p.value < 0.05, "S", "NS"),
-         conf.low = log.estimate - log.std.error,
-         conf.high = log.estimate + log.std.error) %>% 
+  mutate(sig.flag = ifelse(p.value < 0.05, "S", "NS"),
+         conf.low = estimate - std.error,
+         conf.high = estimate + std.error,
+         log.conf.low = log.estimate - log.std.error,
+         log.conf.high = log.estimate + log.std.error,
+         ci95.low = estimate - (1.96 * std.error),
+         ci95.high = estimate + (1.96 * std.error)) %>% 
   filter(is.na(group)) %>%
   filter(term != "(Intercept)") %>% 
   mutate(term = fct_relevel(term, "days2:treatmentAnti-PD1:gavagePost-BRB", "treatmentAnti-PD1:gavagePost-BRB", "days2:gavagePost-BRB", "days2:treatmentAnti-PD1", "gavagePost-BRB", "treatmentAnti-PD1", "days2", "days.from.injection"))
@@ -85,7 +89,7 @@ data.79 %>%
   guides(alpha = "none",
          color = "none") +
   geom_vline(xintercept = 0, lty = 2) +
-  geom_segment(inherit.aes = F, aes(x = conf.low, xend = conf.high,
+  geom_segment(inherit.aes = F, aes(x = log.conf.low, xend = log.conf.high,
                                     y = term, yend = term, 
                                     alpha = sig.flag)) +
   labs(x = "log(Estimate)", 
@@ -97,6 +101,57 @@ data.79 %>%
 
 ggsave("../figures/mim11-model-forestplot.png", height = 5, width = 6)
 ```
+
+#### Alt form of HONC60-79
+
+```{r}
+data.79 %>%
+  filter(grepl("days2...*", term)) %>%
+  mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
+  ggplot(aes(x = estimate, y = term.adj)) +
+  geom_point(size = 2.5) +
+  theme_bw(base_size = 18) + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(aes(x = ci95.low, xend = ci95.high, 
+                   y = term.adj, yend = term.adj)) +
+  labs(x = "Estimate", y = "") +
+  scale_y_discrete(limits = rev)
+
+ggsave("../figures/mim11-model-forestplot_reduced.png",
+       height = 5, width = 6)
+
+```
+#### Consider wrapping the standard processing into a function 
+
+```{r}
+processModel <- function(model) {
+  model %>%
+  tidy() %>%
+  mutate(abs.estimate = abs(estimate),
+         plus.minus = ifelse(estimate > 0, "p", "n"),
+         log.estimate = log10(abs.estimate)) %>%
+  mutate(log.estimate = ifelse(plus.minus == "n", 
+                               -1*log.estimate, 
+                               log.estimate),
+         log.std.error = log10(std.error),
+         log.std.error = abs(log.std.error)) %>%
+  mutate(sig.flag = ifelse(p.value < 0.05, "S", "NS"),
+         conf.low = estimate - std.error,
+         conf.high = estimate + std.error,
+         log.conf.low = log.estimate - log.std.error,
+         log.conf.high = log.estimate + log.std.error,
+         ci95.low = estimate - (1.96 * std.error),
+         ci95.high = estimate + (1.96 * std.error)) %>% 
+  filter(is.na(group)) %>%
+  filter(term != "(Intercept)")
+}
+
+data.79 <- processModel(m.79)
+```
+
+
 
 #### HONC60-85 (mimic12)
 ```{r HONC60-85 mim12}
