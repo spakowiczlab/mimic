@@ -9,11 +9,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(lme4)
-library(nlme)
 library(lmerTest)
-library(lmtest)
-library(nortest)
 library(readxl)
+library(broom)
+library(broom.mixed)
+library(RColorBrewer)
 source("00-paths.R")
 ```
 
@@ -37,7 +37,7 @@ processed.data <- read.csv(file.path(paths$git, 'data', "2022-08-11_tumor-size_R
 H55.data <- processed.data %>%
   filter(grepl("C60-55", microbiome.sample))
 
-m.55 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage + (1|unique.mouse.id),
+m.55 <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * gavage + (1|unique.mouse.id),
              data = H55.data)
 
 summary(m.55)
@@ -52,14 +52,50 @@ H79.data <- processed.data %>%
   filter(grepl("C60-79", microbiome.sample)) %>%
   mutate( gavage = if_else(grepl("v2", microbiome.sample),
                           true = "Post-Placebo",
-                          false = "Post-BRB"))
+                          false = "Post-BRB")) %>%
+  mutate(gavage = fct_relevel(gavage, "Post-Placebo"))
 
-m.79 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage + (1|unique.mouse.id),
+m.79 <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * gavage + (1|unique.mouse.id),
              data = H79.data)
 
 summary(m.79)
 plot(m.79)
 AIC(m.79)
+data.79 <- tidy(m.79) %>%
+  mutate(abs.estimate = abs(estimate),
+         plus.minus = ifelse(estimate > 0, "p", "n"),
+         log.estimate = log10(abs.estimate)) %>%
+  mutate(log.estimate = ifelse(plus.minus == "n", 
+                                  -1*log.estimate, 
+                                  log.estimate),
+         log.std.error = log10(std.error),
+         log.std.error = abs(log.std.error)) %>%
+    mutate(sig.flag = ifelse(p.value < 0.05, "S", "NS"),
+         conf.low = log.estimate - log.std.error,
+         conf.high = log.estimate + log.std.error) %>% 
+  filter(is.na(group)) %>%
+  filter(term != "(Intercept)") %>% 
+  mutate(term = fct_relevel(term, "days2:treatmentAnti-PD1:gavagePost-BRB", "treatmentAnti-PD1:gavagePost-BRB", "days2:gavagePost-BRB", "days2:treatmentAnti-PD1", "gavagePost-BRB", "treatmentAnti-PD1", "days2", "days.from.injection"))
+
+
+data.79 %>%
+  ggplot(aes(x = log.estimate, y = term, alpha = sig.flag)) +
+  geom_point(size = 2.5) +
+  theme_bw() + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(inherit.aes = F, aes(x = conf.low, xend = conf.high,
+                                    y = term, yend = term, 
+                                    alpha = sig.flag)) +
+  labs(x = "log(Estimate)", 
+       y = "",
+       subtitle = "") +
+  scale_alpha_manual(values = c(.2,1)) +
+  theme(axis.title = element_text(size = 18))
+  
+
+ggsave("../figures/mim11-model-forestplot.png", height = 5, width = 6)
 ```
 
 #### HONC60-85 (mimic12)
@@ -67,12 +103,47 @@ AIC(m.79)
 H85.data <- processed.data %>%
   filter(grepl("C60-85", microbiome.sample)) 
 
-m.85 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage+ (1|unique.mouse.id),
+m.85 <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * gavage+ (1|unique.mouse.id),
              data = H85.data)
 
 summary(m.85)
 plot(m.85)
 AIC(m.85)
+data.85 <- tidy(m.85) %>%
+    mutate(abs.estimate = abs(estimate),
+         plus.minus = ifelse(estimate > 0, "p", "n"),
+         log.estimate = log10(abs.estimate)) %>%
+  mutate(log.estimate = ifelse(plus.minus == "n", 
+                                  -1*log.estimate, 
+                                  log.estimate),
+         log.std.error = log10(std.error),
+         log.std.error = abs(log.std.error)) %>%
+    mutate(sig.flag = ifelse(p.value < 0.05, "S", "NS"),
+         conf.low = log.estimate - log.std.error,
+         conf.high = log.estimate + log.std.error) %>% 
+  filter(is.na(group)) %>%
+  filter(term != "(Intercept)") %>% 
+  mutate(term = fct_relevel(term, "days2:treatmentAnti-PD1:gavagePost-BRB", "treatmentAnti-PD1:gavagePost-BRB", "days2:gavagePost-BRB", "days2:treatmentAnti-PD1", "gavagePost-BRB", "treatmentAnti-PD1", "days2", "days.from.injection"))
+
+
+data.85 %>%
+  ggplot(aes(x = log.estimate, y = term, alpha = sig.flag)) +
+  geom_point(size = 2.5) +
+  theme_bw() + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(inherit.aes = F, aes(x = conf.low, xend = conf.high,
+                                    y = term, yend = term, 
+                                    alpha = sig.flag)) +
+  labs(x = "log(Estimate)", 
+       y = "",
+       subtitle = "") +
+  scale_alpha_manual(values = c(.2,1)) +
+  theme(axis.title = element_text(size = 18))
+  
+
+ggsave("../figures/mim12-model-forestplot.png", height = 5, width = 6)
 ```
 
 #### HONC60-84 (mimic13)
@@ -80,12 +151,47 @@ AIC(m.85)
 H84.data <- processed.data %>%
   filter(grepl("C60-84", microbiome.sample))
 
-m.84 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage + (1|unique.mouse.id),
+m.84 <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * gavage + (1|unique.mouse.id),
              data = H84.data)
 
 summary(m.84)
 plot(m.84)
 AIC(m.84)
+data.84 <- tidy(m.84) %>%
+    mutate(abs.estimate = abs(estimate),
+         plus.minus = ifelse(estimate > 0, "p", "n"),
+         log.estimate = log10(abs.estimate)) %>%
+  mutate(log.estimate = ifelse(plus.minus == "n", 
+                                  -1*log.estimate, 
+                                  log.estimate),
+         log.std.error = log10(std.error),
+         log.std.error = abs(log.std.error)) %>%
+    mutate(sig.flag = ifelse(p.value < 0.05, "S", "NS"),
+         conf.low = log.estimate - log.std.error,
+         conf.high = log.estimate + log.std.error) %>% 
+  filter(is.na(group)) %>%
+  filter(term != "(Intercept)") %>% 
+  mutate(term = fct_relevel(term, "days2:treatmentAnti-PD1:gavagePost-BRB", "treatmentAnti-PD1:gavagePost-BRB", "days2:gavagePost-BRB", "days2:treatmentAnti-PD1", "gavagePost-BRB", "treatmentAnti-PD1", "days2", "days.from.injection"))
+
+
+data.84 %>%
+  ggplot(aes(x = log.estimate, y = term, alpha = sig.flag)) +
+  geom_point(size = 2.5) +
+  theme_bw() + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(inherit.aes = F, aes(x = conf.low, xend = conf.high,
+                                    y = term, yend = term, 
+                                    alpha = sig.flag)) +
+  labs(x = "log(Estimate)", 
+       y = "",
+       subtitle = "") +
+  scale_alpha_manual(values = c(.2,1)) +
+  theme(axis.title = element_text(size = 18))
+  
+
+ggsave("../figures/mim13-model-forestplot.png", height = 5, width = 6)
 ```
 
 #### HONC60-102 (mimic5)
@@ -93,11 +199,60 @@ AIC(m.84)
 H102.data <- processed.data %>%
   filter(grepl("mimic5", experiment))
 
-m.102 <- lmer(tumor.volume ~ days.from.injection + days2 + treatment * gavage + (1|unique.mouse.id),
+m.102 <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * gavage + (1|unique.mouse.id),
               data = H102.data)
 
 summary(m.102)
 plot(m.102)
 AIC(m.102)
+```
+
+#### HONC60-68 (mimic10)
+
+```{r}
+H68.data <- processed.data %>%
+  filter(grepl("mimic10", experiment))
+
+m.68 <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * gavage + (1|unique.mouse.id),
+              data = H68.data)
+
+summary(m.68)
+plot(m.68)
+AIC(m.68)
+data.68 <- tidy(m.68) %>%
+ mutate(abs.estimate = abs(estimate),
+         plus.minus = ifelse(estimate > 0, "p", "n"),
+         log.estimate = log10(abs.estimate)) %>%
+  mutate(log.estimate = ifelse(plus.minus == "n", 
+                                  -1*log.estimate, 
+                                  log.estimate),
+         log.std.error = log10(std.error),
+         log.std.error = abs(log.std.error)) %>%
+    mutate(sig.flag = ifelse(p.value < 0.05, "S", "NS"),
+         conf.low = log.estimate - log.std.error,
+         conf.high = log.estimate + log.std.error) %>% 
+  filter(is.na(group)) %>%
+  filter(term != "(Intercept)") %>% 
+  mutate(term = fct_relevel(term, "days2:treatmentAnti-PD1:gavagePost-BRB", "treatmentAnti-PD1:gavagePost-BRB", "days2:gavagePost-BRB", "days2:treatmentAnti-PD1", "gavagePost-BRB", "treatmentAnti-PD1", "days2", "days.from.injection"))
+
+
+data.68 %>%
+  ggplot(aes(x = log.estimate, y = term, alpha = sig.flag)) +
+  geom_point(size = 2.5) +
+  theme_bw() + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(inherit.aes = F, aes(x = conf.low, xend = conf.high,
+                                    y = term, yend = term,
+                                    alpha = sig.flag)) +
+  labs(x = "log(Estimate)", 
+       y = "",
+       subtitle = "") +
+  scale_alpha_manual(values = c(.2,1)) +
+  theme(axis.title = element_text(size = 18))
+  
+
+ggsave("../figures/mim10-model-forestplot.png", height = 5, width = 6)
 ```
 
