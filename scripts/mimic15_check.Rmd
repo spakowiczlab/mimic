@@ -1,0 +1,66 @@
+---
+title: "mimic15-check"
+author: "Dan Spakowicz"
+date: "2022-12-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(tidyverse)
+library(knitr)
+```
+
+```{r}
+x <- readxl::read_xlsx(file.path("..", 
+                                 "data", 
+                                 "tumor-size", 
+                                 "AOT00048953-mimic15", 
+                                 "AOT00048953-mimic15_tumor-size.xlsx"))
+
+summary(x)
+```
+
+```{r}
+y <- 
+  x %>%
+  mutate(cage = as.factor(cage)) %>%
+  mutate(abx = if_else(grepl("2|4|6|8", cage),
+                       true = "Yes",
+                       false = "No")) %>%
+  mutate(tumor.volume = (`tumor.length.(mm)` * (`tumor.width.(mm)`^2)) / 2) %>%
+  drop_na(tumor.volume) %>%
+  mutate(mouse = paste(tail.number, cage, sep = "."))
+
+head(y)  
+```
+
+
+```{r, warning=FALSE}
+y %>%
+  
+  ggplot(aes(x = date, y = tumor.volume)) +
+  geom_line(aes(group = mouse), 
+            alpha = 0.3, 
+            show.legend = FALSE) +
+  geom_point(alpha = 0.1,
+             show.legend = FALSE) +
+  geom_smooth(aes(color = abx,
+                  lty = Treatment)) +
+  theme_bw()
+```
+
+```{r}
+summary <- 
+  y %>%
+  filter(date == max(date)) %>%
+  group_by(abx) %>%
+  summarize(mean.volume = mean(tumor.volume),
+            sd.volume = sd(tumor.volume),
+            n = n())
+
+kable(summary)
+```
+
