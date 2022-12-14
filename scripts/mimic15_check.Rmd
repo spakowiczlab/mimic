@@ -40,13 +40,13 @@ head(y)
 
 ```{r, warning=FALSE}
 y %>%
-  
+  drop_na(Treatment) %>%
   ggplot(aes(x = date, y = tumor.volume)) +
-  geom_line(aes(group = mouse), 
-            alpha = 0.3, 
-            show.legend = FALSE) +
-  geom_point(alpha = 0.1,
-             show.legend = FALSE) +
+  # geom_line(aes(group = mouse), 
+  #           alpha = 0.3, 
+  #           show.legend = FALSE) +
+  # geom_point(alpha = 0.1,
+  #            show.legend = FALSE) +
   geom_smooth(aes(color = abx,
                   lty = Treatment)) +
   theme_bw()
@@ -63,4 +63,15 @@ summary <-
 
 kable(summary)
 ```
+
+```{r}
+y %>%
+  drop_na(`Tumor.weight (g)`) %>%
+  ggplot(aes(x = abx, y = `Tumor.weight (g)`)) +
+  geom_boxplot(aes(fill = Treatment)) +
+  geom_point(aes(color = Treatment), 
+             position = position_jitterdodge(jitter.width = 0.1)) +
+  theme_bw()
+```
+
 
