@@ -431,3 +431,26 @@ mimic.modeling <-
 ```
 
 ## fill by estimate, alpha by p-value (for heatmap)
+
+```{r}
+mimic.modeling %>%
+  mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
+  mutate(term.adj = gsub("treatmentPD1", "treatmentAnti-PD1", term)) %>%
+  filter(!grepl("mimic4|mimic9", experiment)) %>%
+  filter(grepl("days2:", term)) %>%
+  ggplot(aes(x = estimate, y = term.adj)) +
+  geom_point(size = 2.5) +
+  theme_bw() + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(aes(x = ci95.low, xend = ci95.high, 
+                   y = term.adj, yend = term.adj)) +
+  labs(x = "Estimate", y = "") +
+  scale_y_discrete(limits = rev) +
+  facet_wrap(~`sample ID` + hypothesis)
+
+ggsave("../figures/bewell_forest_interaction_faceted.png",
+       height =  6, width = 6)
+```
+
