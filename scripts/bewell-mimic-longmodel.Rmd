@@ -28,6 +28,7 @@ processed.data <- read.csv(file.path("..", 'data', "2022-08-11_tumor-size_R-form
   mutate(gavage = fct_relevel(gavage, "Pre-BRB")) %>%
   mutate(treatment = fct_relevel(treatment, "IgG")) %>%
   mutate(days2 = days.from.injection^2)
+
 ```
 
 ```{r}
@@ -407,11 +408,9 @@ summary(m.fitness)
 data.fitness <- processModel(m.fitness) %>%
   mutate(experiment = "mimic2,3,8",
          trial = "Fitness",
-         `sample ID` = "TBD",
+         `sample ID` = "DL017(Responder),DL081(Nonresponder)",
          hypothesis = "Response") 
 
-## Not sure how to do the sample ID since the responder and non-responder are from two different samples
-  
 ```
 
 
@@ -425,15 +424,16 @@ mimic.modeling <-
             data.68,
             data.79,
             data.85,
-            data.84)
+            data.84,
+            data.fitness)
 
-
+write.csv(mimic.modeling, "../data/mimic_longitudinal-modeling_output.csv", row.names = F)
 ```
 
-## fill by estimate, alpha by p-value (for heatmap)
 
 ```{r}
 mimic.modeling %>%
+  filter(grepl("BEWELL", trial)) %>%
   mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
   mutate(term.adj = gsub("treatmentPD1", "treatmentAnti-PD1", term)) %>%
   filter(!grepl("mimic4|mimic9", experiment)) %>%
@@ -451,6 +451,29 @@ mimic.modeling %>%
   facet_wrap(~`sample ID` + hypothesis)
 
 ggsave("../figures/bewell_forest_interaction_faceted.png",
+       height =  6, width = 6)
+```
+
+
+```{r heatmap}
+
+mimic.modeling %>%
+  filter(grepl("BEWELL", trial)) %>%
+  mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
+  mutate(term.adj = gsub("treatmentPD1", "treatmentAnti-PD1", term)) %>%
+  filter(!grepl("mimic4|mimic9", experiment)) %>%
+  filter(grepl("days2:", term)) %>%
+  ggplot(aes(x = `sample ID`, y = term.adj, fill = estimate, alpha = sig.flag)) +
+  geom_tile(color = "black") +
+  scale_color_gradient2(low = "#075AFF", high = "#872657") +
+  coord_fixed() +
+  guides(alpha = "none") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Sample ID", y = "")
+  
+
+ggsave("../figures/bewell_heatmap_interaction.png",
        height =  6, width = 6)
 ```
 
