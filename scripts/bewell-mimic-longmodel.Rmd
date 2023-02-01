@@ -74,7 +74,8 @@ data.55 <- processModel(m.55) %>%
   mutate(experiment = "mimic1,6,7",
          trial = "BEWELL",
          `sample ID` = "HONC60-55",
-         hypothesis = "Random Sample")
+         hypothesis = "Random Sample",
+         `Combined ID` = "Random Sample (55)")
 ```
 
 #### HONC60-102 (mimic5)
@@ -93,7 +94,8 @@ data.102 <- processModel(m.102) %>%
   mutate(experiment = "mimic5",
          trial = "BEWELL",
          `sample ID` = "HONC60-102",
-         hypothesis = "Random Sample")
+         hypothesis = "Random Sample",
+         `Combined ID` = "Random Sample (102)")
 ```
 
 #### HONC60-84 (mimic4)
@@ -111,7 +113,8 @@ data.mim4 <- processModel(m.mim4) %>%
   mutate(experiment = "mimic4",
          trial = "BEWELL",
          `sample ID` = "HONC60-84",
-         hypothesis = "Random Sample")
+         hypothesis = "Random Sample",
+         `Combined ID` = "Random Sample (84)")
 ```
 
 #### HONC60-62
@@ -133,7 +136,8 @@ data.62 <- processModel(m.62) %>%
   mutate(experiment = "mimic9",
          trial = "BEWELL",
          `sample ID` = "HONC60-62",
-         hypothesis = "Akkermansia")
+         hypothesis = "Akkermansia",
+         `Combined ID` = "Akkermansia (62)")
 ```
 
 #### HONC60-79 (mimic11)
@@ -157,7 +161,8 @@ data.79 <- processModel(m.79) %>%
   mutate(experiment = "mimic11",
          trial = "BEWELL",
          `sample ID` = "HONC60-79",
-         hypothesis = "Lachnospira")
+         hypothesis = "Lachnospira",
+         `Combined ID` = "Lachnospira (79)")
 ```
 
 ```{r initial model}
@@ -217,7 +222,8 @@ data.85 <- processModel(m.85) %>%
   mutate(experiment = "mimic12",
          trial = "BEWELL",
          `sample ID` = "HONC60-85",
-         hypothesis = "Blautia")
+         hypothesis = "Blautia",
+         `Combined ID` = "Blautia (85)")
 ```
 
 ```{r initial model}
@@ -278,7 +284,8 @@ data.84 <- processModel(m.84) %>%
   mutate(experiment = "mimic13",
          trial = "BEWELL",
          `sample ID` = "HONC60-84",
-         hypothesis = "Blautia")
+         hypothesis = "Blautia",
+         `Combined ID` = "Blautia (84)")
 ```
 
 ```{r initial model}
@@ -339,7 +346,8 @@ data.68 <- processModel(m.68) %>%
   mutate(experiment = "mimic10",
          trial = "BEWELL",
          `sample ID` = "HONC60-68",
-         hypothesis = "Roseburia")
+         hypothesis = "Roseburia",
+         `Combined ID` = "Roseburia (68)")
 ```
 
 ```{r initial model}
@@ -463,14 +471,25 @@ mimic.modeling %>%
   mutate(term.adj = gsub("treatmentPD1", "treatmentAnti-PD1", term)) %>%
   filter(!grepl("mimic4|mimic9", experiment)) %>%
   filter(grepl("days2:", term)) %>%
-  ggplot(aes(x = `sample ID`, y = term.adj, fill = estimate, alpha = sig.flag)) +
+  mutate(term.adj = str_replace(term.adj, "treatmentAnti-PD1", "Anti-PD1")) %>%
+  mutate(term.adj = str_replace(term.adj, "gavagePost-BRB", "Post-BRB")) %>%
+  mutate(term.adj = str_remove(term.adj, "days2:")) %>%
+  mutate(term.adj = fct_relevel(term.adj,"Post-BRB","Anti-PD1","Anti-PD1:Post-BRB")) %>%
+  mutate(`Combined ID` = fct_relevel(`Combined ID`, 
+                                     "Random Sample (102)", 
+                                     "Random Sample (55)", 
+                                     "Blautia (84)",
+                                     "Blautia (85)",
+                                     "Roseburia (68)",
+                                     "Lachnospira (79)")) %>%
+  ggplot(aes(x = `Combined ID`, y = term.adj, fill = estimate, alpha = sig.flag)) +
   geom_tile(color = "black") +
-  scale_color_gradient2(low = "#075AFF", high = "#872657") +
+  scale_fill_viridis_c() +
   coord_fixed() +
   guides(alpha = "none") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Sample ID", y = "")
+  labs(x = "Test Microbe (Sample ID)", y = "")
   
 
 ggsave("../figures/bewell_heatmap_interaction.png",
