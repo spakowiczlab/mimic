@@ -14,6 +14,7 @@ library(readxl)
 library(broom)
 library(broom.mixed)
 library(RColorBrewer)
+library(viridis)
 source("00-paths.R")
 ```
 

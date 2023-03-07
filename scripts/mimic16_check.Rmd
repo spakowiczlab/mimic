@@ -1,0 +1,85 @@
+---
+title: "mimic16-check"
+author: "Dan Spakowicz"
+date: "2023-03-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(tidyverse)
+library(knitr)
+```
+
+```{r}
+x <- readxl::read_xlsx(file.path("..", 
+                                 "data", 
+                                 "tumor-size", 
+                                 "AOT00049754-mimic16", 
+                                 "AOT00049754-mimic16_tumor-size.xlsx"))
+
+summary(x)
+```
+
+```{r}
+y <- 
+  x %>%
+  drop_na(microbiome.sample) %>%
+  mutate(treatment = if_else(grepl("1|2", cage),
+                             true = "Anti-Pd1",
+                             false = "IgG")) %>%
+  filter(!grepl("na", `tumor.width.(mm)`)) %>%
+  mutate(tumor.length.mm = as.numeric(`tumor.length.(mm)`),
+         tumor.width.mm = as.numeric(`tumor.width.(mm)`),
+         tumor.volume = (tumor.length.mm * (tumor.width.mm^2)) / 2) %>%
+  mutate(cage = as.factor(cage)) %>%
+  mutate(mouse = paste(tail.number, cage, sep = ".")) %>%
+  group_by(mouse, date, treatment, microbiome.sample) %>%
+  summarize(total.tumor.volume = sum(tumor.volume))
+  
+
+head(y)  
+```
+
+
+```{r, warning=FALSE}
+y %>%
+  ggplot(aes(x = date, y = total.tumor.volume)) +
+  # geom_line(aes(group = mouse), 
+  #           alpha = 0.3, 
+  #           show.legend = FALSE) +
+  # geom_point(alpha = 0.1,
+  #            show.legend = FALSE) +
+  geom_smooth(aes(color = microbiome.sample,
+                  lty = treatment)) +
+  theme_bw()
+
+ggsave("../figures/mimic16_tum-volume.png",
+       height = 3, width = 4)
+```
+
+```{r}
+summary <- 
+  y %>%
+  filter(date == max(date)) %>%
+  group_by(abx) %>%
+  summarize(mean.volume = mean(tumor.volume),
+            sd.volume = sd(tumor.volume),
+            n = n())
+
+kable(summary)
+```
+
+```{r}
+y %>%
+  drop_na(`Tumor.weight (g)`) %>%
+  ggplot(aes(x = abx, y = `Tumor.weight (g)`)) +
+  geom_boxplot(aes(fill = Treatment)) +
+  geom_point(aes(color = Treatment), 
+             position = position_jitterdodge(jitter.width = 0.1)) +
+  theme_bw()
+```
+
+
