@@ -14,13 +14,13 @@ library(readxl)
 library(broom)
 library(broom.mixed)
 library(RColorBrewer)
-library(viridis)
+library(viridisLite)
 source("00-paths.R")
 ```
 
 ## Data Processing
 ```{r}
-processed.data <- read.csv(file.path("..", 'data', "2022-08-11_tumor-size_R-formatted.csv")) %>%
+processed.data <- read.csv(file.path("..", 'data', "2023-04-25_tumor-size_R-formatted.csv")) %>%
   mutate(gavage = if_else(grepl("v1|v3", microbiome.sample),
                           true = "Pre-BRB",
                           false = if_else(grepl("v2|v4", microbiome.sample),
@@ -76,7 +76,7 @@ data.55 <- processModel(m.55) %>%
          trial = "BEWELL",
          `sample ID` = "HONC60-55",
          hypothesis = "Random Sample",
-         `Combined ID` = "Random Sample (55)")
+         `Combined ID` = "Random (55)")
 ```
 
 #### HONC60-102 (mimic5)
@@ -96,7 +96,7 @@ data.102 <- processModel(m.102) %>%
          trial = "BEWELL",
          `sample ID` = "HONC60-102",
          hypothesis = "Random Sample",
-         `Combined ID` = "Random Sample (102)")
+         `Combined ID` = "Random (102)")
 ```
 
 #### HONC60-84 (mimic4)
@@ -115,7 +115,7 @@ data.mim4 <- processModel(m.mim4) %>%
          trial = "BEWELL",
          `sample ID` = "HONC60-84",
          hypothesis = "Random Sample",
-         `Combined ID` = "Random Sample (84)")
+         `Combined ID` = "Random (84)")
 ```
 
 #### HONC60-62
@@ -391,6 +391,49 @@ ggsave("../figures/mim10-model-forestplot_reduced.png",
        height = 5, width = 6)
 ```
 
+#### Honc60-85 + Blautia (mimic17)
+
+```{r}
+
+Hblautia <- processed.data %>%
+  filter(grepl("mimic17", experiment)) %>%
+  mutate(supplement = if_else(grepl("Blautia", microbiome.sample),
+                            true = "Blautia",
+                            false = "Normal"),
+         supplement = fct_relevel(supplement, "Normal"))
+
+m.blautia <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * supplement + (1|unique.mouse.id),
+              data = Hblautia)
+
+summary(m.blautia)
+
+data.blautia <- processModel(m.blautia) %>%
+  mutate(experiment = "mimic17",
+         trial = "BEWELL",
+         `sample ID` = "HONC60-85v1",
+         hypothesis = "Blautia Supplementation",
+         `Combined ID` = "Blautia Supplementation (85v1)")
+```
+
+```{r}
+data.blautia %>%
+  filter(grepl("days2...*", term)) %>%
+  mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
+  ggplot(aes(x = estimate, y = term.adj)) +
+  geom_point(size = 2.5) +
+  theme_bw(base_size = 18) + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(aes(x = ci95.low, xend = ci95.high, 
+                   y = term.adj, yend = term.adj)) +
+  labs(x = "Estimate", y = "") +
+  scale_y_discrete(limits = rev)
+
+ggsave("../figures/mim17-model-forestplot_reduced.png",
+       height = 5, width = 6)
+```
+
 
 ## Fitness Sample Modeling
 ```{r}
@@ -409,10 +452,35 @@ fitness.data <- processed.data %>%
                             true = "Saline",
                             false = Response))
 
+fitness.responder <- fitness.data %>%
+  filter(Response != "Non-responder") %>%
+  mutate(Response = fct_relevel(Response, "Saline"))
+
+fitness.nonrespon <- fitness.data %>%
+  filter(Response != "Responder") %>%
+  mutate(Response = fct_relevel(Response, "Saline"))
+
+fitness.compare <- fitness.data %>%
+  filter(Response != "Saline") %>%
+  mutate(Response = fct_relevel(Response, "Non-responder"))
+
+m.respondr <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * Response + (1|unique.mouse.id),
+              data = fitness.responder)
+
+m.nonres <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * Response + (1|unique.mouse.id),
+              data = fitness.nonrespon)
+
+m.compare <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * Response + (1|unique.mouse.id),
+              data = fitness.compare)
+
 m.fitness <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * Response + (1|unique.mouse.id),
               data = fitness.data)
 
 summary(m.fitness)
+summary(m.respondr)
+summary(m.nonres)
+summary(m.compare)
+
 
 data.fitness <- processModel(m.fitness) %>%
   mutate(experiment = "mimic2,3,8",
@@ -420,6 +488,61 @@ data.fitness <- processModel(m.fitness) %>%
          `sample ID` = "DL017(Responder),DL081(Nonresponder)",
          hypothesis = "Response") 
 
+data.respondr <- processModel(m.respondr) %>%
+  mutate(experiment = "mimic2,3,8",
+         trial = "Fitness",
+         `sample ID` = "DL017(Responder)",
+         hypothesis = "Response",
+         `Combined ID` = "Responder (DL017)") 
+data.nonres <- processModel(m.nonres) %>%
+  mutate(experiment = "mimic2,3,8",
+         trial = "Fitness",
+         `sample ID` = "DL081(Non-responder)",
+         hypothesis = "Response",
+         `Combined ID` = "Non-responder (DL081)")
+
+data.compare <- processModel(m.compare) %>%
+  mutate(experiment = "mimic2,3,8",
+         trial = "Fitness",
+         `sample ID` = "DL017(Responder)",
+         hypothesis = "Response") 
+
+```
+
+```{r alt model}
+data.compare %>%
+  filter(grepl("days2...*", term)) %>%
+  mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
+  ggplot(aes(x = estimate, y = term.adj)) +
+  geom_point(size = 2.5) +
+  theme_bw(base_size = 18) + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(aes(x = ci95.low, xend = ci95.high, 
+                   y = term.adj, yend = term.adj)) +
+  labs(x = "Estimate", y = "") +
+  scale_y_discrete(limits = rev)
+
+ggsave("../figures/fitness-comparemodel-forestplot_reduced.png",
+       height = 5, width = 6)
+
+data.respondr %>%
+  filter(grepl("days2...*", term)) %>%
+  mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
+  ggplot(aes(x = estimate, y = term.adj)) +
+  geom_point(size = 2.5) +
+  theme_bw(base_size = 18) + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(aes(x = ci95.low, xend = ci95.high, 
+                   y = term.adj, yend = term.adj)) +
+  labs(x = "Estimate", y = "") +
+  scale_y_discrete(limits = rev)
+
+ggsave("../figures/fitness-respondrmodel-forestplot_reduced.png",
+       height = 5, width = 6)
 ```
 
 
@@ -434,7 +557,8 @@ mimic.modeling <-
             data.79,
             data.85,
             data.84,
-            data.fitness)
+            data.nonres,
+            data.respondr)
 
 write.csv(mimic.modeling, "../data/mimic_longitudinal-modeling_output.csv", row.names = F)
 ```
@@ -442,7 +566,6 @@ write.csv(mimic.modeling, "../data/mimic_longitudinal-modeling_output.csv", row.
 
 ```{r}
 mimic.modeling %>%
-  filter(grepl("BEWELL", trial)) %>%
   mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
   mutate(term.adj = gsub("treatmentPD1", "treatmentAnti-PD1", term)) %>%
   filter(!grepl("mimic4|mimic9", experiment)) %>%
@@ -467,18 +590,21 @@ ggsave("../figures/bewell_forest_interaction_faceted.png",
 ```{r heatmap}
 
 mimic.modeling %>%
-  filter(grepl("BEWELL", trial)) %>%
   mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
   mutate(term.adj = gsub("treatmentPD1", "treatmentAnti-PD1", term)) %>%
   filter(!grepl("mimic4|mimic9", experiment)) %>%
   filter(grepl("days2:", term)) %>%
   mutate(term.adj = str_replace(term.adj, "treatmentAnti-PD1", "Anti-PD1")) %>%
-  mutate(term.adj = str_replace(term.adj, "gavagePost-BRB", "Post-BRB")) %>%
+  mutate(term.adj = str_replace(term.adj, "gavagePost-BRB", "Gavage")) %>%
+  mutate(term.adj = str_replace(term.adj, "ResponseResponder", "Gavage")) %>%
+  mutate(term.adj = str_replace(term.adj, "ResponseNon-responder", "Gavage")) %>%
   mutate(term.adj = str_remove(term.adj, "days2:")) %>%
-  mutate(term.adj = fct_relevel(term.adj,"Post-BRB","Anti-PD1","Anti-PD1:Post-BRB")) %>%
-  mutate(`Combined ID` = fct_relevel(`Combined ID`, 
-                                     "Random Sample (102)", 
-                                     "Random Sample (55)", 
+  mutate(term.adj = fct_relevel(term.adj,"Gavage","Anti-PD1","Anti-PD1:Gavage")) %>%
+  mutate(`Combined ID` = fct_relevel(`Combined ID`,
+                                     "Non-responder (DL081)",
+                                     "Responder (DL017)",
+                                     "Random (102)", 
+                                     "Random (55)", 
                                      "Blautia (84)",
                                      "Blautia (85)",
                                      "Roseburia (68)",
@@ -489,7 +615,7 @@ mimic.modeling %>%
   coord_fixed() +
   guides(alpha = "none") +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
   labs(x = "Test Microbe (Sample ID)", y = "")
   
 

@@ -310,6 +310,21 @@ mim13 <- tsize.raw[[grep("mimic13", names(tsize.raw))]] %>%
   separate(tail.number, into = c("tail.number", "cage"), sep = " x ") %>%
   mutate(treatment = ifelse(grepl("3 x 3", unique.mouse.id), "Anti-PD1", treatment))
 
+mim17 <- tsize.raw[[grep("mimic17", names(tsize.raw))]] %>%
+  drop_na(tumor.number) %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         `date` = as.character(`date`),
+         Treatment = ifelse(cage %in% c(2,3), "Anti-PD1","IgG"),
+         microbiome.sample = ifelse(cage %in% c(2,4), "HONC60-85v1 + Blautia", "HONC60-85v1"),
+         treatment.group = paste(Treatment, microbiome.sample, sep = " x "),
+         tail.number = paste(tail.number, cage, sep = " x ")) %>%
+  calcTumorVol(., as.POSIXct("2023-03-30")) %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic17") %>%
+  separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+
 ```
 
 ```{r}
@@ -344,7 +359,8 @@ mimic.cleaned <- mim1 %>%
   bind_rows(mim11) %>%
   bind_rows(mim12) %>%
   bind_rows(mim13) %>%
-  bind_rows(mim16)
+ # bind_rows(mim16) %>%
+  bind_rows(mim17)
 ```
 
 # Save
