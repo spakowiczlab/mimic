@@ -1,0 +1,17 @@
+sample_id,seq9 Lachnospiraceae;Roseburia;sp33152,seq17 Lachnospiraceae;Blautia;hansenii-producta,seq19 Lachnospiraceae;NA;sp33558,seq22 Lachnospiraceae;NA;sp32790,seq23 Lachnospiraceae;NA;sp32778,seq27 Lachnospiraceae;NA;sp33503,seq28 Lachnospiraceae;Roseburia;sp33177,seq37 Lachnospiraceae;Tyzzerella;sp33302,seq31 Lachnospiraceae;NA;sp32146,seq30 Lachnospiraceae;Roseburia;sp33143,seq33 Lachnospiraceae;NA;sp33565,seq39 Lachnospiraceae;Lachnoclostridium;bolteae-sp32431,seq40 Lachnospiraceae;NA;sp33492,seq41 Lachnospiraceae;NA;sp33503,seq62 Lachnospiraceae;NA;sp33582,seq45 Lachnospiraceae;Hungatella;effluvii,seq55 Lachnospiraceae;NA;sp33518,seq57 Lachnospiraceae;NA;sp33636,seq54 Lachnospiraceae;Roseburia;sp33143,seq63 Lachnospiraceae;NA;sp32146,seq70 Lachnospiraceae;Lachnoclostridium;sp32433,seq94 Lachnospiraceae;Blautia;coccoides-producta,seq83 Lachnospiraceae;Roseburia;sp33177,seq97 Lachnospiraceae;NA;sp32741-sp33513,seq109 Lachnospiraceae;Blautia;hydrogenotrophica,seq135 Lachnospiraceae;NA;NA,seq131 Lachnospiraceae;NA;sp33589,seq140 Lachnospiraceae;Lachnoclostridium;sp32441,seq153 Lachnospiraceae;NA;sp33374,seq169 Lachnospiraceae;Lachnoclostridium;sp32362-sp33711,seq183 Lachnospiraceae;NA;sp33513,seq166 Lachnospiraceae;NA;sp33760,seq165 Lachnospiraceae;Lachnoclostridium;sp32402,seq179 Lachnospiraceae;Tyzzerella;sp33281,seq213 Lachnospiraceae;Blautia;producta,seq202 Lachnospiraceae;Lachnoclostridium;sp32341-sp32430,seq211 Lachnospiraceae;Marvinbryantia;sp32970-sp32983,seq204 Lachnospiraceae;NA;sp33760,seq236 Lachnospiraceae;Robinsoniella;peoriensis
+mim16.m1c3t,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m2c3t,0,0.0024,0,0.0003,0,0,0,0,0.0006,0.0015,0,0.0008,0,0,0.0001,0.0026,0,0,0.0009,0,0,0,0,0,0,0,0,0,0.0003,0,0,0.0005,0,0.0005,0,0,0.0003,0,0
+mim16.m3c3t,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m1c4t,0.0027,0.001,0.0004,0.0016,0.0004,0.0004,0.0006,0,0.0009,0.0004,0,0.0002,0,0,0.0003,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0003,0,0,0,0,0,0.0004,0,0,0,0
+mim16.m2c4t,0.0011,0,0.0003,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m3c4t,0.0329,0.0038,0.0082,0.006,0.0068,0.0052,0.005,0,0.003,0.0025,0.0036,0.0006,0.0008,0.0028,0,0,0.0011,0.0022,0.0013,0.0019,0.0016,0,0.0011,0.001,0.0009,0.0007,0.0007,0.0007,0,0.0005,0,0,0.0005,0,0,0,0,0.0003,0
+mim16.m1c1l,0,0.0014,0,0,0,0,0,0,0,0,0,0.0006,0,0,0.001,0,0,0,0,0,0,0.0012,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m2c1l,0,0.0029,0,0,0,0,0,0,0,0,0,0,0,0,0.0013,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m3c1l,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m3c2l,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m1c3l,0,0,0,0,0,0,0,0.0046,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m2c3l,0,0,0,0,0,0,0,0,0,0,0,0.0013,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m3c3l,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m1c4l,0.0026,0.0004,0,0,0,0,0,0,0,0,0,0,0.0014,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m2c4l,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+mim16.m3c4l,0,0,0,0,0,0,0,0,0,0,0,0,0.0008,0,0,0,0.0012,0,0,0,0,0.0003,0,0,0,0,0,0,0,0,0.0005,0,0,0,0,0.0004,0,0,0.0002

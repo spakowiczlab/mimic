@@ -1,0 +1,17 @@
+sample_id,seq2 Rhodococcus;erythropolis-qingshengii-sp5959,seq4 Rhodococcus;erythropolis-qingshengii-sp5959,seq50 Rhodococcus;erythropolis-qingshengii-sp5959,seq51 Rhodococcus;erythropolis-qingshengii-sp5959,seq52 Rhodococcus;erythropolis-qingshengii-sp5959,seq77 Rhodococcus;erythropolis-qingshengii-sp5959,seq89 Rhodococcus;erythropolis-qingshengii-sp5959,seq108 Rhodococcus;erythropolis-qingshengii-sp5959,seq128 Rhodococcus;erythropolis-qingshengii-sp5959,seq144 Rhodococcus;erythropolis-qingshengii-sp5959,seq240 Rhodococcus;erythropolis-qingshengii-sp5959,seq227 Rhodococcus;erythropolis-qingshengii-sp5959,seq190 Rhodococcus;erythropolis-qingshengii-sp5959
+mim16.m1c3t,0.3317,0.0683,0,0.0005,0.0014,0,0,0,0,0,0,0,0
+mim16.m2c3t,0.2466,0.0474,0.0005,0,0,0,0,0,0.0001,0.0002,0,0,0
+mim16.m3c3t,0.2436,0.0424,0,0,0,0,0,0,0,0,0,0,0.0003
+mim16.m1c4t,0.2974,0.0586,0,0.0008,0,0,0,0,0.0005,0.0003,0,0.0003,0
+mim16.m2c4t,0.2161,0.0402,0,0,0,0,0,0,0,0,0,0,0
+mim16.m3c4t,0.1208,0.0199,0,0.0004,0,0,0,0,0,0,0,0,0
+mim16.m1c1l,0.2775,0.0672,0,0,0,0,0,0,0,0,0,0,0
+mim16.m2c1l,0.3083,0.0508,0,0.0004,0,0,0,0,0,0.0002,0,0,0
+mim16.m3c1l,0.3071,0.0618,0,0,0,0,0,0,0,0,0,0,0
+mim16.m3c2l,0.3739,0.047,0.0006,0,0.0012,0,0.0015,0,0,0,0,0,0
+mim16.m1c3l,0.2776,0.0462,0.0007,0,0,0.0021,0,0.0014,0.0003,0,0,0,0
+mim16.m2c3l,0.262,0.0748,0.0003,0.0003,0,0,0,0,0,0,0,0,0
+mim16.m3c3l,0.3438,0.068,0.0005,0,0,0,0,0,0,0,0.0004,0,0
+mim16.m1c4l,0.2589,0.0539,0.0004,0,0,0,0,0,0,0,0,0,0
+mim16.m2c4l,0.2987,0.0566,0,0,0,0,0,0,0,0,0,0,0
+mim16.m3c4l,0.2808,0.056,0,0.0002,0,0,0,0,0,0,0,0,0

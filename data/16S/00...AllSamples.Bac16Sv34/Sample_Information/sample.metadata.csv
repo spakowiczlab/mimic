@@ -1,0 +1,17 @@
+sample_id	customer_label	raw_seq_files	
+zr10612_1V3V4	mim16.m1c3t	zr10612_1V3V4_R1.fastq.gz;zr10612_1V3V4_R2.fastq.gz	
+zr10612_2V3V4	mim16.m2c3t	zr10612_2V3V4_R1.fastq.gz;zr10612_2V3V4_R2.fastq.gz	
+zr10612_3V3V4	mim16.m3c3t	zr10612_3V3V4_R1.fastq.gz;zr10612_3V3V4_R2.fastq.gz	
+zr10612_4V3V4	mim16.m1c4t	zr10612_4V3V4_R1.fastq.gz;zr10612_4V3V4_R2.fastq.gz	
+zr10612_5V3V4	mim16.m2c4t	zr10612_5V3V4_R1.fastq.gz;zr10612_5V3V4_R2.fastq.gz	
+zr10612_6V3V4	mim16.m3c4t	zr10612_6V3V4_R1.fastq.gz;zr10612_6V3V4_R2.fastq.gz	
+zr10612_7V3V4	mim16.m1c1l	zr10612_7V3V4_R1.fastq.gz;zr10612_7V3V4_R2.fastq.gz	
+zr10612_8V3V4	mim16.m2c1l	zr10612_8V3V4_R1.fastq.gz;zr10612_8V3V4_R2.fastq.gz	
+zr10612_9V3V4	mim16.m3c1l	zr10612_9V3V4_R1.fastq.gz;zr10612_9V3V4_R2.fastq.gz	
+zr10612_10V3V4	mim16.m3c2l	zr10612_10V3V4_R1.fastq.gz;zr10612_10V3V4_R2.fastq.gz	
+zr10612_11V3V4	mim16.m1c3l	zr10612_11V3V4_R1.fastq.gz;zr10612_11V3V4_R2.fastq.gz	
+zr10612_12V3V4	mim16.m2c3l	zr10612_12V3V4_R1.fastq.gz;zr10612_12V3V4_R2.fastq.gz	
+zr10612_13V3V4	mim16.m3c3l	zr10612_13V3V4_R1.fastq.gz;zr10612_13V3V4_R2.fastq.gz	
+zr10612_14V3V4	mim16.m1c4l	zr10612_14V3V4_R1.fastq.gz;zr10612_14V3V4_R2.fastq.gz	
+zr10612_15V3V4	mim16.m2c4l	zr10612_15V3V4_R1.fastq.gz;zr10612_15V3V4_R2.fastq.gz	
+zr10612_16V3V4	mim16.m3c4l	zr10612_16V3V4_R1.fastq.gz;zr10612_16V3V4_R2.fastq.gz	

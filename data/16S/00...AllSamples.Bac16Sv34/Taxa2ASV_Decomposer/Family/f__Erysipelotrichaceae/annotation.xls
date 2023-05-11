@@ -1,0 +1,140 @@
+seq_id	seq_identity(%)	ref_id	ref_taxonomy
+seq6	Erysipelotrichaceae;Turicibacter;sanguinis
+	96.0	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.6	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	95.1	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	95.1	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	90.9	ZR.DB.25059	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus mycoides
+	90.9	ZR.DB.24635	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus cereus
+	90.6	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467
+seq11	Erysipelotrichaceae;NA;sp36741
+	100.0	ZR.DB.G.36462	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36741
+	95.8	ZR.DB.36461	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36740
+	94.1	ZR.DB.G.36383	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Faecalitalea;s__Faecalitalea cylindroides
+	94.1	ZR.DB.G.36384	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Faecalitalea;s__Faecalitalea cylindroides
+	92.0	ZR.DB.36483	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36800
+	92.0	ZR.DB.36386	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Faecalitalea;s__sp36732
+	91.3	ZR.DB.36493	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36776
+	90.6	ZR.DB.36475	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36793
+	90.1	ZR.DB.36491	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36774
+seq29	Erysipelotrichaceae;Turicibacter;sanguinis
+	96.3	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.8	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	95.3	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	95.3	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	90.9	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467
+seq34	Erysipelotrichaceae;Coprobacillus;cateniformis
+	99.1	ZR.DB.G.36302	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Coprobacillus;s__Coprobacillus cateniformis
+	96.2	ZR.DB.36303	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Coprobacillus;s__sp36603
+	95.8	ZR.DB.36291	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Candidatus Stoquefichus;s__sp36592
+	94.8	ZR.DB.36304	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Coprobacillus;s__sp36604
+	94.4	ZR.DB.36317	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36627
+	94.1	ZR.DB.36320	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36624
+	94.1	ZR.DB.36496	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36786
+	93.7	ZR.DB.36295	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Candidatus Stoquefichus;s__sp36595
+	93.7	ZR.DB.36292	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Candidatus Stoquefichus;s__sp36593
+	93.7	ZR.DB.36490	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36773
+	93.4	ZR.DB.G.36293	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Candidatus Stoquefichus;s__sp36591
+	93.4	ZR.DB.36328	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36621
+	93.2	ZR.DB.36321	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36628
+	93.0	ZR.DB.36504	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36804
+	93.0	ZR.DB.36324	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36620
+	92.5	ZR.DB.36319	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36625
+	92.0	ZR.DB.G.36311	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__Erysipelatoclostridium ramosum
+	92.0	ZR.DB.36299	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Catenibacterium;s__sp36599
+	92.0	ZR.DB.G.36313	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__Erysipelatoclostridium ramosum
+	92.0	ZR.DB.G.36326	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36619
+	92.0	ZR.DB.G.36312	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__Erysipelatoclostridium ramosum
+	91.5	ZR.DB.36330	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36630
+	91.3	ZR.DB.36322	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36622
+	91.3	ZR.DB.36316	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36616
+	90.8	ZR.DB.36422	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36684
+	90.4	ZR.DB.36294	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Candidatus Stoquefichus;s__sp36594
+	90.4	ZR.DB.G.36329	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36629
+	90.1	ZR.DB.36418	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36689
+	90.1	ZR.DB.36423	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36687
+	90.1	ZR.DB.36421	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36686
+seq35	Erysipelotrichaceae;Erysipelatoclostridium;ramosum
+	100.0	ZR.DB.G.36314	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__Erysipelatoclostridium ramosum
+	100.0	ZR.DB.G.36312	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__Erysipelatoclostridium ramosum
+	100.0	ZR.DB.G.36311	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__Erysipelatoclostridium ramosum
+	100.0	ZR.DB.G.36313	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__Erysipelatoclostridium ramosum
+	97.2	ZR.DB.G.36329	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36629
+	94.8	ZR.DB.36316	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36616
+	94.4	ZR.DB.36330	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36630
+	93.9	ZR.DB.36322	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36622
+	93.7	ZR.DB.36321	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36628
+	93.7	ZR.DB.36317	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36627
+	93.4	ZR.DB.G.36326	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36619
+	93.2	ZR.DB.36328	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36621
+	92.7	ZR.DB.36319	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36625
+	92.5	ZR.DB.36320	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36624
+	92.3	ZR.DB.36303	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Coprobacillus;s__sp36603
+	92.3	ZR.DB.36490	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36773
+	92.3	ZR.DB.36318	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36626
+	92.3	ZR.DB.G.36297	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Catenibacterium;s__Catenibacterium mitsuokai
+	91.8	ZR.DB.36496	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36786
+	91.5	ZR.DB.36295	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Candidatus Stoquefichus;s__sp36595
+	91.3	ZR.DB.36327	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36618
+	91.1	ZR.DB.36418	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36689
+	91.1	ZR.DB.36421	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36686
+	91.1	ZR.DB.36324	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelatoclostridium;s__sp36620
+	91.1	ZR.DB.36304	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Coprobacillus;s__sp36604
+	91.1	ZR.DB.G.36302	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Coprobacillus;s__Coprobacillus cateniformis
+	90.4	ZR.DB.36423	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36687
+	90.4	ZR.DB.36291	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Candidatus Stoquefichus;s__sp36592
+	90.1	ZR.DB.36422	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36684
+seq69	Erysipelotrichaceae;Turicibacter;sanguinis
+	95.8	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.3	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	95.1	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	95.1	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	90.6	ZR.DB.25059	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus mycoides
+	90.4	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467
+	90.2	ZR.DB.G.24785	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus cytotoxicus
+seq102	Erysipelotrichaceae;Turicibacter;sanguinis
+	95.8	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.3	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	94.8	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	94.8	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	90.6	ZR.DB.25059	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus mycoides
+	90.4	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467
+seq104	Erysipelotrichaceae;Turicibacter;sanguinis
+	95.8	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.3	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	94.8	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	94.8	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	90.6	ZR.DB.25059	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus mycoides
+	90.4	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467
+seq124	Erysipelotrichaceae;Holdemania;massiliensis
+	98.1	ZR.DB.G.36393	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Holdemania;s__Holdemania massiliensis
+	93.9	ZR.DB.36260	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Anaerorhabdus;s__sp36560
+	93.2	ZR.DB.36366	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36644
+	92.0	ZR.DB.36370	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36648
+	92.0	ZR.DB.36361	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36660
+	91.8	ZR.DB.36488	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36787
+	91.8	ZR.DB.36466	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36769
+	91.5	ZR.DB.36352	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36674
+	91.5	ZR.DB.36472	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36764
+	91.5	ZR.DB.36343	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36665
+	91.3	ZR.DB.36360	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36669
+	91.1	ZR.DB.36467	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36768
+	91.1	ZR.DB.36501	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36784
+	91.1	ZR.DB.36341	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36663
+	90.8	ZR.DB.36357	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36678
+	90.8	ZR.DB.36342	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36664
+	90.8	ZR.DB.36371	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36649
+	90.6	ZR.DB.36458	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36724
+	90.4	ZR.DB.36377	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Erysipelothrix;s__sp36654
+	90.1	ZR.DB.36459	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36726
+seq160	Erysipelotrichaceae;NA;sp36794
+	97.7	ZR.DB.36477	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36794
+seq178	Erysipelotrichaceae;NA;sp36741
+	99.8	ZR.DB.G.36462	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36741
+	95.5	ZR.DB.36461	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36740
+	93.9	ZR.DB.G.36384	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Faecalitalea;s__Faecalitalea cylindroides
+	93.9	ZR.DB.G.36383	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Faecalitalea;s__Faecalitalea cylindroides
+	91.8	ZR.DB.36386	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Faecalitalea;s__sp36732
+	91.8	ZR.DB.36483	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36800
+	91.1	ZR.DB.36493	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36776
+	90.4	ZR.DB.36475	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__unidentified;s__sp36793

@@ -1,0 +1,201 @@
+seq_id	seq_identity(%)	ref_id	ref_taxonomy
+seq12	Porphyromonadaceae;Parabacteroides;distasonis
+	100.0	ZR.DB.G.12409	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	100.0	ZR.DB.G.12405	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	100.0	ZR.DB.G.12401	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	100.0	ZR.DB.G.12413	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	100.0	ZR.DB.G.12402	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	100.0	ZR.DB.G.12411	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.8	ZR.DB.G.12404	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.8	ZR.DB.G.12406	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12410	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12408	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12412	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.3	ZR.DB.G.12403	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.3	ZR.DB.G.12400	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.3	ZR.DB.G.12407	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	96.7	ZR.DB.12456	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13268
+	96.4	ZR.DB.12441	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13289
+	93.8	ZR.DB.12477	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13258
+	93.8	ZR.DB.12459	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13253
+	93.6	ZR.DB.12466	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13257
+	93.4	ZR.DB.12467	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13269
+	92.9	ZR.DB.12454	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13275
+	92.9	ZR.DB.12420	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides gordonii
+	92.9	ZR.DB.12453	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13272
+	92.4	ZR.DB.12474	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13265
+	92.4	ZR.DB.12450	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13286
+	92.4	ZR.DB.12414	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides faecis
+	92.2	ZR.DB.G.12423	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	92.2	ZR.DB.G.12428	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	92.2	ZR.DB.G.12429	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	92.2	ZR.DB.G.12426	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	92.2	ZR.DB.G.12430	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	92.2	ZR.DB.G.12421	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	92.2	ZR.DB.12399	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides chinchillae
+	92.2	ZR.DB.G.12427	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	91.5	ZR.DB.G.12419	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.5	ZR.DB.G.12418	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.5	ZR.DB.G.12416	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.5	ZR.DB.G.12415	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.2	ZR.DB.G.12417	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.0	ZR.DB.12461	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13251
+	90.5	ZR.DB.12447	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13294
+seq20	Porphyromonadaceae;Parabacteroides;distasonis
+	100.0	ZR.DB.G.12412	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	100.0	ZR.DB.G.12410	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	100.0	ZR.DB.G.12408	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.3	ZR.DB.G.12407	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.3	ZR.DB.G.12403	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.3	ZR.DB.G.12400	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12409	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12401	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12402	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12405	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12411	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12413	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.8	ZR.DB.G.12404	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.8	ZR.DB.G.12406	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	97.6	ZR.DB.12456	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13268
+	95.5	ZR.DB.12441	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13289
+	94.8	ZR.DB.12477	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13258
+	94.5	ZR.DB.12466	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13257
+	94.5	ZR.DB.12459	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13253
+	92.9	ZR.DB.12453	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13272
+	92.9	ZR.DB.12454	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13275
+	92.9	ZR.DB.12420	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides gordonii
+	92.7	ZR.DB.12450	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13286
+	92.4	ZR.DB.12467	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13269
+	92.2	ZR.DB.12399	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides chinchillae
+	91.9	ZR.DB.12414	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides faecis
+	91.5	ZR.DB.G.12416	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.5	ZR.DB.G.12415	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.5	ZR.DB.12474	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13265
+	91.5	ZR.DB.G.12418	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.5	ZR.DB.G.12419	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.2	ZR.DB.G.12417	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	90.5	ZR.DB.12447	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13294
+	90.5	ZR.DB.12461	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13251
+seq38	Porphyromonadaceae;Parabacteroides;distasonis
+	99.3	ZR.DB.G.12402	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.3	ZR.DB.G.12411	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.3	ZR.DB.G.12405	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.3	ZR.DB.G.12413	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.3	ZR.DB.G.12409	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.3	ZR.DB.G.12401	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12404	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	99.1	ZR.DB.G.12406	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.3	ZR.DB.G.12410	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.3	ZR.DB.G.12408	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.3	ZR.DB.G.12412	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.1	ZR.DB.G.12407	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	98.1	ZR.DB.G.12403	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	97.6	ZR.DB.G.12400	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides distasonis
+	96.9	ZR.DB.12456	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13268
+	96.7	ZR.DB.12441	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13289
+	93.6	ZR.DB.12459	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13253
+	93.1	ZR.DB.12477	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13258
+	93.1	ZR.DB.12467	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13269
+	92.7	ZR.DB.12420	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides gordonii
+	92.7	ZR.DB.12454	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13275
+	92.7	ZR.DB.12453	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13272
+	92.4	ZR.DB.G.12425	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	92.4	ZR.DB.G.12427	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	92.4	ZR.DB.12414	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides faecis
+	92.4	ZR.DB.G.12426	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	92.4	ZR.DB.G.12424	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	92.4	ZR.DB.G.12428	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	92.4	ZR.DB.G.12421	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	92.4	ZR.DB.G.12423	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	92.4	ZR.DB.G.12430	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	92.4	ZR.DB.G.12429	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	92.4	ZR.DB.G.12422	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	92.2	ZR.DB.12474	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13265
+	91.7	ZR.DB.12450	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13286
+	91.2	ZR.DB.G.12419	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.2	ZR.DB.G.12416	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.2	ZR.DB.G.12415	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.2	ZR.DB.G.12418	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	91.0	ZR.DB.G.12417	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	90.8	ZR.DB.12447	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13294
+	90.8	ZR.DB.12461	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13251
+seq47	Porphyromonadaceae;Parabacteroides;merdae
+	100.0	ZR.DB.G.12427	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	100.0	ZR.DB.G.12430	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	100.0	ZR.DB.G.12428	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	100.0	ZR.DB.G.12429	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	100.0	ZR.DB.G.12426	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides merdae
+	97.9	ZR.DB.G.12423	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	97.9	ZR.DB.G.12421	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	97.9	ZR.DB.G.12425	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	97.9	ZR.DB.G.12422	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	97.9	ZR.DB.G.12424	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides johnsonii
+	97.6	ZR.DB.12474	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13265
+	96.2	ZR.DB.12450	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13286
+	96.0	ZR.DB.G.12417	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	96.0	ZR.DB.G.12419	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	96.0	ZR.DB.G.12415	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	96.0	ZR.DB.G.12416	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	96.0	ZR.DB.G.12418	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides goldsteinii
+	95.5	ZR.DB.12454	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13275
+	95.5	ZR.DB.12414	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides faecis
+	95.3	ZR.DB.12399	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides chinchillae
+	95.3	ZR.DB.12420	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__Parabacteroides gordonii
+	94.5	ZR.DB.12467	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13269
+	93.8	ZR.DB.12447	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13294
+	93.6	ZR.DB.12464	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13248
+	93.6	ZR.DB.12442	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13284
+	93.6	ZR.DB.12436	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13278
+	93.1	ZR.DB.12453	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13272
+	93.1	ZR.DB.12461	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13251
+	93.1	ZR.DB.12657	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__unidentified;s__sp13447
+	92.9	ZR.DB.12460	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13256
+	92.7	ZR.DB.12435	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13277
+	92.7	ZR.DB.12334	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Macellibacteroides;s__Macellibacteroides fermentans
+	92.7	ZR.DB.12439	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13281
+	92.4	ZR.DB.12445	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13291
+	92.4	ZR.DB.12433	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13283
+	92.2	ZR.DB.12473	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13264
+	92.2	ZR.DB.G.12478	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13295
+	92.2	ZR.DB.12432	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13274
+	91.7	ZR.DB.12448	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Parabacteroides;s__sp13288
+	90.3	ZR.DB.12608	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Tannerella;s__sp13426
+seq79	Porphyromonadaceae;Dysgonomonas;mossii
+	100.0	ZR.DB.12286	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas mossii
+	100.0	ZR.DB.12287	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas mossii
+	100.0	ZR.DB.12288	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas mossii
+	99.8	ZR.DB.12289	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas oryzarvi
+	95.5	ZR.DB.12305	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13129
+	94.1	ZR.DB.G.12291	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13108
+	94.1	ZR.DB.12300	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13134
+	93.8	ZR.DB.12323	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13116
+	93.6	ZR.DB.12281	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas gadei
+	93.6	ZR.DB.12279	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas gadei
+	93.6	ZR.DB.12282	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas gadei
+	93.6	ZR.DB.12301	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13133
+	93.6	ZR.DB.12290	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas termitidis
+	93.6	ZR.DB.12280	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas gadei
+	93.4	ZR.DB.12318	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13115
+	93.1	ZR.DB.G.12309	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13125
+	93.1	ZR.DB.12308	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13126
+	92.9	ZR.DB.12324	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13121
+	92.7	ZR.DB.12313	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13110
+	92.4	ZR.DB.12311	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13123
+	92.4	ZR.DB.12306	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13124
+	92.4	ZR.DB.12316	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13113
+	92.4	ZR.DB.12298	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13136
+	92.2	ZR.DB.12321	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13118
+	92.2	ZR.DB.12297	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13137
+	91.5	ZR.DB.12284	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas hofstadii
+	91.5	ZR.DB.G.12328	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13141
+	91.5	ZR.DB.12283	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas hofstadii
+	91.2	ZR.DB.12299	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13135
+	91.0	ZR.DB.12293	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13143
+	90.8	ZR.DB.12294	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__sp13114
+	90.0	ZR.DB.12285	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Dysgonomonas;s__Dysgonomonas macrotermitis
+seq184	Porphyromonadaceae;Odoribacter;sp13171
+	100.0	ZR.DB.G.12354	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Odoribacter;s__sp13171
+	96.4	ZR.DB.12361	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Odoribacter;s__sp13180
+	92.6	ZR.DB.12365	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Odoribacter;s__sp13184
+	91.4	ZR.DB.12364	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Odoribacter;s__sp13183
+	90.0	ZR.DB.12366	d__Bacteria;p__Bacteroidetes;c__Bacteroidia;o__Bacteroidales;f__Porphyromonadaceae;g__Odoribacter;s__sp13185

@@ -1,0 +1,37 @@
+seq_id	seq_identity(%)	ref_id	ref_taxonomy
+seq6	Turicibacter;sanguinis
+	96.0	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.6	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	95.1	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	95.1	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	90.9	ZR.DB.24635	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus cereus
+	90.9	ZR.DB.25059	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus mycoides
+	90.6	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467
+seq29	Turicibacter;sanguinis
+	96.3	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.8	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	95.3	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	95.3	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	90.9	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467
+seq69	Turicibacter;sanguinis
+	95.8	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.3	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	95.1	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	95.1	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	90.6	ZR.DB.25059	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus mycoides
+	90.4	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467
+	90.2	ZR.DB.G.24785	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus cytotoxicus
+seq102	Turicibacter;sanguinis
+	95.8	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.3	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	94.8	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	94.8	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	90.6	ZR.DB.25059	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus mycoides
+	90.4	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467
+seq104	Turicibacter;sanguinis
+	95.8	ZR.DB.36408	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__Turicibacter sanguinis
+	95.3	ZR.DB.36409	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36759
+	94.8	ZR.DB.36411	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36761
+	94.8	ZR.DB.36413	d__Bacteria;p__Firmicutes;c__Erysipelotrichia;o__Erysipelotrichales;f__Erysipelotrichaceae;g__Turicibacter;s__sp36757
+	90.6	ZR.DB.25059	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Bacillaceae;g__Bacillus;s__Bacillus mycoides
+	90.4	ZR.DB.27096	d__Bacteria;p__Firmicutes;c__Bacilli;o__Bacillales;f__Planococcaceae;g__Lysinibacillus;s__sp27467

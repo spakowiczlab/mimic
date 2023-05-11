@@ -1,0 +1,1006 @@
+seq_id	seq_identity(%)	ref_id	ref_taxonomy
+seq9	Roseburia;sp33152
+	99.0	ZR.DB.30979	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33152
+	98.5	ZR.DB.30961	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33146
+	97.8	ZR.DB.30941	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33149
+	97.5	ZR.DB.G.31994	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33604
+	96.5	ZR.DB.30932	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33197
+	96.5	ZR.DB.30899	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33187
+	96.0	ZR.DB.31974	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33729
+	95.8	ZR.DB.30947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33136
+	95.5	ZR.DB.32004	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33476
+	95.5	ZR.DB.30957	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33131
+	95.5	ZR.DB.32020	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33507
+	95.3	ZR.DB.30942	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33143
+	95.3	ZR.DB.30912	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33174
+	95.3	ZR.DB.31731	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33324
+	95.0	ZR.DB.31241	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32510
+	95.0	ZR.DB.30958	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33130
+	94.8	ZR.DB.30898	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33126
+	94.8	ZR.DB.31947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33734
+	94.8	ZR.DB.30928	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33209
+	94.8	ZR.DB.31884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33625
+	94.8	ZR.DB.30693	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32402
+	94.8	ZR.DB.31821	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33666
+	94.5	ZR.DB.30967	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33163
+	94.5	ZR.DB.31857	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33674
+	94.5	ZR.DB.31720	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33315
+	94.5	ZR.DB.30650	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32339
+	94.5	ZR.DB.31005	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33222
+	94.5	ZR.DB.30621	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32380
+	94.5	ZR.DB.30704	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32437
+	94.5	ZR.DB.30910	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33169
+	94.5	ZR.DB.30903	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33183
+	94.3	ZR.DB.31893	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33637
+	94.3	ZR.DB.31915	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33746
+	94.3	ZR.DB.30901	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33185
+	94.3	ZR.DB.32003	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33477
+	94.3	ZR.DB.31002	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33227
+	94.3	ZR.DB.30742	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32987
+	94.3	ZR.DB.31544	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32812
+	94.3	ZR.DB.31981	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33722
+	94.3	ZR.DB.32098	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33564
+	94.3	ZR.DB.30748	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32993
+	94.3	ZR.DB.31718	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33330
+	94.0	ZR.DB.30631	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32390
+	94.0	ZR.DB.30747	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32992
+	94.0	ZR.DB.31556	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32825
+	94.0	ZR.DB.31852	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33680
+	94.0	ZR.DB.32097	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33565
+	94.0	ZR.DB.31733	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33326
+	94.0	ZR.DB.31899	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33631
+	94.0	ZR.DB.30908	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33177
+	94.0	ZR.DB.31723	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33331
+	94.0	ZR.DB.31007	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33233
+	94.0	ZR.DB.30995	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33230
+	94.0	ZR.DB.30969	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33161
+	93.8	ZR.DB.32074	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33448
+	93.8	ZR.DB.G.30885	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	93.8	ZR.DB.G.30890	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	93.8	ZR.DB.30658	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32351
+	93.8	ZR.DB.30552	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__sp33384
+	93.8	ZR.DB.31873	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33614
+	93.8	ZR.DB.31932	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33773
+	93.8	ZR.DB.G.30887	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	93.8	ZR.DB.G.30889	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	93.8	ZR.DB.31590	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32861
+	93.8	ZR.DB.30744	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32989
+	93.8	ZR.DB.31725	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33319
+	93.8	ZR.DB.G.30891	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	93.8	ZR.DB.31728	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33321
+	93.8	ZR.DB.31589	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32857
+	93.8	ZR.DB.G.30886	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	93.5	ZR.DB.30640	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32347
+	93.5	ZR.DB.30668	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32368
+	93.5	ZR.DB.30960	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33144
+	93.5	ZR.DB.31547	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32816
+	93.5	ZR.DB.30918	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33189
+	93.5	ZR.DB.31138	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32188
+	93.5	ZR.DB.G.30550	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__Eubacterium hallii
+	93.5	ZR.DB.30863	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33078
+	93.5	ZR.DB.G.30714	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32428
+	93.5	ZR.DB.G.30712	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32430
+	93.5	ZR.DB.G.30892	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	93.5	ZR.DB.32144	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33518
+	93.5	ZR.DB.32106	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33582
+	93.5	ZR.DB.31587	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32859
+	93.5	ZR.DB.G.30893	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	93.5	ZR.DB.31941	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33762
+	93.5	ZR.DB.30937	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33192
+	93.5	ZR.DB.30860	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33099
+	93.5	ZR.DB.30938	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33170
+	93.5	ZR.DB.30980	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33151
+	93.5	ZR.DB.30699	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32442
+	93.5	ZR.DB.30740	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32985
+	93.5	ZR.DB.30949	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33137
+	93.3	ZR.DB.30884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia faecis
+	93.3	ZR.DB.G.31965	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33694
+	93.3	ZR.DB.31584	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32852
+	93.3	ZR.DB.30619	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32378
+	93.3	ZR.DB.G.30982	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33210
+	93.3	ZR.DB.30708	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32424
+	93.3	ZR.DB.30946	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33139
+	93.3	ZR.DB.31588	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32858
+	93.3	ZR.DB.30896	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	93.3	ZR.DB.31591	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32856
+	93.3	ZR.DB.32173	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33781
+	93.3	ZR.DB.30743	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32994
+	93.3	ZR.DB.31593	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32854
+	93.3	ZR.DB.30894	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	93.3	ZR.DB.30441	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__sp32023
+	93.3	ZR.DB.31550	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32819
+	93.3	ZR.DB.30895	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	93.3	ZR.DB.32087	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33575
+	93.3	ZR.DB.31592	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32855
+	93.3	ZR.DB.31557	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32824
+	93.3	ZR.DB.G.30706	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32445
+	93.3	ZR.DB.30974	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33158
+	93.0	ZR.DB.31140	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32186
+	93.0	ZR.DB.30662	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32358
+	93.0	ZR.DB.30950	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33145
+	93.0	ZR.DB.32171	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33775
+	93.0	ZR.DB.30737	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32982
+	93.0	ZR.DB.30915	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33190
+	93.0	ZR.DB.31000	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33225
+	93.0	ZR.DB.30940	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33168
+	93.0	ZR.DB.30870	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33084
+	93.0	ZR.DB.32094	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33568
+	93.0	ZR.DB.31390	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32795
+	93.0	ZR.DB.31586	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32860
+	93.0	ZR.DB.30994	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33232
+	93.0	ZR.DB.30952	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33132
+	92.8	ZR.DB.G.30983	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33211
+	92.8	ZR.DB.30633	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32392
+	92.8	ZR.DB.30761	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32971
+	92.8	ZR.DB.31495	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32681
+	92.8	ZR.DB.31661	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32927
+	92.8	ZR.DB.30610	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32369
+	92.8	ZR.DB.30873	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33101
+	92.8	ZR.DB.30985	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Ruminococcus;s__Ruminococcus gauvreauii
+	92.8	ZR.DB.31602	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32869
+	92.8	ZR.DB.30762	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32970
+	92.8	ZR.DB.31498	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32684
+	92.8	ZR.DB.31003	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33220
+	92.8	ZR.DB.30643	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32346
+	92.8	ZR.DB.32054	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33429
+	92.8	ZR.DB.30752	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32978
+	92.8	ZR.DB.31950	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33709
+	92.8	ZR.DB.30300	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Acetitomaculum;s__sp31925
+	92.8	ZR.DB.31714	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33275
+	92.8	ZR.DB.G.30837	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__Eubacterium rectale
+	92.8	ZR.DB.30869	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33082
+	92.8	ZR.DB.30917	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33188
+	92.8	ZR.DB.G.30888	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.8	ZR.DB.30741	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32986
+	92.8	ZR.DB.31142	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32189
+	92.5	ZR.DB.31890	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33640
+	92.5	ZR.DB.30919	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33199
+	92.5	ZR.DB.30753	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32977
+	92.5	ZR.DB.31595	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32864
+	92.5	ZR.DB.31533	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32663
+	92.5	ZR.DB.31712	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33277
+	92.5	ZR.DB.30604	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32320
+	92.5	ZR.DB.30948	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33138
+	92.5	ZR.DB.31665	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32924
+	92.5	ZR.DB.31975	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33728
+	92.5	ZR.DB.G.30697	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32444
+	92.5	ZR.DB.31659	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32929
+	92.3	ZR.DB.30907	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33178
+	92.3	ZR.DB.30608	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32336
+	92.3	ZR.DB.30713	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32429
+	92.3	ZR.DB.30975	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33156
+	92.3	ZR.DB.30533	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eisenbergiella;s__sp32219
+	92.3	ZR.DB.30931	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33198
+	92.3	ZR.DB.30670	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32408
+	92.3	ZR.DB.31612	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32880
+	92.3	ZR.DB.30298	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Acetitomaculum;s__sp31923
+	92.3	ZR.DB.31898	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33632
+	92.3	ZR.DB.31913	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33748
+	92.3	ZR.DB.30922	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33207
+	92.0	ZR.DB.30720	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnospira;s__sp32452
+	92.0	ZR.DB.G.30987	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	92.0	ZR.DB.31713	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33276
+	92.0	ZR.DB.31674	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32950
+	92.0	ZR.DB.G.30992	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	92.0	ZR.DB.30933	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33196
+	91.8	ZR.DB.G.30991	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.8	ZR.DB.30531	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eisenbergiella;s__sp32217
+	91.8	ZR.DB.G.30988	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.8	ZR.DB.31944	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33759
+	91.8	ZR.DB.31671	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32954
+	91.8	ZR.DB.G.30990	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.8	ZR.DB.31667	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32930
+	91.8	ZR.DB.30749	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32981
+	91.5	ZR.DB.31600	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32867
+	91.5	ZR.DB.30651	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32338
+	91.5	ZR.DB.G.30736	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32965
+	91.5	ZR.DB.31392	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32797
+	91.3	ZR.DB.30765	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32967
+	91.3	ZR.DB.31669	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32942
+	91.0	ZR.DB.31677	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32947
+	90.8	ZR.DB.31627	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32906
+	90.8	ZR.DB.31998	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33482
+seq28	Roseburia;sp33177
+	99.8	ZR.DB.30908	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33177
+	97.3	ZR.DB.31925	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33754
+	97.0	ZR.DB.31590	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32861
+	97.0	ZR.DB.30958	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33130
+	97.0	ZR.DB.31587	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32859
+	97.0	ZR.DB.31556	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32825
+	97.0	ZR.DB.30947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33136
+	96.8	ZR.DB.30747	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32992
+	96.5	ZR.DB.30912	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33174
+	96.5	ZR.DB.31554	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32822
+	96.5	ZR.DB.31592	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32855
+	96.5	ZR.DB.30901	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33185
+	96.5	ZR.DB.30742	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32987
+	96.5	ZR.DB.31559	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32815
+	96.3	ZR.DB.31586	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32860
+	96.3	ZR.DB.30860	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33099
+	96.3	ZR.DB.30937	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33192
+	96.3	ZR.DB.31589	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32857
+	96.0	ZR.DB.31005	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33222
+	96.0	ZR.DB.30949	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33137
+	96.0	ZR.DB.31790	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33387
+	96.0	ZR.DB.31591	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32856
+	96.0	ZR.DB.30884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia faecis
+	96.0	ZR.DB.G.30893	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	96.0	ZR.DB.G.30892	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	96.0	ZR.DB.30748	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32993
+	96.0	ZR.DB.31593	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32854
+	96.0	ZR.DB.30974	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33158
+	96.0	ZR.DB.32173	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33781
+	96.0	ZR.DB.30985	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Ruminococcus;s__Ruminococcus gauvreauii
+	95.8	ZR.DB.30870	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33084
+	95.8	ZR.DB.G.30887	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	95.8	ZR.DB.G.30886	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	95.8	ZR.DB.31007	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33233
+	95.8	ZR.DB.31588	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32858
+	95.8	ZR.DB.G.30891	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	95.8	ZR.DB.30950	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33145
+	95.8	ZR.DB.30916	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33171
+	95.8	ZR.DB.31550	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32819
+	95.8	ZR.DB.30859	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33090
+	95.8	ZR.DB.G.30890	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	95.8	ZR.DB.G.30889	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	95.8	ZR.DB.32094	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33568
+	95.8	ZR.DB.G.30885	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	95.8	ZR.DB.30551	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__Eubacterium oxidoreducens
+	95.8	ZR.DB.30757	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32975
+	95.5	ZR.DB.30744	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32989
+	95.5	ZR.DB.30894	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	95.5	ZR.DB.31618	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32886
+	95.5	ZR.DB.30658	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32351
+	95.5	ZR.DB.G.30837	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__Eubacterium rectale
+	95.5	ZR.DB.32171	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33775
+	95.5	ZR.DB.30915	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33190
+	95.5	ZR.DB.31211	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32459
+	95.5	ZR.DB.30895	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	95.5	ZR.DB.30883	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Robinsoniella;s__sp33111
+	95.5	ZR.DB.30864	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33079
+	95.5	ZR.DB.31981	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33722
+	95.5	ZR.DB.32031	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33496
+	95.5	ZR.DB.30896	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	95.3	ZR.DB.31798	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33395
+	95.3	ZR.DB.30866	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33081
+	95.3	ZR.DB.30869	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33082
+	95.3	ZR.DB.30941	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33149
+	95.3	ZR.DB.31714	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33275
+	95.3	ZR.DB.30907	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33178
+	95.3	ZR.DB.30743	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32994
+	95.3	ZR.DB.G.31994	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33604
+	95.3	ZR.DB.32004	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33476
+	95.3	ZR.DB.31213	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32457
+	95.3	ZR.DB.30729	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp30729
+	95.3	ZR.DB.30918	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33189
+	95.3	ZR.DB.30873	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33101
+	95.3	ZR.DB.31225	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32490
+	95.3	ZR.DB.30762	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32970
+	95.0	ZR.DB.30922	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33207
+	95.0	ZR.DB.G.30706	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32445
+	95.0	ZR.DB.31932	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33773
+	95.0	ZR.DB.30975	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33156
+	95.0	ZR.DB.30986	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Ruminococcus;s__sp33403
+	95.0	ZR.DB.30766	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32966
+	95.0	ZR.DB.31138	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32188
+	95.0	ZR.DB.31782	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33379
+	95.0	ZR.DB.30390	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__sp32032
+	95.0	ZR.DB.31602	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32869
+	95.0	ZR.DB.32054	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33429
+	95.0	ZR.DB.31712	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33277
+	95.0	ZR.DB.30969	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33161
+	95.0	ZR.DB.31000	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33225
+	95.0	ZR.DB.30952	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33132
+	95.0	ZR.DB.31500	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32686
+	95.0	ZR.DB.30704	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32437
+	95.0	ZR.DB.30754	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32980
+	95.0	ZR.DB.30880	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Robinsoniella;s__sp33108
+	95.0	ZR.DB.G.30982	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33210
+	95.0	ZR.DB.30621	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32380
+	95.0	ZR.DB.G.30714	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32428
+	95.0	ZR.DB.G.30983	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33211
+	94.8	ZR.DB.31875	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33612
+	94.8	ZR.DB.30380	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia producta
+	94.8	ZR.DB.30379	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia producta
+	94.8	ZR.DB.31390	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32795
+	94.8	ZR.DB.30370	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia hansenii
+	94.8	ZR.DB.32119	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33589
+	94.8	ZR.DB.31670	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32937
+	94.8	ZR.DB.30369	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia hansenii
+	94.8	ZR.DB.30368	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia coccoides
+	94.8	ZR.DB.30979	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33152
+	94.8	ZR.DB.31584	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32852
+	94.8	ZR.DB.31193	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32480
+	94.8	ZR.DB.30776	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33003
+	94.8	ZR.DB.30670	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32408
+	94.8	ZR.DB.30961	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33146
+	94.8	ZR.DB.30933	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33196
+	94.8	ZR.DB.30760	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32972
+	94.8	ZR.DB.31924	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33737
+	94.8	ZR.DB.G.30888	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	94.8	ZR.DB.31224	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32496
+	94.8	ZR.DB.30857	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33091
+	94.8	ZR.DB.31942	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33761
+	94.8	ZR.DB.30878	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Robinsoniella;s__sp33106
+	94.5	ZR.DB.31884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33625
+	94.5	ZR.DB.G.30736	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32965
+	94.5	ZR.DB.32177	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33779
+	94.5	ZR.DB.30378	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia producta
+	94.5	ZR.DB.30443	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__sp32009
+	94.5	ZR.DB.30925	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33204
+	94.5	ZR.DB.30940	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33168
+	94.5	ZR.DB.32003	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33477
+	94.5	ZR.DB.31684	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32940
+	94.5	ZR.DB.30957	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33131
+	94.5	ZR.DB.31625	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32908
+	94.5	ZR.DB.32040	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33454
+	94.5	ZR.DB.31560	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32818
+	94.5	ZR.DB.31410	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32762
+	94.5	ZR.DB.31271	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32567
+	94.5	ZR.DB.31140	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32186
+	94.3	ZR.DB.30752	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32978
+	94.3	ZR.DB.31977	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33726
+	94.3	ZR.DB.30761	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32971
+	94.3	ZR.DB.31877	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33610
+	94.3	ZR.DB.32036	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33491
+	94.3	ZR.DB.32142	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33520
+	94.3	ZR.DB.30903	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33183
+	94.3	ZR.DB.31898	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33632
+	94.3	ZR.DB.30763	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32969
+	94.3	ZR.DB.30965	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33165
+	94.3	ZR.DB.30652	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32366
+	94.3	ZR.DB.31855	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33676
+	94.0	ZR.DB.30977	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33154
+	94.0	ZR.DB.31830	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33658
+	94.0	ZR.DB.30818	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Oribacterium;s__sp33055
+	94.0	ZR.DB.30557	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Hespellia;s__sp32240
+	94.0	ZR.DB.30662	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32358
+	94.0	ZR.DB.30902	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33184
+	94.0	ZR.DB.31423	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32775
+	94.0	ZR.DB.31956	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33703
+	94.0	ZR.DB.31522	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32653
+	94.0	ZR.DB.30650	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32339
+	94.0	ZR.DB.31600	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32867
+	94.0	ZR.DB.30746	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32991
+	94.0	ZR.DB.31797	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33394
+	94.0	ZR.DB.30749	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32981
+	94.0	ZR.DB.31392	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32797
+	93.8	ZR.DB.30631	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32390
+	93.8	ZR.DB.30778	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33018
+	93.8	ZR.DB.30779	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33017
+	93.8	ZR.DB.31612	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32880
+	93.8	ZR.DB.31858	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33673
+	93.8	ZR.DB.31737	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33340
+	93.8	ZR.DB.30783	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33019
+	93.8	ZR.DB.30823	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Oribacterium;s__sp33057
+	93.8	ZR.DB.31222	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32484
+	93.8	ZR.DB.31640	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32889
+	93.8	ZR.DB.31209	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32461
+	93.5	ZR.DB.31937	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33765
+	93.5	ZR.DB.30773	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33004
+	93.5	ZR.DB.30701	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32440
+	93.5	ZR.DB.31930	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33767
+	93.5	ZR.DB.30769	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp32999
+	93.5	ZR.DB.31161	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32256
+	93.5	ZR.DB.31807	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33411
+	93.5	ZR.DB.31579	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32847
+	93.5	ZR.DB.31941	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33762
+	93.5	ZR.DB.31852	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33680
+	93.5	ZR.DB.31262	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32515
+	93.5	ZR.DB.31976	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33727
+	93.3	ZR.DB.31144	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32267
+	93.3	ZR.DB.30774	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp32997
+	93.3	ZR.DB.31926	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33755
+	93.3	ZR.DB.31780	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33382
+	93.3	ZR.DB.31477	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32608
+	93.3	ZR.DB.30787	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33009
+	93.3	ZR.DB.31784	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33381
+	93.0	ZR.DB.31227	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32488
+	93.0	ZR.DB.30833	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Oribacterium;s__sp33051
+	93.0	ZR.DB.31947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33734
+	92.8	ZR.DB.31487	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32618
+	92.5	ZR.DB.31573	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32841
+	92.3	ZR.DB.31626	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32907
+seq30	Roseburia;sp33143
+	100.0	ZR.DB.30942	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33143
+	98.3	ZR.DB.30899	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33187
+	95.5	ZR.DB.31974	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33729
+	95.5	ZR.DB.30996	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33229
+	95.3	ZR.DB.30912	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33174
+	95.0	ZR.DB.G.31994	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33604
+	95.0	ZR.DB.31006	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33221
+	94.8	ZR.DB.30979	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33152
+	94.5	ZR.DB.30958	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33130
+	94.5	ZR.DB.30974	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33158
+	94.5	ZR.DB.30957	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33131
+	94.3	ZR.DB.31873	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33614
+	94.3	ZR.DB.32004	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33476
+	94.3	ZR.DB.30941	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33149
+	94.3	ZR.DB.30961	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33146
+	94.3	ZR.DB.31002	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33227
+	94.0	ZR.DB.31899	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33631
+	94.0	ZR.DB.30924	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33205
+	94.0	ZR.DB.31241	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32510
+	93.8	ZR.DB.30901	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33185
+	93.8	ZR.DB.32133	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33529
+	93.8	ZR.DB.30947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33136
+	93.8	ZR.DB.30965	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33165
+	93.8	ZR.DB.32097	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33565
+	93.5	ZR.DB.31981	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33722
+	93.5	ZR.DB.31947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33734
+	93.5	ZR.DB.30903	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33183
+	93.5	ZR.DB.30898	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33126
+	93.5	ZR.DB.30932	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33197
+	93.5	ZR.DB.32020	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33507
+	93.5	ZR.DB.G.30983	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33211
+	93.5	ZR.DB.30621	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32380
+	93.5	ZR.DB.32074	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33448
+	93.5	ZR.DB.30967	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33163
+	93.5	ZR.DB.30918	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33189
+	93.5	ZR.DB.30911	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33175
+	93.5	ZR.DB.31857	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33674
+	93.3	ZR.DB.31219	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32494
+	93.3	ZR.DB.30928	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33209
+	93.3	ZR.DB.31557	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32824
+	93.3	ZR.DB.31003	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33220
+	93.3	ZR.DB.31005	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33222
+	93.3	ZR.DB.30994	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33232
+	93.3	ZR.DB.30919	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33199
+	93.3	ZR.DB.31821	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33666
+	93.3	ZR.DB.30980	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33151
+	93.0	ZR.DB.30948	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33138
+	93.0	ZR.DB.31545	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32813
+	93.0	ZR.DB.30952	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33132
+	93.0	ZR.DB.31893	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33637
+	93.0	ZR.DB.31180	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32310
+	93.0	ZR.DB.31888	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33642
+	93.0	ZR.DB.30860	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33099
+	93.0	ZR.DB.31932	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33773
+	93.0	ZR.DB.32003	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33477
+	93.0	ZR.DB.30937	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33192
+	93.0	ZR.DB.30552	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__sp33384
+	93.0	ZR.DB.30866	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33081
+	93.0	ZR.DB.30946	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33139
+	93.0	ZR.DB.30969	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33161
+	93.0	ZR.DB.G.30982	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33210
+	93.0	ZR.DB.30916	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33171
+	92.8	ZR.DB.G.30893	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	92.8	ZR.DB.31925	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33754
+	92.8	ZR.DB.31000	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33225
+	92.8	ZR.DB.31852	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33680
+	92.8	ZR.DB.G.30885	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.8	ZR.DB.G.30891	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.8	ZR.DB.G.30886	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.8	ZR.DB.31007	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33233
+	92.8	ZR.DB.30884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia faecis
+	92.8	ZR.DB.31592	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32855
+	92.8	ZR.DB.G.30890	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.8	ZR.DB.G.30889	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.8	ZR.DB.G.30887	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.8	ZR.DB.31824	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33663
+	92.8	ZR.DB.32173	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33781
+	92.8	ZR.DB.30668	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32368
+	92.8	ZR.DB.31921	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33740
+	92.8	ZR.DB.31884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33625
+	92.8	ZR.DB.G.30892	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	92.8	ZR.DB.30960	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33144
+	92.8	ZR.DB.31731	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33324
+	92.5	ZR.DB.32160	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33537
+	92.5	ZR.DB.31500	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32686
+	92.5	ZR.DB.30975	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33156
+	92.5	ZR.DB.31723	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33331
+	92.5	ZR.DB.30864	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33079
+	92.5	ZR.DB.30740	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32985
+	92.5	ZR.DB.31890	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33640
+	92.5	ZR.DB.30929	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33200
+	92.5	ZR.DB.31733	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33326
+	92.5	ZR.DB.30995	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33230
+	92.5	ZR.DB.30949	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33137
+	92.5	ZR.DB.30959	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33133
+	92.5	ZR.DB.31834	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33653
+	92.5	ZR.DB.30744	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32989
+	92.5	ZR.DB.31902	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33628
+	92.5	ZR.DB.30293	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Acetitomaculum;s__sp31918
+	92.3	ZR.DB.31718	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33330
+	92.3	ZR.DB.31720	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33315
+	92.3	ZR.DB.32094	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33568
+	92.3	ZR.DB.30682	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32412
+	92.3	ZR.DB.30850	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33098
+	92.3	ZR.DB.31262	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32515
+	92.3	ZR.DB.32144	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33518
+	92.3	ZR.DB.31855	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33676
+	92.3	ZR.DB.30907	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33178
+	92.3	ZR.DB.31142	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32189
+	92.0	ZR.DB.32131	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33531
+	92.0	ZR.DB.30943	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33142
+	92.0	ZR.DB.30650	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32339
+	92.0	ZR.DB.30859	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33090
+	92.0	ZR.DB.30894	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	92.0	ZR.DB.30741	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32986
+	92.0	ZR.DB.30895	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	92.0	ZR.DB.31992	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33572
+	92.0	ZR.DB.31664	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32936
+	92.0	ZR.DB.G.30837	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__Eubacterium rectale
+	92.0	ZR.DB.31593	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32854
+	92.0	ZR.DB.30729	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp30729
+	92.0	ZR.DB.31823	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33664
+	92.0	ZR.DB.31401	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32805
+	92.0	ZR.DB.30896	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	92.0	ZR.DB.31065	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32082
+	92.0	ZR.DB.31205	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32465
+	92.0	ZR.DB.31367	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32718
+	91.8	ZR.DB.30726	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnospira;s__sp32454
+	91.8	ZR.DB.31586	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32860
+	91.8	ZR.DB.31941	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33762
+	91.8	ZR.DB.31344	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32750
+	91.8	ZR.DB.32029	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33498
+	91.8	ZR.DB.30917	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33188
+	91.8	ZR.DB.31905	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33690
+	91.8	ZR.DB.30966	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33164
+	91.8	ZR.DB.30419	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__sp32006
+	91.5	ZR.DB.30357	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Anaerostipes;s__sp31967
+	91.5	ZR.DB.31659	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32929
+	91.5	ZR.DB.31929	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33771
+	91.5	ZR.DB.30938	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33170
+	91.5	ZR.DB.31732	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33325
+	91.5	ZR.DB.30608	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32336
+	91.5	ZR.DB.31504	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32702
+	91.5	ZR.DB.31001	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33224
+	91.5	ZR.DB.32159	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33543
+	91.5	ZR.DB.G.30987	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.5	ZR.DB.31892	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33638
+	91.5	ZR.DB.30633	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32392
+	91.5	ZR.DB.31734	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33327
+	91.5	ZR.DB.32106	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33582
+	91.5	ZR.DB.30922	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33207
+	91.5	ZR.DB.31661	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32927
+	91.5	ZR.DB.31725	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33319
+	91.3	ZR.DB.G.30993	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.3	ZR.DB.31146	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32264
+	91.3	ZR.DB.30406	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__sp32046
+	91.3	ZR.DB.G.31054	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__Eubacterium cellulosolvens
+	91.3	ZR.DB.G.30988	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.3	ZR.DB.G.30991	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.3	ZR.DB.31306	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32540
+	91.3	ZR.DB.G.31167	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32276
+	91.3	ZR.DB.G.30990	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.3	ZR.DB.31248	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32533
+	91.3	ZR.DB.31713	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33276
+	91.3	ZR.DB.G.31053	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__Eubacterium cellulosolvens
+	91.3	ZR.DB.G.31059	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__Eubacterium cellulosolvens
+	91.3	ZR.DB.G.31060	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__Eubacterium cellulosolvens
+	91.3	ZR.DB.31621	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32912
+	91.3	ZR.DB.31682	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32946
+	91.0	ZR.DB.31934	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33769
+	91.0	ZR.DB.G.30846	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__Pseudobutyrivibrio ruminis
+	91.0	ZR.DB.31827	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33660
+	91.0	ZR.DB.G.30989	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.0	ZR.DB.30721	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnospira;s__sp32451
+	91.0	ZR.DB.G.30844	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__Pseudobutyrivibrio ruminis
+	90.8	ZR.DB.31920	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33741
+	90.8	ZR.DB.G.31774	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33371
+	90.8	ZR.DB.32175	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33778
+	90.8	ZR.DB.31271	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32567
+	90.8	ZR.DB.31776	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33373
+	90.8	ZR.DB.30865	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33080
+	90.8	ZR.DB.31109	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32161
+	90.8	ZR.DB.30720	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnospira;s__sp32452
+	90.8	ZR.DB.31778	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33375
+	90.5	ZR.DB.31019	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Syntrophococcus;s__sp33242
+	90.5	ZR.DB.30931	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33198
+	90.5	ZR.DB.31105	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32165
+	90.5	ZR.DB.31093	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32090
+	90.5	ZR.DB.30920	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33191
+	90.5	ZR.DB.G.31166	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32277
+	90.5	ZR.DB.31549	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32821
+	90.5	ZR.DB.30930	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33201
+	90.3	ZR.DB.30620	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32379
+	90.3	ZR.DB.31779	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33376
+	90.3	ZR.DB.31847	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33684
+	90.3	ZR.DB.31891	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33639
+	90.0	ZR.DB.30722	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnospira;s__sp32450
+	90.0	ZR.DB.30295	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Acetitomaculum;s__sp31920
+	90.0	ZR.DB.31777	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33374
+	90.0	ZR.DB.31783	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33380
+seq54	Roseburia;sp33143
+	99.8	ZR.DB.30942	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33143
+	98.0	ZR.DB.30899	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33187
+	95.3	ZR.DB.31974	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33729
+	95.3	ZR.DB.30996	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33229
+	95.0	ZR.DB.30912	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33174
+	94.8	ZR.DB.G.31994	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33604
+	94.8	ZR.DB.31006	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33221
+	94.5	ZR.DB.30979	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33152
+	94.3	ZR.DB.30974	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33158
+	94.3	ZR.DB.30957	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33131
+	94.3	ZR.DB.30958	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33130
+	94.0	ZR.DB.30941	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33149
+	94.0	ZR.DB.31002	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33227
+	94.0	ZR.DB.31873	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33614
+	94.0	ZR.DB.32004	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33476
+	94.0	ZR.DB.30961	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33146
+	93.8	ZR.DB.31899	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33631
+	93.8	ZR.DB.30924	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33205
+	93.8	ZR.DB.31241	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32510
+	93.5	ZR.DB.30947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33136
+	93.5	ZR.DB.30965	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33165
+	93.5	ZR.DB.32097	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33565
+	93.5	ZR.DB.32133	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33529
+	93.5	ZR.DB.30901	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33185
+	93.3	ZR.DB.G.30983	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33211
+	93.3	ZR.DB.31857	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33674
+	93.3	ZR.DB.32020	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33507
+	93.3	ZR.DB.30918	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33189
+	93.3	ZR.DB.31947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33734
+	93.3	ZR.DB.30932	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33197
+	93.3	ZR.DB.30898	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33126
+	93.3	ZR.DB.30903	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33183
+	93.3	ZR.DB.30967	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33163
+	93.3	ZR.DB.30621	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32380
+	93.3	ZR.DB.31981	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33722
+	93.3	ZR.DB.32074	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33448
+	93.3	ZR.DB.30911	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33175
+	93.0	ZR.DB.30994	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33232
+	93.0	ZR.DB.31219	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32494
+	93.0	ZR.DB.31003	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33220
+	93.0	ZR.DB.30928	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33209
+	93.0	ZR.DB.31790	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33387
+	93.0	ZR.DB.30919	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33199
+	93.0	ZR.DB.31557	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32824
+	93.0	ZR.DB.31821	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33666
+	93.0	ZR.DB.30980	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33151
+	93.0	ZR.DB.31005	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33222
+	92.8	ZR.DB.30860	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33099
+	92.8	ZR.DB.31932	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33773
+	92.8	ZR.DB.32003	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33477
+	92.8	ZR.DB.31888	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33642
+	92.8	ZR.DB.G.30982	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33210
+	92.8	ZR.DB.30866	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33081
+	92.8	ZR.DB.30946	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33139
+	92.8	ZR.DB.31893	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33637
+	92.8	ZR.DB.30937	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33192
+	92.8	ZR.DB.31180	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32310
+	92.8	ZR.DB.30952	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33132
+	92.8	ZR.DB.30552	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__sp33384
+	92.8	ZR.DB.30916	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33171
+	92.8	ZR.DB.30948	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33138
+	92.8	ZR.DB.30969	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33161
+	92.5	ZR.DB.31824	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33663
+	92.5	ZR.DB.G.30886	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.5	ZR.DB.G.30885	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.5	ZR.DB.30668	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32368
+	92.5	ZR.DB.31925	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33754
+	92.5	ZR.DB.31007	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33233
+	92.5	ZR.DB.30960	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33144
+	92.5	ZR.DB.31921	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33740
+	92.5	ZR.DB.G.30893	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	92.5	ZR.DB.G.30890	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.5	ZR.DB.31731	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33324
+	92.5	ZR.DB.30884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia faecis
+	92.5	ZR.DB.31884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33625
+	92.5	ZR.DB.G.30892	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	92.5	ZR.DB.G.30891	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.5	ZR.DB.G.30889	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.5	ZR.DB.32173	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33781
+	92.5	ZR.DB.31852	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33680
+	92.5	ZR.DB.G.30887	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	92.5	ZR.DB.31000	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33225
+	92.5	ZR.DB.31592	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32855
+	92.3	ZR.DB.31834	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33653
+	92.3	ZR.DB.31723	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33331
+	92.3	ZR.DB.32160	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33537
+	92.3	ZR.DB.31500	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32686
+	92.3	ZR.DB.31138	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32188
+	92.3	ZR.DB.30959	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33133
+	92.3	ZR.DB.31890	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33640
+	92.3	ZR.DB.30975	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33156
+	92.3	ZR.DB.30995	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33230
+	92.3	ZR.DB.30929	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33200
+	92.3	ZR.DB.G.30714	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32428
+	92.3	ZR.DB.30293	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Acetitomaculum;s__sp31918
+	92.3	ZR.DB.30744	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32989
+	92.3	ZR.DB.31733	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33326
+	92.3	ZR.DB.30740	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32985
+	92.3	ZR.DB.30949	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33137
+	92.3	ZR.DB.30864	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33079
+	92.0	ZR.DB.32144	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33518
+	92.0	ZR.DB.31718	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33330
+	92.0	ZR.DB.30682	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32412
+	92.0	ZR.DB.31262	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32515
+	92.0	ZR.DB.30850	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33098
+	92.0	ZR.DB.32094	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33568
+	92.0	ZR.DB.31142	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32189
+	92.0	ZR.DB.30907	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33178
+	92.0	ZR.DB.30950	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33145
+	92.0	ZR.DB.31855	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33676
+	92.0	ZR.DB.31720	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33315
+	91.8	ZR.DB.30729	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp30729
+	91.8	ZR.DB.30896	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	91.8	ZR.DB.31135	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32191
+	91.8	ZR.DB.30895	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	91.8	ZR.DB.30650	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32339
+	91.8	ZR.DB.30859	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33090
+	91.8	ZR.DB.30943	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33142
+	91.8	ZR.DB.31401	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32805
+	91.8	ZR.DB.G.30837	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__Eubacterium rectale
+	91.8	ZR.DB.30741	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32986
+	91.8	ZR.DB.31140	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32186
+	91.8	ZR.DB.31065	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32082
+	91.8	ZR.DB.31593	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32854
+	91.8	ZR.DB.31664	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32936
+	91.8	ZR.DB.30894	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	91.8	ZR.DB.31367	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32718
+	91.8	ZR.DB.31728	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33321
+	91.8	ZR.DB.32171	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33775
+	91.8	ZR.DB.31205	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32465
+	91.5	ZR.DB.30917	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33188
+	91.5	ZR.DB.31621	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32912
+	91.5	ZR.DB.31344	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32750
+	91.5	ZR.DB.30419	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__sp32006
+	91.5	ZR.DB.31941	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33762
+	91.5	ZR.DB.31586	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32860
+	91.5	ZR.DB.30726	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnospira;s__sp32454
+	91.5	ZR.DB.31905	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33690
+	91.5	ZR.DB.30966	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33164
+	91.3	ZR.DB.31001	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33224
+	91.3	ZR.DB.30938	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33170
+	91.3	ZR.DB.30922	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33207
+	91.3	ZR.DB.G.30987	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.3	ZR.DB.32106	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33582
+	91.3	ZR.DB.31892	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33638
+	91.3	ZR.DB.30608	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32336
+	91.3	ZR.DB.31725	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33319
+	91.3	ZR.DB.31659	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32929
+	91.3	ZR.DB.G.30992	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.3	ZR.DB.31732	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33325
+	91.3	ZR.DB.31661	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32927
+	91.3	ZR.DB.30357	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Anaerostipes;s__sp31967
+	91.3	ZR.DB.31734	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33327
+	91.3	ZR.DB.32159	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33543
+	91.0	ZR.DB.G.31053	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__Eubacterium cellulosolvens
+	91.0	ZR.DB.31713	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33276
+	91.0	ZR.DB.31248	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32533
+	91.0	ZR.DB.G.31054	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__Eubacterium cellulosolvens
+	91.0	ZR.DB.G.30990	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.0	ZR.DB.30406	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__sp32046
+	91.0	ZR.DB.32167	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33545
+	91.0	ZR.DB.G.31167	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32276
+	91.0	ZR.DB.31682	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32946
+	91.0	ZR.DB.31944	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33759
+	91.0	ZR.DB.G.31060	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__Eubacterium cellulosolvens
+	91.0	ZR.DB.G.30993	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.0	ZR.DB.G.31059	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__Eubacterium cellulosolvens
+	91.0	ZR.DB.31146	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32264
+	91.0	ZR.DB.G.31056	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__Eubacterium cellulosolvens
+	91.0	ZR.DB.G.30988	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	91.0	ZR.DB.G.30991	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	90.8	ZR.DB.30840	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__Pseudobutyrivibrio ruminis
+	90.8	ZR.DB.G.30846	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__Pseudobutyrivibrio ruminis
+	90.8	ZR.DB.G.30844	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__Pseudobutyrivibrio ruminis
+	90.8	ZR.DB.G.30847	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__Pseudobutyrivibrio ruminis
+	90.8	ZR.DB.31934	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33769
+	90.8	ZR.DB.30721	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnospira;s__sp32451
+	90.8	ZR.DB.G.30989	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__Shuttleworthia satelles
+	90.8	ZR.DB.G.30843	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__Pseudobutyrivibrio ruminis
+	90.8	ZR.DB.30845	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__Pseudobutyrivibrio ruminis
+	90.8	ZR.DB.31827	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33660
+	90.5	ZR.DB.31137	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32192
+	90.5	ZR.DB.31920	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33741
+	90.5	ZR.DB.G.31774	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33371
+	90.5	ZR.DB.30865	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33080
+	90.5	ZR.DB.30720	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnospira;s__sp32452
+	90.5	ZR.DB.31778	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33375
+	90.5	ZR.DB.31776	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33373
+	90.5	ZR.DB.32175	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33778
+	90.3	ZR.DB.31093	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32090
+	90.3	ZR.DB.30930	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33201
+	90.3	ZR.DB.31549	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32821
+	90.3	ZR.DB.30920	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33191
+	90.3	ZR.DB.G.31166	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32277
+	90.3	ZR.DB.31019	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Syntrophococcus;s__sp33242
+	90.3	ZR.DB.30931	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33198
+	90.3	ZR.DB.31105	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32165
+	90.0	ZR.DB.30620	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32379
+	90.0	ZR.DB.31779	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33376
+	90.0	ZR.DB.31847	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33684
+seq83	Roseburia;sp33177
+	99.5	ZR.DB.30908	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33177
+	97.5	ZR.DB.31925	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33754
+	97.3	ZR.DB.31556	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32825
+	97.3	ZR.DB.31587	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32859
+	97.3	ZR.DB.31590	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32861
+	96.8	ZR.DB.30958	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33130
+	96.8	ZR.DB.31592	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32855
+	96.8	ZR.DB.30901	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33185
+	96.8	ZR.DB.31559	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32815
+	96.8	ZR.DB.31554	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32822
+	96.8	ZR.DB.30947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33136
+	96.5	ZR.DB.31586	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32860
+	96.5	ZR.DB.30860	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33099
+	96.5	ZR.DB.31589	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32857
+	96.5	ZR.DB.30747	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32992
+	96.3	ZR.DB.31593	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32854
+	96.3	ZR.DB.30974	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33158
+	96.3	ZR.DB.30742	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32987
+	96.3	ZR.DB.G.30892	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	96.3	ZR.DB.30985	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Ruminococcus;s__Ruminococcus gauvreauii
+	96.3	ZR.DB.31790	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33387
+	96.3	ZR.DB.30949	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33137
+	96.3	ZR.DB.30884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia faecis
+	96.3	ZR.DB.32173	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33781
+	96.3	ZR.DB.31591	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32856
+	96.3	ZR.DB.G.30893	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia intestinalis
+	96.3	ZR.DB.30912	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33174
+	96.0	ZR.DB.G.30891	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	96.0	ZR.DB.G.30885	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	96.0	ZR.DB.30916	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33171
+	96.0	ZR.DB.30551	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Eubacterium;s__Eubacterium oxidoreducens
+	96.0	ZR.DB.30950	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33145
+	96.0	ZR.DB.31588	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32858
+	96.0	ZR.DB.30863	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33078
+	96.0	ZR.DB.32094	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33568
+	96.0	ZR.DB.31007	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33233
+	96.0	ZR.DB.30937	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33192
+	96.0	ZR.DB.G.30886	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	96.0	ZR.DB.G.30890	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	96.0	ZR.DB.G.30887	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	96.0	ZR.DB.30859	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33090
+	96.0	ZR.DB.31550	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32819
+	96.0	ZR.DB.G.30889	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	95.8	ZR.DB.30896	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	95.8	ZR.DB.30864	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33079
+	95.8	ZR.DB.31618	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32886
+	95.8	ZR.DB.31192	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32479
+	95.8	ZR.DB.32031	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33496
+	95.8	ZR.DB.31211	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32459
+	95.8	ZR.DB.30915	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33190
+	95.8	ZR.DB.30748	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32993
+	95.8	ZR.DB.30883	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Robinsoniella;s__sp33111
+	95.8	ZR.DB.31005	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33222
+	95.8	ZR.DB.30895	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	95.8	ZR.DB.30894	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia inulinivorans
+	95.5	ZR.DB.31187	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32481
+	95.5	ZR.DB.30869	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33082
+	95.5	ZR.DB.30918	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33189
+	95.5	ZR.DB.30708	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32424
+	95.5	ZR.DB.31798	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33395
+	95.5	ZR.DB.30729	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp30729
+	95.5	ZR.DB.31213	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32457
+	95.5	ZR.DB.30612	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32371
+	95.5	ZR.DB.30870	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33084
+	95.5	ZR.DB.30873	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Pseudobutyrivibrio;s__sp33101
+	95.3	ZR.DB.30658	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32351
+	95.3	ZR.DB.30730	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lactonifactor;s__Lactonifactor longoviformis
+	95.3	ZR.DB.31782	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33379
+	95.3	ZR.DB.32054	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33429
+	95.3	ZR.DB.31500	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32686
+	95.3	ZR.DB.30880	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Robinsoniella;s__sp33108
+	95.3	ZR.DB.31602	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32869
+	95.3	ZR.DB.30986	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Ruminococcus;s__sp33403
+	95.3	ZR.DB.30754	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32980
+	95.3	ZR.DB.30975	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33156
+	95.3	ZR.DB.G.30983	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33211
+	95.3	ZR.DB.G.30706	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32445
+	95.3	ZR.DB.30969	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33161
+	95.0	ZR.DB.32062	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33463
+	95.0	ZR.DB.30878	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Robinsoniella;s__sp33106
+	95.0	ZR.DB.31332	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32738
+	95.0	ZR.DB.31942	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33761
+	95.0	ZR.DB.31390	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32795
+	95.0	ZR.DB.32004	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33476
+	95.0	ZR.DB.31875	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33612
+	95.0	ZR.DB.31665	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32924
+	95.0	ZR.DB.30776	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33003
+	95.0	ZR.DB.30762	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32970
+	95.0	ZR.DB.31714	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33275
+	95.0	ZR.DB.32119	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33589
+	95.0	ZR.DB.G.30888	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__Roseburia hominis
+	95.0	ZR.DB.31670	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32937
+	95.0	ZR.DB.31683	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32941
+	95.0	ZR.DB.30948	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33138
+	95.0	ZR.DB.31193	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32480
+	95.0	ZR.DB.G.31994	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33604
+	95.0	ZR.DB.31224	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32496
+	94.8	ZR.DB.30610	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32369
+	94.8	ZR.DB.G.30982	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33210
+	94.8	ZR.DB.31684	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32940
+	94.8	ZR.DB.31712	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33277
+	94.8	ZR.DB.31331	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32737
+	94.8	ZR.DB.32073	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33447
+	94.8	ZR.DB.31661	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32927
+	94.8	ZR.DB.31000	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33225
+	94.8	ZR.DB.31560	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32818
+	94.8	ZR.DB.31003	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Shuttleworthia;s__sp33220
+	94.8	ZR.DB.G.30714	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32428
+	94.8	ZR.DB.31410	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32762
+	94.8	ZR.DB.31495	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32681
+	94.8	ZR.DB.30704	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32437
+	94.8	ZR.DB.31138	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32188
+	94.8	ZR.DB.30390	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__sp32032
+	94.8	ZR.DB.31625	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32908
+	94.5	ZR.DB.30368	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia coccoides
+	94.5	ZR.DB.30671	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32399
+	94.5	ZR.DB.30652	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32366
+	94.5	ZR.DB.30379	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia producta
+	94.5	ZR.DB.30608	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32336
+	94.5	ZR.DB.30639	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32365
+	94.5	ZR.DB.31189	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32476
+	94.5	ZR.DB.30369	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia hansenii
+	94.5	ZR.DB.31584	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32852
+	94.5	ZR.DB.30370	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia hansenii
+	94.5	ZR.DB.30380	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia producta
+	94.5	ZR.DB.30670	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32408
+	94.5	ZR.DB.30626	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32385
+	94.5	ZR.DB.32126	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33559
+	94.5	ZR.DB.30713	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32429
+	94.5	ZR.DB.31877	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33610
+	94.5	ZR.DB.31924	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33737
+	94.5	ZR.DB.32142	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33520
+	94.5	ZR.DB.G.30710	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32432
+	94.3	ZR.DB.G.30736	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Marvinbryantia;s__sp32965
+	94.3	ZR.DB.31600	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32867
+	94.3	ZR.DB.31956	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33703
+	94.3	ZR.DB.31911	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33756
+	94.3	ZR.DB.30977	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Roseburia;s__sp33154
+	94.3	ZR.DB.30378	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Blautia;s__Blautia producta
+	94.3	ZR.DB.31986	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33717
+	94.3	ZR.DB.32010	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33470
+	94.3	ZR.DB.30331	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Anaerosporobacter;s__sp31939
+	94.3	ZR.DB.32177	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33779
+	94.3	ZR.DB.31140	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32186
+	94.3	ZR.DB.32003	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33477
+	94.3	ZR.DB.31773	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33383
+	94.3	ZR.DB.30818	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Oribacterium;s__sp33055
+	94.3	ZR.DB.31830	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33658
+	94.3	ZR.DB.30557	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Hespellia;s__sp32240
+	94.3	ZR.DB.30662	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32358
+	94.3	ZR.DB.31522	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32653
+	94.3	ZR.DB.31884	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33625
+	94.3	ZR.DB.31423	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32775
+	94.3	ZR.DB.32040	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33454
+	94.0	ZR.DB.31612	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32880
+	94.0	ZR.DB.31209	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32461
+	94.0	ZR.DB.30679	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32420
+	94.0	ZR.DB.31222	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32484
+	94.0	ZR.DB.32155	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33552
+	94.0	ZR.DB.30779	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33017
+	94.0	ZR.DB.31858	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33673
+	94.0	ZR.DB.30694	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32401
+	94.0	ZR.DB.31910	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33751
+	94.0	ZR.DB.32036	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33491
+	94.0	ZR.DB.30778	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33018
+	94.0	ZR.DB.31898	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33632
+	94.0	ZR.DB.30823	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Oribacterium;s__sp33057
+	94.0	ZR.DB.30783	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33019
+	93.8	ZR.DB.31937	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33765
+	93.8	ZR.DB.31161	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32256
+	93.8	ZR.DB.30773	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33004
+	93.8	ZR.DB.31918	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33743
+	93.8	ZR.DB.30363	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Anaerostipes;s__sp31963
+	93.8	ZR.DB.31807	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33411
+	93.8	ZR.DB.30556	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Hespellia;s__sp32241
+	93.8	ZR.DB.30701	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32440
+	93.8	ZR.DB.30769	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp32999
+	93.8	ZR.DB.31208	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32462
+	93.8	ZR.DB.31976	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33727
+	93.8	ZR.DB.31392	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32797
+	93.5	ZR.DB.31737	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33340
+	93.5	ZR.DB.30787	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp33009
+	93.5	ZR.DB.31784	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33381
+	93.5	ZR.DB.30774	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Mobilitalea;s__sp32997
+	93.5	ZR.DB.31214	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32456
+	93.5	ZR.DB.32008	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33472
+	93.5	ZR.DB.31200	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32470
+	93.5	ZR.DB.31477	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32608
+	93.5	ZR.DB.30686	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32398
+	93.5	ZR.DB.30692	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32403
+	93.3	ZR.DB.30707	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32434
+	93.0	ZR.DB.31487	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32618
+	93.0	ZR.DB.30716	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__Lachnoclostridium;s__sp32426
+	93.0	ZR.DB.31149	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32266
+	93.0	ZR.DB.31351	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32756
+	93.0	ZR.DB.32060	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33464
+	92.8	ZR.DB.31207	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32472
+	92.8	ZR.DB.31947	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp33734
+	92.5	ZR.DB.31626	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32907
+	92.5	ZR.DB.31212	d__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__Lachnospiraceae;g__unidentified;s__sp32458
