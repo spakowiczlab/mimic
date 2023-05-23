@@ -3,6 +3,8 @@ library(tidyverse)
 
 sampbox <- read_excel("../data/16S/ANL/argonne_spakowicz_sampleboxmap.xlsx")
 mimbox <- read_excel("../data/16S/ANL/argonne_spakowicz_mimicboxmap.xlsx")
+barcode <- read.delim("../data/16S/ANL/230428_Williams_16sFWD_230426.txt") %>%
+  rename("sampleID" = "X.SampleID")
 
 break_plates <- function(boxdat){
   pstarts <- grep("Plate", colnames(boxdat))
@@ -35,6 +37,9 @@ mimiclong <- break_plates(mimbox)
 joined.dat <- samplelong %>%
   rename("sampleID" = "sample") %>%
   left_join(mimiclong) %>%
-  rename("mimicID" = "sample")
+  rename("mimicID" = "sample") %>%
+  left_join(barcode)
 
 any(is.na(joined.dat$mimicID))
+
+write.csv(joined.dat, "../data/16S/ANL/metadat.csv", row.names = F)
