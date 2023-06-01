@@ -5,6 +5,7 @@ sampbox <- read_excel("../data/16S/ANL/argonne_spakowicz_sampleboxmap.xlsx")
 mimbox <- read_excel("../data/16S/ANL/argonne_spakowicz_mimicboxmap.xlsx")
 barcode <- read.delim("../data/16S/ANL/230428_Williams_16sFWD_230426.txt") %>%
   rename("sampleID" = "X.SampleID")
+tumorsize <- read.csv("../data/2023-04-25_tumor-size_R-formatted.csv")
 
 break_plates <- function(boxdat){
   pstarts <- grep("Plate", colnames(boxdat))
