@@ -1,0 +1,90 @@
+---
+title: "16S Boxplots"
+output: html_document
+date: "2023-05-15"
+author: "LN" 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readxl)
+library(ggplot2)
+library(tidyverse)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+abundance<-read.csv("../data/16S/00...AllSamples.Bac16Sv34/DADA2_ASV_Distribution/ASV_Abundance_Table.csv")
+key.tissue<-read_excel("../data/16S/zymo_tissue-key.xlsx")
+tax.assignments<-read.delim("../data/16S/00...AllSamples.Bac16Sv34/DADA2_ASV_Distribution/ASV_tax_assignments.txt",header = FALSE)
+TEST<-read_excel("../data/16S/TEST.xlsx")
+blautia.key<-read.csv("../data/16S/Mouse_blautia_sample-key.csv")
+absolute.a<-read.csv("../data/16S/00...AllSamples.Bac16Sv34/Sample_Information/absolute.abundance.csv")
+abundance<-read.csv("../data/16S/00...AllSamples.Bac16Sv34/DADA2_ASV_Distribution/ASV_Abundance_Table.csv")
+```
+
+Extract tail and cage number from key tissue
+```{r}
+temp <-key.tissue %>% 
+  filter(`tissue source`== "Mouse tumor") %>%
+  mutate(tail.number=substr(sample,8,8),
+         cage=substr(sample,10,10))
+Blautia <-merge(temp, blautia.key, by=c("tail.number","cage"))
+#
+Blautia.sequs <-tax.assignments %>%
+  filter(grepl("Blautia",V2))
+temp2 <-absolute.a %>%
+  filter(grepl("t",customer_label)) %>%
+  rename("sample"=customer_label)
+Blautia <-merge(Blautia,temp2) %>%
+  distinct() %>%
+  select(-gene_copies_per_ul,-DNA_ng_per_ul.,-sample_id,-Ct)
+abundance.blautia <-abundance %>%
+  select(seqs,Blautia.sequs$V1) %>%
+  filter(grepl("t",seqs))
+abundance <-abundance %>%
+  filter(grepl("t",seqs))
+#
+Blautia.matrix <-abundance.blautia %>%
+  column_to_rownames(var = "seqs") %>%
+  rowSums() %>%
+  as.data.frame()
+#  
+colnames(Blautia.matrix)[1] <- "blautia.abundance"
+#
+Blautia.matrix$RowNames <- rownames(Blautia.matrix)
+colnames(Blautia.matrix)[2] <- "sample"
+#
+BlautiaFinal <-merge(Blautia.matrix, Blautia, by=c("sample"))
+```
+
+boxplots 
+```{r}
+#absolute abundance
+BlautiaFinal %>%
+  filter(genome_copies_per_ul. <1e6) %>%
+  
+ggplot(aes(microbiome.sample,genome_copies_per_ul.)) +
+  geom_boxplot() 
+#blautia abundance 
+ggplot(BlautiaFinal, aes(x=microbiome.sample, y=blautia.abundance)) +
+  geom_boxplot()
+```
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+ggplot2::ggplot(TEST,aes(Sample,abundance))+
+  geom_boxplot()
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
