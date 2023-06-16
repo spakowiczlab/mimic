@@ -1,0 +1,196 @@
+---
+title: "16S Demultiplexing"
+output: html_document
+date: "2023-06-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tools)
+library(fs)
+library(here)
+library(Biostrings)
+```
+
+
+```{r}
+"config-mimic.R" %>%
+    here() %>%
+    source()
+
+# make directory for output
+if (dir_exists(demux_dir)) {dir_delete(demux_dir)}
+dir_create(demux_dir)
+
+```
+
+## Check Data Integrity
+
+```{r md5sums check}
+
+mimic_md5 <- mimic_md5sum %>%
+  read_delim(delim=" ", 
+             trim_ws = TRUE,
+             col_names = c("md5sum", "X2" ,"filename")) %>%
+  select(-X2)
+
+
+md5check <- mimic_data_dir %>%
+  list.files(full.names = TRUE) %>%
+  md5sum %>%
+  enframe %>%
+  dplyr::rename(fullpath=name, observed_md5=value) %>%
+  mutate(filename=basename(fullpath)) %>%
+  right_join(mimic_md5, by="filename") %>%
+  mutate(match=identical(md5sum,observed_md5))
+    
+md5check %>%
+    pull(match) %>%
+    all ->
+    all_md5s_ok
+
+stopifnot(all_md5s_ok)
+
+```
+
+## Instructions for downloading ea-utils for fastq-multx
+1. In the terminal, run "module load miniconda3"
+2. In the terminal, run "conda create --name demux ea-utils" (demux refers to the name of the new environment and ea-utils is the package installed in it)
+3. In the markdown file, create a new code block, but instead of {r}, use {bash engine.opts='-l'} and in the first line run "conda activate demux", this loads in the demux environment and lets you use ea-utils in that code block
+
+
+## Demultiplexing
+
+```{bash engine.opts='-l'}
+
+conda activate demux
+
+fastq-multx
+
+```
+
+
+```{r barcode table}
+
+mimic.metadata <- read.table(map_file) %>%
+  select(`Sample` = `V1`,
+         BarcodeSequence = `V2`)  %>%
+  write_delim(barcode_table,        # output barcodes to a file 
+              delim="\t", 
+              col_names=FALSE)
+
+```
+
+```{bash engine.opts='-l'}
+
+conda activate demux
+
+
+set -u
+fastq-multx \
+  -m 3 \
+  -d 2 \
+  -x \
+  -B $BARCODE_TABLE \
+  $BARCODE_FASTQ \
+  $R1_FASTQ \
+  $R2_FASTQ \
+  -o ${DEMUX_DIR}/'%_I1.fastq.gz' \
+  -o ${DEMUX_DIR}/'%.R1.fastq.gz' \
+  -o ${DEMUX_DIR}/'%.R2.fastq.gz' > \
+  $DEMUX_STDOUT
+
+```
+
+```{r}
+demux_stdout %>%
+  read_tsv(file=.,
+           skip=1, 
+           col_names=c("Id", "Count", "I1_path", "R1_path", "R2_path")) ->
+  reads_per_sample
+
+```
+
+```{r}
+reads_per_sample %>%
+    mutate(groupval = 
+           ifelse(str_detect(Id,"unmatched|total"),
+                 Id,
+                 "sample")) %>%
+    group_by(groupval) %>%
+    summarise(Count=sum(Count))
+
+```
+
+## Rerun with reverse complement barcodes
+
+```{r}
+
+if (dir_exists(demux_dir)) {dir_delete(demux_dir)}
+dir_create(demux_dir)
+
+```
+
+```{r}
+
+read_table(map_file) %>% # read in map file
+  select(Sample = `#SampleID`, 
+         BarcodeSequence = `BarcodeSequence`) %>%   
+  deframe %>%                          # convert to a named vector (expected input for DNAStringSet constructor)
+  DNAStringSet %>%                     # convert to DNAStringSet
+  reverseComplement %>%                # reverse complement the barcodes
+  as.data.frame %>%                    # convert to dataframe for write_delim
+  rownames_to_column %>% 
+  write_delim(rc_barcode_table,        # output barcodes to a file 
+              delim="\t", 
+              col_names=FALSE)
+
+
+```
+
+
+```{bash engine.opts='-l'}
+
+conda activate demux
+
+
+set -u
+fastq-multx \
+  -m 3 \
+  -d 2 \
+  -x \
+  -B $RC_BARCODE_TABLE \
+  $BARCODE_FASTQ \
+  $R1_FASTQ \
+  $R2_FASTQ \
+  -o ${DEMUX_DIR}/'%_I1.fastq.gz' \
+  -o ${DEMUX_DIR}/'%.R1.fastq.gz' \
+  -o ${DEMUX_DIR}/'%.R2.fastq.gz' > \
+  $RC_DEMUX_STDOUT
+
+```
+
+```{r}
+rc_demux_stdout %>%
+  read_tsv(file=.,
+           skip=1, 
+           col_names=c("Id", "Count", "I1_path", "R1_path", "R2_path")) ->
+    reads_per_sample_rc_barcode
+
+```
+
+
+```{r}
+reads_per_sample_rc_barcode %>%
+    mutate(groupval = 
+           ifelse(str_detect(Id,"unmatched|total"),
+                 Id,
+                 "sample")) %>%
+    group_by(groupval) %>%
+    summarise(Count=sum(Count))
+
+```
+
+# Rerunning with reverse complement barcodes increased the unmatched substantially, stick with the original demux
+
