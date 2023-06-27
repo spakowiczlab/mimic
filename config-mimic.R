@@ -79,6 +79,8 @@ Sys.setenv(RAXML_NUM_BOOTSTRAP=100,
 # output directories for common-use
 amplicon_results_group_dir <- file.path(results_dir, "amplicon")
 dada_results_group_dir <- file.path(amplicon_results_group_dir, "dada2")
+asv_seqtab <- file.path(dada_results_group_dir, "mimic_seqtab.rds")
+asv_taxa <- file.path(dada_results_group_dir, "mimic_taxa.rds")
 amplicon_ps_group_dir <- file.path(amplicon_results_group_dir, "ps")
 amplicon_tree_group_dir <- file.path(amplicon_results_group_dir, "tree")
 
