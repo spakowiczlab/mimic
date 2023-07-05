@@ -61,8 +61,26 @@ key.exp <- raw.key %>%
 key.treat <- key.exp %>%
   mutate(treatment = if_else(grepl("pd1", mimicID),
                           true = "Anti-PD1",
-                          false = "IgG"))
-
+                          false = "IgG")) %>%
+  mutate(timepoint = "gavage") %>%
+  mutate(timepoint = if_else(grepl("-P", mimicID),
+                          true = "Anti-PD1/IgG",
+                          false = timepoint)) %>%
+  mutate(timepoint = if_else(grepl("-N", mimicID),
+                          true = "necropsy",
+                          false = timepoint)) %>%
+  mutate(timepoint = if_else(grepl("-B", mimicID),
+                          true = "baseline",
+                          false = timepoint)) %>%
+  mutate(timepoint = if_else(grepl("-W", mimicID),
+                          true = "Weighing",
+                          false = timepoint)) %>%
+  mutate(timepoint = if_else(grepl("-M", mimicID),
+                          true = "MC38",
+                          false = timepoint)) %>%
+  mutate(timepoint = if_else(grepl("slur", mimicID),
+                          true = "gavage slurry",
+                          false = timepoint))
 ```
 
 # I'm going to split by experiment from here and set them up separately, seems like the simplest path right now
@@ -80,13 +98,14 @@ key.mim1 <- key.treat %>%
 key.mim2 <- key.treat %>%
   filter(experiment == "mimic 2") %>%
   mutate(`sample` = if_else(grepl("sal", mimicID),
-                          true = "Saline",
+                          true = "NA",
                           false = "DL081"),
          gavage = if_else(grepl("sal", mimicID),
                           true = "Saline",
                           false = "Non-responder"),
          hypothesis = "ICI Response",
-         trial = "Fitness")
+         trial = "Fitness",
+         `sample` = na_if(`sample`, "NA"))
 
 key.mim3 <- key.treat %>%
   filter(experiment == "mimic 3") %>%
@@ -101,7 +120,9 @@ key.mim3 <- key.treat %>%
 key.mim5 <- key.treat %>%
   filter(experiment == "mimic 5") %>%
   mutate(`sample` = "HONC60-102",
-         gavage = NA,
+         gavage = if_else(grepl("c1|c2", mimicID),
+                          true = "Pre-BRB",
+                          false = "Post-BRB"),
          hypothesis = "Random Sample",
          trial = "BEWELL",
          treatment = if_else(grepl("c1|c4", mimicID),
@@ -166,17 +187,46 @@ key.mim13 <- key.treat %>%
                           false = "Anti-PD1"))
 
 key.mim14 <- key.treat %>%
-  filter(experiment == "mimic 14")  
-  mutate(`sample` = "HONC60-68",
+  filter(experiment == "mimic 14") %>%
+  mutate(`sample` = if_else(grepl("c1|c3", mimicID),
+                          true = "4033",
+                          false = "4058"),
          gavage = if_else(grepl("c1|c3", mimicID),
-                          true = "Pre-BRB",
-                          false = "Post-BRB"),
-         hypothesis = "Roseburia",
-         trial = "BEWELL",
-         treatment = if_else(grepl("c3|c4", mimicID),
+                          true = "Responder",
+                          false = "Non-Responder"),
+         hypothesis = "Immunotherapy Resp.",
+         trial = "Fitness",
+         treatment = NA)
+  
+key.mim15 <- key.treat %>%
+  filter(experiment == "mimic 15") %>% 
+  mutate(`sample` = NA,
+         gavage = "saline",
+         hypothesis = "Antibiotic Resp.",
+         trial = "mimic",
+         treatment = if_else(grepl("c1|c5", mimicID),
                           true = "IgG",
-                          false = "Anti-PD1"))
+                          false = "Anti-PD1"),
+         treatment = if_else(grepl("c4|c8", mimicID),
+                          true = "IgG + Antibiotics",
+                          false = treatment),
+         treatment = if_else(grepl("c2|c6", mimicID),
+                          true = "Anti-PD1 + Antibiotics",
+                          false = treatment))
+  
+  key.mim16 <- key.treat %>%
+    filter(experiment == "mimic 16") %>%
+    mutate(`sample` = "HONC60-85v1",
+           gavage = if_else(grepl("c2|c4", mimicID),
+                            true = "Pre-BRB",
+                            false = "Pre-BRB + Blautia"),
+           hypothesis = "Blautia Supp.",
+           trial = "BEWELL",
+           treatment = if_else(grepl("c3|c4", mimicID),
+                               true = "IgG",
+                               false = "Anti-PD1"))
 ```
+
 
 ```{r}
 key <- bind_rows(key.mim1,
@@ -187,7 +237,10 @@ key <- bind_rows(key.mim1,
                  key.mim10,
                  key.mim11,
                  key.mim12,
-                 key.mim13)
+                 key.mim13,
+                 key.mim14,
+                 key.mim15,
+                 key.mim16)
 
 write.csv(x = key, 
           file = paste0("../data/", "mimic16S-key.csv"))
