@@ -1,0 +1,49 @@
+---
+title: "Justin's script"
+author: "Dan Spakowicz"
+date: "2023-07-19"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+```{r}
+x <- read.csv("../data/2023-07-19_tumor-size_R-formatted.csv")
+
+head(x)
+```
+
+```{r}
+m17 <- x %>%
+  filter(experiment == "mimic17") %>%
+  filter(days.from.injection == 21)
+```
+
+
+```{r}
+box <- 
+  m17 %>%
+  ggplot(aes(x = microbiome.sample, y = tumor.volume)) +
+  geom_boxplot(aes(fill = treatment)) +
+  theme_bw() +
+  labs(x = "Gavage",
+       y = "Tumor Volume",
+       fill = "Treatment") +
+  scale_fill_brewer(palette = "Set1")
+
+box + 
+  labs(x = "") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+ggsave("../figures/mimic17_boxplot_talk.png",
+       height = 4, width = 4)
+
+box +
+  theme_bw(base_size = 18)
+ggsave("../figures/mimic17_boxplot_poster.png",
+       height = 5, width = 7)
+```
+
