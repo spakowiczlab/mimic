@@ -272,7 +272,7 @@ mim11 <- tsize.raw[[grep("mimic11", names(tsize.raw))]] %>%
          `date` = as.character(`date`),
          Treatment = ifelse(cage %in% c(1,2), "Anti-PD1","IgG"), 
          treatment.group = paste(Treatment, microbiome.sample, sep = " x "),
-         tail.number = paste(tail.number, cage, sep = " x ")) %>%
+         tail.number = paste(tail.number, cage, sep = " x ")) %>% 
   calcTumorVol(., as.POSIXct("2022-06-23")) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
@@ -369,7 +369,7 @@ mim18 <- tsize.raw[[grep("mimic18", names(tsize.raw))]] %>%
   calcTumorVol(., as.POSIXct("2023-06-22")) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
-         experiment = "mimic17") %>%
+         experiment = "mimic18") %>%
   separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
 
 ```
