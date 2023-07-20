@@ -18,15 +18,16 @@ head(x)
 ```
 
 ```{r}
-m17 <- x %>%
-  filter(experiment == "mimic17") %>%
+m18 <- x %>%
+  filter(experiment == "mimic18") %>%
   filter(days.from.injection == 21)
 ```
 
 
 ```{r}
 box <- 
-  m17 %>%
+  m18 %>%
+  mutate(treatment = fct_relevel(treatment, "IgG")) %>%
   ggplot(aes(x = microbiome.sample, y = tumor.volume)) +
   geom_boxplot(aes(fill = treatment)) +
   theme_bw() +
@@ -38,12 +39,12 @@ box <-
 box + 
   labs(x = "") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
-ggsave("../figures/mimic17_boxplot_talk.png",
+ggsave("../figures/mimic18_boxplot_talk.png",
        height = 4, width = 4)
 
 box +
   theme_bw(base_size = 18)
-ggsave("../figures/mimic17_boxplot_poster.png",
+ggsave("../figures/mimic18_boxplot_poster.png",
        height = 5, width = 7)
 ```
 
