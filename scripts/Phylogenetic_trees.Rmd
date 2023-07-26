@@ -1,0 +1,124 @@
+---
+title: "Phylogenetic Tree"
+author: "Nyelia Williams"
+date: "2023-07-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+install.packages("phangorn")
+install.packages("seqinr")
+
+```
+
+
+```{r} 
+
+library(ape)
+library(phangorn)
+library(seqinr)
+library(DECIPHER)
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+#align sequences from a txt file into fasta file to read in
+
+seqs <- readDNAStringSet("paa.txt", format = "fasta")
+
+seqs
+
+#optional: if the sequences are not in the same orientation
+seqs <- OrientNucleotides(seqs)
+
+#perform alignment
+aligned <- AlignSeqs(seqs)
+
+# optional: view alignment in browser
+BrowseSeqs(aligned, highlight = 0)
+
+# write the alignment to a new FASTA file
+writeXStringSet(aligned,
+                file = "paa_aligned.fasta")
+
+```
+
+```{r}
+#read in fasta file
+
+paa <- read.dna("paa_aligned.fasta", format = "fasta")
+
+#convert alignment to a phyDat object
+paa_phyDat <- phyDat(paa, type = "DNA", levels = NULL)
+
+```
+
+
+```{r} 
+#subset to the first 10 taxa
+
+paa10 <- subset(paa_phyDat, 1:5)
+paa10_phyDat <- phyDat(paa10, type = "DNA", levels = NULL)
+
+```
+
+
+```{r}
+
+#Model Testing and Distance Matrices
+
+mtpaa <- modelTest(paa_phyDat)
+#print(mt)
+
+#mt <- modelTest(paa)
+#print(mt)
+
+dm <- dist.ml(paa, model = "JC69")
+
+
+```
+
+```{r}
+#Neighbor Joining, UPGMA, and Maximum Parsimony
+
+paa_UPGMA <- upgma(dm)
+paa_NJ <- NJ(dm)
+plot(paa_UPGMA, main = "UPGMA")
+plot(paa_NJ, main = "Neighbor Joining")
+
+```
+
+
+```{r}
+fit <- pml(paa_NJ, paa_phyDat)
+print(fit)
+
+fitJC <- optim.pml(fit, model = "JC", rearrangement = "stochastic")
+logLik(fitJC)
+bs <- bootstrap.pml(fitJC, bs=100, optNni=TRUE, multicore=TRUE, control = pml.control(trace=0))
+plotBS(midpoint(fitJC$tree), bs, p = 50, type="p")
+
+```
+
+
+
+```{r}
+write.tree(bs, file="bootstrap_paa.tre")
+
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
