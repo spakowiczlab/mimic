@@ -1,0 +1,324 @@
+---
+title: "DESeq2 mimic 16S"
+output: html_document
+date: "2023-07-11"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse) 
+library(ggplot2)
+library(fs)
+library(here)
+library(tools)
+library(BiocManager)
+library(broom)
+library(DESeq2)
+
+
+
+"config-mimic.R" %>%
+    here() %>%
+    source()
+```
+
+```{r}
+taxa <- read_rds(asv_taxa) %>%
+  as.data.frame()
+
+seqtab <- read_rds(asv_seqtab) %>%
+  as.data.frame()
+
+key <- read_csv("../data/mimic16S-key.csv") %>%
+  select(-`...1`)
+
+```
+
+```{r processing taxa table}
+
+taxa.long <- taxa %>%
+  rownames_to_column(var="ASV") %>%
+  gather(Taxonomy,Classification,-ASV) %>%
+  group_by(ASV) %>% 
+  mutate(Taxonomy = as.factor(Taxonomy),
+         Taxonomy=fct_relevel(Taxonomy,"Kingdom","Phylum","Class","Order","Family","Genus","Species")) 
+
+taxa.spread <- taxa.long %>%
+  spread(Taxonomy,Classification) %>%
+  mutate(Phylum=if_else(is.na(Phylum),paste0("p_unclassified_",Kingdom),Phylum),
+         Class=if_else(is.na(Class),paste0("c_unclassified_",Phylum),Class),
+         Order=if_else(is.na(Order),paste0("o_unclassified_",Class),Order),
+         Family=if_else(is.na(Family),paste0("f_unclassified_",Order),Family),
+         Genus=if_else(is.na(Genus),paste0("g_unclassified_",Family),Genus),
+         Species=if_else(is.na(Species),paste0("s_unclassified_",Genus),Species))
+
+```
+
+# mimic10
+
+```{r filtering to mimic 10}
+
+key.10 <- key %>% 
+  filter(experiment == "mimic 10",timepoint == "necropsy") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+seqtab.10 <- seqtab %>%
+  rownames_to_column(var = "sampleID") %>%
+  right_join(key.10, by = "sampleID")
+
+```
+
+```{r coldata}
+
+seq.count10 <- seqtab.10 %>%
+  gather(ASV,counts,-sampleID) %>%
+  left_join(taxa.spread,"ASV") %>%
+  group_by(sampleID,Genus) %>%
+  summarise(genus.counts=sum(counts))
+
+key.treat10 <- key %>%
+  filter(experiment == "mimic 10",timepoint == "necropsy") %>%
+  select(sampleID,gavage) %>%
+  mutate(gavage=fct_relevel(gavage,"Pre-BRB"),
+         sampleID=as.character(sampleID)) %>%
+  arrange(desc(sampleID))
+
+```
+
+```{r countData}
+
+seq.tib10 <- seq.count10 %>%
+  spread(Genus,genus.counts) %>%
+  as_tibble() %>%
+  arrange(desc(sampleID))
+
+seq.matrix10 <- seq.tib10 %>%
+  select(-sampleID) %>%
+  as.matrix() %>%
+  t()
+
+names.counts10 <- seq.tib10 %>%
+  select(sampleID) %>%
+  as.vector()
+
+colnames(seq.matrix10) <- names.counts10$sampleID
+
+```
+
+```{r running DESeq}
+
+mim10.DESeq <- DESeqDataSetFromMatrix(countData = seq.matrix10,colData = key.treat10,design= ~gavage)
+
+mim10.DESeq.run <- DESeq(mim10.DESeq)
+
+resultsNames(mim10.DESeq.run)
+
+g.DESeq.Result10 <- results(mim10.DESeq.run)%>%
+  as.data.frame() %>%
+  arrange(padj) %>%
+  mutate(sig.flag = ifelse(padj < .05,"S","NS"))
+
+```
+
+
+
+#mimic 11
+
+```{r filtering to mimic 11}
+
+key.11 <- key %>% 
+  filter(experiment == "mimic 11",timepoint == "necropsy") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+seqtab.11 <- seqtab %>%
+  rownames_to_column(var = "sampleID") %>%
+  right_join(key.11, by = "sampleID")
+
+```
+
+```{r coldata}
+
+seq.count11 <- seqtab.11 %>%
+  gather(ASV,counts,-sampleID) %>%
+  left_join(taxa.spread,"ASV") %>%
+  group_by(sampleID,Genus) %>%
+  summarise(genus.counts=sum(counts))
+
+key.treat11 <- key %>%
+  filter(experiment == "mimic 11",timepoint == "necropsy") %>%
+  select(sampleID,gavage) %>%
+  mutate(gavage=fct_relevel(gavage,"Post-Placebo"),
+         sampleID=as.character(sampleID)) %>%
+  arrange(desc(sampleID))
+
+```
+
+```{r countData}
+seq.tib11 <- seq.count11 %>%
+  spread(Genus,genus.counts) %>%
+  as_tibble() %>%
+  arrange(desc(sampleID))
+
+seq.matrix11 <- seq.tib11 %>%
+  select(-sampleID) %>%
+  as.matrix() %>%
+  t()
+
+names.counts11 <- seq.tib11 %>%
+  select(sampleID) %>%
+  as.vector()
+
+colnames(seq.matrix11) <- names.counts11$sampleID
+```
+
+```{r running DESeq}
+
+mim11.DESeq <- DESeqDataSetFromMatrix(countData = seq.matrix11,colData = key.treat11,design= ~gavage)
+
+mim11.DESeq.run <- DESeq(mim11.DESeq)
+
+resultsNames(mim11.DESeq.run)
+
+DESeq.Result11 <- results(mim11.DESeq.run)%>%
+  as.data.frame() %>%
+  arrange(padj) %>%
+  mutate(sig.flag = ifelse(padj < .05,"S","NS"))
+
+```
+
+# mimic 12 
+
+```{r filtering to mimic 12}
+
+key.12 <- key %>% 
+  filter(experiment == "mimic 12",timepoint == "necropsy") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+seqtab.12 <- seqtab %>%
+  rownames_to_column(var = "sampleID") %>%
+  right_join(key.12, by = "sampleID")
+
+```
+
+```{r coldata}
+
+seq.count12 <- seqtab.12 %>%
+  gather(ASV,counts,-sampleID) %>%
+  left_join(taxa.spread,"ASV") %>%
+  group_by(sampleID,Genus) %>%
+  summarise(genus.counts=sum(counts))
+
+key.treat12 <- key %>%
+  filter(experiment == "mimic 12",timepoint == "necropsy") %>%
+  select(sampleID,gavage) %>%
+  mutate(gavage=fct_relevel(gavage,"Pre-BRB"),
+         sampleID=as.character(sampleID)) %>%
+  arrange(desc(sampleID))
+
+```
+
+```{r countData}
+seq.tib12 <- seq.count12 %>%
+  spread(Genus,genus.counts) %>%
+  as_tibble() %>%
+  arrange(desc(sampleID))
+
+seq.matrix12 <- seq.tib12 %>%
+  select(-sampleID) %>%
+  as.matrix() %>%
+  t()
+
+names.counts12 <- seq.tib12 %>%
+  select(sampleID) %>%
+  as.vector()
+
+colnames(seq.matrix12) <- names.counts12$sampleID
+
+```
+
+```{r running DESeq}
+
+mim12.DESeq <- DESeqDataSetFromMatrix(countData = seq.matrix12,colData = key.treat12,design= ~gavage)
+
+mim12.DESeq.run <- DESeq(mim12.DESeq)
+
+resultsNames(mim12.DESeq.run)
+
+DESeq.Result12 <- results(mim12.DESeq.run)%>%
+  as.data.frame() %>%
+  arrange(padj) %>%
+  mutate(sig.flag = ifelse(padj < .05,"S","NS"))
+
+```
+
+# mimic 13
+
+```{r filtering to mimic 13}
+
+key.13 <- key %>% 
+  filter(experiment == "mimic 13",timepoint == "necropsy") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+seqtab.13 <- seqtab %>%
+  rownames_to_column(var = "sampleID") %>%
+  right_join(key.13, by = "sampleID")
+
+```
+
+```{r coldata}
+
+seq.count13 <- seqtab.13 %>%
+  gather(ASV,counts,-sampleID) %>%
+  left_join(taxa.spread,"ASV") %>%
+  group_by(sampleID,Genus) %>%
+  summarise(genus.counts=sum(counts))
+
+key.treat13 <- key %>%
+  filter(experiment == "mimic 13",timepoint == "necropsy") %>%
+  select(sampleID,gavage) %>%
+  mutate(gavage=fct_relevel(gavage,"Pre-BRB"),
+         sampleID=as.character(sampleID)) %>%
+  arrange(desc(sampleID))
+
+```
+
+```{r countData}
+seq.tib13 <- seq.count13 %>%
+  spread(Genus,genus.counts) %>%
+  as_tibble() %>%
+  arrange(desc(sampleID))
+
+seq.matrix13 <- seq.tib13 %>%
+  select(-sampleID) %>%
+  as.matrix() %>%
+  t()
+
+names.counts13 <- seq.tib13 %>%
+  select(sampleID) %>%
+  as.vector()
+
+colnames(seq.matrix13) <- names.counts13$sampleID
+
+```
+
+```{r running DESeq}
+
+mim13.DESeq <- DESeqDataSetFromMatrix(countData = seq.matrix13,colData = key.treat13,design= ~gavage)
+
+mim13.DESeq.run <- DESeq(mim13.DESeq)
+
+resultsNames(mim13.DESeq.run)
+
+DESeq.Result13 <- results(mim13.DESeq.run)%>%
+  as.data.frame() %>%
+  arrange(padj) %>%
+  mutate(sig.flag = ifelse(padj < .05,"S","NS"))
+
+```
+
+## filter to necropsy timepoints

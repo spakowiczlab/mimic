@@ -24,6 +24,7 @@ library(tools)
 ## Set up Paths and Check Data
 
 ```{r}
+
 if (dir_exists(dada_out_dir)) {
   dir_delete(dada_out_dir)
 }
@@ -32,9 +33,12 @@ dir_create(dada_out_dir)
 dada_out_dir
 
 list.files(demux_dir)
+
 ```
 
 ## Filter and Trim
+
+# Subset forward and reverse files 
 
 ```{r}
 
@@ -45,8 +49,12 @@ fnFs <- demux_dir %>%
   sort
 
 fnFs <- fnFs[- 518] # Remove the unmatched fastq
-
+ 
 print(fnFs)
+
+```
+
+```{r}
 
 # Reverse FASTQs
 fnRs <- demux_dir %>%
@@ -60,7 +68,7 @@ print(fnRs)
 
 ```
 
-## List of Sample Names
+# List of Sample Names
 
 ```{r}
 
@@ -98,16 +106,14 @@ plotQualityProfile(fnRs, aggregate = T)
 
 ```
 
-# Trim left = 5 and trunclen(230,227)
 
-Filtering and Trimming
+# Peform Filtering and Trimming
 
 ```{r}
 
 filt_path <- file.path(dada_out_dir, "filtered") # Place filtered files in filtered/ subdirectory
 filtFs <- file.path(filt_path, paste0(sample_names, "_F_filt.fastq.gz"))
 filtRs <- file.path(filt_path, paste0(sample_names, "_R_filt.fastq.gz"))
-
 
 ```
 
@@ -120,9 +126,11 @@ filt_out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, trimLeft=5, truncLen=c(230
 ```
 
 ```{r}
+
 filtoutput <- filt_out %>%
   data.frame()%>%
-  arrange(reads.out) 
+  arrange(reads.out) %>%
+  head(n = 20)
 
 ```
 
@@ -194,7 +202,7 @@ dadaFs <- dada(derepFs, err=errF, multithread=num_cpus)
 
 ```{r}
 
-dadaRs <- dada(derepRs, err=errR, multithread=num_cpus)
+dadaRs <- dada(derepRs, err=errR, multithread=num_cpus)  
 
 ```
 
@@ -204,7 +212,6 @@ dadaRs <- dada(derepRs, err=errR, multithread=num_cpus)
 
 mergers <- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE)
 
-
 ```
 
 ## Construct Sequence Table
@@ -212,23 +219,21 @@ mergers <- mergePairs(dadaFs, derepFs, dadaRs, derepRs, verbose=TRUE)
 ```{r}
 
 seqtab <- makeSequenceTable(mergers)
-dim(seqtab)
+dim(seqtab) 
 
 table(nchar(getSequences(seqtab)))
 
-
 ```
 
-## Remove Chimeras
+# Remove Chimeras
 
 ```{r}
 
 seqtab_nochim <- removeBimeraDenovo(seqtab, method="consensus", multithread=num_cpus, verbose=TRUE)
 
-dim(seqtab_nochim)
+dim(seqtab_nochim)  
 
 sum(seqtab_nochim)/sum(seqtab)
-
 
 ```
 
@@ -245,7 +250,7 @@ filt_out %>%
 
 sapply(dadaFs, getN) %>%
   enframe(name="sample", value="denoised") ->
-  denoised
+  denoised    
 track %<>% full_join(denoised, by=c("sample"))
 
 sapply(mergers, getN) %>%
@@ -277,7 +282,7 @@ track %>%
     mutate(stage=factor(stage, levels = c('input','filtered','denoised','merged','tabled','nonchim'))) %>%
     ggplot(mapping=aes(x=stage, y=counts, by=sample, group = sample)) +
     geom_line(alpha=0.5) +
-        theme_classic()
+        theme_bw()
 
 ```
 
@@ -287,8 +292,6 @@ track %>%
 
 taxa <- assignTaxonomy(seqtab_nochim, silva_ref, multithread=num_cpus)
 
-
-
 ```
 
 ```{r}
@@ -296,7 +299,6 @@ taxa <- assignTaxonomy(seqtab_nochim, silva_ref, multithread=num_cpus)
 taxa_print <- taxa # Removing sequence rownames for display only
 rownames(taxa_print) <- NULL
 head(taxa_print)
-
 
 ```
 
@@ -306,7 +308,7 @@ head(taxa_print)
 
 asv_seqtab
 
-write_rds(seqtab_nochim, asv_seqtab)
+write_rds(seqtab_nochim, asv_seqtab)  
 
 ```
 
@@ -315,5 +317,40 @@ write_rds(seqtab_nochim, asv_seqtab)
 asv_taxa
 
 write_rds(taxa, asv_taxa)
+
+```
+
+## Adding species
+
+```{r}
+
+taxatable <- read_rds(asv_taxa) 
+
+taxatable_species <- addSpecies(taxatable, silva_species_ref)
+
+```
+
+# Saving w/ species
+
+```{r}
+
+write_rds(taxatable_species, asv_taxa)
+```
+
+
+# Opening files
+
+```{r}
+test.taxa <- read_rds(asv_taxa) # to do this, you need to run config-mimic.R line in chunk 1
+
+test.seq <- read_rds("/fs/ess/PAS1695/projects/mimic/results/amplicon/dada2/mimic_seqtab.rds")
+
+```
+
+```{r}
+
+key <- read_csv("../../data/mimic16S-key.csv") %>%
+  select(-`...1`)
+
 ```
 
