@@ -1,0 +1,218 @@
+---
+title: "mim18-19-volume-analysis"
+author: "Aadi Pallerla"
+date: "2023-08-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(lme4)
+library(lmerTest)
+library(readxl)
+library(broom)
+library(broom.mixed)
+library(RColorBrewer)
+library(viridisLite)
+library(ggbeeswarm)
+source("00-paths.R")
+
+
+```
+
+## Data Processing
+```{r}
+processed.data <- read.csv(file.path("..", 'data', "2023-07-31_tumor-size_R-formatted.csv")) %>%
+  mutate(gavage = if_else(grepl("v1|v3", microbiome.sample),
+                          true = "Pre-BRB",
+                          false = if_else(grepl("v2|v4", microbiome.sample),
+                                          true = "Post-BRB",
+                                          false = "other"))) %>%
+  mutate(gavage = fct_relevel(gavage, "Pre-BRB")) %>%
+  mutate(treatment = fct_relevel(treatment, "IgG")) %>%
+  mutate(days2 = days.from.injection^2) 
+
+mim18.19 <- processed.data %>%
+  filter(experiment == "mimic18" | experiment == "mimic19") %>% 
+  mutate(supplement = if_else(grepl("Blautia", microbiome.sample),
+                            true = "Blautia",
+                            false = "Normal"),
+         supplement = fct_relevel(supplement, "Normal"),
+         microbiome.sample = ifelse(grepl("Blautia",microbiome.sample),
+                         "85v1 + Blautia",
+                         "85v1"))
+
+```
+
+```{r}
+processModel <- function(model) {
+  model %>%
+  tidy() %>%
+  mutate(abs.estimate = abs(estimate),
+         plus.minus = ifelse(estimate > 0, "p", "n"),
+         log.estimate = log10(abs.estimate)) %>%
+  mutate(log.estimate = ifelse(plus.minus == "n", 
+                               -1*log.estimate, 
+                               log.estimate),
+         log.std.error = log10(std.error),
+         log.std.error = abs(log.std.error)) %>%
+  mutate(sig.flag = ifelse(p.value < 0.05, "S", "NS"),
+         conf.low = estimate - std.error,
+         conf.high = estimate + std.error,
+         log.conf.low = log.estimate - log.std.error,
+         log.conf.high = log.estimate + log.std.error,
+         ci95.low = estimate - (1.96 * std.error),
+         ci95.high = estimate + (1.96 * std.error)) %>% 
+  filter(is.na(group)) %>%
+  filter(term != "(Intercept)")
+}
+```
+
+```{r}
+
+m.18.19 <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * supplement + (1|unique.mouse.id) + experiment,
+              data = mim18.19)
+
+AIC(m.18.19)
+summary(m.18.19)
+
+data.1819 <- processModel(m.18.19) %>%
+  mutate(experiment = "mimic18,19",
+         trial = "BEWELL",
+         `sample ID` = "HONC60-85v1",
+         hypothesis = "Blautia Supplementation",
+         `Combined ID` = "Blautia Supplementation (85v1)")
+
+```
+
+```{r}
+
+# Forest Plot
+
+data.1819 %>%
+  filter(grepl("days2...*", term)) %>%
+  mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
+  ggplot(aes(x = estimate, y = term.adj)) +
+  geom_point(size = 2.5) +
+  theme_bw(base_size = 18) + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(aes(x = ci95.low, xend = ci95.high, 
+                   y = term.adj, yend = term.adj)) +
+  labs(x = "Estimate", y = "") +
+  scale_y_discrete(limits = rev)
+
+ggsave("../figures/mim1819-model-forestplot_reduced.png",
+       height = 5, width = 6)
+
+```
+
+```{r}
+
+# Boxplot
+
+box.1819 <- mim18.19 %>%
+  filter(days.from.injection == 21) %>%
+  mutate(treatment = fct_relevel(treatment, "IgG")) 
+
+box.1819 %>%
+  ggplot(aes(x = microbiome.sample, y = tumor.volume)) +
+  geom_boxplot(aes(fill = treatment)) +
+  theme_bw(base_size = 18) +
+  labs(x = "Gavage",
+       y = "Tumor Volume",
+       fill = "Treatment") +
+  scale_fill_brewer(palette = "Set1")
+
+ggsave("../figures/mim1819-boxplot.png",
+       height = 5, width = 6)
+```
+
+```{r}
+
+# Beeswarm plot
+
+box.1819 %>%
+  ggplot(aes(x = microbiome.sample, y = tumor.volume)) +
+  geom_beeswarm(aes(color = treatment)) +
+  theme_bw(base_size = 18) +
+  labs(x = "Gavage",
+       y = "Tumor Volume",
+       fill = "treatment") +
+  scale_fill_brewer(palette = "Set1")
+
+ggsave("../figures/mim1819-beeswarmplot.png",
+       height = 5, width = 6)
+
+```
+
+```{r}
+
+# tumor volume vs time
+
+mean.vol <-
+  mim18.19 %>%
+  mutate(treatment.group = paste(treatment, microbiome.sample, sep = " x ")) %>%
+  group_by(treatment.group, days.from.injection) %>%
+  summarize(mean = mean(tumor.volume),
+            sd = sd(tumor.volume)) %>%
+  ungroup() %>%
+  mutate(lwr = mean - sd,
+         upr = mean + sd) %>%
+  mutate(lwr = if_else(lwr < 0, 0, lwr)) %>%
+   mutate(Supplement = if_else(grepl("Blautia", treatment.group),
+                          true = "Blautia",
+                          false = "Normal"),
+         Treatment = if_else(grepl("Anti", treatment.group),
+                             true = "Anti-PD1",
+                             false = "IgG")) %>%
+  mutate(Supplement = fct_relevel(Supplement, c("Blautia")))
+
+mean.vol %>%
+  ggplot(aes(x = days.from.injection, y = mean)) +
+  geom_line(aes(group = treatment.group,
+                color = Supplement,
+                linetype = Treatment), 
+            lwd = 1) + 
+  geom_point(aes(color = Supplement))+
+  labs(x = "Days from Tumor Injection", 
+       y = expression("Mean Tumor volume ("~mm^3~")"))  +
+  theme_bw() +
+  scale_color_brewer(palette = "Set1") 
+
+ggsave("../figures/meantumorvolume_mim1819_lineplot.png", 
+       height = 4, width = 7)
+
+```
+
+```{r}
+
+# percent tumor free final timepoint
+
+free.1819 <- box.1819 %>%
+   mutate(new.group = paste0(microbiome.sample, treatment)) %>%
+  mutate(tumor.size.is.0 = if_else(tumor.volume > 0, 
+                                   true = 0, 
+                                   false = 1)) %>%
+  group_by(microbiome.sample, treatment) %>%
+  summarize(frac.0 = sum(tumor.size.is.0) /length(tumor.size.is.0))
+
+
+free.1819 %>%
+  ggplot(aes(x = treatment,y = frac.0, fill = microbiome.sample)) +
+  geom_bar(stat = "identity",
+           position = position_dodge()) +
+  theme_bw(base_size = 18) +
+  ylim(0,1) +
+  labs(x = "Treatment",
+       y = "% Tumor Free",
+      fill = "Sample") +
+  scale_color_brewer(palette = "Set1")
+
+ggsave("../figures/percentfree_mim1819_barplot.png", 
+       height = 5, width = 6)
+
+```
+
