@@ -23,7 +23,7 @@ source("00-paths.R")
 
 ## Data Processing
 ```{r}
-processed.data <- read.csv(file.path("..", 'data', "2023-07-31_tumor-size_R-formatted.csv")) %>%
+processed.data <- read.csv("../data/2023-07-31_tumor-size_R-formatted.csv") %>%
   mutate(gavage = if_else(grepl("v1|v3", microbiome.sample),
                           true = "Pre-BRB",
                           false = if_else(grepl("v2|v4", microbiome.sample),
@@ -176,6 +176,7 @@ mean.vol %>%
                 color = Supplement,
                 linetype = Treatment), 
             lwd = 1) + 
+  geom_smooth(aes(color = Supplement, lty = Treatment), size = 0) + 
   geom_point(aes(color = Supplement))+
   labs(x = "Days from Tumor Injection", 
        y = expression("Mean Tumor volume ("~mm^3~")"))  +
@@ -183,7 +184,7 @@ mean.vol %>%
   scale_color_brewer(palette = "Set1") 
 
 ggsave("../figures/meantumorvolume_mim1819_lineplot.png", 
-       height = 4, width = 7)
+       height = 5, width = 7)
 
 ```
 
