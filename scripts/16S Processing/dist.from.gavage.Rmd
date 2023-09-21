@@ -1,0 +1,269 @@
+---
+title: "distance from gavage"
+output: html_document
+date: "2023-09-20"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+```
+
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+taxa <- read_rds("/Users/shiva/Documents/16s mimic/mimic_taxa.rds")
+seqtab <- read_rds("/Users/shiva/Documents/16s mimic/mimic_seqtab.rds")
+key <- read_csv("https://raw.githubusercontent.com/spakowiczlab/mimic/master/data/mimic16S-key.csv")
+key$...1 <- NULL
+```
+ 
+```{r}
+seqtab4 <- seqtab
+relative_abundance <- t(apply(seqtab4, 1, function(eachrow) eachrow/sum(eachrow)))
+normalized_seqtab4 <- relative_abundance
+
+bray_curtis_dist4 <- vegdist(normalized_seqtab4, method = "bray")
+bray4 <- as.matrix(bray_curtis_dist4)
+
+# Perform Principal Coordinate Analysis (PCoA) using cmdscale
+pcoa4 <- cmdscale(bray4, eig = TRUE, add = TRUE)
+
+# Rename the columns of the PCoA matrix
+colnames(pcoa4$points) <- c("pcoa1", "pcoa2")
+pcoa_df<- as.data.frame(pcoa4$points)
+
+pcoa_df0 <- merge(key,pcoa_df,by.x = 2,by.y = 0,all.y = T)
+
+# Create a scatter plot of PCoA points
+pcoa_df0 %>%
+  ggplot(aes(x = pcoa1, y = pcoa2, color = timepoint)) +
+  geom_point() +
+  labs(x = "PCoA 1", y = "PCoA 2")
+```
+```{r}
+#relative abundance
+
+#install.packages("funrar")
+library(funrar)
+
+# Convert the data frame to a matrix 
+abundance_matrix <- as.matrix(seqtab)
+
+# Transpose the matrix if genes are in rows and samples are in columns
+# abundance_matrix <- t(abundance_matrix)
+
+# Calculate relative abundances 
+relative_abundance_matrix <- make_relative(abundance_matrix)
+```
+ 
+```{r}
+# Convert the matrix into a data frame
+#data_df <- as.data.frame(data)
+data_df <- as.data.frame(relative_abundance_matrix)
+
+# Add a new column for row names
+data_df$sampleid <- row.names(data_df)
+
+# Pivot longer
+data_long <- pivot_longer(data_df, cols = -sampleid, names_to = "ASV", values_to = "relative_abundance")
+#data_long <- data_long[c(1:1000000),]
+
+taxa1 <- as.data.frame(taxa)
+taxa1$ASV <- row.names(taxa1)
+library(dplyr)
+
+result <- merge(taxa1, data_long, by = "ASV")
+
+result_selected <- result[, c("ASV", "sampleid", "Genus", "relative_abundance")]
+
+taxa.filtered <- result_selected[!is.na(result_selected$Genus), ]
+
+```
+
+```{r}
+group <- result_selected %>%
+  group_by(sampleid, Genus) %>%
+  summarise(genus_abundance = sum(relative_abundance), count = n())# %>%
+  #mutate(tally_count = tally(Genus))
+```
+
+```{r}
+group$relative_genus_count <- group$genus_abundance/group$count
+Genus_relative_abundance_table <- group[,c("sampleid","Genus","relative_genus_count")] %>% 
+  pivot_wider( names_from = Genus, values_from = relative_genus_count)
+
+Genus_relative_abundance_matrix <- 
+  Genus_relative_abundance_table %>%
+  column_to_rownames("sampleid") %>%
+  as.matrix()
+
+genus.dist.mat <- 
+  vegan::vegdist(Genus_relative_abundance_matrix,
+               method = "bray")
+
+dist.df <- 
+  genus.dist.mat %>%
+  as.data.frame() 
+  #rownames_to_column("sampleid")
+```
+
+```{r}
+bray_curtis_distance <- vegdist(Genus_relative_abundance_matrix, method = "bray")
+dist <- as.matrix(bray_curtis_distance)
+
+as.data.frame(dist)
+
+a<- as_tibble(dist,rownames=NA) %>%
+  rownames_to_column() %>%
+  rename("sampleid"="rowname") %>%
+  pivot_longer(cols=-sampleid,names_to = "SAMPLEID" ,values_to = "bray")
+```
+
+```{r}
+x473d <- 
+  a %>%
+  filter(sampleid == 473) %>%
+  select(-sampleid) %>%
+  rename("sampleID" = "SAMPLEID") %>%
+  mutate(sampleID = as.numeric(sampleID))
+
+mim16.dist <- 
+  key %>%
+  filter(experiment == "mimic 16") %>%
+  left_join(x473d)
+
+mim16.dist %>%
+  filter(timepoint != "gavage slurry") %>%
+  ggplot(aes(x = timepoint, y = bray)) +
+  geom_boxplot()
+```
+
+```{r}
+## distance from gvage
+df<- read.csv("/Users/shiva/Documents/16s mimic/bewell_taxonomy_relAbun.csv")
+
+# Filter rows based on the id column
+
+filtered_df <- df %>%
+  filter(grepl("HONC60-79-v1", id))
+
+# Separate the Taxonomy column into multiple columns
+separated_df <- filtered_df %>%
+  separate(col = Taxonomy, into = c("kingdom", "phylum", "class", "order", "family", "genus", "species"), sep = "\\|")
+
+# Select specific columns
+selected_df <- separated_df %>%
+  select(id, genus, RelAbun)
+
+# Group by id and genus, summarizing the genusRelAbun
+summarized_df <- selected_df %>%
+  group_by(id, genus) %>%
+  summarize(genusRelAbun = sum(RelAbun))
+
+# Pivot the table
+pivoted_df <- summarized_df %>%
+pivot_wider(-id, names_from = genus, values_from = genusRelAbun) 
+pivoted_df$sampleid <- "518"
+pivoted_df <- pivoted_df %>%
+  select(sampleid, everything()) 
+names(pivoted_df) <- sub("^g__", "", names(pivoted_df))
+
+# Convert the "sampleid" column in Genus_relative_abundance_table to character
+Genus_relative_abundance_table <- Genus_relative_abundance_table %>%
+  mutate(sampleid = as.character(sampleid))
+
+# Combine pivoted_df and Genus_relative_abundance_table
+b <- bind_rows(pivoted_df, Genus_relative_abundance_table)
+
+# Replace NA values with 0 in all columns except "sampleid"
+b <- b %>%
+  mutate(across(.cols = -sampleid, .fns = ~coalesce(., 0)))
+
+# Set "sampleid" as row names and convert to matrix
+b <- b %>%
+  column_to_rownames("sampleid") %>%
+  as.matrix()
+
+
+
+bb <- vegdist(b, method = "bray")
+dist.bb <- as.matrix(bb)
+
+as.data.frame(dist.bb)
+
+A <- as_tibble(dist.bb ,rownames=NA) %>%
+  rownames_to_column() %>%
+  rename("sampleid"="rowname") %>%
+  pivot_longer(cols=-sampleid,names_to = "SAMPLEID" ,values_to = "bray")
+
+new <- data.frame(
+  sampleID = 518,
+  mimicID = "nothing",
+  experiment = "mimic 11",
+  treatment = "nothing",
+  timepoint = "gavage slurry",
+  sample = "HONC60-79",
+  gavage = "nothing",
+  hypothesis = "Lachnospira",
+  trial = "BEWELL"
+)
+new_key <- rbind(key, new)
+
+
+x518d <- 
+  A %>% 
+  filter(sampleid == 518) %>%
+  select(-sampleid) %>%
+  rename("sampleID" = "SAMPLEID") %>%
+  mutate(sampleID = as.numeric(sampleID))
+
+mim11.dist <- new_key %>%
+  filter(experiment == "mimic 11") %>%
+  left_join(x518d)
+
+timepoint_order <- c("baseline", "gavage", "gavage slury", "Anti-PD1/IgG", "necropsy")
+
+mim11.dist %>%
+  ggplot(aes(x = timepoint, y = bray, fill = timepoint)) +
+  geom_boxplot() +
+  scale_y_continuous(limits = c(0.9999000, 0.9999999)) 
+
+```
+
+```{r}
+###Dist.from.gavage
+
+# Define a mapping of original timepoints to new labels
+timepoint_mapping <- c("baseline" = "-4", "gavage" = "-1", "Anti-PD1/IgG" = "2", "necropsy" = "5")
+
+mim11.dist <- mim11.dist %>%
+  mutate(Weeks = case_when(
+    timepoint %in% names(timepoint_mapping) ~ timepoint_mapping[timepoint],
+    TRUE ~ timepoint  # Keep the original value if not found in the mapping
+  ))
+
+mim11.dist %>%
+  filter(Weeks != "gavage slurry") %>%
+  mutate(Weeks = factor(Weeks, levels = unique(Weeks))) %>%
+  ggplot(aes(x = Weeks, y = bray, color = Weeks)) +
+  xlab("Weeks") +
+  ylab("Distance from gavage") +
+  geom_point() 
+#ggsave(filename= "../figures/Dist.from.gavage.pdf", height= 2, width= 4)
+#ggsave(filename= "../figures/Dist.from.gavage.png", height= 2, width= 4)
+
+```
+
