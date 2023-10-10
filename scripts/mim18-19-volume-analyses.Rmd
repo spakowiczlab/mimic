@@ -16,9 +16,8 @@ library(broom.mixed)
 library(RColorBrewer)
 library(viridisLite)
 library(ggbeeswarm)
+
 source("00-paths.R")
-
-
 ```
 
 ## Data Processing
@@ -128,6 +127,8 @@ box.1819 %>%
 
 ggsave("../figures/mim1819-boxplot.png",
        height = 5, width = 6)
+ggsave("../figures/ACS23_mim1819-boxplot.png",
+       height = 3, width = 4)
 ```
 
 ```{r}
@@ -185,6 +186,8 @@ mean.vol %>%
 
 ggsave("../figures/meantumorvolume_mim1819_lineplot.png", 
        height = 5, width = 7)
+ggsave("../figures/ACS23_volume_mim1819_lineplot.png", 
+       height = 3, width = 4)
 
 ```
 
