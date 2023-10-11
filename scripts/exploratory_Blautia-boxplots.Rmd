@@ -1,0 +1,56 @@
+---
+title: "Blautia boxplots"
+author: "Rebecca Hoyd"
+date: "10/11/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+# Load data
+
+```{r}
+mics <- read.csv("/fs/ess/PAS1695/projects/recrad/data/mouseexp_2023/counts_exotic.csv")
+```
+
+# Find samples
+
+```{r}
+samps <- unique(mics$sample)
+samps <- samps[grepl("_m", samps)]
+samps
+
+# Found by searching mimic sample inventory google sheet
+Blautia.stat <- c("Yes", "No", "Yes", "Yes", "No", "No")
+
+labdf <- as.data.frame(cbind(sample = samps, blautia = Blautia.stat))
+```
+
+# RAs for plot
+
+```{r}
+RAs <- mics %>%
+  mutate(totcount = sum(exo.ra), .by = sample) %>%
+  mutate(ra = exo.ra/totcount) %>%
+  group_by(sample, genus) %>%
+  summarize(ra = sum(ra)) %>%
+  inner_join(labdf)
+```
+
+# Plot
+
+```{r}
+RAs %>%
+  filter(genus == "g__Blautia") %>%
+  ggplot(aes(x = blautia, y = ra)) +
+  geom_boxplot() +
+  geom_point() +
+  labs(x = "Blautia gavaged", y = "Blautia relative abundance") +
+  theme_bw()
+ggsave("../figures/ACS23_boxplot_blautia.png")
+```
+
