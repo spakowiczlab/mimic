@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
+library(ggtext)
 ```
 
 # Load data
@@ -38,19 +39,25 @@ RAs <- mics %>%
   mutate(ra = exo.ra/totcount) %>%
   group_by(sample, genus) %>%
   summarize(ra = sum(ra)) %>%
-  inner_join(labdf)
+  inner_join(labdf) %>%
+  filter(genus == "g__Blautia")
+
+save(RAs, file = "../data/plotdat_boxplots_ACS2023.rda")
 ```
 
 # Plot
 
 ```{r}
+load("../data/plotdat_boxplots_ACS2023.rda")
 RAs %>%
-  filter(genus == "g__Blautia") %>%
   ggplot(aes(x = blautia, y = ra)) +
   geom_boxplot() +
   geom_point() +
-  labs(x = "Blautia gavaged", y = "Blautia relative abundance") +
-  theme_bw()
-ggsave("../figures/ACS23_boxplot_blautia.png")
+  labs(x = "<i>Blautia</i> gavaged", y = "<i>Blautia</i> relative abundance") +
+  theme_bw() +
+  theme(text = element_text(size = 9),
+        axis.title.x = element_markdown(),
+        axis.title.y = element_markdown())
+ggsave("../figures/ACS23_boxplot_blautia.png", height = 2, width = 2)
 ```
 
