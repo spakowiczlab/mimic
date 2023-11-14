@@ -7,11 +7,50 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
 ```
 
 This script explores the RNAseq from mimic18 & 19 experiments, where Blautia was supplemented into an HONC85v1 sample. The goal is to understand what effect Blautia has on the tumor microenvironment. 
 
 ```{r}
+genes <- read.table("/fs/ess/PAS1695/projects/recrad/data/mouseexp_2023-11-07/featurecounts.txt",
+                    header = TRUE)
 
+head(genes)
+```
+Load Rebecca's function for converting mouse genes to human
+
+```{r}
+mouse_human_genes = read.csv("http://www.informatics.jax.org/downloads/reports/HOM_MouseHumanSequence.rpt",sep="\t")
+
+convert_mouse_to_human <- function(gene_list){
+
+  output = c()
+
+  for(gene in gene_list){
+    class_key = (mouse_human_genes %>% filter(Symbol == gene & Common.Organism.Name=="human"))[['DB.Class.Key']]
+    if(!identical(class_key, integer(0)) ){
+      human_genes = (mouse_human_genes %>% filter(DB.Class.Key == class_key & Common.Organism.Name=="mouse, laboratory"))[,"Symbol"]
+      for(human_gene in human_genes){
+        output = append(output,human_gene)
+      }
+    }
+  }
+
+  return (output)
+}
+```
+
+```{r}
+test_list <- 
+  genes %>%
+  select(Geneid) %>%
+  as.vector %>%
+  unlist
+```
+
+```{r}
+convert_mouse_to_human(test_list)
 ```
 
