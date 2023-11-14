@@ -1,0 +1,17 @@
+---
+title: "exploratory_rnaseq"
+author: "Shiva"
+date: "2023-11-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This script explores the RNAseq from mimic18 & 19 experiments, where Blautia was supplemented into an HONC85v1 sample. The goal is to understand what effect Blautia has on the tumor microenvironment. 
+
+```{r}
+
+```
+
