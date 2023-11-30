@@ -64,6 +64,15 @@ Read in a separate table of the injection dates for each experiment, to be used 
 # tsize.raw <- lapply(1:13, function(x) read_excel(file.path(tsize.files[x], tsize.file.2[x])))
 
 inject.dates <- read_xlsx("../data/mimic_injection_dates.xlsx")
+=======
+tsize.files <- list.files(file.path(paths$git, 'data','tumor-size'), pattern = "AOT", full.names = T, recursive = TRUE)
+# tsize.files <- c(tsize.files[3:10], tsize.files[1])
+
+
+tsize.raw <- lapply(tsize.files, readxl::read_xlsx)
+
+inject.dates <- read_excel(file.path(paths$onedrive, "data", "mimic_injection_dates.xlsx"))
+>>>>>>> Stashed changes
 
 ```
 
@@ -310,6 +319,7 @@ mim13 <- tsize.raw[[grep("mimic13", names(tsize.raw))]] %>%
   separate(tail.number, into = c("tail.number", "cage"), sep = " x ") %>%
   mutate(treatment = ifelse(grepl("3 x 3", unique.mouse.id), "Anti-PD1", treatment))
 
+<<<<<<< Updated upstream
 mim16 <- tsize.raw[[grep("mimic16", names(tsize.raw))]] %>%
   drop_na(`tumor.width.(mm)`) %>%
    mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
@@ -405,6 +415,20 @@ mim19 <- tsize.raw[[grep("mimic19", names(tsize.raw))]] %>%
 #   mutate(Treatment = ifelse(cage %in% c(1,2), "Anti-PD1","IgG"),
 #          treatment.group = paste(Treatment, microbiome.sample, sep = " x "),
 #          tail.number = paste(tail.number, cage, sep = " x ")) %>% 
+=======
+mim16 <- 
+  tsize.raw[[16]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+  mutate(cage = as.numeric(cage)) %>%
+  mutate(gavage = if_else(grepl("1|3", cage),
+                          true = "HONC60-85v1 + Blautia",
+                          false = "HONC60-85v1")) %>%
+    mutate(tx = if_else(grepl("3|4", cage),
+                          true = "IgG",
+                          false = "Anti-PD1")) %>%
+   calcTumorVol(., as.POSIXct("2023-02-01"))
+
+>>>>>>> Stashed changes
 ```
 
 
