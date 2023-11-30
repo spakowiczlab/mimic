@@ -31,6 +31,7 @@ library(tidyverse)
 Read in all tumor size measurements
  
 ```{r AP Data Read Test Code}
+<<<<<<< Updated upstream
 tsize.files <- list.files("../data/tumor-size", 
                           pattern = "AOT", 
                           full.names = TRUE,
