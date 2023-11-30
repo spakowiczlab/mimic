@@ -1,0 +1,702 @@
+---
+title: "Bray-Curtis Analysis"
+author: "Aadi Pallerla"
+date: "2023-09-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(vegan)
+library(funrar)
+```
+
+
+```{r}
+bewell.relabun <- read.csv("../data/RelAbun_gen.csv")
+
+seqtab.mimic <- readRDS("../data/2023-07-26_16S-seqtab.rds") %>%
+  as.data.frame()
+taxa.mimic <- readRDS("../data/2023-07-26_16S-taxa.rds") %>%
+  as.data.frame()
+key <- read_csv("../data/mimic16S-key.csv") %>%
+  select(-`...1`)
+```
+
+```{r processing taxa table}
+
+taxa.long <- taxa.mimic %>%
+  rownames_to_column(var="ASV") %>%
+  gather(Taxonomy,Classification,-ASV) %>%
+  group_by(ASV) %>% 
+  mutate(Taxonomy = as.factor(Taxonomy),
+         Taxonomy=fct_relevel(Taxonomy,"Kingdom","Phylum","Class","Order","Family","Genus","Species")) 
+
+taxa.spread <- taxa.long %>%
+  spread(Taxonomy,Classification) %>%
+  mutate(Phylum=if_else(is.na(Phylum),paste0("p_unclassified_",Kingdom),Phylum),
+         Class=if_else(is.na(Class),paste0("c_unclassified_",Phylum),Class),
+         Order=if_else(is.na(Order),paste0("o_unclassified_",Class),Order),
+         Family=if_else(is.na(Family),paste0("f_unclassified_",Order),Family),
+         Genus=if_else(is.na(Genus),paste0("g_unclassified_",Family),Genus),
+         Species=if_else(is.na(Species),paste0("s_unclassified_",Genus),Species))
+
+```
+
+```{r}
+
+relabun <- seqtab.mimic %>%
+  as.matrix() %>%
+  make_relative() %>%
+  as.data.frame() %>%
+  rownames_to_column(var="sampleID")
+
+joined <- relabun %>%
+  gather(ASV,rel_abun,-sampleID) %>%
+  left_join(taxa.spread,"ASV") %>%
+  select(sampleID,rel_abun,Genus)
+
+group.sum <- joined %>%
+  group_by(sampleID, Genus) %>%
+  summarise(genus_abundance = sum(rel_abun), count = n())
+
+group.spread1 <- group.sum %>%
+  select(sampleID,Genus,genus_abundance) %>%
+  spread(Genus,genus_abundance)
+
+```
+
+
+# Genera comparison table
+
+```{r}
+bewell.genprep <- bewell.relabun %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(Genus = str_remove(Genus,"g__")) 
+
+bewell.genera <- unique(bewell.genprep$Genus) %>%
+  as.data.frame() %>%
+  rename("Genus" = ".")
+mimic.genera <- unique(group.sum$Genus) %>%
+  as.data.frame() %>%
+  rename("Genus" = ".")
+comb.genera <- bind_rows(bewell.genera,
+                         mimic.genera)
+
+comb.genera <- unique(comb.genera)
+
+genus.table <- comb.genera %>%
+  mutate(`Present in Bewell?` = ifelse(Genus %in% bewell.genera$Genus, "Y", "N"),
+         `Present in Mimic?` = ifelse(Genus %in% mimic.genera$Genus, "Y", "N"),
+         `Present in Both?` = ifelse(`Present in Bewell?` == "Y" & `Present in Mimic?` == "Y", "Y", "N"))
+
+write.csv(genus.table,"../data/genus-comparison.csv")
+```
+
+
+# mimic 12 (sample 85)
+
+```{r}
+bewell.85v1 <- bewell.relabun %>% 
+  filter(grepl("85",X)) %>%
+  filter(grepl("rB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.12v1 <- key %>%
+  filter(experiment == "mimic 12",gavage == "Pre-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim12v1.relabun <- key.12v1 %>%
+  inner_join(group.spread1)
+
+bind.table.85v1 <- bind_rows(bewell.85v1,mim12v1.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.85v1 <- vegdist(bind.table.85v1, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.85v1 <- bray.curtis.85v1 %>%
+  select(`85-rB`) %>%
+  rownames_to_column("sampleID")
+
+key.85v1 <- key %>%
+  filter(experiment == "mimic 12", gavage == "Pre-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.85v1 <- analysis.85v1 %>%
+  right_join(key.85v1) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.85v1 <- fig.85v1 %>%
+  select(`85-rB`,timepoint) %>%
+  rename("distance" = "85-rB") %>%
+  mutate(sample = "85-rB")
+```
+
+
+```{r}
+bewell.85v2 <- bewell.relabun %>% 
+  filter(grepl("85",X)) %>%
+  filter(grepl("tB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.12v2 <- key %>%
+  filter(experiment == "mimic 12",gavage == "Post-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim12v2.relabun <- key.12v2 %>%
+  inner_join(group.spread1)
+
+bind.table.85v2 <- bind_rows(bewell.85v2,mim12v2.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.85v2 <- vegdist(bind.table.85v2, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.85v2 <- bray.curtis.85v2 %>%
+  select(`85-tB`) %>%
+  rownames_to_column("sampleID")
+
+key.85v2 <- key %>%
+  filter(experiment == "mimic 12", gavage == "Post-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.85v2 <- analysis.85v2 %>%
+  right_join(key.85v2) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.85v2 <- fig.85v2 %>%
+  select(`85-tB`,timepoint) %>%
+  rename("distance" = "85-tB") %>%
+  mutate(sample = "85-tB")
+```
+
+# mimic 13 (84)
+
+```{r}
+bewell.84v1 <- bewell.relabun %>% 
+  filter(grepl("84",X)) %>%
+  filter(grepl("rB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.13v1 <- key %>%
+  filter(experiment == "mimic 13",gavage == "Pre-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim13v1.relabun <- key.13v1 %>%
+  inner_join(group.spread1)
+
+bind.table.84v1 <- bind_rows(bewell.84v1,mim13v1.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.84v1 <- vegdist(bind.table.84v1, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.84v1 <- bray.curtis.84v1 %>%
+  select(`84-rB`) %>%
+  rownames_to_column("sampleID")
+
+key.84v1 <- key %>%
+  filter(experiment == "mimic 13", gavage == "Pre-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.84v1 <- analysis.84v1 %>%
+  right_join(key.84v1) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.84v1 <- fig.84v1 %>%
+  select(`84-rB`,timepoint) %>%
+  rename("distance" = "84-rB") %>%
+  mutate(sample = "84-rB")
+```
+
+
+```{r}
+bewell.84v2 <- bewell.relabun %>% 
+  filter(grepl("84",X)) %>%
+  filter(grepl("tB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.13v2 <- key %>%
+  filter(experiment == "mimic 13",gavage == "Post-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim13v2.relabun <- key.13v2 %>%
+  inner_join(group.spread1)
+
+bind.table.84v2 <- bind_rows(bewell.84v2,mim13v2.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.84v2 <- vegdist(bind.table.84v2, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.84v2 <- bray.curtis.84v2 %>%
+  select(`84-tB`) %>%
+  rownames_to_column("sampleID")
+
+key.84v2 <- key %>%
+  filter(experiment == "mimic 13", gavage == "Post-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.84v2 <- analysis.84v2 %>%
+  right_join(key.84v2) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+
+combo.84v2 <- fig.84v2 %>%
+  select(`84-tB`,timepoint) %>%
+  rename("distance" = "84-tB") %>%
+  mutate(sample = "84-tB")
+```
+
+# mimic 10 (68)
+
+```{r}
+bewell.68v1 <- bewell.relabun %>% 
+  filter(grepl("68",X)) %>%
+  filter(grepl("rB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.10v1 <- key %>%
+  filter(experiment == "mimic 10",gavage == "Pre-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim10v1.relabun <- key.10v1 %>%
+  inner_join(group.spread1)
+
+bind.table.68v1 <- bind_rows(bewell.68v1,mim10v1.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.68v1 <- vegdist(bind.table.68v1, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.68v1 <- bray.curtis.68v1 %>%
+  select(`68-rB`) %>%
+  rownames_to_column("sampleID")
+
+key.68v1 <- key %>%
+  filter(experiment == "mimic 10", gavage == "Pre-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.68v1 <- analysis.68v1 %>%
+  right_join(key.68v1) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.68v1 <- fig.68v1 %>%
+  select(`68-rB`,timepoint) %>%
+  rename("distance" = "68-rB") %>%
+  mutate(sample = "68-rB")
+```
+
+
+```{r}
+bewell.68v2 <- bewell.relabun %>% 
+  filter(grepl("68",X)) %>%
+  filter(grepl("tB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.10v2 <- key %>%
+  filter(experiment == "mimic 10",gavage == "Post-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim10v2.relabun <- key.10v2 %>%
+  inner_join(group.spread1)
+
+bind.table.68v2 <- bind_rows(bewell.68v2,mim10v2.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.68v2 <- vegdist(bind.table.68v2, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.68v2 <- bray.curtis.68v2 %>%
+  select(`68-tB`) %>%
+  rownames_to_column("sampleID")
+
+key.68v2 <- key %>%
+  filter(experiment == "mimic 10", gavage == "Post-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.68v2 <- analysis.68v2 %>%
+  right_join(key.68v2) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.68v2 <- fig.68v2 %>%
+  select(`68-tB`,timepoint) %>%
+  rename("distance" = "68-tB") %>%
+  mutate(sample = "68-tB")
+```
+
+
+# mimic 11 (79)
+
+```{r}
+bewell.79v1 <- bewell.relabun %>% 
+  filter(grepl("79",X)) %>%
+  filter(grepl("tP",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.11v1 <- key %>%
+  filter(experiment == "mimic 11",gavage == "Post-Placebo") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim11v1.relabun <- key.11v1 %>%
+  inner_join(group.spread1)
+
+bind.table.79v1 <- bind_rows(bewell.79v1,mim11v1.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.79v1 <- vegdist(bind.table.79v1, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.79v1 <- bray.curtis.79v1 %>%
+  select(`79-tP`) %>%
+  rownames_to_column("sampleID")
+
+key.79v1 <- key %>%
+  filter(experiment == "mimic 11", gavage == "Post-Placebo") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.79v1 <- analysis.79v1 %>%
+  right_join(key.79v1) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.79v1 <- fig.79v1 %>%
+  select(`79-tP`,timepoint) %>%
+  rename("distance" = "79-tP") %>%
+  mutate(sample = "79-tP")
+```
+
+
+```{r}
+bewell.79v2 <- bewell.relabun %>% 
+  filter(grepl("79",X)) %>%
+  filter(grepl("tB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.11v2 <- key %>%
+  filter(experiment == "mimic 11",gavage == "Post-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim11v2.relabun <- key.11v2 %>%
+  inner_join(group.spread1)
+
+bind.table.79v2 <- bind_rows(bewell.79v2,mim11v2.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.79v2 <- vegdist(bind.table.79v2, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.79v2 <- bray.curtis.79v2 %>%
+  select(`79-tB`) %>%
+  rownames_to_column("sampleID")
+
+key.79v2 <- key %>%
+  filter(experiment == "mimic 11", gavage == "Post-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.79v2 <- analysis.79v2 %>%
+  right_join(key.79v2) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.79v2 <- fig.79v2 %>%
+  select(`79-tB`,timepoint) %>%
+  rename("distance" = "79-tB") %>%
+  mutate(sample = "79-tB")
+```
+
+# mimic 5 (102)
+
+```{r}
+bewell.102v1 <- bewell.relabun %>% 
+  filter(grepl("102",X)) %>%
+  filter(grepl("rB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.5v1 <- key %>%
+  filter(experiment == "mimic 5",gavage == "Pre-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim5v1.relabun <- key.5v1 %>%
+  inner_join(group.spread1)
+
+bind.table.102v1 <- bind_rows(bewell.102v1,mim5v1.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.102v1 <- vegdist(bind.table.102v1, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.102v1 <- bray.curtis.102v1 %>%
+  select(`102-rB`) %>%
+  rownames_to_column("sampleID")
+
+key.102v1 <- key %>%
+  filter(experiment == "mimic 5", gavage == "Pre-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.102v1 <- analysis.102v1 %>%
+  right_join(key.102v1) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.102v1 <- fig.102v1 %>%
+  select(`102-rB`,timepoint) %>%
+  rename("distance" = "102-rB") %>%
+  mutate(sample = "102-rB")
+```
+
+
+```{r}
+bewell.102v2 <- bewell.relabun %>% 
+  filter(grepl("102",X)) %>%
+  filter(grepl("tB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.5v2 <- key %>%
+  filter(experiment == "mimic 5",gavage == "Post-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim5v2.relabun <- key.5v2 %>%
+  inner_join(group.spread1)
+
+bind.table.102v2 <- bind_rows(bewell.102v2,mim5v2.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.102v2 <- vegdist(bind.table.102v2, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.102v2 <- bray.curtis.102v2 %>%
+  select(`102-tB`) %>%
+  rownames_to_column("sampleID")
+
+key.102v2 <- key %>%
+  filter(experiment == "mimic 5", gavage == "Post-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.102v2 <- analysis.102v2 %>%
+  right_join(key.102v2) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.102v2 <- fig.102v2 %>%
+  select(`102-tB`,timepoint) %>%
+  rename("distance" = "102-tB") %>%
+  mutate(sample = "102-tB")
+```
+
+# mimic 1,6,7 (55)
+
+```{r}
+bewell.55v1 <- bewell.relabun %>% 
+  filter(grepl("55",X)) %>%
+  filter(grepl("rB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.1v1 <- key %>%
+  filter(experiment == "mimic 1",gavage == "Pre-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim1v1.relabun <- key.1v1 %>%
+  inner_join(group.spread1)
+
+bind.table.55v1 <- bind_rows(bewell.55v1,mim1v1.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.55v1 <- vegdist(bind.table.55v1, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.55v1 <- bray.curtis.55v1 %>%
+  select(`55-rB`) %>%
+  rownames_to_column("sampleID")
+
+key.55v1 <- key %>%
+  filter(experiment == "mimic 1", gavage == "Pre-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.55v1 <- analysis.55v1 %>%
+  right_join(key.55v1) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.55v1 <- fig.55v1 %>%
+  select(`55-rB`,timepoint) %>%
+  rename("distance" = "55-rB") %>%
+  mutate(sample = "55-rB")
+```
+
+
+```{r}
+bewell.55v2 <- bewell.relabun %>% 
+  filter(grepl("55",X)) %>%
+  filter(grepl("tB",X)) %>%
+  gather(Genus,rel_abun,-X) %>%
+  mutate(rel_abun = rel_abun/100,
+         Genus = str_remove(Genus,"g__")) %>%
+  spread(Genus,rel_abun) %>%
+  rename("sampleID" = "X")
+
+key.1v2 <- key %>%
+  filter(experiment == "mimic 1",gavage == "Post-BRB") %>%
+  select(sampleID) %>%
+  mutate(sampleID = as.character(sampleID))
+
+mim1v2.relabun <- key.1v2 %>%
+  inner_join(group.spread1)
+
+bind.table.55v2 <- bind_rows(bewell.55v2,mim1v2.relabun) %>%
+  mutate(across(.cols = -sampleID, .fns = ~coalesce(., 0))) %>%
+  column_to_rownames("sampleID") %>%
+  as.matrix()
+
+bray.curtis.55v2 <- vegdist(bind.table.55v2, method = "bray") %>%
+  as.matrix() %>%
+  as.data.frame() 
+
+analysis.55v2 <- bray.curtis.55v2 %>%
+  select(`55-tB`) %>%
+  rownames_to_column("sampleID")
+
+key.55v2 <- key %>%
+  filter(experiment == "mimic 1", gavage == "Post-BRB") %>%
+  select(sampleID,timepoint,gavage) %>%
+  mutate(sampleID = as.character(sampleID)) 
+
+fig.55v2 <- analysis.55v2 %>%
+  right_join(key.55v2) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage")) 
+
+combo.55v2 <- fig.55v2 %>%
+  select(`55-tB`,timepoint) %>%
+  rename("distance" = "55-tB") %>%
+  mutate(sample = "55-tB")
+```
+
+
+# Combined Figure
+
+```{r}
+
+Combo.all <- bind_rows(combo.55v1,
+                       combo.55v2,
+                       combo.102v1,
+                       combo.102v2,
+                       combo.68v1,
+                       combo.68v2,
+                       combo.79v1,
+                       combo.79v2,
+                       combo.85v1,
+                       combo.85v2,
+                       combo.84v1,
+                       combo.84v2) %>%
+  mutate(timepoint = fct_relevel(timepoint, "baseline","gavage","MC38"))
+
+Combo.all %>%
+  ggplot(aes(x = timepoint, y = distance)) +
+  facet_wrap(.~sample, scales = "free_y") +
+  geom_boxplot() + 
+  theme_bw() +
+  theme(axis.text.x = element_text(size = 5.5, angle = 45, hjust = .9)) +
+  labs(y = "Distance from human sample",
+       x = "Timepoint",
+       title = "Bray-Curtis Distance")
+
+ggsave("../figures/combined-bray-analyses.png", width = 7, height = 5)
+```
+
