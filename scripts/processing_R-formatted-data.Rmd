@@ -392,26 +392,45 @@ mim19 <- tsize.raw[[grep("mimic19", names(tsize.raw))]] %>%
 # Mimic 20
 mc38 tumors in C57BL6 mice gavaged with PBS or PBS + 1e7 Blautia massiliensis 
 
-```{r}
+```{r mimic 20,21}
 mim20 <- tsize.raw[[grep("mimic20", names(tsize.raw))]] %>%
-  drop_na(`tumor.width.(mm)`) %>%
-  filter(`tumor.width.(mm)` != "n/a") %>%
+  drop_na(`tumor.length.(mm)`) %>%
   mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
          `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
-         `date` = as.character(`date`))
-
-         # Treatment = ifelse(cage %in% c(3,4,7,8), "Anti-PD1","IgG"),
-         # microbiome.sample = ifelse(cage %in% c(1,2,3,4), "HONC60-85v1 + Blautia", "HONC60-85v1"),
-         # treatment.group = paste(Treatment, microbiome.sample, sep = " x "),
-         # tail.number = paste(tail.number, cage, sep = " x ")) %>%
-  calcTumorVol(., as.POSIXct("2023-07-06")) %>%
+         `date` = as.character(`date`),
+         Treatment = ifelse(cage %in% c(1,2,3,4), "Anti-PD1","IgG"),
+         microbiome.sample = ifelse(cage %in% c(1,3,5,7), "Blautia", "PBS"),
+         treatment.group = paste(Treatment, microbiome.sample, sep = " x "),
+         tail.number = paste(tail.number, cage, sep = " x ")) %>%
+  filter(tail.number != "1 x 8") %>%
+  filter(tail.number != "2 x 2") %>%
+  filter(tail.number != "2 x 3") %>%
+  filter(tail.number != "2 x 7") %>%
+  mutate(`tumor.width.(mm)` = ifelse(is.na(`tumor.width.(mm)`),0,`tumor.width.(mm)`)) %>%
+  calcTumorVol(., as.POSIXct("2023-10-19")) %>%
   separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
   mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
-         experiment = "mimic19") %>%
+         experiment = "mimic20") %>%
   separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+
+mim21 <- tsize.raw[[grep("mimic21", names(tsize.raw))]] %>%
+  drop_na(`tumor.length.(mm)`) %>%
+  mutate(`tumor.length.(mm)` = as.numeric(`tumor.length.(mm)`),
+         `tumor.width.(mm)` = as.numeric(`tumor.width.(mm)`),
+         `date` = as.character(`date`),
+         Treatment = ifelse(cage %in% c(1,2,3,4), "Anti-PD1","IgG"),
+         microbiome.sample = ifelse(cage %in% c(1,3,5,7), "HONC60-85v1", "HONC60-85v2"),
+         treatment.group = paste(Treatment, microbiome.sample, sep = " x "),
+         tail.number = paste(tail.number, cage, sep = " x ")) %>%
+  filter(tail.number != "2 x 5") %>%
+  mutate(`tumor.width.(mm)` = ifelse(is.na(`tumor.width.(mm)`),0,`tumor.width.(mm)`)) %>%
+  calcTumorVol(., as.POSIXct("2023-10-19")) %>%
+  separate(treatment.group, into = c("treatment", "microbiome.sample"), sep = " x ") %>%
+  mutate(unique.mouse.id = paste(tail.number, treatment, microbiome.sample, sep = "_"),
+         experiment = "mimic21") %>%
+  separate(tail.number, into = c("tail.number", "cage"), sep = " x ")
+
 ```
-
-
 
 
 ```{r}
@@ -463,7 +482,9 @@ mimic.cleaned <- mim1 %>%
   bind_rows(mim16) %>%
   bind_rows(mim17) %>%
   bind_rows(mim18) %>%
-  bind_rows(mim19)
+  bind_rows(mim19) %>%
+  bind_rows(mim20) %>%
+  bind_rows(mim21)
 ```
 
 # Save
