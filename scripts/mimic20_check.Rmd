@@ -1,0 +1,78 @@
+---
+title: "mimic20-check"
+author: "Dan Spakowicz"
+date: "2023-11-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(tidyverse)
+library(knitr)
+```
+
+```{r}
+x <- readxl::read_xlsx(file.path("..", 
+                                 "data", 
+                                 "tumor-size", 
+                                 "AOT00052648-mimic20", 
+                                 "AOT00052648-mimic20_tumor-size.xlsx"))
+
+summary(x)
+```
+
+```{r}
+y <- 
+  x %>%
+  drop_na(`tumor.length.(mm)`) %>%
+  mutate(treatment = if_else(grepl("1|2|3|4", cage),
+                             true = "Anti-Pd1",
+                             false = "IgG")) %>%
+    mutate(gavage = if_else(grepl("1|3|5|7", cage),
+                             true = "Blautia",
+                             false = "PBS")) %>%
+  filter(!grepl("n/a", `tumor.length.(mm)`)) %>%
+  mutate(tumor.length.mm = as.numeric(`tumor.length.(mm)`),
+         tumor.width.mm = as.numeric(`tumor.width.(mm)`)) %>%
+  mutate(tumor.width.mm = if_else(is.na(tumor.width.mm),
+                                  true = 0,
+                                  false = tumor.width.mm)) %>%
+  mutate(tumor.volume = (tumor.length.mm * (tumor.width.mm^2)) / 2) %>%
+  mutate(cage = as.factor(cage)) %>%
+  mutate(mouse = paste(tail.number, cage, sep = ".")) %>%
+  group_by(mouse, date, treatment, gavage) %>%
+  summarize(total.tumor.volume = sum(tumor.volume))
+  
+
+head(y)  
+```
+
+
+```{r, warning=FALSE}
+y %>%
+  ggplot(aes(x = date, y = total.tumor.volume)) +
+  # geom_line(aes(group = mouse), 
+  #           alpha = 0.3, 
+  #           show.legend = FALSE) +
+  # geom_point(alpha = 0.1,
+  #            show.legend = FALSE) +
+  geom_smooth(aes(color = gavage,
+                  lty = treatment)) +
+  theme_bw()
+
+ggsave("../figures/mimic16_tum-volume.png",
+       height = 3, width = 6)
+```
+
+```{r}
+  y %>%
+  filter(date == as.Date("2023-11-09")) %>%
+  ggplot(aes(x = treatment, y = total.tumor.volume)) +
+  geom_boxplot(aes(fill = gavage))
+           
+
+```
+
+
