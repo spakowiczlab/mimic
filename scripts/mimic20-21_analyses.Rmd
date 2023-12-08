@@ -1,0 +1,179 @@
+---
+title: "Mimic20,21 Analyses"
+author: "Aadi Pallerla"
+date: "2023-12-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(lme4)
+library(lmerTest)
+library(broom.mixed)
+library(RColorBrewer)
+library(viridisLite)
+```
+
+```{r}
+
+processed <- read.csv("../data/2023-12-01_tumor-size_R-formatted.csv")
+
+```
+
+```{r}
+processModel <- function(model) {
+  model %>%
+  tidy() %>%
+  mutate(abs.estimate = abs(estimate),
+         plus.minus = ifelse(estimate > 0, "p", "n"),
+         log.estimate = log10(abs.estimate)) %>%
+  mutate(log.estimate = ifelse(plus.minus == "n", 
+                               -1*log.estimate, 
+                               log.estimate),
+         log.std.error = log10(std.error),
+         log.std.error = abs(log.std.error)) %>%
+  mutate(sig.flag = ifelse(p.value < 0.05, "S", "NS"),
+         conf.low = estimate - std.error,
+         conf.high = estimate + std.error,
+         log.conf.low = log.estimate - log.std.error,
+         log.conf.high = log.estimate + log.std.error,
+         ci95.low = estimate - (1.96 * std.error),
+         ci95.high = estimate + (1.96 * std.error)) %>% 
+  filter(is.na(group)) %>%
+  filter(term != "(Intercept)")
+}
+```
+
+## Mimic 20
+
+```{r}
+mimic20 <- processed %>%
+  filter(experiment == "mimic20") %>%
+  mutate(treatment = fct_relevel(treatment, "IgG"),
+         microbiome.sample = fct_relevel(microbiome.sample, "PBS")) %>%
+  mutate(days2 = days.from.injection^2) 
+
+m.20 <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * microbiome.sample + (1|unique.mouse.id),
+              data = mimic20)
+
+summary(m.20)
+
+model20 <- processModel(m.20) %>%
+  mutate(experiment = "mimic20",
+         trial = "BEWELL",
+         `sample ID` = "PBS",
+         hypothesis = "Blautia Supplementation",
+         `Combined ID` = "Blautia Supplementation (PBS)")
+```
+
+```{r}
+
+model20 %>%
+  filter(grepl("days2...*", term)) %>%
+  mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
+  ggplot(aes(x = estimate, y = term.adj)) +
+  geom_point(size = 2.5) +
+  theme_bw(base_size = 18) + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(aes(x = ci95.low, xend = ci95.high, 
+                   y = term.adj, yend = term.adj)) +
+  labs(x = "Estimate", y = "",title = "Mimic 20") +
+  scale_y_discrete(limits = rev)
+
+ggsave("../figures/mim20-model-forestplot_reduced.png",
+       height = 5, width = 6)
+
+```
+
+```{r}
+box.20 <- mimic20 %>%
+  filter(days.from.injection == 21) %>%
+  mutate(treatment = fct_relevel(treatment, "IgG")) 
+
+box.20 %>%
+  ggplot(aes(x = microbiome.sample, y = tumor.volume)) +
+  geom_boxplot(aes(fill = treatment)) +
+  theme_bw(base_size = 18) +
+  labs(x = "Gavage",
+       y = "Tumor Volume",
+       fill = "Treatment",
+       title = "mimic 20") +
+  scale_fill_brewer(palette = "Set1")
+
+ggsave("../figures/mim20-boxplot.png",
+       height = 5, width = 8)
+```
+
+
+## Mimic 21
+
+```{r}
+mimic21 <- processed %>%
+  filter(experiment == "mimic21") %>%
+  mutate(treatment = fct_relevel(treatment, "IgG"),
+         gavage = if_else(grepl("v1|v3", microbiome.sample),
+                          true = "Pre-BRB",
+                          false = if_else(grepl("v2|v4", microbiome.sample),
+                                          true = "Post-BRB",
+                                          false = "other"))) %>%
+  mutate(gavage = fct_relevel(gavage, "Pre-BRB")) %>%
+  mutate(treatment = fct_relevel(treatment, "IgG")) %>%
+  mutate(days2 = days.from.injection^2)  
+
+m.21 <- lmer(tumor.volume ~ days.from.injection + days2 * treatment * gavage + (1|unique.mouse.id),
+              data = mimic21)
+
+summary(m.21)
+
+model21 <- processModel(m.21) %>%
+  mutate(experiment = "mimic21",
+         trial = "BEWELL",
+         `sample ID` = "HONC60-85",
+         hypothesis = "BEWELL Sample, new cancer cell line",
+         `Combined ID` = "Lung Cancer Cell Line")
+```
+
+```{r}
+
+model21 %>%
+  filter(grepl("days2...*", term)) %>%
+  mutate(term.adj = gsub("days2:(.*)", "\\1", term)) %>%
+  ggplot(aes(x = estimate, y = term.adj)) +
+  geom_point(size = 2.5) +
+  theme_bw(base_size = 18) + 
+  guides(alpha = "none",
+         color = "none") +
+  geom_vline(xintercept = 0, lty = 2) +
+  geom_segment(aes(x = ci95.low, xend = ci95.high, 
+                   y = term.adj, yend = term.adj)) +
+  labs(x = "Estimate", y = "",title = "Mimic 21") +
+  scale_y_discrete(limits = rev)
+
+ggsave("../figures/mim21-model-forestplot_reduced.png",
+       height = 5, width = 6)
+
+```
+
+```{r}
+box.21 <- mimic21 %>%
+  filter(days.from.injection == 34) %>%
+  mutate(treatment = fct_relevel(treatment, "IgG")) 
+
+box.21 %>%
+  ggplot(aes(x = microbiome.sample, y = tumor.volume)) +
+  geom_boxplot(aes(fill = treatment)) +
+  theme_bw(base_size = 18) +
+  labs(x = "Gavage",
+       y = "Tumor Volume",
+       fill = "Treatment",
+       title = "mimic 21" ) +
+  scale_fill_brewer(palette = "Set1")
+
+ggsave("../figures/mim21-boxplot.png",
+       height = 5, width = 6)
+```
+
