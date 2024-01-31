@@ -1,0 +1,87 @@
+---
+title: "Append tumor volume"
+output: html_document
+date: "2024-01-31"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+# Load data
+
+```{r}
+tumordat <- read.csv("../data/2023-12-01_tumor-size_R-formatted.csv", stringsAsFactors = F)
+sampkey <- read.csv("../data/mimic16S-key.csv")
+```
+
+# Formatting
+
+```{r get final time point}
+sampkey.nec <- sampkey %>%
+  filter(timepoint == "necropsy") %>%
+  select(-X)
+
+tumordat.fin <- tumordat %>%
+  mutate(tfin = max(days.from.injection), .by = unique.mouse.id) %>%
+  filter(days.from.injection == tfin)
+```
+
+```{r pull out easy matches}
+samps.checkjoin <- sampkey.nec %>%
+  select(mimicID) %>%
+  separate(mimicID, into = c("prefix", "mouseinf"), sep = "-N ", remove = F) %>%
+  mutate(easyjoin = case_when(str_length(mouseinf) == 4 ~ "y",
+                              grepl("_cg", mouseinf) ~ "y"),
+         experiment = paste0("mimic", as.numeric(str_remove(prefix,"mim")))) 
+
+samps.easyjoin <- samps.checkjoin %>%
+  filter(easyjoin == "y") %>%
+  mutate(mouseinf = gsub("_cg", "c", mouseinf))
+
+tumdat.easy <- tumordat.fin %>%
+  filter(!is.na(cage)) %>%
+  mutate(mouseinf = paste0("m", tail.number, "c", cage)) %>%
+  select(experiment, mouseinf, unique.mouse.id, tumor.volume)
+
+# Where' mimic 14 and 15?
+key.easy <- samps.easyjoin %>%
+  left_join(tumdat.easy) %>%
+  select(mimicID, unique.mouse.id, tumor.volume)
+```
+
+```{r handle hard joins}
+sampdat.hard <- samps.checkjoin %>%
+  filter(is.na(easyjoin)) %>%
+  mutate(experiment = ifelse(prefix == "mimic02", "mimic2", experiment))
+tumordat.hard <- tumordat.fin %>%
+  filter(experiment %in% c("mimic1", "mimic2")) %>%
+  mutate(mouseinf = case_when(experiment == "mimic1" ~ 
+                                paste0("m", tail.number, "_", 
+                                       gsub(".* ", "", microbiome.sample), "_",
+                                       ifelse(treatment == "IgG", "igg", "pd1")),
+                              experiment == "mimic2" ~ 
+                                paste0("m", tail.number, "_",
+                                       ifelse(treatment == "IgG", "igg", "pd1"), "_",
+                                       ifelse(microbiome.sample == "Saline", "sal", "NR"))
+                              ),
+         mouseinf = gsub("^md", "m5", mouseinf)
+         ) 
+
+key.hard <- sampdat.hard %>%
+  left_join(tumordat.hard) %>%
+  select(mimicID, unique.mouse.id, tumor.volume)
+
+```
+
+# Joing and save
+
+```{r}
+key.all <- bind_rows(key.easy, key.hard)
+
+tumor.appended <- sampkey.nec %>%
+  left_join(key.all)
+```
+

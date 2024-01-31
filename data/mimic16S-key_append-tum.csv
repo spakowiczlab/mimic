@@ -1,0 +1,133 @@
+"","sampleID","mimicID","experiment","treatment","timepoint","sample","gavage","hypothesis","trial","unique.mouse.id","tumor.volume"
+"1",263,"mim01-N m1_v3_pd1","mimic 1","Anti-PD1","necropsy","HONC60-55","Pre-BRB","Random Sample","BEWELL","1_Anti-PD-1_HONC-60-55.v3",440.896
+"2",160,"mim01-N  m2_v3_pd1","mimic 1","Anti-PD1","necropsy","HONC60-55","Pre-BRB","Random Sample","BEWELL",NA,NA
+"3",463,"mim01-N m3_v3_pd1","mimic 1","Anti-PD1","necropsy","HONC60-55","Pre-BRB","Random Sample","BEWELL","3_Anti-PD-1_HONC-60-55.v3",0
+"4",46,"mim01-N m4_v3_igg","mimic 1","IgG","necropsy","HONC60-55","Pre-BRB","Random Sample","BEWELL","4_IgG_HONC-60-55.v3",919.6
+"5",188,"mim01-N m5_v3_igg","mimic 1","IgG","necropsy","HONC60-55","Pre-BRB","Random Sample","BEWELL","5_IgG_HONC-60-55.v3",296.45
+"6",173,"mim01-N m1_v4_pd1","mimic 1","Anti-PD1","necropsy","HONC60-55","Post-BRB","Random Sample","BEWELL","1_Anti-PD-1_HONC-60-55.v4",0
+"7",154,"mim01-N m2_v4_pd1","mimic 1","Anti-PD1","necropsy","HONC60-55","Post-BRB","Random Sample","BEWELL","2_Anti-PD-1_HONC-60-55.v4",165.528
+"8",240,"mim01-N m3_v4_pd1","mimic 1","Anti-PD1","necropsy","HONC60-55","Post-BRB","Random Sample","BEWELL","3_Anti-PD-1_HONC-60-55.v4",45.387
+"9",484,"mim01-N m4_v4_igg","mimic 1","IgG","necropsy","HONC60-55","Post-BRB","Random Sample","BEWELL","4_IgG_HONC-60-55.v4",760.4375
+"10",338,"mim01-N md_v4_igg","mimic 1","IgG","necropsy","HONC60-55","Post-BRB","Random Sample","BEWELL",NA,NA
+"11",497,"mimic02-N m3_pd1_NR","mimic 2","Anti-PD1","necropsy","DL081","Non-responder","ICI Response","Fitness","3_Anti-PD1_Fitness (DL081)",151.838
+"12",121,"mimic02-N m4_pd1_NR","mimic 2","Anti-PD1","necropsy","DL081","Non-responder","ICI Response","Fitness","4_Anti-PD1_Fitness (DL081)",503.608
+"13",313,"mimic02-N m1_pd1_sal","mimic 2","Anti-PD1","necropsy",NA,"Saline","ICI Response","Fitness","1_Anti-PD1_Saline",0
+"14",232,"mimic02-N m2_pd1_sal","mimic 2","Anti-PD1","necropsy",NA,"Saline","ICI Response","Fitness","2_Anti-PD1_Saline",0
+"15",254,"mimic02-N m3_pd1_sal","mimic 2","Anti-PD1","necropsy",NA,"Saline","ICI Response","Fitness","3_Anti-PD1_Saline",44.982
+"16",312,"mimic02-N m2_igg_sal","mimic 2","IgG","necropsy",NA,"Saline","ICI Response","Fitness","2_IgG_Saline",184.493
+"17",123,"mimic02-N m3_igg_NR","mimic 2","IgG","necropsy","DL081","Non-responder","ICI Response","Fitness","3_IgG_Fitness (DL081)",592
+"18",379,"mimic02-N m4_igg_NR","mimic 2","IgG","necropsy","DL081","Non-responder","ICI Response","Fitness","4_IgG_Fitness (DL081)",1620.896
+"19",203,"mimic02-N m1_igg_NR","mimic 2","IgG","necropsy","DL081","Non-responder","ICI Response","Fitness",NA,NA
+"20",366,"mim03-N m2_cg1","mimic 3","IgG","necropsy","DL017","Responder","ICI Response","Fitness","2 x 1_IgG_Fitness:DL017",119.286
+"21",21,"mim03-N m3_cg1","mimic 3","IgG","necropsy","DL017","Responder","ICI Response","Fitness","3 x 1_IgG_Fitness:DL017",461.041
+"22",29,"mim03-N m1_cg2","mimic 3","IgG","necropsy","DL017","Responder","ICI Response","Fitness","1 x 2_IgG_Fitness:DL017",379.456
+"23",44,"mim03-N m2_cg2","mimic 3","IgG","necropsy","DL017","Responder","ICI Response","Fitness","2 x 2_IgG_Fitness:DL017",219.539
+"24",180,"mim03-N m3_cg2","mimic 3","IgG","necropsy","DL017","Responder","ICI Response","Fitness","3 x 2_IgG_Fitness:DL017",702.464
+"25",178,"mim03-N m2_cg3","mimic 3","Anti-PD1","necropsy","DL017","Responder","ICI Response","Fitness","2 x 3_PD1_Fitness:DL017",249.6
+"26",187,"mim03-N m4_cg4","mimic 3","Anti-PD1","necropsy","DL017","Responder","ICI Response","Fitness",NA,NA
+"27",429,"mim05-N c1","mimic 5","IgG","necropsy","HONC60-102","Pre-BRB","Random Sample","BEWELL",NA,NA
+"28",99,"mim05-N c2","mimic 5","Anti-PD1","necropsy","HONC60-102","Pre-BRB","Random Sample","BEWELL",NA,NA
+"29",124,"mim05-N c3","mimic 5","Anti-PD1","necropsy","HONC60-102","Post-BRB","Random Sample","BEWELL",NA,NA
+"30",305,"mim08-N m1_cg1","mimic 8","Anti-PD1","necropsy","DL017","Responder","ICI Response","Fitness","1 x 1_Anti-PD1_DL017",0
+"31",267,"mim08-N m2_cg1","mimic 8","Anti-PD1","necropsy","DL017","Responder","ICI Response","Fitness","2 x 1_Anti-PD1_DL017",89.7345
+"32",281,"mim08-N m3_cg1","mimic 8","Anti-PD1","necropsy","DL017","Responder","ICI Response","Fitness","3 x 1_Anti-PD1_DL017",70.227
+"33",86,"mim08-N m1_cg2","mimic 8","Anti-PD1","necropsy","DL017","Responder","ICI Response","Fitness","1 x 2_Anti-PD1_DL017",81.12
+"34",110,"mim08-N m2_cg2","mimic 8","Anti-PD1","necropsy","DL017","Responder","ICI Response","Fitness","2 x 2_Anti-PD1_DL017",0
+"35",150,"mim08-N m3_cg2","mimic 8","Anti-PD1","necropsy","DL017","Responder","ICI Response","Fitness","3 x 2_Anti-PD1_DL017",0
+"36",143,"mim08-N m1_cg4","mimic 8","IgG","necropsy","DL017","Responder","ICI Response","Fitness","1 x 4_IgG_DL017",245.48
+"37",393,"mim08-N m2_cg4","mimic 8","IgG","necropsy","DL017","Responder","ICI Response","Fitness","2 x 4_IgG_DL017",172.062
+"38",396,"mim08-N m3_cg4","mimic 8","IgG","necropsy","DL017","Responder","ICI Response","Fitness","3 x 4_IgG_DL017",272.8125
+"39",72,"mim10-N m1c1","mimic 10","Anti-PD1","necropsy","HONC60-68","Pre-BRB","Roseburia","BEWELL","1 x 1_Anti-PD1_HONC-60 68v1",296.45
+"40",102,"mim10-N m2c1","mimic 10","Anti-PD1","necropsy","HONC60-68","Pre-BRB","Roseburia","BEWELL","2 x 1_Anti-PD1_HONC-60 68v1",237.917
+"41",284,"mim10-N m3c1","mimic 10","Anti-PD1","necropsy","HONC60-68","Pre-BRB","Roseburia","BEWELL","3 x 1_Anti-PD1_HONC-60 68v1",0
+"42",34,"mim10-N m1c2","mimic 10","Anti-PD1","necropsy","HONC60-68","Post-BRB","Roseburia","BEWELL","1 x 2_Anti-PD1_HONC-60 68v2",168.5345
+"43",190,"mim10-N m2c2","mimic 10","Anti-PD1","necropsy","HONC60-68","Post-BRB","Roseburia","BEWELL","2 x 2_Anti-PD1_HONC-60 68v2",3.9015
+"44",397,"mim10-N m3c2","mimic 10","Anti-PD1","necropsy","HONC60-68","Post-BRB","Roseburia","BEWELL","3 x 2_Anti-PD1_HONC-60 68v2",46.225
+"45",362,"mim10-N m1c3","mimic 10","IgG","necropsy","HONC60-68","Pre-BRB","Roseburia","BEWELL","1 x 3_IgG_HONC-60 68v1",694.8895
+"46",87,"mim10-N m2c3","mimic 10","IgG","necropsy","HONC60-68","Pre-BRB","Roseburia","BEWELL","2 x 3_IgG_HONC-60 68v1",1072.8
+"47",386,"mim10-N m3c3","mimic 10","IgG","necropsy","HONC60-68","Pre-BRB","Roseburia","BEWELL","3 x 3_IgG_HONC-60 68v1",1932.294
+"48",248,"mim10-N m1c4","mimic 10","IgG","necropsy","HONC60-68","Post-BRB","Roseburia","BEWELL","1 x 4_IgG_HONC-60 68v2",647.15
+"49",70,"mim10-N m2c4","mimic 10","IgG","necropsy","HONC60-68","Post-BRB","Roseburia","BEWELL","2 x 4_IgG_HONC-60 68v2",576
+"50",81,"mim11-N m1c1","mimic 11","Anti-PD1","necropsy","HONC60-79","Post-Placebo","Lachnospira","BEWELL","1 x 1_Anti-PD1_HONC60-79 v2",10.976
+"51",317,"mim11-N m2c1","mimic 11","Anti-PD1","necropsy","HONC60-79","Post-Placebo","Lachnospira","BEWELL","2 x 1_Anti-PD1_HONC60-79 v2",6.6125
+"52",408,"mim11-N m3c1","mimic 11","Anti-PD1","necropsy","HONC60-79","Post-Placebo","Lachnospira","BEWELL","3 x 1_Anti-PD1_HONC60-79 v2",27.436
+"53",344,"mim11-N m1c2","mimic 11","Anti-PD1","necropsy","HONC60-79","Post-BRB","Lachnospira","BEWELL","1 x 2_Anti-PD1_HONC60-79 v4",460.876
+"54",68,"mim11-N m2c2","mimic 11","Anti-PD1","necropsy","HONC60-79","Post-BRB","Lachnospira","BEWELL","2 x 2_Anti-PD1_HONC60-79 v4",0
+"55",374,"mim11-N m3c2","mimic 11","Anti-PD1","necropsy","HONC60-79","Post-BRB","Lachnospira","BEWELL","3 x 2_Anti-PD1_HONC60-79 v4",70.304
+"56",391,"mim11-N m1c3","mimic 11","IgG","necropsy","HONC60-79","Post-Placebo","Lachnospira","BEWELL","1 x 3_IgG_HONC60-79 v2",1250.256
+"57",89,"mim11-N m2c3","mimic 11","IgG","necropsy","HONC60-79","Post-Placebo","Lachnospira","BEWELL","2 x 3_IgG_HONC60-79 v2",1382.29
+"58",96,"mim11-N m3c3","mimic 11","IgG","necropsy","HONC60-79","Post-Placebo","Lachnospira","BEWELL","3 x 3_IgG_HONC60-79 v2",174.96
+"59",330,"mim11-N m1c4","mimic 11","IgG","necropsy","HONC60-79","Post-BRB","Lachnospira","BEWELL","1 x 4_IgG_HONC60-79 v4",787.968
+"60",109,"mim11-N m2c4","mimic 11","IgG","necropsy","HONC60-79","Post-BRB","Lachnospira","BEWELL","2 x 4_IgG_HONC60-79 v4",284.752
+"61",15,"mim11-N m3c4","mimic 11","IgG","necropsy","HONC60-79","Post-BRB","Lachnospira","BEWELL","3 x 4_IgG_HONC60-79 v4",1132.0155
+"62",319,"mim12-N m1c1","mimic 12","Anti-PD1","necropsy","HONC60-85","Post-BRB","Blautia","BEWELL","1 x 1_Anti-PD1_HONC60-85 v2",53.24
+"63",217,"mim12-N m2c1","mimic 12","Anti-PD1","necropsy","HONC60-85","Post-BRB","Blautia","BEWELL","2 x 1_Anti-PD1_HONC60-85 v2",0
+"64",323,"mim12-N m3c1","mimic 12","Anti-PD1","necropsy","HONC60-85","Post-BRB","Blautia","BEWELL","3 x 1_Anti-PD1_HONC60-85 v2",7.29
+"65",94,"mim12-N m1c2","mimic 12","Anti-PD1","necropsy","HONC60-85","Pre-BRB","Blautia","BEWELL","1 x 2_Anti-PD1_HONC60-85 v1",183.7875
+"66",115,"mim12-N m2c2","mimic 12","Anti-PD1","necropsy","HONC60-85","Pre-BRB","Blautia","BEWELL","2 x 2_Anti-PD1_HONC60-85 v1",0
+"67",113,"mim12-N m3c2","mimic 12","Anti-PD1","necropsy","HONC60-85","Pre-BRB","Blautia","BEWELL","3 x 2_Anti-PD1_HONC60-85 v1",0
+"68",388,"mim12-N m1c3","mimic 12","IgG","necropsy","HONC60-85","Post-BRB","Blautia","BEWELL","1 x 3_IgG_HONC60-85 v2",0
+"69",262,"mim12-N m2c3","mimic 12","IgG","necropsy","HONC60-85","Post-BRB","Blautia","BEWELL","2 x 3_IgG_HONC60-85 v2",0
+"70",350,"mim12-N m3c3","mimic 12","IgG","necropsy","HONC60-85","Post-BRB","Blautia","BEWELL","3 x 3_IgG_HONC60-85 v2",130.075
+"71",234,"mim12-N m1c4","mimic 12","IgG","necropsy","HONC60-85","Pre-BRB","Blautia","BEWELL","1 x 4_IgG_HONC60-85 v1",831.464
+"72",111,"mim12-N m2c4","mimic 12","IgG","necropsy","HONC60-85","Pre-BRB","Blautia","BEWELL","2 x 4_IgG_HONC60-85 v1",274.752
+"73",306,"mim12-N m3c4","mimic 12","IgG","necropsy","HONC60-85","Pre-BRB","Blautia","BEWELL","3 x 4_IgG_HONC60-85 v1",268.324
+"74",311,"mim13-N m1c3","mimic 13","IgG","necropsy","HONC60-84","Post-BRB","Blautia","BEWELL","1 x 3_IgG_HONC60-84 v4",75.6315
+"75",297,"mim13-N m1c1","mimic 13","Anti-PD1","necropsy","HONC60-84","Pre-BRB","Blautia","BEWELL","1 x 1_Anti-PD1_HONC60-84 v3",0
+"76",377,"mim13-N m2c1","mimic 13","Anti-PD1","necropsy","HONC60-84","Pre-BRB","Blautia","BEWELL","2 x 1_Anti-PD1_HONC60-84 v3",62.422
+"77",425,"mim13-N m3c1","mimic 13","Anti-PD1","necropsy","HONC60-84","Pre-BRB","Blautia","BEWELL","3 x 1_Anti-PD1_HONC60-84 v3",158.8125
+"78",7,"mim13-N m1c2","mimic 13","IgG","necropsy","HONC60-84","Pre-BRB","Blautia","BEWELL","1 x 2_IgG_HONC60-84 v3",622.104
+"79",194,"mim13-N m2c2","mimic 13","IgG","necropsy","HONC60-84","Pre-BRB","Blautia","BEWELL","2 x 2_IgG_HONC60-84 v3",0
+"80",417,"mim13-N m3c2","mimic 13","IgG","necropsy","HONC60-84","Pre-BRB","Blautia","BEWELL","3 x 2_IgG_HONC60-84 v3",612.5625
+"81",93,"mim13-N m1c3","mimic 13","IgG","necropsy","HONC60-84","Post-BRB","Blautia","BEWELL","1 x 3_IgG_HONC60-84 v4",75.6315
+"82",316,"mim13-N m2c3","mimic 13","IgG","necropsy","HONC60-84","Post-BRB","Blautia","BEWELL","2 x 3_IgG_HONC60-84 v4",165.3475
+"83",486,"mim13-N m3c3","mimic 13","IgG","necropsy","HONC60-84","Post-BRB","Blautia","BEWELL","3 x 3_IgG_HONC60-84 v4",62.422
+"84",353,"mim13-N m1c4","mimic 13","Anti-PD1","necropsy","HONC60-84","Post-BRB","Blautia","BEWELL","1 x 4_Anti-PD1_HONC60-84 v4",351.6215
+"85",314,"mim13-N m2c4","mimic 13","Anti-PD1","necropsy","HONC60-84","Post-BRB","Blautia","BEWELL","2 x 4_Anti-PD1_HONC60-84 v4",0
+"86",222,"mim13-N m3c4","mimic 13","Anti-PD1","necropsy","HONC60-84","Post-BRB","Blautia","BEWELL","3 x 4_Anti-PD1_HONC60-84 v4",16.224
+"87",219,"mim14-N m1c1","mimic 14",NA,"necropsy","4033","Responder","Immunotherapy Resp.","Fitness",NA,NA
+"88",77,"mim14-N m2c1","mimic 14",NA,"necropsy","4033","Responder","Immunotherapy Resp.","Fitness",NA,NA
+"89",342,"mim14-N m3c1","mimic 14",NA,"necropsy","4033","Responder","Immunotherapy Resp.","Fitness",NA,NA
+"90",57,"mim14-N m1c2","mimic 14",NA,"necropsy","4058","Non-Responder","Immunotherapy Resp.","Fitness",NA,NA
+"91",487,"mim14-N m2c2","mimic 14",NA,"necropsy","4058","Non-Responder","Immunotherapy Resp.","Fitness",NA,NA
+"92",22,"mim14-N m3c2","mimic 14",NA,"necropsy","4058","Non-Responder","Immunotherapy Resp.","Fitness",NA,NA
+"93",136,"mim14-N m1c3","mimic 14",NA,"necropsy","4033","Responder","Immunotherapy Resp.","Fitness",NA,NA
+"94",332,"mim14-N m2c3","mimic 14",NA,"necropsy","4033","Responder","Immunotherapy Resp.","Fitness",NA,NA
+"95",147,"mim14-N m3c3","mimic 14",NA,"necropsy","4033","Responder","Immunotherapy Resp.","Fitness",NA,NA
+"96",246,"mim14-N m1c4","mimic 14",NA,"necropsy","4058","Non-Responder","Immunotherapy Resp.","Fitness",NA,NA
+"97",501,"mim14-N m2c4","mimic 14",NA,"necropsy","4058","Non-Responder","Immunotherapy Resp.","Fitness",NA,NA
+"98",166,"mim14-N m3c4","mimic 14",NA,"necropsy","4058","Non-Responder","Immunotherapy Resp.","Fitness",NA,NA
+"99",481,"mim15-N m1c1","mimic 15","IgG","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"100",255,"mim15-N m2c1","mimic 15","IgG","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"101",252,"mim15-N m3c1","mimic 15","IgG","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"102",200,"mim15-N m1c2","mimic 15","Anti-PD1 + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"103",209,"mim15-N m2c2","mimic 15","Anti-PD1 + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"104",230,"mim15-N m2c3","mimic 15","Anti-PD1","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"105",432,"mim15-N m1c3","mimic 15","Anti-PD1","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"106",360,"mim15-N m2c3","mimic 15","Anti-PD1","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"107",430,"mim15-N m3c3","mimic 15","Anti-PD1","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"108",440,"mim15-N m1c4","mimic 15","IgG + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"109",492,"mim15-N m2c4","mimic 15","IgG + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"110",354,"mim15-N m3c4","mimic 15","IgG + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"111",253,"mim15-N m1c5","mimic 15","IgG","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"112",445,"mim15-N m2c5","mimic 15","IgG","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"113",182,"mim15-N m3c5","mimic 15","IgG","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"114",207,"mim15-N m1c6","mimic 15","Anti-PD1 + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"115",225,"mim15-N m2c6","mimic 15","Anti-PD1 + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"116",80,"mim15-N m2c6","mimic 15","Anti-PD1 + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"117",418,"mim15-N m1c7","mimic 15","Anti-PD1","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"118",233,"mim15-N m2c7","mimic 15","Anti-PD1","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"119",114,"mim15-N m3c7","mimic 15","Anti-PD1","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"120",272,"mim15-N m1c8","mimic 15","IgG + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"121",499,"mim15-N m2c8","mimic 15","IgG + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"122",382,"mim15-N m3c8","mimic 15","IgG + Antibiotics","necropsy",NA,"saline","Antibiotic Resp.","mimic",NA,NA
+"123",477,"mim16-N m1c1","mimic 16","Anti-PD1","necropsy","HONC60-85v1","Pre-BRB + Blautia","Blautia Supp.","BEWELL","1 x 1_Anti-PD1_HONC60-85v1 + Blautia",0
+"124",58,"mim16-N m2c1","mimic 16","Anti-PD1","necropsy","HONC60-85v1","Pre-BRB + Blautia","Blautia Supp.","BEWELL","2 x 1_Anti-PD1_HONC60-85v1 + Blautia",0
+"125",152,"mim16-N m3c1","mimic 16","Anti-PD1","necropsy","HONC60-85v1","Pre-BRB + Blautia","Blautia Supp.","BEWELL","3 x 1_Anti-PD1_HONC60-85v1 + Blautia",0
+"126",347,"mim16-N m1c2","mimic 16","Anti-PD1","necropsy","HONC60-85v1","Pre-BRB","Blautia Supp.","BEWELL","1 x 2_Anti-PD1_HONC60-85v1",0
+"127",179,"mim16-N m2c2","mimic 16","Anti-PD1","necropsy","HONC60-85v1","Pre-BRB","Blautia Supp.","BEWELL","2 x 2_Anti-PD1_HONC60-85v1",0
+"128",141,"mim16-N m3c2","mimic 16","Anti-PD1","necropsy","HONC60-85v1","Pre-BRB","Blautia Supp.","BEWELL","3 x 2_Anti-PD1_HONC60-85v1",0
+"129",195,"mim16-N m1c3","mimic 16","IgG","necropsy","HONC60-85v1","Pre-BRB + Blautia","Blautia Supp.","BEWELL","1 x 3_IgG_HONC60-85v1 + Blautia",151.0785
+"130",517,"mim16-N m2c3","mimic 16","IgG","necropsy","HONC60-85v1","Pre-BRB + Blautia","Blautia Supp.","BEWELL","2 x 3_IgG_HONC60-85v1 + Blautia",244.6505
+"131",339,"mim16-N m3c3","mimic 16","IgG","necropsy","HONC60-85v1","Pre-BRB + Blautia","Blautia Supp.","BEWELL","3 x 3_IgG_HONC60-85v1 + Blautia",476.847
+"132",496,"mim16-N m1c4","mimic 16","IgG","necropsy","HONC60-85v1","Pre-BRB","Blautia Supp.","BEWELL","1 x 4_IgG_HONC60-85v1",35.301
