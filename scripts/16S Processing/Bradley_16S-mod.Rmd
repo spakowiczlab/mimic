@@ -1,0 +1,33 @@
+---
+title: "Bradley_16S-mod"
+author: "Aadi Pallerla"
+date: "2024-02-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+
+key.appen <- read.csv("../../data/mimic16S-key_append-tum.csv")
+
+seqtab <- read_rds("../../data/2023-07-26_16S-seqtab.rds") %>%
+  as.data.frame()
+
+taxa <- read_rds("../../data/2023-07-26_16S-taxa.rds") %>%
+  as.data.frame()
+
+```   
+
+
+```{r}
+seqtab.filter <- seqtab %>%
+  rownames_to_column(var = "Sample ID") %>%
+  filter(`Sample ID` %in% key.appen$sampleID)
+
+write_csv(seqtab.filter,"../../data/bradley_16S-seqtab-filter.csv")
+
+```
