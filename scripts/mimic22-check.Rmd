@@ -1,0 +1,29 @@
+---
+title: "mimic22-check"
+author: "Dan Spakowicz"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+x <- read_csv("../data/2024-02-05_tumor-size_R-formatted.csv") %>%
+  filter(experiment == "mimic22") %>%
+  mutate(treatment.group = paste(treatment, microbiome.sample, sep = "x"))
+```
+
+```{r}
+x %>%
+  ggplot(aes(x = days.from.injection, y = tumor.volume)) +
+  # geom_line(aes(group = unique.mouse.id, 
+  #               color = microbiome.sample,
+  #               linetype = treatment),
+  #           lwd = 1,
+  #           alpha = 0.2) +
+  geom_smooth(aes(color = treatment.group)) +
+  theme_bw()
+```
+
