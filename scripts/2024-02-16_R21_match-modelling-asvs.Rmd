@@ -1,0 +1,26 @@
+---
+title: "grants_match-ASVs-modelling"
+author: "Rebecca Hoyd"
+date: "2024-02-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(stringr)
+```
+
+# Load data
+
+```{r}
+
+```
+
+# Matching taxa names and ASV numbers
+
+# Combine with model results
+
+# Save
+

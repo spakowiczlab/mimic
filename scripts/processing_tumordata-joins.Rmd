@@ -79,9 +79,14 @@ key.hard <- sampdat.hard %>%
 # Joing and save
 
 ```{r}
-key.all <- bind_rows(key.easy, key.hard)
+key.all <- bind_rows(key.easy, key.hard) %>%
+  distinct()
+  # drop_na(tumor.volume) %>%
+  # add_count(mimicID)
 
 tumor.appended <- sampkey.nec %>%
   left_join(key.all)
+
+write.csv(tumor.appended, "../data/mimic16S-key_append-tum.csv", row.names = F)
 ```
 

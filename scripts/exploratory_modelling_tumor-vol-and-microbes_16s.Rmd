@@ -1,0 +1,118 @@
+---
+title: "Modelling microbes and tumor volume"
+author: "Rebecca Hoyd"
+date: "2024-02-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(glmm)
+library(broom)
+library(stringr)
+```
+
+# Load data
+
+```{r}
+seqtab <- readRDS("../data/2023-07-26_16S-seqtab.rds")
+tax <- readRDS("../data/2023-07-26_16S-taxa.rds")
+
+tumvol <- read.csv("../data/mimic16S-key_append-tum.csv")
+```
+
+# Formatting
+
+## microbes to wide
+```{r}
+joinseq <- seqtab %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "sampleID") %>%
+  pivot_longer(-sampleID, names_to = "asv", values_to = "counts") %>%
+  mutate(sampcount = sum(counts), .by = sampleID)
+
+lapply(as.data.frame(tax), function(x) any(is.na(x)))
+jointax <- tax %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "asv") %>%
+  drop_na(Kingdom) %>%
+  mutate(Kingdom = paste0("k__", Kingdom),
+         Phylum = ifelse(is.na(Phylum), paste0("p__unclassified-", Kingdom), paste0("p__",Phylum)),
+         Class = ifelse(is.na(Class), paste0("c__unclassified-", str_remove(Phylum, "p__unclassified-")), paste0("c__",Class)),
+         Order = ifelse(is.na(Order), paste0("o__unclassified-", str_remove(Class, "c__unclassified-")), paste0("o__",Order)),
+         Family = ifelse(is.na(Family), paste0("f__unclassified-", str_remove(Order, "o__unclassified-")), paste0("f__",Family)),
+         Genus = ifelse(is.na(Genus), paste0("g__unclassified-", str_remove(Family, "f__unclassified-")), paste0("g__",Genus)),
+         Species = ifelse(is.na(Species), paste0("s__unclassified-", str_remove(Genus, "g__unclassified-")), 
+                          paste0("s__",str_remove(Genus, "g__")," ", Species))) 
+
+seqtax.long <- joinseq %>%
+  inner_join(jointax)
+  
+```
+
+```{r}
+longToWideRA <- function(df, taxlev){
+  df$taxlev = df[[taxlev]]
+  tmp <- df %>%
+    mutate(RA = counts/sampcount) %>%
+    group_by(sampleID, taxlev) %>%
+    summarise(RA = sum(RA)) %>%
+    ungroup() %>%
+    pivot_wider(names_from = taxlev, values_from = RA)
+  return(tmp)
+}
+
+ToWideAllLevs <- function(df, tlevs = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")){
+  tmp <- lapply(tlevs, function(x) longToWideRA(df = df, x))
+  tmp2 <- purrr::reduce(tmp, function(x,y) left_join(x,y))
+}
+```
+
+```{r}
+mic.input <- ToWideAllLevs(seqtax.long)
+mics <- colnames(mic.input)[-1]
+```
+
+## Final sample set
+
+```{r}
+modin <- tumvol %>%
+  filter(trial == "BEWELL" & !is.na(tumor.volume)) %>%
+  mutate(sampleID = as.character(sampleID),
+         treatment = str_remove(treatment, "Anti-")) %>%
+  left_join(mic.input)
+```
+
+# Analysis
+
+```{r}
+captureModelsEffects <- function(m){
+  form <- as.formula(paste0("tumor.volume ~ `", m, "`*treatment"))
+  tmp <- glm(form, data = modin, family = "gaussian") %>%
+    tidy() %>%
+    filter(grepl(m,term))
+  
+  return(tmp)
+}
+```
+
+```{r}
+allres <- lapply(mics, captureModelsEffects) %>%
+  bind_rows()
+
+allres <- allres %>%
+  arrange(p.value) %>%
+  mutate(padj = p.adjust(p.value, method = "fdr"))
+```
+# Save
+
+```{r}
+write.csv(allres, "../data/modelling_volume-microbes-PD1.csv", row.names = F)
+```
+
+
+
+
+
