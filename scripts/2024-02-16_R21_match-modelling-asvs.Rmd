@@ -15,12 +15,98 @@ library(stringr)
 # Load data
 
 ```{r}
-
+mres <- read.csv("../data/modelling_volume-microbes-PD1.csv", stringsAsFactors = F)
+tax <- readRDS("../data/2023-07-26_16S-taxa.rds")
 ```
 
 # Matching taxa names and ASV numbers
 
+## Recreate each individual's labelling strategy
+
+```{r}
+RHlabs <- tax %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "asv") %>%
+  drop_na(Kingdom) %>%
+  mutate(Kingdom = paste0("k__", Kingdom),
+         Phylum = ifelse(is.na(Phylum), paste0("p__unclassified-", Kingdom), paste0("p__",Phylum)),
+         Class = ifelse(is.na(Class), paste0("c__unclassified-", str_remove(Phylum, "p__unclassified-")), paste0("c__",Class)),
+         Order = ifelse(is.na(Order), paste0("o__unclassified-", str_remove(Class, "c__unclassified-")), paste0("o__",Order)),
+         Family = ifelse(is.na(Family), paste0("f__unclassified-", str_remove(Order, "o__unclassified-")), paste0("f__",Family)),
+         Genus = ifelse(is.na(Genus), paste0("g__unclassified-", str_remove(Family, "f__unclassified-")), paste0("g__",Genus)),
+         Species = ifelse(is.na(Species), paste0("s__unclassified-", str_remove(Genus, "g__unclassified-")), 
+                          paste0("s__",str_remove(Genus, "g__")," ", Species))) %>%
+  select(asv, Species) %>%
+  rename("RHlab" = "Species")
+```
+
+```{r}
+# This should exactly replicate Aadi's ASV labelling, I'll format the output further for matching
+getAPlabs <- function(){
+  taxa <-tax %>%
+    as.data.frame() %>%
+    filter(Family == "Lachnospiraceae") %>%
+    rownames_to_column(var = "ASV") %>%
+    select(-Kingdom,-Phylum,-Class,-Order) %>%
+    rownames_to_column(var = "ID") 
+  
+  taxa.spec <- taxa %>%
+    filter(!is.na(Species)) %>%
+    mutate(ASVID = paste0("ASV",ID),
+           Fasta = paste(Genus,Species,ASVID,sep = " ")) %>%
+    select(ID,ASV,Fasta)
+  
+  
+  taxa.fill <- taxa %>%
+    filter(is.na(Species)) %>%
+    mutate(Genus=if_else(is.na(Genus),paste0("g_unclassified_",Family),Genus),
+           Species=if_else(is.na(Species),paste0("s_unclassified_",Genus),Species),
+           Species=str_replace(Species,"s_unclassified_g_unclassified_","s_g_unclassified_")) %>%
+    mutate(ASVID = paste0("ASV",ID),
+           Fasta = paste(Species,ASVID,sep = " ")) %>%
+    select(ID,ASV,Fasta)
+  
+  taxa.combine <- bind_rows(taxa.fill,
+                            taxa.spec) %>%
+    mutate(ID = as.numeric(ID)) %>%
+    arrange(ID)
+  
+  return(taxa.combine)
+} 
+
+APlabs <- getAPlabs()
+```
+
+## Resolve labelling together
+
+```{r}
+AP.forjoin <- APlabs %>%
+  mutate(APlab = str_extract(Fasta, "ASV.*"),
+         asv = ASV) %>%
+  select(asv, APlab)
+
+taxa.of.int <- AP.forjoin %>%
+  left_join(RHlabs) %>%
+  select(-asv) %>%
+  group_by(RHlab) %>%
+  summarise(ASVs = paste(APlab, collapse = ","))
+```
+
 # Combine with model results
 
+```{r}
+mres.forjoin <- mres %>%
+  filter(!grepl("treatment", term)) %>%
+  mutate(term = str_remove_all(term, "`")) %>%
+  rename("RHlab" = "term")
+
+mres.asv <- taxa.of.int %>%
+  left_join(mres.forjoin)
+```
+
 # Save
+
+```{r}
+write.csv(mres.asv, "../data/modelling_tumor-vol-microbe_asv-match.csv", row.names = F)
+```
 
