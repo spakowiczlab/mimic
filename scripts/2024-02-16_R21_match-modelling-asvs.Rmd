@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(stringr)
+library(glmm)
+library(broom)
 ```
 
 # Load data
@@ -109,4 +111,61 @@ mres.asv <- taxa.of.int %>%
 ```{r}
 write.csv(mres.asv, "../data/modelling_tumor-vol-microbe_asv-match.csv", row.names = F)
 ```
+
+# Repeat modeling at ASV level
+
+```{r}
+seqtab <- readRDS("../data/2023-07-26_16S-seqtab.rds")
+tumvol <- read.csv("../data/mimic16S-key_append-tum.csv")
+```
+
+```{r}
+mic.input <- seqtab %>%
+  as.data.frame() %>%
+  rownames_to_column(var = "sampleID") %>%
+  pivot_longer(-sampleID, names_to = "asv", values_to = "counts") %>%
+  mutate(totcount = sum(counts), .by = sampleID) %>%
+  mutate(RA = counts/totcount) %>%
+  inner_join(AP.forjoin) %>%
+  select(APlab, sampleID, RA) %>%
+  pivot_wider(names_from = APlab, values_from = RA)
+asvs <- colnames(mic.input)[-1]
+
+modin <- tumvol %>%
+  filter(trial == "BEWELL" & !is.na(tumor.volume)) %>%
+  mutate(sampleID = as.character(sampleID),
+         treatment = str_remove(treatment, "Anti-")) %>%
+  left_join(mic.input)
+```
+
+```{r}
+captureModelsEffects <- function(m){
+  form <- as.formula(paste0("tumor.volume ~ `", m, "`*treatment"))
+  tmp <- glm(form, data = modin, family = "gaussian") %>%
+    tidy() %>%
+    filter(grepl(m,term))
+  
+  return(tmp)
+}
+```
+
+```{r}
+allres <- lapply(asvs, captureModelsEffects) %>%
+  bind_rows()
+
+addRHlab <- AP.forjoin %>%
+  left_join(RHlabs) %>%
+  select(-asv) 
+
+allres <- allres %>%
+  arrange(p.value) %>%
+  mutate(padj = p.adjust(p.value, method = "fdr"),
+         APlab = str_remove(term, ":trea.*")) %>%
+  left_join(addRHlab)
+
+
+
+write.csv(allres, "../data/modelling_tumor-vol-asv.csv", row.names = F)
+```
+
 
