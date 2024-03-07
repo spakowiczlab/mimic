@@ -1,0 +1,24 @@
+---
+title: "Mimic23 Tumor Volume and Survival"
+author: "Dan Spakowicz"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readxl)
+
+# Set paths to locate OneDrive shared mimic folder
+source("00-paths.R")
+```
+
+```{r}
+x <- readxl::read_xlsx(file.path(paths$onedrive,
+                                 "data",
+                                 "AOT00055028- mimic23",
+                                 "mimic23_tumor-size.xlsx"))
+```
+
