@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(readxl)
+library(survminer)
 
 # Set paths to locate OneDrive shared mimic folder
 source("00-paths.R")
@@ -40,10 +41,6 @@ y <-
 head(y)  
 ```
 
-```{r}
-
-```
-
 ```{r, warning=FALSE}
 y %>%
   ggplot(aes(x = date, y = total.tumor.volume)) +
@@ -63,5 +60,22 @@ y %>%
 ggsave("../figures/mimic23_tum-volume.png",
        height = 3, width = 6)
 ```
+
+```{r}
+surv.in <- x %>%
+  mutate(mouse = paste(tail.number, cage, sep = ".")) %>%
+  # this should work but also removes NA... 
+  # == "n/a" only selects those 6 though
+  # max days on trial should be 24 
+  filter(`tumor.length.(mm)` != "n/a") %>%
+    group_by(mouse) %>%
+  mutate(days.on.trial = max(date) - min(date)) %>%
+  ungroup() %>%
+  filter(!is.na(microbiome.sample)) %>%
+  select(mouse, days.on.trial, microbiome.sample) %>%
+  distinct() %>%
+  mutate(status = ifelse(days.on.trial < max(days.on.trial), 1, 0))
+```
+
 
 
