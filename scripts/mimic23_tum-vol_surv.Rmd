@@ -20,5 +20,48 @@ x <- readxl::read_xlsx(file.path(paths$onedrive,
                                  "data",
                                  "AOT00055028- mimic23",
                                  "mimic23_tumor-size.xlsx"))
+head(x)
 ```
+
+```{r}
+y <- 
+  x %>%
+  drop_na(microbiome.sample) %>%
+  filter(!grepl("na|n/a", `tumor.width.(mm)`)) %>%
+  mutate(tumor.length.mm = as.numeric(`tumor.length.(mm)`),
+         tumor.width.mm = as.numeric(`tumor.width.(mm)`),
+         tumor.volume = (tumor.length.mm * (tumor.width.mm^2)) / 2) %>%
+  mutate(cage = as.factor(cage)) %>%
+  mutate(mouse = paste(tail.number, cage, sep = ".")) %>%
+  group_by(mouse, date, microbiome.sample) %>%
+  summarize(total.tumor.volume = sum(tumor.volume))
+  
+
+head(y)  
+```
+
+```{r}
+
+```
+
+```{r, warning=FALSE}
+y %>%
+  ggplot(aes(x = date, y = total.tumor.volume)) +
+  geom_line(aes(group = mouse,
+                color = microbiome.sample)) +
+  theme_bw() +
+  facet_wrap(~microbiome.sample)
+
+```
+```{r}
+y %>%
+  ggplot(aes(x = date, y = total.tumor.volume)) +
+  geom_smooth(aes(color = microbiome.sample)) +
+  theme_bw() +
+  facet_wrap(~microbiome.sample)
+
+ggsave("../figures/mimic23_tum-volume.png",
+       height = 3, width = 6)
+```
+
 
