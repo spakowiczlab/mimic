@@ -11,6 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
 library(survminer)
+library(survival)
+library(ggsurvfit)
 
 # Set paths to locate OneDrive shared mimic folder
 source("00-paths.R")
@@ -57,24 +59,42 @@ y %>%
   theme_bw() +
   facet_wrap(~microbiome.sample)
 
-ggsave("../figures/mimic23_tum-volume.png",
-       height = 3, width = 6)
 ```
 
 ```{r}
-surv.in <- x %>%
+surv.in <- 
+  x %>%
   mutate(mouse = paste(tail.number, cage, sep = ".")) %>%
   # this should work but also removes NA... 
   # == "n/a" only selects those 6 though
   # max days on trial should be 24 
   filter(`tumor.length.(mm)` != "n/a") %>%
     group_by(mouse) %>%
+  mutate(tumor.length = as.numeric(`tumor.length.(mm)`),
+         tumor.width = as.numeric(`tumor.width.(mm)`)) %>%
   mutate(days.on.trial = max(date) - min(date)) %>%
   ungroup() %>%
   filter(!is.na(microbiome.sample)) %>%
-  select(mouse, days.on.trial, microbiome.sample) %>%
+  select(mouse, days.on.trial, microbiome.sample, tumor.length) %>%
   distinct() %>%
-  mutate(status = ifelse(days.on.trial < max(days.on.trial), 1, 0))
+  mutate(status = ifelse(days.on.trial < max(days.on.trial), 1, 0)) %>%
+  mutate(status = if_else(tumor.length > 16,
+                          true = 1,
+                          false = status))
+
+head(surv.in)
+```
+
+```{r}
+surv.m <- ggsurvfit::survfit2(Surv(days.on.trial, status) ~ microbiome.sample, 
+                      data = surv.in)
+
+surv.m %>%
+  ggsurvfit() +
+  add_pvalue()
+
+ggsave("../figures/mimic23_survival.png",
+       height = 4, width = 6)
 ```
 
 
