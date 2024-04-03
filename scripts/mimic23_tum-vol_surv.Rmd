@@ -19,11 +19,10 @@ source("00-paths.R")
 ```
 
 ```{r}
-x <- readxl::read_xlsx(file.path(paths$onedrive,
-                                 "data",
-                                 "AOT00055028- mimic23",
-                                 "mimic23_tumor-size.xlsx"))
+x <- readxl::read_xlsx("../data/tumor-size/AOT00055028-mimic23/mimic23_tumor-size.xlsx")
+
 head(x)
+
 ```
 
 ```{r}
@@ -42,6 +41,7 @@ y <-
 
 head(y)  
 ```
+
 
 ```{r, warning=FALSE}
 y %>%
