@@ -1,0 +1,143 @@
+---
+title: "Mimic24 Tumor Volume and Survival"
+author: "Dan Spakowicz"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readxl)
+library(survminer)
+library(survival)
+library(ggsurvfit)
+
+# Set paths to locate OneDrive shared mimic folder
+source("00-paths.R")
+```
+
+```{r}
+# x <- readxl::read_xlsx("../data/tumor-size/AOT00055226-mimic24/mimic24_tumor-size.xlsx")
+x <- readxl::read_xlsx(file.path(paths$onedrive, 
+                                 "data", 
+                                 "AOT00055226-mimic24", 
+                                 "mimic24_tumor-size.xlsx"))
+
+head(x)
+```
+
+```{r}
+y <- 
+  x %>%
+  drop_na(microbiome.sample) %>%
+  mutate(tumor.volume = (`tumor.length.(mm)` * (`tumor.width.(mm)`^2)) / 2) %>%
+  mutate(mouse = paste(tail.number, cage, sep = "."))
+
+head(y)  
+```
+
+```{r, warning=FALSE}
+y %>%
+  ggplot(aes(x = date, y = tumor.volume)) +
+  geom_line(aes(group = mouse,
+                color = microbiome.sample)) +
+  theme_bw() +
+  facet_wrap(~microbiome.sample)
+
+```
+
+```{r}
+y %>%
+  ggplot(aes(x = date, y = tumor.volume)) +
+  geom_smooth(aes(color = microbiome.sample)) +
+  theme_bw() +
+  facet_wrap(~microbiome.sample)
+
+```
+
+```{r}
+
+y %>%
+  ggplot(aes(x = date, y = tumor.volume)) +
+  geom_smooth(aes(color = microbiome.sample)) +
+  theme_bw() 
+
+```
+
+# Longitudinal modeling
+
+Check the distribution of the response variable
+
+```{r}
+y %>%
+  ggplot(aes(x = tumor.volume)) +
+  geom_histogram()
+
+y %>%
+  ggplot(aes(x = log(tumor.volume))) +
+  geom_histogram()
+```
+
+A log transformation looks good.
+
+Now I'll create the time variables
+
+```{r}
+z <- 
+  y %>%
+  mutate(microbe = fct_relevel(microbiome.sample, "PBS")) %>%
+  mutate(log.tumor.volume = log(tumor.volume+1)) %>%
+  mutate(days = as.Date(date) - as.Date("2024-03-14", "%F")) %>%
+  mutate(days = as.numeric(days)) %>%
+  mutate(days2 = days^2)
+```
+
+```{r}
+m1 <- lm(log.tumor.volume ~ days + days2 * microbe,
+         data = z)
+
+summary(m1)
+```
+
+
+
+
+```
+
+```{r}
+surv.in <- 
+  x %>%
+  mutate(mouse = paste(tail.number, cage, sep = ".")) %>%
+  # this should work but also removes NA... 
+  # == "n/a" only selects those 6 though
+  # max days on trial should be 24 
+  filter(`tumor.length.(mm)` != "n/a") %>%
+    group_by(mouse) %>%
+  mutate(tumor.length = as.numeric(`tumor.length.(mm)`),
+         tumor.width = as.numeric(`tumor.width.(mm)`)) %>%
+  mutate(days.on.trial = max(date) - min(date)) %>%
+  ungroup() %>%
+  filter(!is.na(microbiome.sample)) %>%
+  select(mouse, days.on.trial, microbiome.sample, tumor.length) %>%
+  distinct() %>%
+  mutate(status = ifelse(days.on.trial < max(days.on.trial), 1, 0)) %>%
+  mutate(status = if_else(tumor.length > 16,
+                          true = 1,
+                          false = status))
+
+head(surv.in)
+```
+
+```{r}
+surv.m <- ggsurvfit::survfit2(Surv(days.on.trial, status) ~ microbiome.sample, 
+                      data = surv.in)
+
+surv.m %>%
+  ggsurvfit() +
+  add_pvalue()
+
+ggsave("../figures/mimic24_survival.png",
+       height = 4, width = 6)
+```
