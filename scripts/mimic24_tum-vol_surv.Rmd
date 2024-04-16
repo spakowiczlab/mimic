@@ -19,10 +19,13 @@ source("00-paths.R")
 ```
 
 ```{r}
-x <- readxl::read_xlsx("../data/tumor-size/AOT00055226-mimic24/mimic24_tumor-size.xlsx")
+# x <- readxl::read_xlsx("../data/tumor-size/AOT00055226-mimic24/mimic24_tumor-size.xlsx")
+x <- readxl::read_xlsx(file.path(paths$onedrive, 
+                                 "data", 
+                                 "AOT00055226-mimic24", 
+                                 "mimic24_tumor-size.xlsx"))
 
 head(x)
-
 ```
 
 ```{r}
@@ -35,7 +38,6 @@ y <-
 head(y)  
 ```
 
-
 ```{r, warning=FALSE}
 y %>%
   ggplot(aes(x = date, y = tumor.volume)) +
@@ -45,6 +47,7 @@ y %>%
   facet_wrap(~microbiome.sample)
 
 ```
+
 ```{r}
 y %>%
   ggplot(aes(x = date, y = tumor.volume)) +
@@ -63,7 +66,45 @@ y %>%
 
 ```
 
+# Longitudinal modeling
 
+Check the distribution of the response variable
+
+```{r}
+y %>%
+  ggplot(aes(x = tumor.volume)) +
+  geom_histogram()
+
+y %>%
+  ggplot(aes(x = log(tumor.volume))) +
+  geom_histogram()
+```
+
+A log transformation looks good.
+
+Now I'll create the time variables
+
+```{r}
+z <- 
+  y %>%
+  mutate(microbe = fct_relevel(microbiome.sample, "PBS")) %>%
+  mutate(log.tumor.volume = log(tumor.volume+1)) %>%
+  mutate(days = as.Date(date) - as.Date("2024-03-14", "%F")) %>%
+  mutate(days = as.numeric(days)) %>%
+  mutate(days2 = days^2)
+```
+
+```{r}
+m1 <- lm(log.tumor.volume ~ days + days2 * microbe,
+         data = z)
+
+summary(m1)
+```
+
+
+
+
+```
 
 ```{r}
 surv.in <- 
@@ -100,6 +141,3 @@ surv.m %>%
 ggsave("../figures/mimic24_survival.png",
        height = 4, width = 6)
 ```
-
-
-
