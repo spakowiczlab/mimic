@@ -44,3 +44,6 @@ mimic.json
 
 # MacOS hidden files
 .DS_Store
+
+# root level paths
+00-paths.R
