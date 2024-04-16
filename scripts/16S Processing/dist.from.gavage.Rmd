@@ -18,14 +18,16 @@ When you click the **Knit** button a document will be generated that includes bo
 library(dplyr)
 library(ggplot2)
 library(tidyr)
+library(tidyverse)
+library(vegan)
 ```
 
 
 You can also embed plots, for example:
 
 ```{r pressure, echo=FALSE}
-taxa <- read_rds("/Users/shiva/Documents/16s mimic/mimic_taxa.rds")
-seqtab <- read_rds("/Users/shiva/Documents/16s mimic/mimic_seqtab.rds")
+taxa <- read_rds("/Users/jaha05/Downloads/mimic_taxa.rds")
+seqtab <- read_rds("/Users/jaha05/Downloads/mimic_seqtab.rds")
 key <- read_csv("https://raw.githubusercontent.com/spakowiczlab/mimic/master/data/mimic16S-key.csv")
 key$...1 <- NULL
 ```
@@ -53,6 +55,7 @@ pcoa_df0 %>%
   geom_point() +
   labs(x = "PCoA 1", y = "PCoA 2")
 ```
+
 ```{r}
 #relative abundance
 
