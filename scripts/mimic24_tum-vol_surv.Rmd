@@ -18,6 +18,8 @@ library(ggsurvfit)
 source("00-paths.R")
 ```
 
+Read in the data.
+
 ```{r}
 # x <- readxl::read_xlsx("../data/tumor-size/AOT00055226-mimic24/mimic24_tumor-size.xlsx")
 x <- readxl::read_xlsx(file.path(paths$onedrive, 
