@@ -22,10 +22,12 @@ Read in the data.
 
 ```{r}
 # x <- readxl::read_xlsx("../data/tumor-size/AOT00055226-mimic24/mimic24_tumor-size.xlsx")
-x <- readxl::read_xlsx(file.path(paths$onedrive, 
-                                 "data", 
-                                 "AOT00055226-mimic24", 
-                                 "mimic24_tumor-size.xlsx"))
+# x <- readxl::read_xlsx(file.path(paths$onedrive, 
+#                                  "data", 
+#                                  "AOT00055226-mimic24", 
+#                                  "mimic24_tumor-size.xlsx"))
+
+x <- readxl::read_xlsx("C:/Users/spak01/OneDrive - The Ohio State University Wexner Medical Center/mimic/data/AOT00055226-mimic24/mimic24_tumor-size.xlsx")
 
 head(x)
 ```
@@ -101,11 +103,6 @@ m1 <- lm(log.tumor.volume ~ days + days2 * microbe,
          data = z)
 
 summary(m1)
-```
-
-
-
-
 ```
 
 ```{r}
