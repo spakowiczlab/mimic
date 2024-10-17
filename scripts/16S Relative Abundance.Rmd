@@ -27,14 +27,16 @@ key <- read_csv("../data/mimic16S-key.csv") %>%
 
 ```{r processing taxa table}
 
-taxa.long <- taxa %>%
+taxa.long <- 
+  taxa %>%
   rownames_to_column(var="ASV") %>%
   gather(Taxonomy,Classification,-ASV) %>%
   group_by(ASV) %>% 
   mutate(Taxonomy = as.factor(Taxonomy),
          Taxonomy=fct_relevel(Taxonomy,"Kingdom","Phylum","Class","Order","Family","Genus","Species")) 
 
-taxa.spread <- taxa.long %>%
+taxa.spread <- 
+  taxa.long %>%
   spread(Taxonomy,Classification) %>%
   mutate(Phylum=if_else(is.na(Phylum),paste0("p_unclassified_",Kingdom),Phylum),
          Class=if_else(is.na(Class),paste0("c_unclassified_",Phylum),Class),
@@ -81,7 +83,7 @@ relabun.roseburia <- key.10 %>%
   select(timepoint,gavage.simple,Roseburia,treatment)
 
 relabun.roseburia %>%
-  ggplot(aes(x=gavage.simple,y=Roseburia,fill=treatment)) +
+  ggplot(aes(x=gavage.simple, y=Roseburia, fill=treatment)) +
   geom_bar(position="dodge", stat="identity") +
   facet_wrap(. ~ timepoint) +
   theme_bw() +
