@@ -63,8 +63,30 @@ y %>%
   ggplot(aes(x = date, y = tumor.volume)) +
   geom_smooth(aes(color = microbiome.sample)) +
   theme_bw() 
-
+ggsave("../figures/Fig4A-mimic24.png", 
+       height = 3, width =5)
+ggsave("../figures/Fig4A-mimic24.svg", 
+       height = 3, width =5)
 ```
+```{r}
+y %>%
+  mutate(microbiome.sample = factor(microbiome.sample, 
+                                    levels = c("PBS", "Agathobacter rectalis", "Blautia obeum", "Blautia massiliensis")),
+         microbiome.sample = recode(microbiome.sample, 
+                                    "Agathobacter rectalis" = "A. rectalis",
+                                    "Blautia obeum" = "B. obeum",
+                                    "Blautia massiliensis" = "B. massiliensis")) %>%
+  ggplot(aes(x = date, y = tumor.volume)) +
+  geom_smooth(aes(color = microbiome.sample)) +
+  theme_bw() +
+  scale_color_brewer(palette = "Paired", direction = -1) +
+  labs(x = "Date", 
+       y = "Tumor Volume")
+
+ggsave("../figures/Fig4A-mimic24.svg", 
+       height = 3, width =5)
+```
+
 
 # Longitudinal modeling
 

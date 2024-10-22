@@ -217,6 +217,33 @@ free.1819 %>%
 
 ggsave("../figures/percentfree_mim1819_barplot.png", 
        height = 5, width = 6)
+ggsave("../figures/percentfree_mim1819_barplot.svg", 
+       height = 4, width = 7)
 
 ```
+
+```{r}
+free.1819 <- box.1819 %>%
+  mutate(new.group = paste0(microbiome.sample, treatment)) %>%
+  mutate(tumor.size.is.0 = if_else(tumor.volume > 0, 0, 1)) %>%
+  group_by(microbiome.sample, treatment) %>%
+  summarize(frac.0 = sum(tumor.size.is.0) / n())
+
+free.1819 %>%
+  ggplot(aes(x = treatment, y = frac.0, fill = microbiome.sample)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  theme_bw(base_size = 18) +
+  ylim(0, 1) +
+  labs(x = "Treatment", y = "% Tumor Free", fill = "Sample") +
+  scale_fill_manual(
+    values = c("#d95f02", "#7570b3"),
+    labels = c("85", "85 + Blautia")
+  )
+ 
+
+ggsave("../figures/fig4B.svg", 
+       height = 4, width = 7)
+
+```
+
 

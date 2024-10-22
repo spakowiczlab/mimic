@@ -60,6 +60,15 @@ y %>%
   facet_wrap(~microbiome.sample)
 
 ```
+```{r}
+y %>%
+  ggplot(aes(x = date, y = total.tumor.volume)) +
+  geom_smooth(aes(color = microbiome.sample)) +
+  theme_bw() 
+ggsave("../figures/mimic23.png", 
+       height = 3, width =5)
+```
+
 
 ```{r}
 surv.in <- 
