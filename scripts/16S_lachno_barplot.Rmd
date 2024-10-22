@@ -1,0 +1,25 @@
+---
+title: "16S_lachno_barplot"
+author: "Justin Suppogu"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+The goal of this script is to generate a plot that shows the amount of Lachnospiraceae in each of the samples, mimicking Figure 3B in the #dmm21 manuscript.
+
+```{r}
+seqtab <- readRDS("../data/2023-07-26_16S-seqtab.rds") %>%
+  as.data.frame()
+taxa <- readRDS("../data/2023-07-26_16S-taxa.rds") %>%
+  as.data.frame()
+key <- read_csv("../data/mimic16S-key.csv") %>%
+  select(-`...1`)
+```
+
+

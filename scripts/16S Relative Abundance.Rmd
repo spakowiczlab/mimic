@@ -1,0 +1,111 @@
+---
+title: "16S Relative Abundance"
+author: "Aadi Pallerla"
+date: "2024-02-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(vegan)
+library(funrar)
+library(RColorBrewer)
+```
+
+```{r}
+bewell.relabun <- read.csv("../data/RelAbun_gen.csv")
+
+seqtab <- readRDS("../data/2023-07-26_16S-seqtab.rds") %>%
+  as.data.frame()
+taxa <- readRDS("../data/2023-07-26_16S-taxa.rds") %>%
+  as.data.frame()
+key <- read_csv("../data/mimic16S-key.csv") %>%
+  select(-`...1`)
+```
+
+```{r processing taxa table}
+
+taxa.long <- 
+  taxa %>%
+  rownames_to_column(var="ASV") %>%
+  gather(Taxonomy,Classification,-ASV) %>%
+  group_by(ASV) %>% 
+  mutate(Taxonomy = as.factor(Taxonomy),
+         Taxonomy=fct_relevel(Taxonomy,"Kingdom","Phylum","Class","Order","Family","Genus","Species")) 
+
+taxa.spread <- 
+  taxa.long %>%
+  spread(Taxonomy,Classification) %>%
+  mutate(Phylum=if_else(is.na(Phylum),paste0("p_unclassified_",Kingdom),Phylum),
+         Class=if_else(is.na(Class),paste0("c_unclassified_",Phylum),Class),
+         Order=if_else(is.na(Order),paste0("o_unclassified_",Class),Order),
+         Family=if_else(is.na(Family),paste0("f_unclassified_",Order),Family),
+         Genus=if_else(is.na(Genus),paste0("g_unclassified_",Family),Genus),
+         Species=if_else(is.na(Species),paste0("s_unclassified_",Genus),Species))
+
+```
+
+```{r}
+
+relabun <- seqtab %>%
+  as.matrix() %>%
+  make_relative() %>%
+  as.data.frame() %>%
+  rownames_to_column(var="sampleID")
+
+joined <- relabun %>%
+  gather(ASV,rel_abun,-sampleID) %>%
+  left_join(taxa.spread,"ASV") %>%
+  select(sampleID,rel_abun,Genus)
+
+group.sum <- joined %>%
+  group_by(sampleID, Genus) %>%
+  summarise(genus_abundance = sum(rel_abun), count = n())
+
+group.spread <- group.sum %>%
+  select(sampleID,Genus,genus_abundance) %>%
+  spread(Genus,genus_abundance)
+
+```
+
+```{r}
+key.10 <- key %>%
+  filter(experiment == "mimic 10") %>%
+  filter(timepoint == "baseline" | timepoint == "necropsy") %>%
+  mutate(gavage.simple = ifelse(grepl("Pre-BRB",gavage),"rB","tB"),
+         sampleID = as.character(sampleID)) %>% 
+  select(sampleID,timepoint,gavage.simple, treatment)
+
+relabun.roseburia <- key.10 %>%
+  left_join(group.spread) %>%
+  select(timepoint,gavage.simple,Roseburia,treatment)
+
+relabun.roseburia %>%
+  ggplot(aes(x=gavage.simple, y=Roseburia, fill=treatment)) +
+  geom_bar(position="dodge", stat="identity") +
+  facet_wrap(. ~ timepoint) +
+  theme_bw() +
+  labs(x = "Gavage",y = "Relative Abundance",title = "Roseburia - Mimic 10") 
+
+ggsave("../figures/mimic10-roseburia_relabun.png", width = 7, height = 6)
+
+
+relabun.blautia <- key.10 %>%
+  left_join(group.spread) %>%
+  select(timepoint,gavage.simple,Blautia,treatment)
+
+relabun.blautia %>%
+  ggplot(aes(x=gavage.simple,y=Blautia,fill=treatment)) +
+  geom_bar(position="dodge", stat="identity",scales="free") +
+  facet_wrap(. ~ timepoint) +
+  theme_bw() +
+  labs(x = "Gavage",y = "Relative Abundance",title = "Blautia - Mimic 10")
+
+ggsave("../figures/mimic10-blautia_relabun.png", width = 7, height = 6)
+
+```
+
+
+# Focus on ASV closest to that in human samples
