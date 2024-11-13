@@ -21,13 +21,11 @@ source("00-paths.R")
 Read in the data.
 
 ```{r}
-# x <- readxl::read_xlsx("../data/tumor-size/AOT00055226-mimic24/mimic24_tumor-size.xlsx")
+ x <- readxl::read_xlsx("../data/tumor-size/AOT00055226-mimic24/mimic24_tumor-size.xlsx")
 # x <- readxl::read_xlsx(file.path(paths$onedrive, 
 #                                  "data", 
 #                                  "AOT00055226-mimic24", 
 #                                  "mimic24_tumor-size.xlsx"))
-
-x <- readxl::read_xlsx("C:/Users/spak01/OneDrive - The Ohio State University Wexner Medical Center/mimic/data/AOT00055226-mimic24/mimic24_tumor-size.xlsx")
 
 head(x)
 ```
@@ -87,11 +85,129 @@ y %>%
   labs(x = "Date", 
        y = "Tumor Volume")
 
-ggsave("../figures/Fig4A-mimic24.svg", 
-       height = 3, width =5)
+
 ```
 
+```{r}
+start_date <- min(y$date, na.rm = TRUE)
 
+y_modified <- y %>%
+  filter(microbiome.sample != "PBS") %>%  # Filter out PBS
+  mutate(
+    microbiome.sample = factor(microbiome.sample, 
+                               levels = c("Agathobacter rectalis", "Blautia obeum", "Blautia massiliensis")),
+    microbiome.sample = recode(microbiome.sample, 
+                               "Agathobacter rectalis" = "A. rectalis",
+                               "Blautia obeum" = "B. obeum",
+                               "Blautia massiliensis" = "B. massiliensis"),
+    days_from_injection = as.numeric(difftime(date, start_date, units = "days"))  # Calculate days from start
+  )
+
+# Calculate the maximum days_from_injection value for x-axis scaling
+max_days <- max(y_modified$days_from_injection, na.rm = TRUE)
+
+ggplot(y_modified, aes(x = days_from_injection, y = tumor.volume)) +
+  geom_smooth(aes(color = microbiome.sample)) +
+  theme_bw() +
+  scale_color_brewer(palette = "Paired", direction = -1) +
+  labs(x = "Days from Tumor Injection",  
+       y = "Mean Tumor Volume (mm³)") +
+  scale_x_continuous(breaks = seq(0, max_days, by = 5))  # Customize x-axis breaks
+ggsave("../figures/Fig4A-mimic24.svg", 
+       height = 3, width =5)
+
+```
+```{r}
+# Filter and modify data
+y_modified <- y %>%
+  filter(microbiome.sample != "PBS") %>%
+  mutate(
+    microbiome.sample = factor(microbiome.sample, 
+                               levels = c("Agathobacter rectalis", "Blautia obeum", "Blautia massiliensis")),
+    microbiome.sample = recode(microbiome.sample, 
+                               "Agathobacter rectalis" = "A. rectalis",
+                               "Blautia obeum" = "B. obeum",
+                               "Blautia massiliensis" = "B. massiliensis"),
+    days_from_injection = as.numeric(difftime(date, start_date, units = "days"))
+  )
+
+# Calculate the maximum days_from_injection value for x-axis scaling
+max_days <- max(y_modified$days_from_injection, na.rm = TRUE)
+
+# Calculate p-values for the groups (example with t-test for illustration)
+p_value1 <- t.test(y_modified$tumor.volume[y_modified$microbiome.sample == "A. rectalis"],
+                   y_modified$tumor.volume[y_modified$microbiome.sample == "B. obeum"])$p.value
+p_value2 <- t.test(y_modified$tumor.volume[y_modified$microbiome.sample == "A. rectalis"],
+                   y_modified$tumor.volume[y_modified$microbiome.sample == "B. massiliensis"])$p.value
+p_value3 <- t.test(y_modified$tumor.volume[y_modified$microbiome.sample == "B. obeum"],
+                   y_modified$tumor.volume[y_modified$microbiome.sample == "B. massiliensis"])$p.value
+
+# Plot with manual annotations
+ggplot(y_modified, aes(x = days_from_injection, y = tumor.volume, color = microbiome.sample)) +
+  geom_smooth() +
+  theme_bw() +
+  scale_color_brewer(palette = "Paired", direction = -1) +
+  labs(x = "Days from Tumor Injection",  
+       y = "Mean Tumor Volume (mm³)") +
+  scale_x_continuous(breaks = seq(0, max_days, by = 5))
+ggsave("../figures/Fig4A-mimic24.svg", 
+       height = 3, width =5)
+
+```
+
+```{r}
+y_modified <- y %>%
+  filter(microbiome.sample != "PBS") %>%
+  mutate(
+    microbiome.sample = factor(microbiome.sample, levels = c("Agathobacter rectalis", "Blautia obeum", "Blautia massiliensis")),
+    microbiome.sample = recode(microbiome.sample, "Agathobacter rectalis" = "A. rectalis", "Blautia obeum" = "B. obeum", "Blautia massiliensis" = "B. massiliensis"),
+    days_from_injection = as.numeric(difftime(date, start_date, units = "days"))
+  )
+
+# Calculate p-values and define labels
+p_values <- list(
+  paste("p =", round(t.test(y_modified$tumor.volume[y_modified$microbiome.sample == "A. rectalis"], y_modified$tumor.volume[y_modified$microbiome.sample == "B. obeum"])$p.value, 3)),
+  paste("p =", round(t.test(y_modified$tumor.volume[y_modified$microbiome.sample == "A. rectalis"], y_modified$tumor.volume[y_modified$microbiome.sample == "B. massiliensis"])$p.value, 3)),
+  paste("p =", round(t.test(y_modified$tumor.volume[y_modified$microbiome.sample == "B. obeum"], y_modified$tumor.volume[y_modified$microbiome.sample == "B. massiliensis"])$p.value, 3))
+)
+
+# Define x position for brackets and y positions based on mean tumor volume
+bracket_x <- max(y_modified$days_from_injection, na.rm = TRUE) + 0.5
+y_positions <- y_modified %>%
+  filter(days_from_injection == max(days_from_injection, na.rm = TRUE)) %>%
+  group_by(microbiome.sample) %>%
+  summarize(mean_volume = mean(tumor.volume, na.rm = TRUE)) %>%
+  arrange(desc(mean_volume)) %>%
+  pull(mean_volume)
+
+# Plot with vertical brackets and rotated p-values
+ggplot(y_modified, aes(x = days_from_injection, y = tumor.volume, color = microbiome.sample)) +
+  geom_smooth() +
+  theme_bw() +
+  scale_color_brewer(palette = "Paired", direction = -1) +
+  labs(x = "Days from Tumor Injection", y = "Mean Tumor Volume (mm³)") +
+  
+  # Adding bracket-style annotations
+  annotate("segment", x = bracket_x, xend = bracket_x, y = y_positions[2], yend = y_positions[1]) +
+  annotate("segment", x = bracket_x - 0.3, xend = bracket_x, y = y_positions[2], yend = y_positions[2]) +
+  annotate("segment", x = bracket_x - 0.3, xend = bracket_x, y = y_positions[1], yend = y_positions[1]) +
+  annotate("text", x = bracket_x + 0.6, y = mean(c(y_positions[1], y_positions[2])), label = p_values[[1]], angle = 270) +
+
+  annotate("segment", x = bracket_x + 1, xend = bracket_x + 1, y = y_positions[3], yend = y_positions[2]) +
+  annotate("segment", x = bracket_x + 0.7, xend = bracket_x + 1, y = y_positions[3], yend = y_positions[3]) +
+  annotate("segment", x = bracket_x + 0.7, xend = bracket_x + 1, y = y_positions[2], yend = y_positions[2]) +
+  annotate("text", x = bracket_x + 1.6, y = mean(c(y_positions[2], y_positions[3])), label = p_values[[3]], angle = 270) +
+
+  annotate("segment", x = bracket_x + 2, xend = bracket_x + 2, y = y_positions[3], yend = y_positions[1]) +
+  annotate("segment", x = bracket_x + 1.7, xend = bracket_x + 2, y = y_positions[3], yend = y_positions[3]) +
+  annotate("segment", x = bracket_x + 1.7, xend = bracket_x + 2, y = y_positions[1], yend = y_positions[1]) +
+  annotate("text", x = bracket_x + 2.6, y = mean(c(y_positions[1], y_positions[3])), label = p_values[[2]], angle = 270)
+
+ggsave("../figures/Fig4A-mimic24.svg", 
+       height = 5, width =8)
+
+
+```
 # Longitudinal modeling
 
 Check the distribution of the response variable
@@ -105,6 +221,7 @@ y %>%
   ggplot(aes(x = log(tumor.volume))) +
   geom_histogram()
 ```
+
 
 A log transformation looks good.
 
