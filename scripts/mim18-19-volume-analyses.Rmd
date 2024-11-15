@@ -17,7 +17,7 @@ library(RColorBrewer)
 library(viridisLite)
 library(ggbeeswarm)
 
-source("00-paths.R")
+# source("00-paths.R")
 ```
 
 ## Data Processing
